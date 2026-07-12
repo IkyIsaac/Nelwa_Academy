@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+    <string name="app_name">Nelwas App</string>
+    <string name="facebook_app_id">1533704608371727</string>
+    <string name="fb_login_protocol_scheme">fb1533704608371727</string>
+     <string name="facebook_client_token">dce82e6a5f2b584a250b5176685eb9de</string>
+          
+</resources>

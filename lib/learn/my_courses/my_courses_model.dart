@@ -1,0 +1,11 @@
+import '/flutter_flow/flutter_flow_util.dart';
+import 'my_courses_widget.dart' show MyCoursesWidget;
+import 'package:flutter/material.dart';
+
+class MyCoursesModel extends FlutterFlowModel<MyCoursesWidget> {
+  @override
+  void initState(BuildContext context) {}
+
+  @override
+  void dispose() {}
+}

@@ -1,0 +1,209 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /users/{document} {
+      allow create: if false;
+      allow read: if request.auth != null;
+      allow write: if request.auth != null;
+      allow delete: if false;
+    }
+
+    match /users/{parent}/payment_account/{document} {
+      allow create: if false;
+      allow read: if request.auth != null;
+      allow write: if request.auth != null;
+      allow delete: if false;
+    }
+
+    match /{path=**}/payment_account/{document} {
+      allow read: if request.auth != null;
+    }
+
+
+    match /users/{parent}/payment_method/{document} {
+      allow create: if false;
+      allow read: if request.auth != null;
+      allow write: if request.auth != null;
+      allow delete: if false;
+    }
+
+    match /{path=**}/payment_method/{document} {
+      allow read: if request.auth != null;
+    }
+
+
+    match /support/{document} {
+      allow create: if false;
+      allow read: if request.auth != null;
+      allow write: if request.auth != null;
+      allow delete: if false;
+    }
+
+    match /support/{parent}/support_message/{document} {
+      allow create: if false;
+      allow read: if request.auth != null;
+      allow write: if request.auth != null;
+      allow delete: if false;
+    }
+
+    match /{path=**}/support_message/{document} {
+      allow read: if request.auth != null;
+    }
+
+
+    match /courses/{document} {
+      allow create: if false;
+      allow read: if request.auth != null;
+      allow write: if request.auth != null;
+      allow delete: if false;
+    }
+
+    match /courses/{parent}/lessons/{document} {
+      allow create: if false;
+      allow read: if request.auth != null;
+      allow write: if request.auth != null;
+      allow delete: if false;
+    }
+
+    match /{path=**}/lessons/{document} {
+      allow read: if request.auth != null;
+    }
+
+
+    match /users/{parent}/instructor_details/{document} {
+      allow create: if false;
+      allow read: if request.auth != null;
+      allow write: if request.auth != null;
+      allow delete: if false;
+    }
+
+    match /{path=**}/instructor_details/{document} {
+      allow read: if request.auth != null;
+    }
+
+
+    match /users/{parent}/notification/{document} {
+      allow create: if false;
+      allow read: if request.auth != null;
+      allow write: if request.auth != null;
+      allow delete: if false;
+    }
+
+    match /{path=**}/notification/{document} {
+      allow read: if request.auth != null;
+    }
+
+
+    match /courses/{parent}/courses_review/{document} {
+      allow create: if false;
+      allow read: if request.auth != null;
+      allow write: if request.auth != null;
+      allow delete: if false;
+    }
+
+    match /{path=**}/courses_review/{document} {
+      allow read: if request.auth != null;
+    }
+
+
+    match /courses/{parent}/review_report/{document} {
+      allow create: if false;
+      allow read: if request.auth != null;
+      allow write: if request.auth != null;
+      allow delete: if false;
+    }
+
+    match /{path=**}/review_report/{document} {
+      allow read: if request.auth != null;
+    }
+
+
+    match /courses/{parent}/lesson_report/{document} {
+      allow create: if false;
+      allow read: if request.auth != null;
+      allow write: if request.auth != null;
+      allow delete: if false;
+    }
+
+    match /{path=**}/lesson_report/{document} {
+      allow read: if request.auth != null;
+    }
+
+
+    match /users/{parent}/purchase_history/{document} {
+      allow create: if false;
+      allow read: if request.auth != null;
+      allow write: if request.auth != null;
+      allow delete: if false;
+    }
+
+    match /{path=**}/purchase_history/{document} {
+      allow read: if request.auth != null;
+    }
+
+
+    match /users/{parent}/purchased_courses/{document} {
+      allow create: if false;
+      allow read: if request.auth != null;
+      allow write: if request.auth != null;
+      allow delete: if false;
+    }
+
+    match /{path=**}/purchased_courses/{document} {
+      allow read: if request.auth != null;
+    }
+
+
+    match /options/{document} {
+      allow create: if false;
+      allow read: if request.auth != null;
+      allow write: if request.auth != null;
+      allow delete: if false;
+    }
+
+    match /ads/{document} {
+      allow create: if true;
+      allow read: if request.auth != null;
+      allow write: if request.auth != null;
+      allow delete: if false;
+    }
+
+    match /requesta_refund/{document} {
+      allow create: if false;
+      allow read: if request.auth != null;
+      allow write: if request.auth != null;
+      allow delete: if false;
+    }
+
+    match /users/{parent}/user_reviews/{document} {
+      allow create: if false;
+      allow read: if request.auth != null;
+      allow write: if request.auth != null;
+      allow delete: if false;
+    }
+
+    match /{path=**}/user_reviews/{document} {
+      allow read: if request.auth != null;
+    }
+
+
+    match /courses/{parent}/courses_report/{document} {
+      allow create: if false;
+      allow read: if request.auth != null;
+      allow write: if request.auth != null;
+      allow delete: if false;
+    }
+
+    match /{path=**}/courses_report/{document} {
+      allow read: if request.auth != null;
+    }
+
+
+    match /consultation/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+  }
+}

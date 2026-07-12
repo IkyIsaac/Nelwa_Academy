@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>91236738139-265nqcsm72sfqjevel4v5tcop8qga91p.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.91236738139-265nqcsm72sfqjevel4v5tcop8qga91p</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>91236738139-2i458gld3n7f0haq60qjt1oedmj2a5cq.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDEG1bogPDhJnBVMnCIur6IhY5dfiKjzHc</string>
+	<key>GCM_SENDER_ID</key>
+	<string>91236738139</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.mycompany.nelwas</string>
+	<key>PROJECT_ID</key>
+	<string>nelwasacademy-7uw9xf</string>
+	<key>STORAGE_BUCKET</key>
+	<string>nelwasacademy-7uw9xf.firebasestorage.app</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:91236738139:ios:a86de819673f0248a88b7e</string>
+</dict>
+</plist>

@@ -1,0 +1,30 @@
+{
+  "indexes": [
+    {
+      "collectionGroup": "purchased_courses",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "reviwed",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "purchase_date",
+          "order": "DESCENDING"
+        }
+      ]
+    }
+  ],
+  "fieldOverrides": [
+    {
+      "collectionGroup": "purchase_history",
+      "fieldPath": "date",
+      "indexes": [
+        {
+          "order": "DESCENDING",
+          "queryScope": "COLLECTION_GROUP"
+        }
+      ]
+    }
+  ]
+}

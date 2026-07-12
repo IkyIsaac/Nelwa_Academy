@@ -1,0 +1,70 @@
+{
+  "project_info": {
+    "project_number": "91236738139",
+    "project_id": "nelwasacademy-7uw9xf",
+    "storage_bucket": "nelwasacademy-7uw9xf.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:91236738139:android:85826c9b3a56cac2a88b7e",
+        "android_client_info": {
+          "package_name": "com.mycompany.nelwas"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "91236738139-2i458gld3n7f0haq60qjt1oedmj2a5cq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mycompany.nelwas",
+            "certificate_hash": "5379187b4b7e22feb14d02b8efeb4cc8744ba4f5"
+          }
+        },
+        {
+          "client_id": "91236738139-asa3shsepoglcu568uj9fc42tp17gkq4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mycompany.nelwas",
+            "certificate_hash": "23d9f60e1f97bbf5408efd0dbc93364342e2eda0"
+          }
+        },
+        {
+          "client_id": "91236738139-h4so1lar470gckihp401ljtm3o6fkv5f.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mycompany.nelwas",
+            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "91236738139-kpjgpn8a18gibviego44afoht3el6k76.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDnmc3jwvDiqKRJN7zbbOlEKl3aOVUazVU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "91236738139-kpjgpn8a18gibviego44afoht3el6k76.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "91236738139-1h77b816acvuhj58hohse466a9lbtjpd.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.mycompany.skillbase"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
