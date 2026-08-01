@@ -1,0 +1,11 @@
+[build]
+  command = "export CI=true && git clone --depth 1 --branch 3.35.7 https://github.com/flutter/flutter.git flutter_sdk && export PATH=\"$PATH:$(pwd)/flutter_sdk/bin\" && flutter config --enable-web --no-analytics && flutter pub get && flutter build web --release -t lib/main_admin.dart"
+  publish = "build/web"
+
+# Flutter's GoRouter uses real paths (no #), so every route (e.g. /users,
+# /courses/:id) needs to fall back to index.html and let the app's own
+# router handle it client-side — otherwise a refresh or direct link 404s.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
