@@ -1,209 +1,177 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    match /users/{document} {
-      allow create: if false;
-      allow read: if request.auth != null;
-      allow write: if request.auth != null;
-      allow delete: if false;
+
+    function isSignedIn() {
+      return request.auth != null;
     }
 
-    match /users/{parent}/payment_account/{document} {
-      allow create: if false;
-      allow read: if request.auth != null;
-      allow write: if request.auth != null;
-      allow delete: if false;
+    // Interim admin check — mirrors the same email allow-list the admin
+    // web app itself uses (lib/admin/admin_constants.dart). There's no
+    // custom claim yet (that needs a Cloud Function to set it), so this
+    // is the only way to give the admin broader access than everyone
+    // else without breaking the admin app's own writes. Replace with a
+    // request.auth.token.admin == true check once that Cloud Function
+    // exists — search the app for kAdminEmail when that day comes.
+    function isAdmin() {
+      return isSignedIn() && request.auth.token.email == 'isaackitomari33@gmail.com';
     }
 
-    match /{path=**}/payment_account/{document} {
-      allow read: if request.auth != null;
+    function isOwner(uid) {
+      return isSignedIn() && request.auth.uid == uid;
     }
 
-
-    match /users/{parent}/payment_method/{document} {
-      allow create: if false;
-      allow read: if request.auth != null;
-      allow write: if request.auth != null;
-      allow delete: if false;
+    function userRef(uid) {
+      return /databases/$(database)/documents/users/$(uid);
     }
 
-    match /{path=**}/payment_method/{document} {
-      allow read: if request.auth != null;
+    // ── People ──────────────────────────────────────────────────────
+    match /users/{uid} {
+      // Profiles stay broadly readable (instructor bios, names on
+      // reviews, etc. all depend on this), but only the account owner
+      // or the admin can change a profile — previously any signed-in
+      // user could edit anyone else's role, name, or profile fields.
+      allow read: if isSignedIn();
+      allow write: if isOwner(uid) || isAdmin();
+
+      match /payment_account/{document} {
+        // Bank/PayPal details — was readable by every signed-in user
+        // via a collection-group rule. Owner + admin only now.
+        allow read, write: if isOwner(uid) || isAdmin();
+      }
+
+      match /payment_method/{document} {
+        allow read, write: if isOwner(uid) || isAdmin();
+      }
+
+      match /instructor_details/{document} {
+        // Public instructor profile (bio, expertise) — read stays open,
+        // but only the instructor themselves or the admin can edit it.
+        allow read: if isSignedIn();
+        allow write: if isOwner(uid) || isAdmin();
+      }
+
+      match /notification/{document} {
+        // Personal notifications — was readable by every signed-in
+        // user via a collection-group rule.
+        allow read, write: if isOwner(uid) || isAdmin();
+      }
+
+      match /purchase_history/{document} {
+        // Financial history — same exposure as payment_account had.
+        allow read, write: if isOwner(uid) || isAdmin();
+      }
+
+      match /purchased_courses/{document} {
+        allow read, write: if isOwner(uid) || isAdmin();
+      }
+
+      match /user_reviews/{document} {
+        // Reviews left about this instructor. The schema doesn't store
+        // who wrote the review, so there's no field to check authorship
+        // against — read/create stay open (needed for the review flow
+        // to keep working), but only the admin can edit or remove one.
+        allow read: if isSignedIn();
+        allow create: if isSignedIn();
+        allow update, delete: if isAdmin();
+      }
     }
 
+    // ── Support ─────────────────────────────────────────────────────
+    match /support/{ticketId} {
+      allow read: if isAdmin() ||
+        (isSignedIn() && resource.data.user == userRef(request.auth.uid));
+      allow create: if isSignedIn();
+      allow update, delete: if isAdmin();
 
-    match /support/{document} {
-      allow create: if false;
-      allow read: if request.auth != null;
-      allow write: if request.auth != null;
-      allow delete: if false;
+      match /support_message/{document} {
+        // Message content is as sensitive as the ticket itself, so it
+        // follows the parent ticket's ownership rather than being open
+        // to every signed-in user.
+        allow read: if isAdmin() ||
+          (isSignedIn() &&
+            get(/databases/$(database)/documents/support/$(ticketId)).data.user == userRef(request.auth.uid));
+        allow create: if isSignedIn();
+        allow update, delete: if isAdmin();
+      }
     }
 
-    match /support/{parent}/support_message/{document} {
-      allow create: if false;
-      allow read: if request.auth != null;
-      allow write: if request.auth != null;
-      allow delete: if false;
+    // ── Courses & lessons ───────────────────────────────────────────
+    match /courses/{courseId} {
+      allow read: if isSignedIn();
+      allow create: if isAdmin() ||
+        (isSignedIn() && request.resource.data.instructor_ref == userRef(request.auth.uid));
+      // Previously any signed-in user could edit or delete any course —
+      // now only its own instructor or the admin can.
+      allow update, delete: if isAdmin() ||
+        (isSignedIn() && resource.data.instructor_ref == userRef(request.auth.uid));
+
+      match /lessons/{document} {
+        allow read: if isSignedIn();
+        allow write: if isAdmin() ||
+          (isSignedIn() &&
+            get(/databases/$(database)/documents/courses/$(courseId)).data.instructor_ref == userRef(request.auth.uid));
+      }
+
+      match /courses_review/{document} {
+        // No stored reviewer id, and other readers legitimately update
+        // this doc's liked/disliked arrays — so update stays open, but
+        // only the admin can delete a review outright.
+        allow read, create, update: if isSignedIn();
+        allow delete: if isAdmin();
+      }
+
+      match /review_report/{document} {
+        // Reports were readable by every signed-in user, meaning anyone
+        // could see who reported what against whom. Now admin-only to
+        // read; anyone can still file one.
+        allow create: if isSignedIn();
+        allow read, update, delete: if isAdmin();
+      }
+
+      match /lesson_report/{document} {
+        allow create: if isSignedIn();
+        allow read, update, delete: if isAdmin();
+      }
+
+      match /courses_report/{document} {
+        allow create: if isSignedIn();
+        allow read, update, delete: if isAdmin();
+      }
     }
 
-    match /{path=**}/support_message/{document} {
-      allow read: if request.auth != null;
-    }
-
-
-    match /courses/{document} {
-      allow create: if false;
-      allow read: if request.auth != null;
-      allow write: if request.auth != null;
-      allow delete: if false;
-    }
-
-    match /courses/{parent}/lessons/{document} {
-      allow create: if false;
-      allow read: if request.auth != null;
-      allow write: if request.auth != null;
-      allow delete: if false;
-    }
-
-    match /{path=**}/lessons/{document} {
-      allow read: if request.auth != null;
-    }
-
-
-    match /users/{parent}/instructor_details/{document} {
-      allow create: if false;
-      allow read: if request.auth != null;
-      allow write: if request.auth != null;
-      allow delete: if false;
-    }
-
-    match /{path=**}/instructor_details/{document} {
-      allow read: if request.auth != null;
-    }
-
-
-    match /users/{parent}/notification/{document} {
-      allow create: if false;
-      allow read: if request.auth != null;
-      allow write: if request.auth != null;
-      allow delete: if false;
-    }
-
-    match /{path=**}/notification/{document} {
-      allow read: if request.auth != null;
-    }
-
-
-    match /courses/{parent}/courses_review/{document} {
-      allow create: if false;
-      allow read: if request.auth != null;
-      allow write: if request.auth != null;
-      allow delete: if false;
-    }
-
-    match /{path=**}/courses_review/{document} {
-      allow read: if request.auth != null;
-    }
-
-
-    match /courses/{parent}/review_report/{document} {
-      allow create: if false;
-      allow read: if request.auth != null;
-      allow write: if request.auth != null;
-      allow delete: if false;
-    }
-
-    match /{path=**}/review_report/{document} {
-      allow read: if request.auth != null;
-    }
-
-
-    match /courses/{parent}/lesson_report/{document} {
-      allow create: if false;
-      allow read: if request.auth != null;
-      allow write: if request.auth != null;
-      allow delete: if false;
-    }
-
-    match /{path=**}/lesson_report/{document} {
-      allow read: if request.auth != null;
-    }
-
-
-    match /users/{parent}/purchase_history/{document} {
-      allow create: if false;
-      allow read: if request.auth != null;
-      allow write: if request.auth != null;
-      allow delete: if false;
-    }
-
-    match /{path=**}/purchase_history/{document} {
-      allow read: if request.auth != null;
-    }
-
-
-    match /users/{parent}/purchased_courses/{document} {
-      allow create: if false;
-      allow read: if request.auth != null;
-      allow write: if request.auth != null;
-      allow delete: if false;
-    }
-
-    match /{path=**}/purchased_courses/{document} {
-      allow read: if request.auth != null;
-    }
-
-
+    // ── Taxonomy / config ───────────────────────────────────────────
     match /options/{document} {
-      allow create: if false;
-      allow read: if request.auth != null;
-      allow write: if request.auth != null;
-      allow delete: if false;
+      allow read: if isSignedIn();
+      allow write: if isAdmin();
     }
 
+    // ── Ads ─────────────────────────────────────────────────────────
     match /ads/{document} {
-      allow create: if true;
-      allow read: if request.auth != null;
-      allow write: if request.auth != null;
-      allow delete: if false;
+      // Previously allowed unauthenticated create — anyone on the
+      // internet, logged in or not, could create ad documents.
+      allow read: if isSignedIn();
+      allow write: if isAdmin();
     }
 
+    // ── Refunds ─────────────────────────────────────────────────────
     match /requesta_refund/{document} {
-      allow create: if false;
-      allow read: if request.auth != null;
-      allow write: if request.auth != null;
-      allow delete: if false;
+      allow create: if isSignedIn();
+      // Was readable/editable by any signed-in user — anyone could see
+      // or alter someone else's refund status. Now requester + admin.
+      allow read, update: if isAdmin() ||
+        (isSignedIn() && resource.data.user_ref == userRef(request.auth.uid));
+      allow delete: if isAdmin();
     }
 
-    match /users/{parent}/user_reviews/{document} {
-      allow create: if false;
-      allow read: if request.auth != null;
-      allow write: if request.auth != null;
-      allow delete: if false;
-    }
-
-    match /{path=**}/user_reviews/{document} {
-      allow read: if request.auth != null;
-    }
-
-
-    match /courses/{parent}/courses_report/{document} {
-      allow create: if false;
-      allow read: if request.auth != null;
-      allow write: if request.auth != null;
-      allow delete: if false;
-    }
-
-    match /{path=**}/courses_report/{document} {
-      allow read: if request.auth != null;
-    }
-
-
+    // ── Consultation bookings ───────────────────────────────────────
     match /consultation/{document} {
+      // Public booking form stays public (create), but submissions
+      // (names, phone numbers, reasons for visiting) were previously
+      // readable by anyone on the internet with no login at all.
       allow create: if true;
-      allow read: if true;
+      allow read: if isAdmin();
       allow write: if false;
-      allow delete: if false;
     }
   }
 }
