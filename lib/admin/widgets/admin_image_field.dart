@@ -5,7 +5,9 @@ import '/flutter_flow/upload_data.dart';
 import '../design/admin_tokens.dart';
 
 /// Same idea as AdminVideoField, for image URLs — shows the actual image
-/// instead of a bare link, with upload-or-paste-URL either way.
+/// instead of a bare link. Upload a file or paste a URL — either way the
+/// link itself stays tucked behind a button, not sitting open in a text
+/// field.
 class AdminImageField extends StatefulWidget {
   const AdminImageField({
     super.key,
@@ -27,32 +29,31 @@ class AdminImageField extends StatefulWidget {
 }
 
 class _AdminImageFieldState extends State<AdminImageField> {
-  late final _urlController = TextEditingController(text: widget.url);
+  late String _currentUrl = widget.url;
   bool _uploading = false;
 
   @override
   void didUpdateWidget(AdminImageField oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (oldWidget.url != widget.url && widget.url != _urlController.text) {
-      _urlController.text = widget.url;
+    if (oldWidget.url != widget.url && widget.url != _currentUrl) {
+      _currentUrl = widget.url;
     }
   }
 
-  @override
-  void dispose() {
-    _urlController.dispose();
-    super.dispose();
+  void _setUrl(String url) {
+    setState(() => _currentUrl = url);
+    widget.onChanged(url);
   }
 
   Future<void> _upload() async {
-    final selected = await selectMediaWithSourceBottomSheet(
-      context: context,
-      allowPhoto: true,
-      allowVideo: false,
+    // selectFile opens the OS/browser file picker directly — no
+    // "Choose Source" (Camera/Gallery) sheet, which is a mobile-only
+    // concept and doesn't apply here.
+    final file = await selectFile(
       storageFolderPath: widget.storageFolder,
+      allowedExtensions: const ['png', 'jpg', 'jpeg', 'gif', 'webp'],
     );
-    if (selected == null || selected.isEmpty) return;
-    final file = selected.first;
+    if (file == null) return;
 
     setState(() => _uploading = true);
     final path =
@@ -60,10 +61,32 @@ class _AdminImageFieldState extends State<AdminImageField> {
     final url = await uploadData(path, file.bytes);
     if (!mounted) return;
     setState(() => _uploading = false);
-    if (url != null) {
-      _urlController.text = url;
-      widget.onChanged(url);
-    }
+    if (url != null) _setUrl(url);
+  }
+
+  Future<void> _pasteUrl() async {
+    final controller = TextEditingController(text: _currentUrl);
+    final result = await showDialog<String>(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Image URL'),
+        content: TextField(
+          controller: controller,
+          autofocus: true,
+          style: AdminType.mono(13),
+          decoration: const InputDecoration(hintText: 'https://…'),
+        ),
+        actions: [
+          TextButton(onPressed: () => Navigator.of(context).pop(), child: const Text('Cancel')),
+          FilledButton(
+            onPressed: () => Navigator.of(context).pop(controller.text.trim()),
+            style: FilledButton.styleFrom(backgroundColor: AdminColors.oxblood),
+            child: const Text('Save'),
+          ),
+        ],
+      ),
+    );
+    if (result != null) _setUrl(result);
   }
 
   @override
@@ -79,13 +102,14 @@ class _AdminImageFieldState extends State<AdminImageField> {
             aspectRatio: widget.aspectRatio,
             child: Container(
               color: AdminColors.canvas,
-              child: widget.url.isEmpty
+              child: _currentUrl.isEmpty
                   ? Center(
                       child: Icon(Icons.image_outlined,
                           color: AdminColors.inkFaint, size: 28),
                     )
                   : Image.network(
-                      widget.url,
+                      _currentUrl,
+                      key: ValueKey(_currentUrl),
                       fit: BoxFit.cover,
                       errorBuilder: (context, error, stackTrace) => Center(
                         child: Text(
@@ -100,28 +124,6 @@ class _AdminImageFieldState extends State<AdminImageField> {
         const SizedBox(height: AdminSpace.sm),
         Row(
           children: [
-            Expanded(
-              child: TextField(
-                controller: _urlController,
-                style: AdminType.mono(12),
-                decoration: InputDecoration(
-                  isDense: true,
-                  hintText: 'Paste an image URL, or upload a file',
-                  hintStyle: AdminType.body(12, color: AdminColors.inkFaint),
-                  contentPadding: const EdgeInsets.symmetric(
-                    horizontal: AdminSpace.md,
-                    vertical: AdminSpace.md,
-                  ),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(AdminRadius.sm),
-                    borderSide: const BorderSide(color: AdminColors.hairline),
-                  ),
-                ),
-                onSubmitted: widget.onChanged,
-                onChanged: widget.onChanged,
-              ),
-            ),
-            const SizedBox(width: AdminSpace.sm),
             OutlinedButton.icon(
               onPressed: _uploading ? null : _upload,
               icon: _uploading
@@ -140,6 +142,22 @@ class _AdminImageFieldState extends State<AdminImageField> {
                 ),
               ),
             ),
+            const SizedBox(width: AdminSpace.sm),
+            TextButton.icon(
+              onPressed: _pasteUrl,
+              icon: const Icon(Icons.link, size: 16),
+              label: const Text('Paste URL'),
+              style: TextButton.styleFrom(foregroundColor: AdminColors.inkFaint),
+            ),
+            if (_currentUrl.isNotEmpty) ...[
+              const SizedBox(width: AdminSpace.sm),
+              IconButton(
+                tooltip: 'Remove image',
+                onPressed: () => _setUrl(''),
+                icon: const Icon(Icons.close, size: 16),
+                color: AdminColors.inkFaint,
+              ),
+            ],
           ],
         ),
       ],

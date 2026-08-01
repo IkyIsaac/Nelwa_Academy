@@ -6,8 +6,9 @@ import '/flutter_flow/upload_data.dart';
 import '../design/admin_tokens.dart';
 
 /// A video field that actually plays the video it points to, instead of
-/// just holding a URL in a text box. Supports pasting a URL directly or
-/// uploading a file (which fills the URL in after it lands in Storage).
+/// just holding a URL in a text box. Upload a file or paste a URL — either
+/// way the link itself stays tucked behind a button, not sitting open in a
+/// text field.
 class AdminVideoField extends StatefulWidget {
   const AdminVideoField({
     super.key,
@@ -30,32 +31,31 @@ class AdminVideoField extends StatefulWidget {
 }
 
 class _AdminVideoFieldState extends State<AdminVideoField> {
-  late final _urlController = TextEditingController(text: widget.url);
+  late String _currentUrl = widget.url;
   bool _uploading = false;
 
   @override
   void didUpdateWidget(AdminVideoField oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (oldWidget.url != widget.url && widget.url != _urlController.text) {
-      _urlController.text = widget.url;
+    if (oldWidget.url != widget.url && widget.url != _currentUrl) {
+      _currentUrl = widget.url;
     }
   }
 
-  @override
-  void dispose() {
-    _urlController.dispose();
-    super.dispose();
+  void _setUrl(String url) {
+    setState(() => _currentUrl = url);
+    widget.onChanged(url);
   }
 
   Future<void> _upload() async {
-    final selected = await selectMediaWithSourceBottomSheet(
-      context: context,
-      allowPhoto: false,
-      allowVideo: true,
+    // selectFile opens the OS/browser file picker directly — no
+    // "Choose Source" (Camera/Gallery) sheet, which is a mobile-only
+    // concept and doesn't apply here.
+    final file = await selectFile(
       storageFolderPath: widget.storageFolder,
+      allowedExtensions: const ['mp4', 'mov', 'webm'],
     );
-    if (selected == null || selected.isEmpty) return;
-    final file = selected.first;
+    if (file == null) return;
 
     setState(() => _uploading = true);
     final path =
@@ -63,10 +63,32 @@ class _AdminVideoFieldState extends State<AdminVideoField> {
     final url = await uploadData(path, file.bytes);
     if (!mounted) return;
     setState(() => _uploading = false);
-    if (url != null) {
-      _urlController.text = url;
-      widget.onChanged(url);
-    }
+    if (url != null) _setUrl(url);
+  }
+
+  Future<void> _pasteUrl() async {
+    final controller = TextEditingController(text: _currentUrl);
+    final result = await showDialog<String>(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Video URL'),
+        content: TextField(
+          controller: controller,
+          autofocus: true,
+          style: AdminType.mono(13),
+          decoration: const InputDecoration(hintText: 'https://…'),
+        ),
+        actions: [
+          TextButton(onPressed: () => Navigator.of(context).pop(), child: const Text('Cancel')),
+          FilledButton(
+            onPressed: () => Navigator.of(context).pop(controller.text.trim()),
+            style: FilledButton.styleFrom(backgroundColor: AdminColors.oxblood),
+            child: const Text('Save'),
+          ),
+        ],
+      ),
+    );
+    if (result != null) _setUrl(result);
   }
 
   @override
@@ -82,7 +104,7 @@ class _AdminVideoFieldState extends State<AdminVideoField> {
             aspectRatio: 16 / 9,
             child: Container(
               color: AdminColors.ink,
-              child: widget.url.isEmpty
+              child: _currentUrl.isEmpty
                   ? Center(
                       child: Text(
                         'No video yet',
@@ -90,8 +112,8 @@ class _AdminVideoFieldState extends State<AdminVideoField> {
                       ),
                     )
                   : FlutterFlowVideoPlayer(
-                      key: ValueKey(widget.url),
-                      path: widget.url,
+                      key: ValueKey(_currentUrl),
+                      path: _currentUrl,
                       videoType: VideoType.network,
                       width: double.infinity,
                       height: double.infinity,
@@ -106,28 +128,6 @@ class _AdminVideoFieldState extends State<AdminVideoField> {
         const SizedBox(height: AdminSpace.sm),
         Row(
           children: [
-            Expanded(
-              child: TextField(
-                controller: _urlController,
-                style: AdminType.mono(12),
-                decoration: InputDecoration(
-                  isDense: true,
-                  hintText: 'Paste a video URL, or upload a file',
-                  hintStyle: AdminType.body(12, color: AdminColors.inkFaint),
-                  contentPadding: const EdgeInsets.symmetric(
-                    horizontal: AdminSpace.md,
-                    vertical: AdminSpace.md,
-                  ),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(AdminRadius.sm),
-                    borderSide: const BorderSide(color: AdminColors.hairline),
-                  ),
-                ),
-                onSubmitted: widget.onChanged,
-                onChanged: widget.onChanged,
-              ),
-            ),
-            const SizedBox(width: AdminSpace.sm),
             OutlinedButton.icon(
               onPressed: _uploading ? null : _upload,
               icon: _uploading
@@ -146,6 +146,22 @@ class _AdminVideoFieldState extends State<AdminVideoField> {
                 ),
               ),
             ),
+            const SizedBox(width: AdminSpace.sm),
+            TextButton.icon(
+              onPressed: _pasteUrl,
+              icon: const Icon(Icons.link, size: 16),
+              label: const Text('Paste URL'),
+              style: TextButton.styleFrom(foregroundColor: AdminColors.inkFaint),
+            ),
+            if (_currentUrl.isNotEmpty) ...[
+              const SizedBox(width: AdminSpace.sm),
+              IconButton(
+                tooltip: 'Remove video',
+                onPressed: () => _setUrl(''),
+                icon: const Icon(Icons.close, size: 16),
+                color: AdminColors.inkFaint,
+              ),
+            ],
           ],
         ),
       ],

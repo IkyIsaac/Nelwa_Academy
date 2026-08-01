@@ -1,3 +1,4 @@
+import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 
 import 'admin_auth_notifier.dart';
@@ -12,6 +13,22 @@ import 'instructors/instructor_applications_page.dart';
 import 'refunds/refunds_page.dart';
 import 'payouts/payouts_page.dart';
 import 'notifications/broadcast_page.dart';
+
+/// Every nav-rail destination fades in rather than sliding/scaling — the
+/// default Material page transition renders the outgoing and incoming
+/// pages together mid-animation, and since they're different heights that
+/// briefly overflows the shell's content area (visible as Flutter's
+/// yellow/black debug overflow banner). A pure opacity fade doesn't touch
+/// layout at all, so it can't trigger that, and it reads as calmer for
+/// switching between sibling sections of one console than a slide would.
+Page<void> _fadePage(Widget child) {
+  return CustomTransitionPage(
+    child: child,
+    transitionDuration: const Duration(milliseconds: 160),
+    transitionsBuilder: (context, animation, secondaryAnimation, child) =>
+        FadeTransition(opacity: animation, child: child),
+  );
+}
 
 /// A brand-new, independent GoRouter — deliberately not `createRouter` from
 /// lib/flutter_flow/nav/nav.dart, since that router's guard only checks
@@ -36,40 +53,44 @@ GoRouter createAdminRouter(AdminAuthNotifier authNotifier) {
         builder: (context, state, child) =>
             AdminShell(currentPath: state.matchedLocation, child: child),
         routes: [
-          GoRoute(path: '/', builder: (context, state) => const DashboardPage()),
+          GoRoute(
+            path: '/',
+            pageBuilder: (context, state) => _fadePage(const DashboardPage()),
+          ),
           GoRoute(
             path: '/users',
-            builder: (context, state) => const UsersListPage(),
+            pageBuilder: (context, state) => _fadePage(const UsersListPage()),
           ),
           GoRoute(
             path: '/users/:id',
-            builder: (context, state) =>
-                UserDetailPage(userId: state.pathParameters['id']!),
+            pageBuilder: (context, state) =>
+                _fadePage(UserDetailPage(userId: state.pathParameters['id']!)),
           ),
           GoRoute(
             path: '/courses',
-            builder: (context, state) => const CoursesListPage(),
+            pageBuilder: (context, state) => _fadePage(const CoursesListPage()),
           ),
           GoRoute(
             path: '/courses/:id',
-            builder: (context, state) =>
-                CourseDetailPage(courseId: state.pathParameters['id']!),
+            pageBuilder: (context, state) => _fadePage(
+                CourseDetailPage(courseId: state.pathParameters['id']!)),
           ),
           GoRoute(
             path: '/instructors',
-            builder: (context, state) => const InstructorApplicationsPage(),
+            pageBuilder: (context, state) =>
+                _fadePage(const InstructorApplicationsPage()),
           ),
           GoRoute(
             path: '/refunds',
-            builder: (context, state) => const RefundsPage(),
+            pageBuilder: (context, state) => _fadePage(const RefundsPage()),
           ),
           GoRoute(
             path: '/payouts',
-            builder: (context, state) => const PayoutsPage(),
+            pageBuilder: (context, state) => _fadePage(const PayoutsPage()),
           ),
           GoRoute(
             path: '/notifications',
-            builder: (context, state) => const BroadcastPage(),
+            pageBuilder: (context, state) => _fadePage(const BroadcastPage()),
           ),
         ],
       ),
