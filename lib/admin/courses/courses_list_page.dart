@@ -5,8 +5,26 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '../design/admin_tokens.dart';
 import '../widgets/admin_data_table.dart';
 
-class CoursesListPage extends StatelessWidget {
+class CoursesListPage extends StatefulWidget {
   const CoursesListPage({super.key});
+
+  @override
+  State<CoursesListPage> createState() => _CoursesListPageState();
+}
+
+class _CoursesListPageState extends State<CoursesListPage> {
+  bool _creating = false;
+
+  Future<void> _createCourse() async {
+    setState(() => _creating = true);
+    final ref = await CoursesRecord.collection.add({
+      'title': 'Untitled course',
+      'is_published': false,
+    });
+    if (!mounted) return;
+    setState(() => _creating = false);
+    context.go('/courses/${ref.id}');
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +47,21 @@ class CoursesListPage extends StatelessWidget {
           },
           statusOf: (course) => course.isPublished ? AdminStatus.positive : AdminStatus.neutral,
           onTap: (course) => context.go('/courses/${course.reference.id}'),
+          trailing: FilledButton.icon(
+            onPressed: _creating ? null : _createCourse,
+            icon: _creating
+                ? const SizedBox(
+                    width: 14,
+                    height: 14,
+                    child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white),
+                  )
+                : const Icon(Icons.add, size: 16),
+            label: Text(_creating ? 'Creating…' : 'Add course'),
+            style: FilledButton.styleFrom(
+              backgroundColor: AdminColors.oxblood,
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AdminRadius.sm)),
+            ),
+          ),
           columns: [
             AdminColumn<CoursesRecord>(
               label: 'Title',
