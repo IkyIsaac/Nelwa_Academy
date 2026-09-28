@@ -22,3 +22,7 @@ android/local.properties
 
 # macOS
 .DS_Store
+
+# Firebase CLI
+firebase-debug.log
+**/firebase-debug.log
