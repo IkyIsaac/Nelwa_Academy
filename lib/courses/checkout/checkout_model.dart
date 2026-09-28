@@ -9,6 +9,8 @@ class CheckoutModel extends FlutterFlowModel<CheckoutWidget> {
 
   int? pageViewItem = 0;
 
+  bool isCheckingOut = false;
+
   ///  State fields for stateful widgets in this page.
 
   // Models for OrderCourses dynamic component.
