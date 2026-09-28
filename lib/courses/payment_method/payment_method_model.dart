@@ -12,6 +12,8 @@ class PaymentMethodModel extends FlutterFlowModel<PaymentMethodWidget> {
 
   DocumentReference? selectedCourses;
 
+  bool isCheckingOut = false;
+
   ///  State fields for stateful widgets in this page.
 
   // Stores action output result for [Firestore Query - Query a collection] action in Button widget.

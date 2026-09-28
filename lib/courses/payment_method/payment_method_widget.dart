@@ -10,11 +10,11 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/loading/loading_payment/loading_payment_widget.dart';
 import '/payment_method/components/add_payment_method/add_payment_method_widget.dart';
-import 'dart:async';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:aligned_dialog/aligned_dialog.dart';
-import 'package:collection/collection.dart';
+import 'package:cloud_functions/cloud_functions.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -529,166 +529,172 @@ class _PaymentMethodWidgetState extends State<PaymentMethodWidget> {
                       builder: (context) => Padding(
                         padding: EdgeInsets.all(16.0),
                         child: FFButtonWidget(
-                          onPressed: () async {
-                            _model.courses = FFAppState().order.quantity;
-                            safeSetState(() {});
-                            while (_model.courses! > 0) {
-                              _model.coursesDoc = await queryCoursesRecordOnce(
-                                queryBuilder: (coursesRecord) =>
-                                    coursesRecord.where(
-                                  'courses_id',
-                                  isEqualTo:
-                                      FFAppState().order.coursesRef.firstOrNull,
+                          onPressed: _model.isCheckingOut
+                              ? null
+                              : () async {
+                            final courseIds = FFAppState()
+                                .order
+                                .coursesRef
+                                .map((ref) => ref.id)
+                                .toList();
+                            if (courseIds.isEmpty) {
+                              return;
+                            }
+
+                            safeSetState(() => _model.isCheckingOut = true);
+
+                            Map<String, dynamic> orderResult;
+                            try {
+                              final result = await FirebaseFunctions.instance
+                                  .httpsCallable('createOrder')
+                                  .call<dynamic>({'courseIds': courseIds});
+                              orderResult =
+                                  Map<String, dynamic>.from(result.data as Map);
+                            } on FirebaseFunctionsException catch (e) {
+                              safeSetState(() => _model.isCheckingOut = false);
+                              if (!context.mounted) return;
+                              await showDialog(
+                                context: context,
+                                builder: (dialogContext) => AlertDialog(
+                                  title: Text('Could not start checkout'),
+                                  content: Text(
+                                      e.message ?? 'Please try again shortly.'),
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () =>
+                                          Navigator.pop(dialogContext),
+                                      child: Text('OK'),
+                                    ),
+                                  ],
                                 ),
-                                singleRecord: true,
-                              ).then((s) => s.firstOrNull);
-                              _model.paymentAccount =
-                                  await queryPaymentAccountRecordOnce(
-                                parent: _model.coursesDoc?.instructorRef,
-                                singleRecord: true,
-                              ).then((s) => s.firstOrNull);
-                              _model.instructorDoc =
-                                  await queryInstructorDetailsRecordOnce(
-                                parent: _model.coursesDoc?.instructorRef,
-                                singleRecord: true,
-                              ).then((s) => s.firstOrNull);
-                              unawaited(
-                                () async {
-                                  await PurchasedCoursesRecord.createDoc(
-                                          currentUserReference!)
-                                      .set(createPurchasedCoursesRecordData(
-                                    coursesRef: _model.coursesDoc?.reference,
-                                    purchaseDate: getCurrentTimestamp,
-                                    reviwed: false,
-                                    instructorName:
-                                        _model.coursesDoc?.instructorName,
-                                    lessons: _model.coursesDoc?.totalLessons,
-                                  ));
-                                }(),
                               );
-                              unawaited(
-                                () async {
-                                  await PurchaseHistoryRecord.createDoc(
-                                          currentUserReference!)
-                                      .set(createPurchaseHistoryRecordData(
-                                    userRef: currentUserReference,
-                                    amount: _model.coursesDoc?.price,
-                                    currency: 'USD',
-                                    status: Status.Paid,
-                                    transactionType: 'Bank Transfer',
-                                    date: getCurrentTimestamp,
-                                    coursesName: _model.coursesDoc?.title,
-                                    paymentMethod: _model.paymentMethods,
-                                    coursesRef: _model.coursesDoc?.reference,
-                                  ));
-                                }(),
-                              );
-                              unawaited(
-                                () async {
-                                  await _model.paymentAccount!.reference
-                                      .update({
-                                    ...createPaymentAccountRecordData(
-                                      accountType: '',
-                                    ),
-                                    ...mapToFirestore(
-                                      {
-                                        'sales_reports': FieldValue.arrayUnion([
-                                          getSalesReportsFirestoreData(
-                                            createSalesReportsStruct(
-                                              userRef: currentUserReference,
-                                              amount: _model.coursesDoc?.price,
-                                              currency: 'USD',
-                                              status: Status.Paid,
-                                              transactionType: _model
-                                                  .paymentAccount?.accountType,
-                                              date: getCurrentTimestamp,
-                                              paymentMethod:
-                                                  _model.paymentMethods,
-                                              courseRef:
-                                                  _model.coursesDoc?.reference,
-                                              courseName:
-                                                  _model.coursesDoc?.title,
-                                              clearUnsetFields: false,
-                                            ),
-                                            true,
-                                          )
-                                        ]),
-                                        'balance': FieldValue.increment(
-                                            _model.coursesDoc!.price),
-                                      },
-                                    ),
-                                  });
-                                }(),
-                              );
-                              unawaited(
-                                () async {
-                                  await _model.coursesDoc!.reference.update({
-                                    ...mapToFirestore(
-                                      {
-                                        'downloaders': FieldValue.arrayUnion(
-                                            [currentUserReference]),
-                                      },
-                                    ),
-                                  });
-                                }(),
-                              );
-                              unawaited(
-                                () async {
-                                  await _model.instructorDoc!.reference.update({
-                                    ...mapToFirestore(
-                                      {
-                                        'students': FieldValue.arrayUnion(
-                                            [currentUserReference]),
-                                      },
-                                    ),
-                                  });
-                                }(),
-                              );
-                              FFAppState().updateOrderStruct(
-                                (e) => e
-                                  ..updateCoursesRef(
-                                    (e) =>
-                                        e.remove(_model.coursesDoc?.reference),
-                                  )
-                                  ..incrementQuantity(-1),
-                              );
-                              safeSetState(() {});
-                              _model.courses = _model.courses! + -1;
-                              safeSetState(() {});
+                              return;
                             }
-                            FFAppState().order = OrderStruct();
-                            safeSetState(() {});
-                            if (valueOrDefault(currentUserDocument?.role, '') ==
-                                'instructor') {
-                              await currentUserReference!
-                                  .update(createUsersRecordData(
-                                role: 'Learner',
-                              ));
-                            }
-                            await showDialog(
-                              barrierColor:
-                                  FlutterFlowTheme.of(context).background,
+
+                            final orderId = orderResult['orderId'] as String;
+                            final checkoutUrl =
+                                orderResult['checkoutUrl'] as String;
+
+                            await launchUrl(
+                              Uri.parse(checkoutUrl),
+                              mode: LaunchMode.externalApplication,
+                            );
+
+                            if (!context.mounted) return;
+
+                            final finalStatus = await showDialog<String>(
+                              barrierDismissible: false,
                               context: context,
                               builder: (dialogContext) {
-                                return Dialog(
-                                  elevation: 0,
-                                  insetPadding: EdgeInsets.zero,
-                                  backgroundColor: Colors.transparent,
-                                  alignment: AlignmentDirectional(0.0, 0.0)
-                                      .resolve(Directionality.of(context)),
-                                  child: GestureDetector(
-                                    onTap: () {
-                                      FocusScope.of(dialogContext).unfocus();
-                                      FocusManager.instance.primaryFocus
-                                          ?.unfocus();
+                                return PopScope(
+                                  canPop: false,
+                                  child: StreamBuilder<
+                                      DocumentSnapshot<Map<String, dynamic>>>(
+                                    stream: FirebaseFirestore.instance
+                                        .collection('orders')
+                                        .doc(orderId)
+                                        .snapshots(),
+                                    builder: (context, snapshot) {
+                                      final status = snapshot.data
+                                          ?.data()?['status'] as String?;
+                                      if (status != null &&
+                                          status != 'pending') {
+                                        WidgetsBinding.instance
+                                            .addPostFrameCallback((_) {
+                                          if (Navigator.canPop(dialogContext)) {
+                                            Navigator.pop(
+                                                dialogContext, status);
+                                          }
+                                        });
+                                      }
+                                      return AlertDialog(
+                                        title: Text('Waiting for payment'),
+                                        content: Row(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            CircularProgressIndicator(),
+                                            SizedBox(width: 16.0),
+                                            Expanded(
+                                              child: Text(
+                                                'Complete the mobile money '
+                                                'prompt you were sent. This '
+                                                'will update automatically.',
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        actions: [
+                                          TextButton(
+                                            onPressed: () => Navigator.pop(
+                                                dialogContext, 'cancelled'),
+                                            child: Text('Cancel'),
+                                          ),
+                                        ],
+                                      );
                                     },
-                                    child: OrderSuccessfullyWidget(),
                                   ),
                                 );
                               },
                             );
 
-                            safeSetState(() {});
+                            safeSetState(() => _model.isCheckingOut = false);
+
+                            if (finalStatus == 'completed') {
+                              FFAppState().order = OrderStruct();
+                              safeSetState(() {});
+                              if (valueOrDefault(
+                                      currentUserDocument?.role, '') ==
+                                  'instructor') {
+                                await currentUserReference!
+                                    .update(createUsersRecordData(
+                                  role: 'Learner',
+                                ));
+                              }
+                              if (!context.mounted) return;
+                              await showDialog(
+                                barrierColor:
+                                    FlutterFlowTheme.of(context).background,
+                                context: context,
+                                builder: (dialogContext) {
+                                  return Dialog(
+                                    elevation: 0,
+                                    insetPadding: EdgeInsets.zero,
+                                    backgroundColor: Colors.transparent,
+                                    alignment: AlignmentDirectional(0.0, 0.0)
+                                        .resolve(Directionality.of(context)),
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        FocusScope.of(dialogContext).unfocus();
+                                        FocusManager.instance.primaryFocus
+                                            ?.unfocus();
+                                      },
+                                      child: OrderSuccessfullyWidget(),
+                                    ),
+                                  );
+                                },
+                              );
+                              safeSetState(() {});
+                            } else if (finalStatus != null &&
+                                finalStatus != 'cancelled') {
+                              if (!context.mounted) return;
+                              await showDialog(
+                                context: context,
+                                builder: (dialogContext) => AlertDialog(
+                                  title: Text('Payment $finalStatus'),
+                                  content: Text(
+                                      'Your payment was not completed. '
+                                      'You have not been charged for this '
+                                      'course.'),
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () =>
+                                          Navigator.pop(dialogContext),
+                                      child: Text('OK'),
+                                    ),
+                                  ],
+                                ),
+                              );
+                            }
                           },
                           text: FFLocalizations.of(context).getText(
                             'icx6jk3n' /* Confirm */,
