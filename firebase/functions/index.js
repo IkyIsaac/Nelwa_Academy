@@ -7,3 +7,7 @@ exports.onUserDeleted = functions.auth.user().onDelete(async (user) => {
   let userRef = firestore.doc("users/" + user.uid);
   await firestore.collection("users").doc(user.uid).delete();
 });
+
+const payments = require("./payments");
+exports.createOrder = payments.createOrder;
+exports.snippeWebhook = payments.snippeWebhook;
