@@ -2,6 +2,7 @@ const functions = require("firebase-functions");
 const admin = require("firebase-admin");
 const axios = require("axios").default;
 const crypto = require("crypto");
+const { handlePayoutEvent } = require("./payouts");
 
 const SNIPPE_BASE_URL = process.env.SNIPPE_BASE_URL || "https://api.snippe.sh";
 const SNIPPE_API_KEY = process.env.SNIPPE_API_KEY;
@@ -324,19 +325,45 @@ exports.snippeWebhook = functions.https.onRequest(async (req, res) => {
     event,
   });
 
-  const orderId = event.data && event.data.metadata && event.data.metadata.orderId;
+  const metadata = (event.data && event.data.metadata) || {};
+  const db = admin.firestore();
+
+  if (typeof event.type === "string" && event.type.startsWith("payout.")) {
+    const payoutId = metadata.payoutId;
+    if (!payoutId) {
+      functions.logger.warn("Snippe payout webhook has no data.metadata.payoutId - ignoring", {
+        type: event.type,
+        metadata,
+      });
+      res.status(200).send("ignored");
+      return;
+    }
+    try {
+      await handlePayoutEvent(db, db.collection("payouts").doc(payoutId), event);
+      res.status(200).send("ok");
+    } catch (err) {
+      functions.logger.error("Snippe payout webhook processing failed", {
+        payoutId,
+        eventType: event.type,
+        error: err.message,
+      });
+      res.status(500).send("processing error");
+    }
+    return;
+  }
+
+  const orderId = metadata.orderId;
   if (!orderId) {
     functions.logger.warn("Snippe webhook has no data.metadata.orderId - ignoring", {
       type: event.type,
       dataKeys: event.data ? Object.keys(event.data) : null,
-      metadata: event.data ? event.data.metadata : undefined,
+      metadata,
     });
-    // Not tied to one of our orders (or a payout event) - ack so it isn't retried.
+    // Not tied to one of our orders (or an unrecognized event) - ack so it isn't retried.
     res.status(200).send("ignored");
     return;
   }
 
-  const db = admin.firestore();
   const orderRef = db.collection("orders").doc(orderId);
 
   try {

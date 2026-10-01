@@ -11,3 +11,6 @@ exports.onUserDeleted = functions.auth.user().onDelete(async (user) => {
 const payments = require("./payments");
 exports.createOrder = payments.createOrder;
 exports.snippeWebhook = payments.snippeWebhook;
+
+const payouts = require("./payouts");
+exports.createPayout = payouts.createPayout;
