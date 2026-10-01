@@ -25,6 +25,7 @@ const List<AdminNavItem> kAdminNavItems = [
     icon: Icons.school_outlined,
     path: '/instructors',
   ),
+  AdminNavItem(label: 'Orders', icon: Icons.receipt_long_outlined, path: '/orders'),
   AdminNavItem(label: 'Refunds', icon: Icons.currency_exchange, path: '/refunds'),
   AdminNavItem(label: 'Payouts', icon: Icons.account_balance_wallet_outlined, path: '/payouts'),
   AdminNavItem(

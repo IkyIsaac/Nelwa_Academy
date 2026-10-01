@@ -10,6 +10,7 @@ import 'users/user_detail_page.dart';
 import 'courses/courses_list_page.dart';
 import 'courses/course_detail_page.dart';
 import 'instructors/instructor_applications_page.dart';
+import 'orders/orders_page.dart';
 import 'refunds/refunds_page.dart';
 import 'payouts/payouts_page.dart';
 import 'notifications/broadcast_page.dart';
@@ -79,6 +80,10 @@ GoRouter createAdminRouter(AdminAuthNotifier authNotifier) {
             path: '/instructors',
             pageBuilder: (context, state) =>
                 _fadePage(const InstructorApplicationsPage()),
+          ),
+          GoRoute(
+            path: '/orders',
+            pageBuilder: (context, state) => _fadePage(const OrdersPage()),
           ),
           GoRoute(
             path: '/refunds',
