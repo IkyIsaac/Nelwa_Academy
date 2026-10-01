@@ -9,6 +9,7 @@ class KpiTile extends StatelessWidget {
     required this.value,
     required this.icon,
     this.status = AdminStatus.brand,
+    this.sparkline,
   });
 
   final String label;
@@ -16,42 +17,58 @@ class KpiTile extends StatelessWidget {
   final IconData icon;
   final AdminStatus status;
 
+  /// Optional trend widget (a `Sparkline`) shown beside the figure — only
+  /// the metrics that genuinely have a time series get one; a ratio like
+  /// "published / total" doesn't need to pretend it has a trend.
+  final Widget? sparkline;
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      constraints: const BoxConstraints(minWidth: 220),
+      // Fixed, not just a minWidth: this tile sits inside a Wrap, which
+      // gives each child unbounded width to measure itself. Without a fixed
+      // width here, the Expanded sparkline below has nothing bounded to
+      // flex against and the whole tile stretches to fill the row.
+      width: 280,
       decoration: BoxDecoration(
         color: AdminColors.surface,
         borderRadius: BorderRadius.circular(AdminRadius.lg),
         border: Border.all(color: AdminColors.hairline),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 0.03),
-            blurRadius: 8,
-            offset: const Offset(0, 2),
-          ),
-        ],
       ),
       child: StatusSpine(
         status: status,
         width: 3,
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(
-              AdminSpace.lg, AdminSpace.lg, AdminSpace.lg, AdminSpace.lg),
+          padding: const EdgeInsets.all(AdminSpace.lg),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
                 children: [
-                  Icon(icon, size: 16, color: AdminColors.inkFaint),
-                  const SizedBox(width: AdminSpace.sm),
-                  Expanded(
-                    child: Text(label.toUpperCase(), style: AdminType.eyebrow()),
+                  Container(
+                    width: 30,
+                    height: 30,
+                    decoration: BoxDecoration(
+                      color: status.color.withValues(alpha: 0.14),
+                      borderRadius: BorderRadius.circular(AdminRadius.sm),
+                    ),
+                    child: Icon(icon, size: 16, color: status.color),
                   ),
+                  const SizedBox(width: AdminSpace.md),
+                  Expanded(child: Text(label, style: AdminType.label(13))),
                 ],
               ),
               const SizedBox(height: AdminSpace.lg),
-              Text(value, style: AdminType.mono(28, weight: FontWeight.w600)),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Text(value, style: AdminType.mono(26, weight: FontWeight.w600)),
+                  if (sparkline != null) ...[
+                    const SizedBox(width: AdminSpace.md),
+                    Expanded(child: sparkline!),
+                  ],
+                ],
+              ),
             ],
           ),
         ),
