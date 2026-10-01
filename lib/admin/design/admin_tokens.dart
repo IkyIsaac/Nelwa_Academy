@@ -19,6 +19,12 @@ abstract final class AdminColors {
   static const ink = Color(0xFF242424);
   static const inkFaint = Color(0xFFA5A5A5);
   static const hairline = Color(0xFFE0E3E7);
+  /// Zebra-stripe tint for alternating table rows — subtler than canvas.
+  static const rowAlt = Color(0xFFFBFAF9);
+  /// Reserved for charts/trend lines specifically — a cool counterpoint to
+  /// the warm oxblood/terracotta pair, so a line chart never reads as a
+  /// status signal by accident.
+  static const chart = Color(0xFF1F6F6B);
   static const success = Color(0xFF2BC63D);
   static const warning = Color(0xFFFFBF00);
   static const error = Color(0xFFE0301E);
@@ -29,13 +35,16 @@ abstract final class AdminColors {
 }
 
 abstract final class AdminType {
+  /// Headlines and section titles. Hanken Grotesk reads more contemporary
+  /// than Space Grotesk's narrower, more technical letterforms while
+  /// keeping the same geometric-sans register.
   static TextStyle display(
     double size, {
     FontWeight weight = FontWeight.w600,
     Color color = AdminColors.ink,
     double? letterSpacing,
   }) =>
-      GoogleFonts.spaceGrotesk(
+      GoogleFonts.hankenGrotesk(
         fontSize: size,
         fontWeight: weight,
         color: color,
@@ -69,13 +78,28 @@ abstract final class AdminType {
         fontFeatures: const [FontFeature.tabularFigures()],
       );
 
-  /// Small-caps-style section eyebrows ("PROFILE", "PURCHASE HISTORY").
+  /// Small-caps-style section eyebrows ("PROFILE", "PURCHASE HISTORY") —
+  /// used sparingly, where a section genuinely needs a sub-label above it.
   static TextStyle eyebrow({Color color = AdminColors.inkFaint}) =>
       GoogleFonts.ibmPlexMono(
         fontSize: 11,
         fontWeight: FontWeight.w600,
         color: color,
         letterSpacing: 1.2,
+      );
+
+  /// Plain sentence-case label — table column headers, stat tile labels.
+  /// Deliberately not the tracked-out all-caps mono `eyebrow` treatment:
+  /// a label naming what a column *is* doesn't need the ledger affectation.
+  static TextStyle label(
+    double size, {
+    FontWeight weight = FontWeight.w500,
+    Color color = AdminColors.inkFaint,
+  }) =>
+      GoogleFonts.inter(
+        fontSize: size,
+        fontWeight: weight,
+        color: color,
       );
 }
 
