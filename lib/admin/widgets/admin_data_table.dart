@@ -94,24 +94,29 @@ class _AdminDataTableState<T> extends State<AdminDataTable<T>> {
                 if (widget.searchFilter != null)
                   SizedBox(
                     width: 320,
+                    height: 40,
                     child: TextField(
                       style: AdminType.body(13),
                       decoration: InputDecoration(
                         hintText: widget.searchHint,
                         hintStyle: AdminType.body(13, color: AdminColors.inkFaint),
-                        prefixIcon: const Icon(Icons.search, size: 18, color: AdminColors.inkFaint),
+                        prefixIcon: const Icon(Icons.search_rounded, size: 18, color: AdminColors.inkFaint),
                         isDense: true,
                         filled: true,
                         fillColor: AdminColors.surface,
                         contentPadding:
-                            const EdgeInsets.symmetric(horizontal: AdminSpace.md, vertical: 12),
+                            const EdgeInsets.symmetric(horizontal: AdminSpace.md, vertical: 10),
                         border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(AdminRadius.sm),
+                          borderRadius: BorderRadius.circular(AdminRadius.md),
                           borderSide: const BorderSide(color: AdminColors.hairline),
                         ),
                         enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(AdminRadius.sm),
+                          borderRadius: BorderRadius.circular(AdminRadius.md),
                           borderSide: const BorderSide(color: AdminColors.hairline),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(AdminRadius.md),
+                          borderSide: const BorderSide(color: AdminColors.oxblood, width: 1.4),
                         ),
                       ),
                       onChanged: (value) => setState(() {
@@ -149,12 +154,14 @@ class _AdminDataTableState<T> extends State<AdminDataTable<T>> {
                 child: Column(
                   children: [
                     _HeaderRow(columns: widget.columns, hasSpine: widget.statusOf != null),
-                    for (final item in pageItems)
+                    for (var i = 0; i < pageItems.length; i++)
                       _BodyRow<T>(
-                        item: item,
+                        item: pageItems[i],
                         columns: widget.columns,
-                        status: widget.statusOf?.call(item),
-                        onTap: widget.onTap == null ? null : () => widget.onTap!(item),
+                        status: widget.statusOf?.call(pageItems[i]),
+                        onTap: widget.onTap == null ? null : () => widget.onTap!(pageItems[i]),
+                        alt: i.isOdd,
+                        isLast: i == pageItems.length - 1,
                       ),
                   ],
                 ),
@@ -162,22 +169,27 @@ class _AdminDataTableState<T> extends State<AdminDataTable<T>> {
             if (filtered.isNotEmpty) ...[
               const SizedBox(height: AdminSpace.md),
               Row(
-                mainAxisAlignment: MainAxisAlignment.end,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
                     'Showing ${start + 1}–$end of ${filtered.length}',
-                    style: AdminType.mono(12, color: AdminColors.inkFaint),
+                    style: AdminType.label(12.5),
                   ),
-                  IconButton(
-                    icon: const Icon(Icons.chevron_left, size: 20),
-                    color: AdminColors.ink,
-                    onPressed: page > 0 ? () => setState(() => _page = page - 1) : null,
-                  ),
-                  IconButton(
-                    icon: const Icon(Icons.chevron_right, size: 20),
-                    color: AdminColors.ink,
-                    onPressed:
-                        page < pageCount - 1 ? () => setState(() => _page = page + 1) : null,
+                  Row(
+                    children: [
+                      Text('Page ${page + 1} of $pageCount', style: AdminType.label(12.5)),
+                      const SizedBox(width: AdminSpace.sm),
+                      _PageButton(
+                        icon: Icons.chevron_left_rounded,
+                        onPressed: page > 0 ? () => setState(() => _page = page - 1) : null,
+                      ),
+                      const SizedBox(width: AdminSpace.xs),
+                      _PageButton(
+                        icon: Icons.chevron_right_rounded,
+                        onPressed:
+                            page < pageCount - 1 ? () => setState(() => _page = page + 1) : null,
+                      ),
+                    ],
                   ),
                 ],
               ),
@@ -210,9 +222,9 @@ class _HeaderRow<T> extends StatelessWidget {
             Expanded(
               flex: columns[i].flex,
               child: Text(
-                columns[i].label.toUpperCase(),
+                columns[i].label,
                 textAlign: columns[i].numeric ? TextAlign.right : TextAlign.left,
-                style: AdminType.eyebrow(),
+                style: AdminType.label(12.5, weight: FontWeight.w600),
               ),
             ),
             if (i != columns.length - 1) const SizedBox(width: AdminSpace.lg),
@@ -224,12 +236,21 @@ class _HeaderRow<T> extends StatelessWidget {
 }
 
 class _BodyRow<T> extends StatefulWidget {
-  const _BodyRow({required this.item, required this.columns, this.status, this.onTap});
+  const _BodyRow({
+    required this.item,
+    required this.columns,
+    required this.alt,
+    required this.isLast,
+    this.status,
+    this.onTap,
+  });
 
   final T item;
   final List<AdminColumn<T>> columns;
   final AdminStatus? status;
   final VoidCallback? onTap;
+  final bool alt;
+  final bool isLast;
 
   @override
   State<_BodyRow<T>> createState() => _BodyRowState<T>();
@@ -240,12 +261,15 @@ class _BodyRowState<T> extends State<_BodyRow<T>> {
 
   @override
   Widget build(BuildContext context) {
+    final baseColor = widget.alt ? AdminColors.rowAlt : AdminColors.surface;
     final row = Container(
       decoration: BoxDecoration(
-        color: _hovering ? AdminColors.canvas : AdminColors.surface,
-        border: const Border(bottom: BorderSide(color: AdminColors.hairline)),
+        color: _hovering ? AdminColors.canvas : baseColor,
+        border: widget.isLast
+            ? null
+            : const Border(bottom: BorderSide(color: AdminColors.hairline)),
       ),
-      padding: const EdgeInsets.symmetric(horizontal: AdminSpace.lg, vertical: AdminSpace.md),
+      padding: const EdgeInsets.symmetric(horizontal: AdminSpace.lg, vertical: AdminSpace.md + 2),
       child: Row(
         children: [
           for (var i = 0; i < widget.columns.length; i++) ...[
@@ -273,6 +297,33 @@ class _BodyRowState<T> extends State<_BodyRow<T>> {
       onEnter: (_) => setState(() => _hovering = true),
       onExit: (_) => setState(() => _hovering = false),
       child: GestureDetector(onTap: widget.onTap, child: spined),
+    );
+  }
+}
+
+class _PageButton extends StatelessWidget {
+  const _PageButton({required this.icon, required this.onPressed});
+
+  final IconData icon;
+  final VoidCallback? onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    final enabled = onPressed != null;
+    return Material(
+      color: AdminColors.surface,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(AdminRadius.sm),
+        side: BorderSide(color: enabled ? AdminColors.hairline : AdminColors.hairline.withValues(alpha: 0.5)),
+      ),
+      child: InkWell(
+        borderRadius: BorderRadius.circular(AdminRadius.sm),
+        onTap: onPressed,
+        child: Padding(
+          padding: const EdgeInsets.all(4),
+          child: Icon(icon, size: 18, color: enabled ? AdminColors.ink : AdminColors.inkFaint),
+        ),
+      ),
     );
   }
 }
