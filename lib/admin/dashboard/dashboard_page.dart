@@ -57,22 +57,26 @@ class _DashboardPageState extends State<DashboardPage> {
       queryRequestaRefundRecordCount(
         queryBuilder: (q) => q.where('status', isEqualTo: 'pending'),
       ),
-      // Unfiltered on purpose: a `where('date', ...)` collection-group query
-      // needs a Firestore index that firestore.indexes.json declares but was
-      // never actually deployed. Filtering client-side avoids depending on
-      // that deploy ever having happened.
-      queryPurchaseHistoryRecordOnce(),
+      // Unfiltered on purpose: a `where('createdAt', ...)` query needs a
+      // Firestore index that firestore.indexes.json declares but was never
+      // actually deployed. Filtering client-side avoids depending on that
+      // deploy ever having happened. Sourced from `orders` (real Snippe
+      // TZS payments only), not purchase_history, which still carries
+      // pre-Snippe fake USD entries mixed in with real ones.
+      queryOrdersRecordOnce(
+        queryBuilder: (q) => q.where('status', isEqualTo: 'completed'),
+      ),
       queryCoursesReportRecordCount(),
       queryReviewReportRecordCount(),
       queryLessonReportRecordCount(),
     ]);
 
-    final allPurchases = results[5] as List<PurchaseHistoryRecord>;
-    final monthPurchases = allPurchases.where(
-      (p) => p.hasDate() && p.date!.isAfter(startOfMonth.subtract(const Duration(seconds: 1))),
+    final completedOrders = results[5] as List<OrdersRecord>;
+    final monthOrders = completedOrders.where(
+      (o) => o.hasCompletedAt() &&
+          o.completedAt!.isAfter(startOfMonth.subtract(const Duration(seconds: 1))),
     );
-    final monthRevenue =
-        monthPurchases.fold<double>(0, (sum, p) => sum + p.amount);
+    final monthRevenue = monthOrders.fold<double>(0, (sum, o) => sum + o.amount);
 
     return _DashboardStats(
       totalUsers: results[0] as int,
@@ -156,11 +160,11 @@ class _DashboardPageState extends State<DashboardPage> {
                 ),
                 KpiTile(
                   label: 'Revenue this month',
-                  value: formatNumber(
+                  value: '${formatNumber(
                     stats.monthRevenue,
                     formatType: FormatType.decimal,
                     decimalType: DecimalType.automatic,
-                  ),
+                  )} TZS',
                   icon: Icons.payments_outlined,
                   status: AdminStatus.positive,
                 ),
