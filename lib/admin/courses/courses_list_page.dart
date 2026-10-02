@@ -12,6 +12,30 @@ class CoursesListPage extends StatefulWidget {
   State<CoursesListPage> createState() => _CoursesListPageState();
 }
 
+/// Subcollections hung off a course doc that Firestore won't cascade-delete
+/// on its own — anything left here would be reachable by id forever even
+/// after the course itself is gone.
+const _courseSubcollections = [
+  'lessons',
+  'courses_review',
+  'review_report',
+  'lesson_report',
+  'courses_report',
+];
+
+Future<void> deleteCourse(DocumentReference courseRef) async {
+  for (final name in _courseSubcollections) {
+    final docs = await courseRef.collection(name).get();
+    if (docs.docs.isEmpty) continue;
+    final batch = FirebaseFirestore.instance.batch();
+    for (final doc in docs.docs) {
+      batch.delete(doc.reference);
+    }
+    await batch.commit();
+  }
+  await courseRef.delete();
+}
+
 class _CoursesListPageState extends State<CoursesListPage> {
   bool _creating = false;
 
@@ -95,7 +119,120 @@ class _CoursesListPageState extends State<CoursesListPage> {
                 status: course.isPublished ? AdminStatus.positive : AdminStatus.neutral,
               ),
             ),
+            AdminColumn<CoursesRecord>(
+              label: '',
+              flex: 1,
+              cellBuilder: (context, course) => _DeleteCourseButton(course: course),
+            ),
           ],
+        ),
+      ],
+    );
+  }
+}
+
+class _DeleteCourseButton extends StatelessWidget {
+  const _DeleteCourseButton({required this.course});
+  final CoursesRecord course;
+
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      tooltip: 'Delete course',
+      icon: const Icon(Icons.delete_outline_rounded, size: 18),
+      color: AdminColors.inkFaint,
+      onPressed: () => showDialog(
+        context: context,
+        builder: (_) => _DeleteCourseDialog(course: course),
+      ),
+    );
+  }
+}
+
+class _DeleteCourseDialog extends StatefulWidget {
+  const _DeleteCourseDialog({required this.course});
+  final CoursesRecord course;
+
+  @override
+  State<_DeleteCourseDialog> createState() => _DeleteCourseDialogState();
+}
+
+class _DeleteCourseDialogState extends State<_DeleteCourseDialog> {
+  bool _confirmed = false;
+  bool _deleting = false;
+  String? _error;
+
+  Future<void> _delete() async {
+    setState(() {
+      _deleting = true;
+      _error = null;
+    });
+    try {
+      await deleteCourse(widget.course.reference);
+      if (!mounted) return;
+      Navigator.pop(context, true);
+    } catch (e) {
+      setState(() {
+        _deleting = false;
+        _error = 'Could not delete the course: $e';
+      });
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final hasDownloaders = widget.course.downloaders.isNotEmpty;
+    return AlertDialog(
+      title: const Text('Delete course'),
+      content: SizedBox(
+        width: 380,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text('"${widget.course.title.isEmpty ? 'Untitled course' : widget.course.title}" '
+                'and its lessons will be permanently deleted.'),
+            if (hasDownloaders) ...[
+              const SizedBox(height: AdminSpace.md),
+              Text(
+                '${widget.course.downloaders.length} student(s) have this course in their '
+                'library — deleting it will leave their purchase pointing at nothing.',
+                style: const TextStyle(color: AdminColors.error, fontSize: 13),
+              ),
+            ],
+            const SizedBox(height: AdminSpace.md),
+            CheckboxListTile(
+              contentPadding: EdgeInsets.zero,
+              controlAffinity: ListTileControlAffinity.leading,
+              value: _confirmed,
+              onChanged: _deleting ? null : (v) => setState(() => _confirmed = v ?? false),
+              title: const Text(
+                'I understand this cannot be undone.',
+                style: TextStyle(fontSize: 13),
+              ),
+            ),
+            if (_error != null) ...[
+              const SizedBox(height: AdminSpace.sm),
+              Text(_error!, style: const TextStyle(color: AdminColors.error, fontSize: 13)),
+            ],
+          ],
+        ),
+      ),
+      actions: [
+        TextButton(
+          onPressed: _deleting ? null : () => Navigator.pop(context, false),
+          child: const Text('Cancel'),
+        ),
+        FilledButton(
+          style: FilledButton.styleFrom(backgroundColor: AdminColors.error),
+          onPressed: (_confirmed && !_deleting) ? _delete : null,
+          child: _deleting
+              ? const SizedBox(
+                  width: 16,
+                  height: 16,
+                  child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white),
+                )
+              : const Text('Delete course'),
         ),
       ],
     );
