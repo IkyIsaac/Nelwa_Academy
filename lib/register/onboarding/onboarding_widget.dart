@@ -386,19 +386,72 @@ Unlock p... */
               decoration: BoxDecoration(
                 color: FlutterFlowTheme.of(context).primaryBackground,
               ),
-              child: Padding(
-                padding: EdgeInsets.all(16.0),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    if (_model.pageViewItem != 2)
+              child: SafeArea(
+                top: false,
+                child: Padding(
+                  padding: EdgeInsets.all(16.0),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      if (_model.pageViewItem != 2)
+                        Expanded(
+                          child: FFButtonWidget(
+                            onPressed: () async {
+                              context.pushNamed(WelcomeWidget.routeName);
+                            },
+                            text: FFLocalizations.of(context).getText(
+                              '4cd2gisc' /* Skip */,
+                            ),
+                            options: FFButtonOptions(
+                              height: 50.0,
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  24.0, 0.0, 24.0, 0.0),
+                              iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 0.0),
+                              color: FlutterFlowTheme.of(context).accent1,
+                              textStyle: FlutterFlowTheme.of(context)
+                                  .titleSmall
+                                  .override(
+                                    font: GoogleFonts.inter(
+                                      fontWeight: FlutterFlowTheme.of(context)
+                                          .titleSmall
+                                          .fontWeight,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .titleSmall
+                                          .fontStyle,
+                                    ),
+                                    color: FlutterFlowTheme.of(context).primary,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .titleSmall
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .titleSmall
+                                        .fontStyle,
+                                  ),
+                              elevation: 0.0,
+                              borderRadius: BorderRadius.circular(12.0),
+                            ),
+                            showLoadingIndicator: false,
+                          ),
+                        ),
                       Expanded(
                         child: FFButtonWidget(
                           onPressed: () async {
-                            context.pushNamed(WelcomeWidget.routeName);
+                            if (_model.pageViewItem == 2) {
+                              context.pushNamed(WelcomeWidget.routeName);
+
+                              FFAppState().isCompleteOnboarding = true;
+                              safeSetState(() {});
+                            } else {
+                              await _model.pageViewController?.nextPage(
+                                duration: Duration(milliseconds: 300),
+                                curve: Curves.ease,
+                              );
+                            }
                           },
                           text: FFLocalizations.of(context).getText(
-                            '4cd2gisc' /* Skip */,
+                            'lfkg39id' /* Continue */,
                           ),
                           options: FFButtonOptions(
                             height: 50.0,
@@ -406,7 +459,7 @@ Unlock p... */
                                 24.0, 0.0, 24.0, 0.0),
                             iconPadding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
-                            color: FlutterFlowTheme.of(context).accent1,
+                            color: FlutterFlowTheme.of(context).primary,
                             textStyle: FlutterFlowTheme.of(context)
                                 .titleSmall
                                 .override(
@@ -418,7 +471,7 @@ Unlock p... */
                                         .titleSmall
                                         .fontStyle,
                                   ),
-                                  color: FlutterFlowTheme.of(context).primary,
+                                  color: FlutterFlowTheme.of(context).info,
                                   letterSpacing: 0.0,
                                   fontWeight: FlutterFlowTheme.of(context)
                                       .titleSmall
@@ -433,58 +486,9 @@ Unlock p... */
                           showLoadingIndicator: false,
                         ),
                       ),
-                    Expanded(
-                      child: FFButtonWidget(
-                        onPressed: () async {
-                          if (_model.pageViewItem == 2) {
-                            context.pushNamed(WelcomeWidget.routeName);
-
-                            FFAppState().isCompleteOnboarding = true;
-                            safeSetState(() {});
-                          } else {
-                            await _model.pageViewController?.nextPage(
-                              duration: Duration(milliseconds: 300),
-                              curve: Curves.ease,
-                            );
-                          }
-                        },
-                        text: FFLocalizations.of(context).getText(
-                          'lfkg39id' /* Continue */,
-                        ),
-                        options: FFButtonOptions(
-                          height: 50.0,
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              24.0, 0.0, 24.0, 0.0),
-                          iconPadding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 0.0),
-                          color: FlutterFlowTheme.of(context).primary,
-                          textStyle:
-                              FlutterFlowTheme.of(context).titleSmall.override(
-                                    font: GoogleFonts.inter(
-                                      fontWeight: FlutterFlowTheme.of(context)
-                                          .titleSmall
-                                          .fontWeight,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .titleSmall
-                                          .fontStyle,
-                                    ),
-                                    color: FlutterFlowTheme.of(context).info,
-                                    letterSpacing: 0.0,
-                                    fontWeight: FlutterFlowTheme.of(context)
-                                        .titleSmall
-                                        .fontWeight,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .titleSmall
-                                        .fontStyle,
-                                  ),
-                          elevation: 0.0,
-                          borderRadius: BorderRadius.circular(12.0),
-                        ),
-                        showLoadingIndicator: false,
-                      ),
-                    ),
-                  ].divide(
-                      SizedBox(width: _model.pageViewItem == 2 ? 0.0 : 12.0)),
+                    ].divide(
+                        SizedBox(width: _model.pageViewItem == 2 ? 0.0 : 12.0)),
+                  ),
                 ),
               ),
             ),
