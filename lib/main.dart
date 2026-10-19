@@ -8,6 +8,7 @@ import 'auth/firebase_auth/firebase_user_provider.dart';
 import 'auth/firebase_auth/auth_util.dart';
 
 import 'backend/firebase/firebase_config.dart';
+import 'flutter_flow/flutter_flow_theme.dart';
 import 'flutter_flow/flutter_flow_util.dart';
 import 'flutter_flow/internationalization.dart';
 
@@ -132,6 +133,15 @@ class _MyAppState extends State<MyApp> {
       ),
       themeMode: _themeMode,
       routerConfig: _router,
+      // Android 15+ forces edge-to-edge, which puts every screen's and bottom
+      // sheet's bottom content under the system navigation bar. Inset the whole
+      // app instead of patching each FlutterFlow page.
+      builder: (context, child) => isAndroid
+          ? ColoredBox(
+              color: FlutterFlowTheme.of(context).primaryBackground,
+              child: SafeArea(top: false, child: child!),
+            )
+          : child!,
     );
   }
 }
