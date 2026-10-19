@@ -120,6 +120,11 @@ class UsersRecord extends FirestoreRecord {
   String get role => _role ?? '';
   bool hasRole() => _role != null;
 
+  // "instructor_status" field.
+  String? _instructorStatus;
+  String get instructorStatus => _instructorStatus ?? '';
+  bool hasInstructorStatus() => _instructorStatus != null;
+
   // "purchased_courses" field.
   List<DocumentReference>? _purchasedCourses;
   List<DocumentReference> get purchasedCourses => _purchasedCourses ?? const [];
@@ -153,6 +158,7 @@ class UsersRecord extends FirestoreRecord {
     _customTags = getDataList(snapshotData['custom_tags']);
     _instructor = snapshotData['instructor'] as bool?;
     _role = snapshotData['role'] as String?;
+    _instructorStatus = snapshotData['instructor_status'] as String?;
     _purchasedCourses = getDataList(snapshotData['purchased_courses']);
     _continueWatching = getStructList(
       snapshotData['continue_watching'],
@@ -211,6 +217,7 @@ Map<String, dynamic> createUsersRecordData({
   DocumentReference? defaultPayment,
   bool? instructor,
   String? role,
+  String? instructorStatus,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -231,6 +238,7 @@ Map<String, dynamic> createUsersRecordData({
       'default_payment': defaultPayment,
       'instructor': instructor,
       'role': role,
+      'instructor_status': instructorStatus,
     }.withoutNulls,
   );
 
@@ -264,6 +272,7 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         listEquality.equals(e1?.customTags, e2?.customTags) &&
         e1?.instructor == e2?.instructor &&
         e1?.role == e2?.role &&
+        e1?.instructorStatus == e2?.instructorStatus &&
         listEquality.equals(e1?.purchasedCourses, e2?.purchasedCourses) &&
         listEquality.equals(e1?.continueWatching, e2?.continueWatching);
   }
@@ -291,6 +300,7 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e?.customTags,
         e?.instructor,
         e?.role,
+        e?.instructorStatus,
         e?.purchasedCourses,
         e?.continueWatching
       ]);

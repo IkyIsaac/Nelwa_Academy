@@ -183,13 +183,26 @@ class _ProfileWidgetState extends State<ProfileWidget>
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
+                              if (valueOrDefault(
+                                      currentUserDocument?.instructorStatus,
+                                      '') ==
+                                  'pending') {
+                                return;
+                              }
                               context.pushNamed(
                                   BecomeAnInstructorWidget.routeName);
                             },
                             child: Text(
-                              FFLocalizations.of(context).getText(
-                                'fd6q08z5' /* Want to become an instructor? */,
-                              ),
+                              valueOrDefault(
+                                          currentUserDocument?.instructorStatus,
+                                          '') ==
+                                      'pending'
+                                  ? FFLocalizations.of(context).getText(
+                                      'nlw0iapr' /* Instructor application under review */,
+                                    )
+                                  : FFLocalizations.of(context).getText(
+                                      'fd6q08z5' /* Want to become an instructor? */,
+                                    ),
                               style: FlutterFlowTheme.of(context)
                                   .titleSmall
                                   .override(
@@ -209,7 +222,13 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                     fontStyle: FlutterFlowTheme.of(context)
                                         .titleSmall
                                         .fontStyle,
-                                    decoration: TextDecoration.underline,
+                                    decoration: valueOrDefault(
+                                                currentUserDocument
+                                                    ?.instructorStatus,
+                                                '') ==
+                                            'pending'
+                                        ? TextDecoration.none
+                                        : TextDecoration.underline,
                                   ),
                             ),
                           );

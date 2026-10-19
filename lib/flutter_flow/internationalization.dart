@@ -828,6 +828,11 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'fr': 'Vous souhaitez devenir instructeur ?',
       'sw': 'Unataka kuwa mwalimu?',
     },
+    'nlw0iapr': {
+      'en': 'Instructor application under review',
+      'fr': 'Candidature d\'instructeur en cours d\'examen',
+      'sw': 'Ombi lako la kuwa mwalimu linakaguliwa',
+    },
     '0ny108w4': {
       'en': 'Personal Info',
       'fr': 'Informations personnelles',

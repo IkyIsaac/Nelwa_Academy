@@ -123,7 +123,7 @@ class _ApplicationSubmittedWidgetState
                   padding: EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
                   child: FFButtonWidget(
                     onPressed: () async {
-                      context.goNamed(PaymentSetupWidget.routeName);
+                      context.goNamed(ProfileWidget.routeName);
                     },
                     text: FFLocalizations.of(context).getText(
                       'xeteppci' /* OK */,

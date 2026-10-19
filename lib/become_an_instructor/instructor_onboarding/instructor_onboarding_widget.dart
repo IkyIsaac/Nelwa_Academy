@@ -713,8 +713,9 @@ class _InstructorOnboardingWidgetState
                           if (_model.aboutYouTextController.text != '') {
                             await currentUserReference!
                                 .update(createUsersRecordData(
-                              role: 'Instructor',
-                              instructor: true,
+                              // An admin approves this from the admin portal,
+                              // which is what grants instructor status.
+                              instructorStatus: 'pending',
                             ));
 
                             await InstructorDetailsRecord.createDoc(
