@@ -1,5 +1,7 @@
 [build]
-  command = "export CI=true && git clone --depth 1 --branch 3.35.7 https://github.com/flutter/flutter.git flutter_sdk && export PATH=\"$PATH:$(pwd)/flutter_sdk/bin\" && flutter config --enable-web --no-analytics && flutter pub get && flutter build web --release -t lib/main_admin.dart"
+  # Netlify's build cache can restore flutter_sdk from an earlier build, and
+  # git clone fails on an existing directory — reuse it unless it's broken.
+  command = "export CI=true && (test -x flutter_sdk/bin/flutter || (rm -rf flutter_sdk && git clone --depth 1 --branch 3.35.7 https://github.com/flutter/flutter.git flutter_sdk)) && export PATH=\"$PATH:$(pwd)/flutter_sdk/bin\" && flutter config --enable-web --no-analytics && flutter pub get && flutter build web --release -t lib/main_admin.dart"
   publish = "build/web"
 
 # Flutter's GoRouter uses real paths (no #), so every route (e.g. /users,
