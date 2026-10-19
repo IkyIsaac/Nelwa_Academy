@@ -21,6 +21,10 @@ service cloud.firestore {
       return isSignedIn() && request.auth.uid == uid;
     }
 
+    function fieldChanged(field) {
+      return request.resource.data.get(field, null) != resource.data.get(field, null);
+    }
+
     function userRef(uid) {
       return /databases/$(database)/documents/users/$(uid);
     }
@@ -32,7 +36,21 @@ service cloud.firestore {
       // or the admin can change a profile — previously any signed-in
       // user could edit anyone else's role, name, or profile fields.
       allow read: if isSignedIn();
-      allow write: if isOwner(uid) || isAdmin();
+      // Instructor status is granted only by the admin portal. An owner can
+      // apply (instructor_status -> 'pending') and switch their role to
+      // Instructor once approved, but never set the instructor flag itself.
+      allow create: if isAdmin() || (isOwner(uid)
+          && request.resource.data.get('instructor', false) == false
+          && !('instructor_status' in request.resource.data)
+          && request.resource.data.get('role', 'Learner') == 'Learner');
+      allow update: if isAdmin() || (isOwner(uid)
+          && !fieldChanged('instructor')
+          && (!fieldChanged('instructor_status')
+              || request.resource.data.instructor_status == 'pending')
+          && (!fieldChanged('role')
+              || request.resource.data.role == 'Learner'
+              || resource.data.get('instructor', false) == true));
+      allow delete: if isOwner(uid) || isAdmin();
 
       match /payment_account/{document} {
         // Bank/PayPal details — was readable by every signed-in user
