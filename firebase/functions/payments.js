@@ -3,6 +3,7 @@ const admin = require("firebase-admin");
 const axios = require("axios").default;
 const crypto = require("crypto");
 const { handlePayoutEvent } = require("./payouts");
+const { queueUserEmail } = require("./email/outbox");
 
 const SNIPPE_BASE_URL = process.env.SNIPPE_BASE_URL || "https://api.snippe.sh";
 const SNIPPE_API_KEY = process.env.SNIPPE_API_KEY;
@@ -288,6 +289,54 @@ async function fulfillOrder(db, orderRef, event) {
       eventId: event.id,
     });
   }
+  return fulfilled;
+}
+
+/**
+ * Receipt to the student and a sale notice to each instructor in the order.
+ * Ids are keyed on the order, so a retried webhook can't send them twice.
+ */
+async function emailOrderCompleted(orderRef) {
+  const order = (await orderRef.get()).data();
+  const items = order.lineItems || [];
+  const currency = order.currency || "TZS";
+
+  await queueUserEmail({
+    userRef: order.userRef,
+    id: `receipt_${orderRef.id}`,
+    template: "purchase_receipt",
+    data: {
+      orderId: orderRef.id,
+      amount: order.amount,
+      currency,
+      paidAt: new Date().toISOString(),
+      courses: items.map((i) => ({ title: i.title, price: i.price })),
+    },
+  });
+
+  // The instructor's users doc is the parent of the payment_account /
+  // instructor_details docs snapshotted on each line item.
+  const byInstructor = new Map();
+  for (const item of items) {
+    const sub = item.paymentAccountRef || item.instructorDetailsRef;
+    const instructorRef = sub && sub.parent.parent;
+    if (!instructorRef) continue;
+    if (!byInstructor.has(instructorRef.path)) byInstructor.set(instructorRef.path, { instructorRef, items: [] });
+    byInstructor.get(instructorRef.path).items.push(item);
+  }
+
+  for (const { instructorRef, items: sold } of byInstructor.values()) {
+    await queueUserEmail({
+      userRef: instructorRef,
+      id: `sale_${orderRef.id}_${instructorRef.id}`,
+      template: "instructor_sale",
+      data: {
+        currency,
+        amount: sold.reduce((sum, i) => sum + (i.price || 0), 0),
+        courses: sold.map((i) => ({ title: i.title, price: i.price })),
+      },
+    });
+  }
 }
 
 const TERMINAL_FAILURE_EVENTS = ["payment.failed", "payment.voided", "payment.expired"];
@@ -368,12 +417,36 @@ exports.snippeWebhook = functions.https.onRequest(async (req, res) => {
 
   try {
     if (event.type === "payment.completed") {
-      await fulfillOrder(db, orderRef, event);
+      if (await fulfillOrder(db, orderRef, event)) {
+        // The course is already granted; an email hiccup must not 500 the
+        // webhook (a retry would find the order completed and do nothing).
+        await emailOrderCompleted(orderRef).catch((err) =>
+          functions.logger.error("Order emails failed", { orderId, error: err.message })
+        );
+      }
     } else if (TERMINAL_FAILURE_EVENTS.includes(event.type)) {
+      const status = event.type.split(".")[1];
+      const orderSnap = await orderRef.get();
       await orderRef.update({
-        status: event.type.split(".")[1],
+        status,
         updatedAt: admin.firestore.FieldValue.serverTimestamp(),
       });
+      // Voided means the payer cancelled; only tell them about real failures.
+      const order = orderSnap.data();
+      if (order && order.status === "pending" && (status === "failed" || status === "expired")) {
+        await queueUserEmail({
+          userRef: order.userRef,
+          id: `payment_failed_${orderId}`,
+          template: "payment_failed",
+          data: {
+            orderId,
+            reason: status,
+            amount: order.amount,
+            currency: order.currency || "TZS",
+            courses: (order.lineItems || []).map((i) => ({ title: i.title, price: i.price })),
+          },
+        });
+      }
     }
     res.status(200).send("ok");
   } catch (err) {

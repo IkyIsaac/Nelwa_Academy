@@ -102,6 +102,8 @@ class _MyAppState extends State<MyApp> {
   void setLocale(String language) {
     safeSetState(() => _locale = createLocale(language));
     FFLocalizations.storeLocale(language);
+    // Emails are sent server-side, so the server needs the user's language.
+    currentUserReference?.update({'language': language}).catchError((_) {});
   }
 
   void setThemeMode(ThemeMode mode) => safeSetState(() {

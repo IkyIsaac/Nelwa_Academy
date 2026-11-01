@@ -17,3 +17,10 @@ exports.createPayout = payouts.createPayout;
 
 const translations = require("./translations");
 exports.translateText = translations.translateText;
+
+const emailOutbox = require("./email/outbox");
+exports.sendQueuedEmail = emailOutbox.sendQueuedEmail;
+
+const emailTriggers = require("./email/triggers");
+exports.emailOnUserCreated = emailTriggers.emailOnUserCreated;
+exports.emailOnInstructorStatusChanged = emailTriggers.emailOnInstructorStatusChanged;

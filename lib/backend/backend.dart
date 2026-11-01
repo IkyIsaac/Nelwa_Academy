@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/widgets.dart';
 import '../auth/firebase_auth/auth_util.dart';
 
 import '../flutter_flow/flutter_flow_util.dart';
@@ -1055,17 +1056,27 @@ Future maybeCreateUser(User user) async {
     return;
   }
 
-  final userData = createUsersRecordData(
-    email: user.email ??
-        FirebaseAuth.instance.currentUser?.email ??
-        user.providerData.firstOrNull?.email,
-    displayName:
-        user.displayName ?? FirebaseAuth.instance.currentUser?.displayName,
-    photoUrl: user.photoURL,
-    uid: user.uid,
-    phoneNumber: user.phoneNumber,
-    createdTime: getCurrentTimestamp,
-  );
+  final userData = {
+    ...createUsersRecordData(
+      email: user.email ??
+          FirebaseAuth.instance.currentUser?.email ??
+          user.providerData.firstOrNull?.email,
+      displayName:
+          user.displayName ?? FirebaseAuth.instance.currentUser?.displayName,
+      photoUrl: user.photoURL,
+      uid: user.uid,
+      phoneNumber: user.phoneNumber,
+      createdTime: getCurrentTimestamp,
+    ),
+    // Read by Cloud Functions to pick the email language (welcome email
+    // fires on this create). Same source the app uses for its own locale.
+    'language': (FFLocalizations.getStoredLocale() ??
+                WidgetsBinding.instance.platformDispatcher.locale)
+            .languageCode ==
+        'sw'
+        ? 'sw'
+        : 'en',
+  };
 
   await userRecord.set(userData);
   currentUserDocument = UsersRecord.getDocumentFromData(userData, userRecord);

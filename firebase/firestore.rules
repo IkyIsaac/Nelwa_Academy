@@ -250,5 +250,12 @@ service cloud.firestore {
       allow read: if (request.auth != null && request.auth.uid == resource.data.instructorUserId) || isAdmin();
       allow write: if false;
     }
+
+    // Email outbox, written and sent only by Cloud Functions. Admin can
+    // read it as a send log.
+    match /mail/{document} {
+      allow read: if isAdmin();
+      allow write: if false;
+    }
   }
 }
