@@ -1,11 +1,11 @@
 const functions = require("firebase-functions");
-const { queueUserEmail } = require("./outbox");
+const { notifyUser } = require("./outbox");
 
 /** Welcome email, once per account, when the app creates the users doc. */
 exports.emailOnUserCreated = functions.firestore
   .document("users/{uid}")
   .onCreate(async (snap, context) => {
-    await queueUserEmail({
+    await notifyUser({
       userRef: snap.ref,
       id: `welcome_${context.params.uid}`,
       template: "welcome",
@@ -32,7 +32,7 @@ exports.emailOnInstructorStatusChanged = functions.firestore
     const after = change.after.get("instructor_status");
     if (before === after || !STATUS_TEMPLATES[after]) return;
 
-    await queueUserEmail({
+    await notifyUser({
       userRef: change.after.ref,
       id: `instructor_${after}_${context.params.uid}_${context.eventId}`,
       template: STATUS_TEMPLATES[after],

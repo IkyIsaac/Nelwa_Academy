@@ -3,7 +3,7 @@ const admin = require("firebase-admin");
 const axios = require("axios").default;
 const crypto = require("crypto");
 const { handlePayoutEvent } = require("./payouts");
-const { queueUserEmail } = require("./email/outbox");
+const { notifyUser } = require("./email/outbox");
 
 const SNIPPE_BASE_URL = process.env.SNIPPE_BASE_URL || "https://api.snippe.sh";
 const SNIPPE_API_KEY = process.env.SNIPPE_API_KEY;
@@ -301,7 +301,7 @@ async function emailOrderCompleted(orderRef) {
   const items = order.lineItems || [];
   const currency = order.currency || "TZS";
 
-  await queueUserEmail({
+  await notifyUser({
     userRef: order.userRef,
     id: `receipt_${orderRef.id}`,
     template: "purchase_receipt",
@@ -326,7 +326,7 @@ async function emailOrderCompleted(orderRef) {
   }
 
   for (const { instructorRef, items: sold } of byInstructor.values()) {
-    await queueUserEmail({
+    await notifyUser({
       userRef: instructorRef,
       id: `sale_${orderRef.id}_${instructorRef.id}`,
       template: "instructor_sale",
@@ -434,7 +434,7 @@ exports.snippeWebhook = functions.https.onRequest(async (req, res) => {
       // Voided means the payer cancelled; only tell them about real failures.
       const order = orderSnap.data();
       if (order && order.status === "pending" && (status === "failed" || status === "expired")) {
-        await queueUserEmail({
+        await notifyUser({
           userRef: order.userRef,
           id: `payment_failed_${orderId}`,
           template: "payment_failed",

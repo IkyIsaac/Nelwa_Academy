@@ -236,4 +236,71 @@ const templates = {
   },
 };
 
-module.exports = { templates };
+/**
+ * Short in-app notification copy (users/{uid}/notification), shown by the
+ * app's bell and notifications screen. `type` picks the card's icon:
+ * info / completed / warning / error. Instructor approve/reject/revoke are
+ * left out on purpose: the admin portal already writes those notifications.
+ */
+const inAppTemplates = {
+  welcome: (d, lang) => lang === "sw" ? {
+    type: "info",
+    title: "Karibu Nelwa Academy",
+    description: "Vinjari kozi na anza kujifunza kwa kasi yako mwenyewe.",
+  } : {
+    type: "info",
+    title: "Welcome to Nelwa Academy",
+    description: "Browse courses and start learning at your own pace.",
+  },
+
+  purchase_receipt: (d, lang) => {
+    const courses = courseList(d.courses.map((c) => c.title), lang);
+    return lang === "sw" ? {
+      type: "completed",
+      title: "Malipo yamepokelewa",
+      description: `Umejiandikisha kwenye ${courses}. Anza kujifunza sasa.`,
+    } : {
+      type: "completed",
+      title: "Payment received",
+      description: `You're enrolled in ${courses}. Start learning now.`,
+    };
+  },
+
+  payment_failed: (d, lang) => {
+    const courses = courseList(d.courses.map((c) => c.title), lang);
+    return lang === "sw" ? {
+      type: "error",
+      title: "Malipo hayakukamilika",
+      description: `Malipo yako ya ${money(d.amount, d.currency)} kwa ${courses} hayakukamilika. Unaweza kujaribu tena.`,
+    } : {
+      type: "error",
+      title: "Payment not completed",
+      description: `Your payment of ${money(d.amount, d.currency)} for ${courses} didn't go through. You can try again.`,
+    };
+  },
+
+  instructor_sale: (d, lang) => {
+    const courses = courseList(d.courses.map((c) => c.title), lang);
+    return lang === "sw" ? {
+      type: "completed",
+      title: "Umepata mauzo",
+      description: `Mwanafunzi mpya amejiandikisha kwenye ${courses}. ${money(d.amount, d.currency)} imeongezwa kwenye salio lako.`,
+    } : {
+      type: "completed",
+      title: "You made a sale",
+      description: `A new student enrolled in ${courses}. ${money(d.amount, d.currency)} was added to your balance.`,
+    };
+  },
+
+  instructor_application_received: (d, lang) => lang === "sw" ? {
+    type: "info",
+    title: "Ombi limepokelewa",
+    description: "Tunakagua ombi lako la kuwa mkufunzi na tutakujulisha uamuzi.",
+  } : {
+    type: "info",
+    title: "Application received",
+    description: "We're reviewing your instructor application and will let you know the decision.",
+  },
+};
+
+module.exports = { templates, inAppTemplates };

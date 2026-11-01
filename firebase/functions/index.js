@@ -20,6 +20,7 @@ exports.translateText = translations.translateText;
 
 const emailOutbox = require("./email/outbox");
 exports.sendQueuedEmail = emailOutbox.sendQueuedEmail;
+exports.resendEmail = emailOutbox.resendEmail;
 
 const emailTriggers = require("./email/triggers");
 exports.emailOnUserCreated = emailTriggers.emailOnUserCreated;

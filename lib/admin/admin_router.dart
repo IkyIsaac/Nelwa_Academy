@@ -14,6 +14,7 @@ import 'orders/orders_page.dart';
 import 'refunds/refunds_page.dart';
 import 'payouts/payouts_page.dart';
 import 'notifications/broadcast_page.dart';
+import 'emails/emails_page.dart';
 
 /// Every nav-rail destination fades in rather than sliding/scaling — the
 /// default Material page transition renders the outgoing and incoming
@@ -92,6 +93,10 @@ GoRouter createAdminRouter(AdminAuthNotifier authNotifier) {
           GoRoute(
             path: '/payouts',
             pageBuilder: (context, state) => _fadePage(const PayoutsPage()),
+          ),
+          GoRoute(
+            path: '/emails',
+            pageBuilder: (context, state) => _fadePage(const EmailsPage()),
           ),
           GoRoute(
             path: '/notifications',
