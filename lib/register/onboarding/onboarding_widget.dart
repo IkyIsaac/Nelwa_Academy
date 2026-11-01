@@ -389,7 +389,8 @@ Unlock p... */
               child: SafeArea(
                 top: false,
                 child: Padding(
-                  padding: EdgeInsets.all(16.0),
+                  padding:
+                      EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 24.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     children: [

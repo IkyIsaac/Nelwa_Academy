@@ -1,6 +1,7 @@
 import 'package:provider/provider.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
@@ -21,6 +22,18 @@ void main() async {
   await environmentValues.initialize();
 
   await initFirebase();
+
+  if (isAndroid) {
+    // Draw behind the system navigation bar like other modern apps; the
+    // MaterialApp builder below pads content above it and fills the strip.
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+      systemNavigationBarColor: Colors.transparent,
+      systemNavigationBarDividerColor: Colors.transparent,
+      systemNavigationBarIconBrightness: Brightness.dark,
+      systemNavigationBarContrastEnforced: false,
+    ));
+  }
 
   await FFLocalizations.initialize();
 
@@ -65,6 +78,28 @@ class _MyAppState extends State<MyApp> {
         ? lastMatch.matches
         : _router.routerDelegate.currentConfiguration;
     return matchList.uri.path;
+  }
+
+  // Pages that show NavBarWidget at the bottom of the screen.
+  static const _tabBarRoutes = {
+    '/homePage',
+    '/explore',
+    '/learn',
+    '/learnCopy',
+    '/courses',
+    '/profile',
+  };
+
+  // '/' is the home page when logged in, but onboarding when logged out.
+  bool _showsTabBar(String? path) =>
+      path == '/' ? _appStateNotifier.loggedIn : _tabBarRoutes.contains(path);
+
+  String? _currentRoutePath() {
+    try {
+      return getRoute();
+    } catch (_) {
+      return null; // Router has no matches yet (first frame).
+    }
   }
 
   List<String> getRouteStack() =>
@@ -135,13 +170,20 @@ class _MyAppState extends State<MyApp> {
       ),
       themeMode: _themeMode,
       routerConfig: _router,
-      // Android 15+ forces edge-to-edge, which puts every screen's and bottom
-      // sheet's bottom content under the system navigation bar. Inset the whole
-      // app instead of patching each FlutterFlow page.
+      // The app draws edge-to-edge on Android, which would put every screen's
+      // and bottom sheet's bottom content under the system navigation bar.
+      // Inset the whole app instead of patching each FlutterFlow page, and
+      // paint the strip behind the system buttons to match the page: white
+      // under the bottom tab bar, the page background everywhere else.
       builder: (context, child) => isAndroid
-          ? ColoredBox(
-              color: FlutterFlowTheme.of(context).primaryBackground,
-              child: SafeArea(top: false, child: child!),
+          ? ListenableBuilder(
+              listenable: _router.routerDelegate,
+              builder: (context, _) => ColoredBox(
+                color: _showsTabBar(_currentRoutePath())
+                    ? FlutterFlowTheme.of(context).secondaryBackground
+                    : FlutterFlowTheme.of(context).primaryBackground,
+                child: SafeArea(top: false, child: child!),
+              ),
             )
           : child!,
     );
