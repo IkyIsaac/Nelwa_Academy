@@ -88,7 +88,7 @@ class _CoursesPageCopyWidgetState extends State<CoursesPageCopyWidget> {
                 size: 24.0,
               ),
               onPressed: () async {
-                context.pop();
+                context.safePop();
               },
             ),
           ),
@@ -429,8 +429,7 @@ class _CoursesPageCopyWidgetState extends State<CoursesPageCopyWidget> {
                                         children: [
                                           Text(
                                             valueOrDefault<String>(
-                                              widget
-                                                  .coursesDoc?.instructorName,
+                                              widget.coursesDoc?.instructorName,
                                               'instructor name',
                                             ),
                                             style: FlutterFlowTheme.of(context)
@@ -620,8 +619,7 @@ class _CoursesPageCopyWidgetState extends State<CoursesPageCopyWidget> {
                                       24.0, 0.0, 24.0, 0.0),
                                   iconPadding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 0.0),
-                                  color: buttonInstructorDetailsRecord
-                                          .followers
+                                  color: buttonInstructorDetailsRecord.followers
                                           .contains(currentUserReference)
                                       ? FlutterFlowTheme.of(context).success
                                       : FlutterFlowTheme.of(context).primary,
@@ -670,7 +668,7 @@ class _CoursesPageCopyWidgetState extends State<CoursesPageCopyWidget> {
                 padding: EdgeInsetsDirectional.fromSTEB(16.0, 24.0, 16.0, 0.0),
                 child: Text(
                   valueOrDefault<String>(
-                    widget.coursesDoc?.title,
+                    widget.coursesDoc?.localizedTitle(context),
                     'No title',
                   ),
                   style: FlutterFlowTheme.of(context).headlineSmall.override(
@@ -1091,8 +1089,8 @@ class _CoursesPageCopyWidgetState extends State<CoursesPageCopyWidget> {
                       TextSpan(
                         text: valueOrDefault<String>(
                           _model.moreDescription
-                              ? widget.coursesDoc?.description
-                              : '${functions.first120Symbols(widget.coursesDoc!.description)}...',
+                              ? widget.coursesDoc?.localizedDescription(context)
+                              : '${functions.first120Symbols(widget.coursesDoc!.localizedDescription(context))}...',
                           'no data',
                         ),
                         style: TextStyle(),
@@ -1222,7 +1220,7 @@ class _CoursesPageCopyWidgetState extends State<CoursesPageCopyWidget> {
                         highlightColor: Colors.transparent,
                         onTap: () async {
                           await Share.share(
-                            widget.coursesDoc!.title,
+                            widget.coursesDoc!.localizedTitle(context),
                             sharePositionOrigin: getWidgetBoundingBox(context),
                           );
                         },
@@ -1287,8 +1285,8 @@ class _CoursesPageCopyWidgetState extends State<CoursesPageCopyWidget> {
                         if (FFAppState()
                             .wishList
                             .contains(widget.coursesDoc?.reference)) {
-                          FFAppState().removeFromWishList(
-                              widget.coursesDoc!.reference);
+                          FFAppState()
+                              .removeFromWishList(widget.coursesDoc!.reference);
                           safeSetState(() {});
                         } else {
                           FFAppState()
@@ -1508,7 +1506,7 @@ class _CoursesPageCopyWidgetState extends State<CoursesPageCopyWidget> {
                                                       children: [
                                                         Expanded(
                                                           child: Text(
-                                                            'Lesson ${valueOrDefault<String>(
+                                                            '${FFLocalizations.of(context).getText('nwcrs001' /* Lesson */)} ${valueOrDefault<String>(
                                                               listViewLessonsRecord
                                                                   .order
                                                                   .toString(),
@@ -1769,7 +1767,7 @@ class _CoursesPageCopyWidgetState extends State<CoursesPageCopyWidget> {
                                                       children: [
                                                         Expanded(
                                                           child: Text(
-                                                            'Lesson ${valueOrDefault<String>(
+                                                            '${FFLocalizations.of(context).getText('nwcrs001' /* Lesson */)} ${valueOrDefault<String>(
                                                               listViewLessonsRecord
                                                                   .order
                                                                   .toString(),

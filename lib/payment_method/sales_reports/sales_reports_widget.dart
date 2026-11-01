@@ -67,7 +67,7 @@ class _SalesReportsWidgetState extends State<SalesReportsWidget> {
                 size: 24.0,
               ),
               onPressed: () async {
-                context.pop();
+                context.safePop();
               },
             ),
           ),

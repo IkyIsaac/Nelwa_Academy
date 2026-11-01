@@ -114,7 +114,7 @@ class _HorizontalCardWidgetState extends State<HorizontalCardWidget> {
                   children: [
                     Text(
                       valueOrDefault<String>(
-                        widget.coursesDoc?.title,
+                        widget.coursesDoc?.localizedTitle(context),
                         'null',
                       ).maybeHandleOverflow(
                         maxChars: 30,

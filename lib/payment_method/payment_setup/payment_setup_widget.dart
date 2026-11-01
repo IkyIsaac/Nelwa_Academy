@@ -116,7 +116,7 @@ class _PaymentSetupWidgetState extends State<PaymentSetupWidget> {
                 size: 24.0,
               ),
               onPressed: () async {
-                context.pop();
+                context.safePop();
               },
             ),
           ),

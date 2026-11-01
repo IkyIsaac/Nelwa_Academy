@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '/backend/backend.dart';
 import '../design/admin_tokens.dart';
 import '../widgets/admin_image_field.dart';
+import '../widgets/admin_swahili_fields.dart';
 import '../widgets/admin_video_field.dart';
 
 Future<void> showLessonEditor(
@@ -44,6 +45,10 @@ class _LessonEditorDialogState extends State<LessonEditorDialog> {
       TextEditingController(text: widget.existing?.title ?? '');
   late final _descriptionController =
       TextEditingController(text: widget.existing?.description ?? '');
+  late final _titleSwController =
+      TextEditingController(text: widget.existing?.titleSw ?? '');
+  late final _descriptionSwController =
+      TextEditingController(text: widget.existing?.descriptionSw ?? '');
   late final _durationController = TextEditingController(
       text: widget.existing?.hasDuration() == true
           ? widget.existing!.duration.toString()
@@ -75,6 +80,8 @@ class _LessonEditorDialogState extends State<LessonEditorDialog> {
   void dispose() {
     _titleController.dispose();
     _descriptionController.dispose();
+    _titleSwController.dispose();
+    _descriptionSwController.dispose();
     _durationController.dispose();
     _orderController.dispose();
     super.dispose();
@@ -87,6 +94,8 @@ class _LessonEditorDialogState extends State<LessonEditorDialog> {
     final data = {
       'title': _titleController.text.trim(),
       'description': _descriptionController.text.trim(),
+      'title_sw': _titleSwController.text.trim(),
+      'description_sw': _descriptionSwController.text.trim(),
       'video_url': _videoUrl,
       'image': _imageUrl,
       'duration': int.tryParse(_durationController.text.trim()) ?? 0,
@@ -169,6 +178,14 @@ class _LessonEditorDialogState extends State<LessonEditorDialog> {
                       const SizedBox(height: AdminSpace.lg),
                       _field('Title', _titleController),
                       _field('Description', _descriptionController, maxLines: 3),
+                      AdminSwahiliFields(
+                        titleController: _titleController,
+                        descriptionController: _descriptionController,
+                        titleSwController: _titleSwController,
+                        descriptionSwController: _descriptionSwController,
+                        descriptionLines: 3,
+                      ),
+                      const SizedBox(height: AdminSpace.lg),
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [

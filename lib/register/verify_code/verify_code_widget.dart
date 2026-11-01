@@ -84,7 +84,7 @@ class _VerifyCodeWidgetState extends State<VerifyCodeWidget> {
                 size: 24.0,
               ),
               onPressed: () async {
-                context.pop();
+                context.safePop();
               },
             ),
           ),

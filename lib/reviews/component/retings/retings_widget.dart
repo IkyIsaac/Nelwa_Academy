@@ -127,7 +127,7 @@ class _RetingsWidgetState extends State<RetingsWidget> {
                         padding:
                             EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
                         child: Text(
-                          '${widget.coursesDoc?.reviewsCount.toString()} reviews',
+                          '${widget.coursesDoc?.reviewsCount.toString()} ${FFLocalizations.of(context).getText('nwcrs007' /* reviews */)}',
                           style:
                               FlutterFlowTheme.of(context).labelMedium.override(
                                     font: GoogleFonts.inter(

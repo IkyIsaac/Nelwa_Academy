@@ -120,7 +120,7 @@ class _SearchResultsWidgetState extends State<SearchResultsWidget> {
                       children: [
                         Text(
                           valueOrDefault<String>(
-                            widget.coursesDoc?.title,
+                            widget.coursesDoc?.localizedTitle(context),
                             'null',
                           ).maybeHandleOverflow(
                             maxChars: 38,

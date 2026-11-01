@@ -79,7 +79,7 @@ class _LessonPageWidgetState extends State<LessonPageWidget> {
                 size: 24.0,
               ),
               onPressed: () async {
-                context.pop();
+                context.safePop();
               },
             ),
           ),
@@ -277,7 +277,7 @@ class _LessonPageWidgetState extends State<LessonPageWidget> {
                           EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 0.0),
                       child: Text(
                         valueOrDefault<String>(
-                          widget.lessonDoc?.title,
+                          widget.lessonDoc?.localizedTitle(context),
                           'null',
                         ),
                         style:
@@ -371,8 +371,8 @@ class _LessonPageWidgetState extends State<LessonPageWidget> {
                             TextSpan(
                               text: valueOrDefault<String>(
                                 _model.moreDescription
-                                    ? widget.lessonDoc?.description
-                                    : '${functions.first120Symbols(widget.lessonDoc!.description)}...',
+                                    ? widget.lessonDoc?.localizedDescription(context)
+                                    : '${functions.first120Symbols(widget.lessonDoc!.localizedDescription(context))}...',
                                 'null',
                               ),
                               style: TextStyle(),
@@ -452,7 +452,8 @@ class _LessonPageWidgetState extends State<LessonPageWidget> {
 
                       context.pushNamed(CheckoutWidget.routeName);
                     },
-                    text: 'Buy For TZS  ${formatNumber(
+                    text:
+                        '${FFLocalizations.of(context).getText('nwcrs003' /* Buy For TZS */)}  ${formatNumber(
                       widget.courseDoc?.price,
                       formatType: FormatType.decimal,
                       decimalType: DecimalType.periodDecimal,

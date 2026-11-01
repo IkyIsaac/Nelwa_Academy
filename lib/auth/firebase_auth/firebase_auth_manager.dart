@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import '../auth_manager.dart';
 
 import '/backend/backend.dart';
+import '/flutter_flow/internationalization.dart';
 import 'facebook_auth.dart';
 import 'anonymous_auth.dart';
 import 'apple_auth.dart';
@@ -74,8 +75,8 @@ class FirebaseAuthManager extends AuthManager
         ScaffoldMessenger.of(context).hideCurrentSnackBar();
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-              content: Text(
-                  'Too long since most recent sign in. Sign in again before deleting your account.')),
+              content: Text(FFLocalizations.of(context).getText(
+                  'nwaut001' /* Too long since most recent sign in. Sign in again before deleting your account. */))),
         );
       }
     }
@@ -98,8 +99,8 @@ class FirebaseAuthManager extends AuthManager
         ScaffoldMessenger.of(context).hideCurrentSnackBar();
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-              content: Text(
-                  'Too long since most recent sign in. Sign in again before updating your email.')),
+              content: Text(FFLocalizations.of(context).getText(
+                  'nwaut002' /* Too long since most recent sign in. Sign in again before updating your email. */))),
         );
       }
     }
@@ -120,7 +121,9 @@ class FirebaseAuthManager extends AuthManager
       if (e.code == 'requires-recent-login') {
         ScaffoldMessenger.of(context).hideCurrentSnackBar();
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Error: ${e.message!}')),
+          SnackBar(
+              content: Text(
+                  '${FFLocalizations.of(context).getText('nwaut004' /* Error */)}: ${e.message!}')),
         );
       }
     }
@@ -136,12 +139,16 @@ class FirebaseAuthManager extends AuthManager
     } on FirebaseAuthException catch (e) {
       ScaffoldMessenger.of(context).hideCurrentSnackBar();
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Error: ${e.message!}')),
+        SnackBar(
+            content: Text(
+                '${FFLocalizations.of(context).getText('nwaut004' /* Error */)}: ${e.message!}')),
       );
       return null;
     }
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('Password reset email sent')),
+      SnackBar(
+          content: Text(FFLocalizations.of(context)
+              .getText('nwaut003' /* Password reset email sent */))),
     );
   }
 
@@ -207,7 +214,8 @@ class FirebaseAuthManager extends AuthManager
       } else if (phoneAuthManager.phoneAuthError != null) {
         final e = phoneAuthManager.phoneAuthError!;
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text('Error: ${e.message!}'),
+          content: Text(
+              '${FFLocalizations.of(context).getText('nwaut004' /* Error */)}: ${e.message!}'),
         ));
         phoneAuthManager.update(() => phoneAuthManager.phoneAuthError = null);
       }

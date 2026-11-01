@@ -187,7 +187,7 @@ class _LearnLessonPageWidgetState extends State<LearnLessonPageWidget> {
                 size: 24.0,
               ),
               onPressed: () async {
-                context.pop();
+                context.safePop();
               },
             ),
           ),
@@ -356,7 +356,7 @@ class _LearnLessonPageWidgetState extends State<LearnLessonPageWidget> {
                           EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 0.0),
                       child: Text(
                         valueOrDefault<String>(
-                          widget.lessonDoc?.title,
+                          widget.lessonDoc?.localizedTitle(context),
                           'null',
                         ),
                         style:
@@ -450,8 +450,8 @@ class _LearnLessonPageWidgetState extends State<LearnLessonPageWidget> {
                             TextSpan(
                               text: valueOrDefault<String>(
                                 _model.moreDescription
-                                    ? widget.lessonDoc?.description
-                                    : '${functions.first120Symbols(widget.lessonDoc!.description)}...',
+                                    ? widget.lessonDoc?.localizedDescription(context)
+                                    : '${functions.first120Symbols(widget.lessonDoc!.localizedDescription(context))}...',
                                 'null',
                               ),
                               style: TextStyle(),

@@ -100,7 +100,7 @@ class _CreatNewLesssonWidgetState extends State<CreatNewLesssonWidget> {
                 size: 24.0,
               ),
               onPressed: () async {
-                context.pop();
+                context.safePop();
               },
             ),
           ),
@@ -191,7 +191,7 @@ class _CreatNewLesssonWidgetState extends State<CreatNewLesssonWidget> {
                                       ),
                                       child: FlutterFlowVideoPlayer(
                                         path: _model.uploadedFileUrl_uploadDataX23 !=
-                                                    ''
+                                                ''
                                             ? _model
                                                 .uploadedFileUrl_uploadDataX23
                                             : _model.uploadedFileUrl_video1,
@@ -1092,10 +1092,11 @@ class _CreatNewLesssonWidgetState extends State<CreatNewLesssonWidget> {
                             model: _model.textSwitchModel,
                             updateCallback: () => safeSetState(() {}),
                             child: TextSwitchWidget(
-                              text: 'Free viewing',
+                              text: FFLocalizations.of(context)
+                                  .getText('nwcrs005' /* Free viewing */),
                               switchBoolean: _model.freeViewing,
-                              description:
-                                  'Enable this option if the video is available to watch for free.',
+                              description: FFLocalizations.of(context).getText(
+                                  'nwcrs006' /* Enable this option if the video is available to watch for free. */),
                             ),
                           ),
                         ),
@@ -1152,8 +1153,9 @@ class _CreatNewLesssonWidgetState extends State<CreatNewLesssonWidget> {
                                               Duration(milliseconds: 500),
                                           fadeOutDuration:
                                               Duration(milliseconds: 500),
-                                          imageUrl: _model.uploadedFileUrl_image2 !=
-                                                      ''
+                                          imageUrl: _model
+                                                      .uploadedFileUrl_image2 !=
+                                                  ''
                                               ? _model.uploadedFileUrl_image2
                                               : _model.uploadedFileUrl_image1,
                                           width: double.infinity,

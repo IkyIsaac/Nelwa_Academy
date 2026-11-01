@@ -110,7 +110,7 @@ class _PendingReviewWidgetState extends State<PendingReviewWidget> {
                               children: [
                                 Text(
                                   valueOrDefault<String>(
-                                    containerCoursesRecord.title,
+                                    containerCoursesRecord.localizedTitle(context),
                                     'null',
                                   ).maybeHandleOverflow(
                                     maxChars: 24,

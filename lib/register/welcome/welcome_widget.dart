@@ -67,7 +67,7 @@ class _WelcomeWidgetState extends State<WelcomeWidget> {
                 size: 24.0,
               ),
               onPressed: () async {
-                context.pop();
+                context.safePop();
               },
             ),
           ),

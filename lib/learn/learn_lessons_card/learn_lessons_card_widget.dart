@@ -118,7 +118,7 @@ class _LearnLessonsCardWidgetState extends State<LearnLessonsCardWidget> {
                                 children: [
                                   Expanded(
                                     child: Text(
-                                      'Lesson ${widget.lessonDoc?.order.toString()}',
+                                      '${FFLocalizations.of(context).getText('nwcrs001' /* Lesson */)} ${widget.lessonDoc?.order.toString()}',
                                       style: FlutterFlowTheme.of(context)
                                           .labelMedium
                                           .override(
@@ -152,7 +152,7 @@ class _LearnLessonsCardWidgetState extends State<LearnLessonsCardWidget> {
                                     0.0, 6.0, 24.0, 0.0),
                                 child: Text(
                                   valueOrDefault<String>(
-                                    widget.lessonDoc?.title,
+                                    widget.lessonDoc?.localizedTitle(context),
                                     'TITLE',
                                   ).maybeHandleOverflow(
                                     maxChars: 30,

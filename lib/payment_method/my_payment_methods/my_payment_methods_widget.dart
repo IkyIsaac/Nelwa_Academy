@@ -68,7 +68,7 @@ class _MyPaymentMethodsWidgetState extends State<MyPaymentMethodsWidget> {
                 size: 24.0,
               ),
               onPressed: () async {
-                context.pop();
+                context.safePop();
               },
             ),
           ),

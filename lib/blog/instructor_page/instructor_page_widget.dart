@@ -144,7 +144,7 @@ class _InstructorPageWidgetState extends State<InstructorPageWidget> {
                       size: 24.0,
                     ),
                     onPressed: () async {
-                      context.pop();
+                      context.safePop();
                     },
                   ),
                 ),

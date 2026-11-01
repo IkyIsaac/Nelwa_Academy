@@ -204,8 +204,8 @@ class _MyCoursesWidgetState extends State<MyCoursesWidget> {
                                             return Material(
                                               color: Colors.transparent,
                                               child: LearnOptionalWidget(
-                                                purchasedCoursesDoc: widget
-                                                    .purchasedCoursesDoc!,
+                                                purchasedCoursesDoc:
+                                                    widget.purchasedCoursesDoc!,
                                               ),
                                             );
                                           },
@@ -220,7 +220,7 @@ class _MyCoursesWidgetState extends State<MyCoursesWidget> {
                               padding: EdgeInsetsDirectional.fromSTEB(
                                   16.0, 6.0, 15.0, 0.0),
                               child: Text(
-                                containerCoursesRecord.title
+                                containerCoursesRecord.localizedTitle(context)
                                     .maybeHandleOverflow(
                                   maxChars: 35,
                                   replacement: '…',
@@ -257,7 +257,7 @@ class _MyCoursesWidgetState extends State<MyCoursesWidget> {
                     padding:
                         EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 0.0),
                     child: Text(
-                      'Overall Progress ${valueOrDefault<String>(
+                      '${FFLocalizations.of(context).getText('nwcrs002' /* Overall Progress */)} ${valueOrDefault<String>(
                         (widget.purchasedCoursesDoc!.watchedLessons.length /
                                 widget.purchasedCoursesDoc!.lessons *
                                 100)

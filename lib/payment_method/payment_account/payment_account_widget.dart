@@ -70,7 +70,7 @@ class _PaymentAccountWidgetState extends State<PaymentAccountWidget> {
                 size: 24.0,
               ),
               onPressed: () async {
-                context.pop();
+                context.safePop();
               },
             ),
           ),

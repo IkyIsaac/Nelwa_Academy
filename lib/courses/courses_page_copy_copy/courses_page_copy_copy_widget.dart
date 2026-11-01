@@ -92,7 +92,7 @@ class _CoursesPageCopyCopyWidgetState extends State<CoursesPageCopyCopyWidget> {
                 size: 24.0,
               ),
               onPressed: () async {
-                context.pop();
+                context.safePop();
               },
             ),
           ),
@@ -438,8 +438,8 @@ class _CoursesPageCopyCopyWidgetState extends State<CoursesPageCopyCopyWidget> {
                                                   fit: BoxFit.cover,
                                                   image: Image.network(
                                                     rowUsersRecord
-                                                                    .photoUrl !=
-                                                                ''
+                                                                .photoUrl !=
+                                                            ''
                                                         ? rowUsersRecord
                                                             .photoUrl
                                                         : FFAppConstants.user,
@@ -738,7 +738,7 @@ class _CoursesPageCopyCopyWidgetState extends State<CoursesPageCopyCopyWidget> {
                               16.0, 24.0, 16.0, 0.0),
                           child: Text(
                             valueOrDefault<String>(
-                              widget.coursesDoc?.title,
+                              widget.coursesDoc?.localizedTitle(context),
                               'null',
                             ),
                             style: FlutterFlowTheme.of(context)
@@ -820,8 +820,7 @@ class _CoursesPageCopyCopyWidgetState extends State<CoursesPageCopyCopyWidget> {
                                     8.0, 0.0, 0.0, 0.0),
                                 child: Text(
                                   '(${valueOrDefault<String>(
-                                    widget.coursesDoc?.reviewsCount
-                                        .toString(),
+                                    widget.coursesDoc?.reviewsCount.toString(),
                                     'null',
                                   )})',
                                   style: FlutterFlowTheme.of(context)
@@ -1213,8 +1212,8 @@ class _CoursesPageCopyCopyWidgetState extends State<CoursesPageCopyCopyWidget> {
                                 TextSpan(
                                   text: valueOrDefault<String>(
                                     _model.moreDescription
-                                        ? widget.coursesDoc?.description
-                                        : '${functions.first120Symbols(widget.coursesDoc!.description)}...',
+                                        ? widget.coursesDoc?.localizedDescription(context)
+                                        : '${functions.first120Symbols(widget.coursesDoc!.localizedDescription(context))}...',
                                     'null',
                                   ),
                                   style: TextStyle(),
@@ -1360,7 +1359,7 @@ class _CoursesPageCopyCopyWidgetState extends State<CoursesPageCopyCopyWidget> {
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
                                     await Share.share(
-                                      widget.coursesDoc!.title,
+                                      widget.coursesDoc!.localizedTitle(context),
                                       sharePositionOrigin:
                                           getWidgetBoundingBox(context),
                                     );
@@ -1432,8 +1431,9 @@ class _CoursesPageCopyCopyWidgetState extends State<CoursesPageCopyCopyWidget> {
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
-                                  if (FFAppState().wishList.contains(
-                                      widget.coursesDoc?.reference)) {
+                                  if (FFAppState()
+                                      .wishList
+                                      .contains(widget.coursesDoc?.reference)) {
                                     FFAppState().removeFromWishList(
                                         widget.coursesDoc!.reference);
                                     safeSetState(() {});
@@ -1936,7 +1936,7 @@ class _CoursesPageCopyCopyWidgetState extends State<CoursesPageCopyCopyWidget> {
                                       );
                                     },
                                     text:
-                                        'Enroll  Now  ${_model.monthlyValue! ? formatNumber(
+                                        '${FFLocalizations.of(context).getText('nwcrs004' /* Enroll Now */)}  ${_model.monthlyValue! ? formatNumber(
                                             widget.coursesDoc?.price,
                                             formatType: FormatType.decimal,
                                             decimalType:

@@ -119,7 +119,8 @@ class _ReviewOptionalWidgetState extends State<ReviewOptionalWidget> {
                         color: FlutterFlowTheme.of(context).primary,
                         size: 24.0,
                       ),
-                      text: 'Like',
+                      text: FFLocalizations.of(context)
+                          .getText('nwmnu009' /* Like */),
                       textColor: FlutterFlowTheme.of(context).primaryText,
                     ),
                   );
@@ -133,7 +134,8 @@ class _ReviewOptionalWidgetState extends State<ReviewOptionalWidget> {
                         color: FlutterFlowTheme.of(context).primaryText,
                         size: 24.0,
                       ),
-                      text: 'Like',
+                      text: FFLocalizations.of(context)
+                          .getText('nwmnu009' /* Like */),
                       textColor: FlutterFlowTheme.of(context).primaryText,
                     ),
                   );
@@ -168,7 +170,8 @@ class _ReviewOptionalWidgetState extends State<ReviewOptionalWidget> {
                     color: FlutterFlowTheme.of(context).primaryText,
                     size: 24.0,
                   ),
-                  text: 'Share',
+                  text: FFLocalizations.of(context)
+                      .getText('nwmnu006' /* Share */),
                   textColor: FlutterFlowTheme.of(context).primaryText,
                 ),
               ),
@@ -210,7 +213,8 @@ class _ReviewOptionalWidgetState extends State<ReviewOptionalWidget> {
                   color: FlutterFlowTheme.of(context).error,
                   size: 24.0,
                 ),
-                text: 'Report',
+                text: FFLocalizations.of(context)
+                    .getText('nwmnu007' /* Report */),
                 textColor: FlutterFlowTheme.of(context).error,
               ),
             ),

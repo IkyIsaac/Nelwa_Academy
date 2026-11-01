@@ -5,6 +5,8 @@ import 'package:collection/collection.dart';
 import '/backend/schema/util/firestore_util.dart';
 
 import 'index.dart';
+import 'package:flutter/widgets.dart';
+
 import '/flutter_flow/flutter_flow_util.dart';
 
 class LessonsRecord extends FirestoreRecord {
@@ -52,7 +54,31 @@ class LessonsRecord extends FirestoreRecord {
 
   DocumentReference get parentReference => reference.parent.parent!;
 
+  // "title_sw" field.
+  String? _titleSw;
+  String get titleSw => _titleSw ?? '';
+  bool hasTitleSw() => _titleSw != null;
+
+  // "description_sw" field.
+  String? _descriptionSw;
+  String get descriptionSw => _descriptionSw ?? '';
+  bool hasDescriptionSw() => _descriptionSw != null;
+
+  // Title/description in the app's current language, falling back to the
+  // English field when no Swahili version has been entered yet.
+  String localizedTitle(BuildContext context) =>
+      FFLocalizations.of(context).languageCode == 'sw' && titleSw.isNotEmpty
+          ? titleSw
+          : title;
+  String localizedDescription(BuildContext context) =>
+      FFLocalizations.of(context).languageCode == 'sw' &&
+              descriptionSw.isNotEmpty
+          ? descriptionSw
+          : description;
+
   void _initializeFields() {
+    _titleSw = snapshotData['title_sw'] as String?;
+    _descriptionSw = snapshotData['description_sw'] as String?;
     _title = snapshotData['title'] as String?;
     _videoUrl = snapshotData['video_url'] as String?;
     _duration = castToType<int>(snapshotData['duration']);

@@ -92,7 +92,7 @@ class _CoursesByCategoryWidgetState extends State<CoursesByCategoryWidget> {
                 size: 24.0,
               ),
               onPressed: () async {
-                context.pop();
+                context.safePop();
               },
             ),
           ),

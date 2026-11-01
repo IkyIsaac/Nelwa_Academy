@@ -65,7 +65,7 @@ class _AnalyticsWidgetState extends State<AnalyticsWidget> {
                 size: 24.0,
               ),
               onPressed: () async {
-                context.pop();
+                context.safePop();
               },
             ),
           ),

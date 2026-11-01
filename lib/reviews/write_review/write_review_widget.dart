@@ -76,7 +76,7 @@ class _WriteReviewWidgetState extends State<WriteReviewWidget> {
                 size: 24.0,
               ),
               onPressed: () async {
-                context.pop();
+                context.safePop();
               },
             ),
           ),
@@ -171,7 +171,7 @@ class _WriteReviewWidgetState extends State<WriteReviewWidget> {
                                 children: [
                                   Text(
                                     valueOrDefault<String>(
-                                      columnCoursesRecord.title,
+                                      columnCoursesRecord.localizedTitle(context),
                                       'null',
                                     ),
                                     style: FlutterFlowTheme.of(context)
@@ -205,7 +205,7 @@ class _WriteReviewWidgetState extends State<WriteReviewWidget> {
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 4.0, 0.0, 0.0),
                                     child: Text(
-                                      'Teacher: ${valueOrDefault<String>(
+                                      '${FFLocalizations.of(context).getText('nwcrs008' /* Teacher: */)} ${valueOrDefault<String>(
                                         columnCoursesRecord.instructorName,
                                         'null',
                                       )}',
@@ -353,7 +353,7 @@ class _WriteReviewWidgetState extends State<WriteReviewWidget> {
                                     ),
                                     TextSpan(
                                       text: valueOrDefault<String>(
-                                        columnCoursesRecord.title,
+                                        columnCoursesRecord.localizedTitle(context),
                                         'null',
                                       ),
                                       style: TextStyle(),

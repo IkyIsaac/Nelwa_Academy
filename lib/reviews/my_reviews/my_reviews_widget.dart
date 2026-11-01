@@ -68,7 +68,7 @@ class _MyReviewsWidgetState extends State<MyReviewsWidget> {
                 size: 24.0,
               ),
               onPressed: () async {
-                context.pop();
+                context.safePop();
               },
             ),
           ),

@@ -87,7 +87,7 @@ class _PaymentMethodWidgetState extends State<PaymentMethodWidget> {
                 size: 24.0,
               ),
               onPressed: () async {
-                context.pop();
+                context.safePop();
               },
             ),
           ),
@@ -378,8 +378,8 @@ class _PaymentMethodWidgetState extends State<PaymentMethodWidget> {
                                           Text(
                                             valueOrDefault<String>(
                                               listViewPaymentMethodRecord
-                                                              .cardNickname !=
-                                                          ''
+                                                          .cardNickname !=
+                                                      ''
                                                   ? listViewPaymentMethodRecord
                                                       .cardNickname
                                                   : listViewPaymentMethodRecord
@@ -532,170 +532,201 @@ class _PaymentMethodWidgetState extends State<PaymentMethodWidget> {
                           onPressed: _model.isCheckingOut
                               ? null
                               : () async {
-                            final courseIds = FFAppState()
-                                .order
-                                .coursesRef
-                                .map((ref) => ref.id)
-                                .toList();
-                            if (courseIds.isEmpty) {
-                              return;
-                            }
+                                  final courseIds = FFAppState()
+                                      .order
+                                      .coursesRef
+                                      .map((ref) => ref.id)
+                                      .toList();
+                                  if (courseIds.isEmpty) {
+                                    return;
+                                  }
 
-                            safeSetState(() => _model.isCheckingOut = true);
+                                  safeSetState(
+                                      () => _model.isCheckingOut = true);
 
-                            Map<String, dynamic> orderResult;
-                            try {
-                              final result = await FirebaseFunctions.instance
-                                  .httpsCallable('createOrder')
-                                  .call<dynamic>({'courseIds': courseIds});
-                              orderResult =
-                                  Map<String, dynamic>.from(result.data as Map);
-                            } on FirebaseFunctionsException catch (e) {
-                              safeSetState(() => _model.isCheckingOut = false);
-                              if (!context.mounted) return;
-                              await showDialog(
-                                context: context,
-                                builder: (dialogContext) => AlertDialog(
-                                  title: Text('Could not start checkout'),
-                                  content: Text(
-                                      e.message ?? 'Please try again shortly.'),
-                                  actions: [
-                                    TextButton(
-                                      onPressed: () =>
-                                          Navigator.pop(dialogContext),
-                                      child: Text('OK'),
-                                    ),
-                                  ],
-                                ),
-                              );
-                              return;
-                            }
-
-                            final orderId = orderResult['orderId'] as String;
-                            final checkoutUrl =
-                                orderResult['checkoutUrl'] as String;
-
-                            await launchUrl(
-                              Uri.parse(checkoutUrl),
-                              mode: LaunchMode.externalApplication,
-                            );
-
-                            if (!context.mounted) return;
-
-                            final finalStatus = await showDialog<String>(
-                              barrierDismissible: false,
-                              context: context,
-                              builder: (dialogContext) {
-                                return PopScope(
-                                  canPop: false,
-                                  child: StreamBuilder<
-                                      DocumentSnapshot<Map<String, dynamic>>>(
-                                    stream: FirebaseFirestore.instance
-                                        .collection('orders')
-                                        .doc(orderId)
-                                        .snapshots(),
-                                    builder: (context, snapshot) {
-                                      final status = snapshot.data
-                                          ?.data()?['status'] as String?;
-                                      if (status != null &&
-                                          status != 'pending') {
-                                        WidgetsBinding.instance
-                                            .addPostFrameCallback((_) {
-                                          if (Navigator.canPop(dialogContext)) {
-                                            Navigator.pop(
-                                                dialogContext, status);
-                                          }
-                                        });
-                                      }
-                                      return AlertDialog(
-                                        title: Text('Waiting for payment'),
-                                        content: Row(
-                                          mainAxisSize: MainAxisSize.min,
-                                          children: [
-                                            CircularProgressIndicator(),
-                                            SizedBox(width: 16.0),
-                                            Expanded(
-                                              child: Text(
-                                                'Complete the mobile money '
-                                                'prompt you were sent. This '
-                                                'will update automatically.',
-                                              ),
-                                            ),
-                                          ],
-                                        ),
+                                  Map<String, dynamic> orderResult;
+                                  try {
+                                    final result = await FirebaseFunctions
+                                        .instance
+                                        .httpsCallable('createOrder')
+                                        .call<dynamic>(
+                                            {'courseIds': courseIds});
+                                    orderResult = Map<String, dynamic>.from(
+                                        result.data as Map);
+                                  } on FirebaseFunctionsException catch (e) {
+                                    safeSetState(
+                                        () => _model.isCheckingOut = false);
+                                    if (!context.mounted) return;
+                                    await showDialog(
+                                      context: context,
+                                      builder: (dialogContext) => AlertDialog(
+                                        title: Text(FFLocalizations.of(context)
+                                            .getText(
+                                                'nwchk001' /* Could not start checkout */)),
+                                        content: Text(e.message ??
+                                            FFLocalizations.of(context).getText(
+                                                'nwchk002' /* Please try again shortly. */)),
                                         actions: [
                                           TextButton(
-                                            onPressed: () => Navigator.pop(
-                                                dialogContext, 'cancelled'),
-                                            child: Text('Cancel'),
+                                            onPressed: () =>
+                                                Navigator.pop(dialogContext),
+                                            child: Text(FFLocalizations.of(
+                                                    context)
+                                                .getText('nwchk003' /* OK */)),
                                           ),
                                         ],
+                                      ),
+                                    );
+                                    return;
+                                  }
+
+                                  final orderId =
+                                      orderResult['orderId'] as String;
+                                  final checkoutUrl =
+                                      orderResult['checkoutUrl'] as String;
+
+                                  await launchUrl(
+                                    Uri.parse(checkoutUrl),
+                                    mode: LaunchMode.externalApplication,
+                                  );
+
+                                  if (!context.mounted) return;
+
+                                  final finalStatus = await showDialog<String>(
+                                    barrierDismissible: false,
+                                    context: context,
+                                    builder: (dialogContext) {
+                                      return PopScope(
+                                        canPop: false,
+                                        child: StreamBuilder<
+                                            DocumentSnapshot<
+                                                Map<String, dynamic>>>(
+                                          stream: FirebaseFirestore.instance
+                                              .collection('orders')
+                                              .doc(orderId)
+                                              .snapshots(),
+                                          builder: (context, snapshot) {
+                                            final status = snapshot.data
+                                                ?.data()?['status'] as String?;
+                                            if (status != null &&
+                                                status != 'pending') {
+                                              WidgetsBinding.instance
+                                                  .addPostFrameCallback((_) {
+                                                if (Navigator.canPop(
+                                                    dialogContext)) {
+                                                  Navigator.pop(
+                                                      dialogContext, status);
+                                                }
+                                              });
+                                            }
+                                            return AlertDialog(
+                                              title: Text(FFLocalizations.of(
+                                                      context)
+                                                  .getText(
+                                                      'nwchk004' /* Waiting for payment */)),
+                                              content: Row(
+                                                mainAxisSize: MainAxisSize.min,
+                                                children: [
+                                                  CircularProgressIndicator(),
+                                                  SizedBox(width: 16.0),
+                                                  Expanded(
+                                                    child: Text(
+                                                      FFLocalizations.of(
+                                                              context)
+                                                          .getText(
+                                                              'nwchk005' /* Complete the mobile money prompt you were sent. This will update automatically. */),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                              actions: [
+                                                TextButton(
+                                                  onPressed: () =>
+                                                      Navigator.pop(
+                                                          dialogContext,
+                                                          'cancelled'),
+                                                  child: Text(FFLocalizations
+                                                          .of(context)
+                                                      .getText(
+                                                          'nwchk006' /* Cancel */)),
+                                                ),
+                                              ],
+                                            );
+                                          },
+                                        ),
                                       );
                                     },
-                                  ),
-                                );
-                              },
-                            );
-
-                            safeSetState(() => _model.isCheckingOut = false);
-
-                            if (finalStatus == 'completed') {
-                              FFAppState().order = OrderStruct();
-                              safeSetState(() {});
-                              if (valueOrDefault(
-                                      currentUserDocument?.role, '') ==
-                                  'instructor') {
-                                await currentUserReference!
-                                    .update(createUsersRecordData(
-                                  role: 'Learner',
-                                ));
-                              }
-                              if (!context.mounted) return;
-                              await showDialog(
-                                barrierColor:
-                                    FlutterFlowTheme.of(context).background,
-                                context: context,
-                                builder: (dialogContext) {
-                                  return Dialog(
-                                    elevation: 0,
-                                    insetPadding: EdgeInsets.zero,
-                                    backgroundColor: Colors.transparent,
-                                    alignment: AlignmentDirectional(0.0, 0.0)
-                                        .resolve(Directionality.of(context)),
-                                    child: GestureDetector(
-                                      onTap: () {
-                                        FocusScope.of(dialogContext).unfocus();
-                                        FocusManager.instance.primaryFocus
-                                            ?.unfocus();
-                                      },
-                                      child: OrderSuccessfullyWidget(),
-                                    ),
                                   );
+
+                                  safeSetState(
+                                      () => _model.isCheckingOut = false);
+
+                                  if (finalStatus == 'completed') {
+                                    FFAppState().order = OrderStruct();
+                                    safeSetState(() {});
+                                    if (valueOrDefault(
+                                            currentUserDocument?.role, '') ==
+                                        'instructor') {
+                                      await currentUserReference!
+                                          .update(createUsersRecordData(
+                                        role: 'Learner',
+                                      ));
+                                    }
+                                    if (!context.mounted) return;
+                                    await showDialog(
+                                      barrierColor: FlutterFlowTheme.of(context)
+                                          .background,
+                                      context: context,
+                                      builder: (dialogContext) {
+                                        return Dialog(
+                                          elevation: 0,
+                                          insetPadding: EdgeInsets.zero,
+                                          backgroundColor: Colors.transparent,
+                                          alignment: AlignmentDirectional(
+                                                  0.0, 0.0)
+                                              .resolve(
+                                                  Directionality.of(context)),
+                                          child: GestureDetector(
+                                            onTap: () {
+                                              FocusScope.of(dialogContext)
+                                                  .unfocus();
+                                              FocusManager.instance.primaryFocus
+                                                  ?.unfocus();
+                                            },
+                                            child: OrderSuccessfullyWidget(),
+                                          ),
+                                        );
+                                      },
+                                    );
+                                    safeSetState(() {});
+                                  } else if (finalStatus != null &&
+                                      finalStatus != 'cancelled') {
+                                    if (!context.mounted) return;
+                                    await showDialog(
+                                      context: context,
+                                      builder: (dialogContext) => AlertDialog(
+                                        title: Text(FFLocalizations.of(context)
+                                            .getVariableText(
+                                          enText: 'Payment $finalStatus',
+                                          swText: 'Malipo hayajakamilika',
+                                          frText: 'Paiement non abouti',
+                                        )),
+                                        content: Text(
+                                            FFLocalizations.of(context).getText(
+                                                'nwchk007' /* Your payment was not completed. You have not been charged for this course. */)),
+                                        actions: [
+                                          TextButton(
+                                            onPressed: () =>
+                                                Navigator.pop(dialogContext),
+                                            child: Text(FFLocalizations.of(
+                                                    context)
+                                                .getText('nwchk003' /* OK */)),
+                                          ),
+                                        ],
+                                      ),
+                                    );
+                                  }
                                 },
-                              );
-                              safeSetState(() {});
-                            } else if (finalStatus != null &&
-                                finalStatus != 'cancelled') {
-                              if (!context.mounted) return;
-                              await showDialog(
-                                context: context,
-                                builder: (dialogContext) => AlertDialog(
-                                  title: Text('Payment $finalStatus'),
-                                  content: Text(
-                                      'Your payment was not completed. '
-                                      'You have not been charged for this '
-                                      'course.'),
-                                  actions: [
-                                    TextButton(
-                                      onPressed: () =>
-                                          Navigator.pop(dialogContext),
-                                      child: Text('OK'),
-                                    ),
-                                  ],
-                                ),
-                              );
-                            }
-                          },
                           text: FFLocalizations.of(context).getText(
                             'icx6jk3n' /* Confirm */,
                           ),
@@ -765,8 +796,8 @@ class _PaymentMethodWidgetState extends State<PaymentMethodWidget> {
                                               ?.unfocus();
                                         },
                                         child: ErrorTextWidget(
-                                          text:
-                                              'Please select a payment method before proceeding',
+                                          text: FFLocalizations.of(context).getText(
+                                              'nwchk012' /* Please select a payment method before proceeding */),
                                         ),
                                       ),
                                     );

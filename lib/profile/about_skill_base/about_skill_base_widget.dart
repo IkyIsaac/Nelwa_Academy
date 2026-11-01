@@ -64,7 +64,7 @@ class _AboutSkillBaseWidgetState extends State<AboutSkillBaseWidget> {
                 size: 24.0,
               ),
               onPressed: () async {
-                context.pop();
+                context.safePop();
               },
             ),
           ),

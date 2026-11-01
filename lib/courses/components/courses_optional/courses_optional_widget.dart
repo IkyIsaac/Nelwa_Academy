@@ -97,7 +97,8 @@ class _CoursesOptionalWidgetState extends State<CoursesOptionalWidget> {
                           color: FlutterFlowTheme.of(context).primary,
                           size: 24.0,
                         ),
-                        text: 'Remove ',
+                        text: FFLocalizations.of(context)
+                            .getText('nwmnu004' /* Remove */),
                         textColor: FlutterFlowTheme.of(context).primaryText,
                       ),
                     ),
@@ -122,7 +123,8 @@ class _CoursesOptionalWidgetState extends State<CoursesOptionalWidget> {
                           color: FlutterFlowTheme.of(context).primaryText,
                           size: 24.0,
                         ),
-                        text: 'Save',
+                        text: FFLocalizations.of(context)
+                            .getText('nwmnu005' /* Save */),
                         textColor: FlutterFlowTheme.of(context).primaryText,
                       ),
                     ),
@@ -157,7 +159,8 @@ class _CoursesOptionalWidgetState extends State<CoursesOptionalWidget> {
                       color: FlutterFlowTheme.of(context).primaryText,
                       size: 24.0,
                     ),
-                    text: 'Share',
+                    text: FFLocalizations.of(context)
+                        .getText('nwmnu006' /* Share */),
                     textColor: FlutterFlowTheme.of(context).primaryText,
                   ),
                 ),
@@ -199,7 +202,8 @@ class _CoursesOptionalWidgetState extends State<CoursesOptionalWidget> {
                       color: FlutterFlowTheme.of(context).error,
                       size: 24.0,
                     ),
-                    text: 'Report',
+                    text: FFLocalizations.of(context)
+                        .getText('nwmnu007' /* Report */),
                     textColor: FlutterFlowTheme.of(context).error,
                   ),
                 ),
@@ -239,7 +243,8 @@ class _CoursesOptionalWidgetState extends State<CoursesOptionalWidget> {
                         color: FlutterFlowTheme.of(context).error,
                         size: 24.0,
                       ),
-                      text: 'Delete',
+                      text: FFLocalizations.of(context)
+                          .getText('nwmnu008' /* Delete */),
                       textColor: FlutterFlowTheme.of(context).error,
                     ),
                   ),

@@ -116,7 +116,7 @@ class _OptionPageWidgetState extends State<OptionPageWidget> {
                             size: 20.0,
                           ),
                           onPressed: () async {
-                            context.pop();
+                            context.safePop();
                           },
                         ),
                       ),

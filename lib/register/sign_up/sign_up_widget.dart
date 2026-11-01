@@ -102,7 +102,7 @@ class _SignUpWidgetState extends State<SignUpWidget>
                 size: 24.0,
               ),
               onPressed: () async {
-                context.pop();
+                context.safePop();
               },
             ),
           ),
@@ -783,7 +783,8 @@ class _SignUpWidgetState extends State<SignUpWidget>
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
                               content: Text(
-                                'Passwords don\'t match!',
+                                FFLocalizations.of(context).getText(
+                                    'nwreg001' /* Passwords don't match! */),
                               ),
                             ),
                           );

@@ -85,7 +85,7 @@ class _LearnCoursesPageWidgetState extends State<LearnCoursesPageWidget> {
                 size: 24.0,
               ),
               onPressed: () async {
-                context.pop();
+                context.safePop();
               },
             ),
           ),
@@ -659,7 +659,7 @@ class _LearnCoursesPageWidgetState extends State<LearnCoursesPageWidget> {
                           EdgeInsetsDirectional.fromSTEB(16.0, 24.0, 16.0, 0.0),
                       child: Text(
                         valueOrDefault<String>(
-                          widget.coursesDoc?.title,
+                          widget.coursesDoc?.localizedTitle(context),
                           'null',
                         ),
                         style:
@@ -919,8 +919,7 @@ class _LearnCoursesPageWidgetState extends State<LearnCoursesPageWidget> {
                           ),
                           Text(
                             valueOrDefault<String>(
-                              widget.coursesDoc?.downloaders.length
-                                  .toString(),
+                              widget.coursesDoc?.downloaders.length.toString(),
                               '0',
                             ),
                             style: FlutterFlowTheme.of(context)
@@ -1104,8 +1103,8 @@ class _LearnCoursesPageWidgetState extends State<LearnCoursesPageWidget> {
                             TextSpan(
                               text: valueOrDefault<String>(
                                 _model.moreDescription
-                                    ? widget.coursesDoc?.description
-                                    : '${functions.first120Symbols(widget.coursesDoc!.description)}...',
+                                    ? widget.coursesDoc?.localizedDescription(context)
+                                    : '${functions.first120Symbols(widget.coursesDoc!.localizedDescription(context))}...',
                                 'null',
                               ),
                               style: TextStyle(),
@@ -1245,7 +1244,7 @@ class _LearnCoursesPageWidgetState extends State<LearnCoursesPageWidget> {
                               highlightColor: Colors.transparent,
                               onTap: () async {
                                 await Share.share(
-                                  widget.coursesDoc!.title,
+                                  widget.coursesDoc!.localizedTitle(context),
                                   sharePositionOrigin:
                                       getWidgetBoundingBox(context),
                                 );
@@ -1334,8 +1333,9 @@ class _LearnCoursesPageWidgetState extends State<LearnCoursesPageWidget> {
                               alignment: AlignmentDirectional(0.0, 0.0),
                               child: Builder(
                                 builder: (context) {
-                                  if (FFAppState().wishList.contains(
-                                      widget.coursesDoc?.reference)) {
+                                  if (FFAppState()
+                                      .wishList
+                                      .contains(widget.coursesDoc?.reference)) {
                                     return Icon(
                                       FFIcons.kbookmarkw1,
                                       color:
@@ -1484,7 +1484,7 @@ class _LearnCoursesPageWidgetState extends State<LearnCoursesPageWidget> {
                                                 children: [
                                                   Expanded(
                                                     child: Text(
-                                                      'Lesson ${valueOrDefault<String>(
+                                                      '${FFLocalizations.of(context).getText('nwcrs001' /* Lesson */)} ${valueOrDefault<String>(
                                                         listViewLessonsRecord
                                                             .order
                                                             .toString(),
@@ -1528,7 +1528,7 @@ class _LearnCoursesPageWidgetState extends State<LearnCoursesPageWidget> {
                                                     .fromSTEB(
                                                         0.0, 6.0, 24.0, 0.0),
                                                 child: Text(
-                                                  listViewLessonsRecord.title
+                                                  listViewLessonsRecord.localizedTitle(context)
                                                       .maybeHandleOverflow(
                                                     maxChars: 30,
                                                     replacement: '…',

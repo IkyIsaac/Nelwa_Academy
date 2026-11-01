@@ -76,7 +76,7 @@ class _SearchWidgetState extends State<SearchWidget> {
                 size: 24.0,
               ),
               onPressed: () async {
-                context.pop();
+                context.safePop();
               },
             ),
           ),
@@ -155,7 +155,9 @@ class _SearchWidgetState extends State<SearchWidget> {
                                                 TextSearchItem.fromTerms(
                                                     record, [
                                               record.title,
-                                              record.description
+                                              record.description,
+                                              record.titleSw,
+                                              record.descriptionSw
                                             ]),
                                           )
                                           .toList(),

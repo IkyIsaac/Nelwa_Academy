@@ -96,7 +96,8 @@ class _LearnOptionalWidgetState extends State<LearnOptionalWidget> {
                   color: FlutterFlowTheme.of(context).primaryText,
                   size: 24.0,
                 ),
-                text: 'Reminder',
+                text: FFLocalizations.of(context)
+                    .getText('nwmnu001' /* Reminder */),
                 textColor: FlutterFlowTheme.of(context).primaryText,
               ),
             ),
@@ -136,7 +137,8 @@ class _LearnOptionalWidgetState extends State<LearnOptionalWidget> {
                   color: FlutterFlowTheme.of(context).primaryText,
                   size: 24.0,
                 ),
-                text: 'Request a refund',
+                text: FFLocalizations.of(context)
+                    .getText('nwmnu002' /* Request a refund */),
                 textColor: FlutterFlowTheme.of(context).primaryText,
               ),
             ),
@@ -181,7 +183,8 @@ class _LearnOptionalWidgetState extends State<LearnOptionalWidget> {
                     color: FlutterFlowTheme.of(context).error,
                     size: 24.0,
                   ),
-                  text: 'Delete course',
+                  text: FFLocalizations.of(context)
+                      .getText('nwmnu003' /* Delete course */),
                   textColor: FlutterFlowTheme.of(context).error,
                 ),
               ),

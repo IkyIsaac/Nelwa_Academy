@@ -34,15 +34,21 @@ class FFLocalizations {
       ? languages().indexOf(languageCode)
       : 0;
 
-  String getText(String key) =>
-      (kTranslationsMap[key] ?? {})[locale.toString()] ?? '';
+  // Falls back to English when a translation is missing or left blank.
+  String getText(String key) {
+    final translations = kTranslationsMap[key] ?? {};
+    final text = translations[locale.toString()];
+    return text != null && text.isNotEmpty ? text : translations['en'] ?? '';
+  }
 
   String getVariableText({
     String? enText = '',
     String? swText = '',
     String? frText = '',
-  }) =>
-      [enText, swText, frText][languageIndex] ?? '';
+  }) {
+    final text = [enText, swText, frText][languageIndex];
+    return text != null && text.isNotEmpty ? text : enText ?? '';
+  }
 
   static const Set<String> _languagesWithShortCode = {
     'ar',
@@ -145,6 +151,198 @@ bool _isSupportedLocale(Locale locale) {
 }
 
 final kTranslationsMap = <Map<String, Map<String, String>>>[
+  // Strings added outside FlutterFlow
+  {
+    'nwchk001': {
+      'en': 'Could not start checkout',
+      'fr': 'Impossible de lancer le paiement',
+      'sw': 'Imeshindikana kuanza malipo',
+    },
+    'nwchk002': {
+      'en': 'Please try again shortly.',
+      'fr': 'Veuillez réessayer dans un instant.',
+      'sw': 'Tafadhali jaribu tena baada ya muda mfupi.',
+    },
+    'nwchk003': {
+      'en': 'OK',
+      'fr': 'OK',
+      'sw': 'Sawa',
+    },
+    'nwchk004': {
+      'en': 'Waiting for payment',
+      'fr': 'En attente du paiement',
+      'sw': 'Inasubiri malipo',
+    },
+    'nwchk005': {
+      'en':
+          'Complete the mobile money prompt you were sent. This will update automatically.',
+      'fr':
+          'Validez la demande de paiement mobile reçue. Cette page se mettra à jour automatiquement.',
+      'sw':
+          'Kamilisha ombi la malipo lililotumwa kwenye simu yako. Ukurasa huu utajisasisha wenyewe.',
+    },
+    'nwchk006': {
+      'en': 'Cancel',
+      'fr': 'Annuler',
+      'sw': 'Ghairi',
+    },
+    'nwchk007': {
+      'en':
+          'Your payment was not completed. You have not been charged for this course.',
+      'fr':
+          'Votre paiement n\'a pas abouti. Aucun montant n\'a été débité pour ce cours.',
+      'sw': 'Malipo yako hayajakamilika. Hujakatwa pesa yoyote kwa kozi hii.',
+    },
+    'nwchk008': {
+      'en': 'Not available yet',
+      'fr': 'Pas encore disponible',
+      'sw': 'Bado haipatikani',
+    },
+    'nwchk009': {
+      'en':
+          'Yearly plans aren\'t supported by checkout yet. Please choose the one-time price instead.',
+      'fr':
+          'Les abonnements annuels ne sont pas encore pris en charge. Veuillez choisir le prix unique.',
+      'sw':
+          'Malipo ya mwaka bado hayapatikani. Tafadhali chagua bei ya malipo ya mara moja.',
+    },
+    'nwchk010': {
+      'en': 'Discount',
+      'fr': 'Remise',
+      'sw': 'Punguzo',
+    },
+    'nwchk011': {
+      'en': 'Pay',
+      'fr': 'Payer',
+      'sw': 'Lipa',
+    },
+    'nwchk012': {
+      'en': 'Please select a payment method before proceeding',
+      'fr': 'Veuillez choisir un moyen de paiement avant de continuer',
+      'sw': 'Tafadhali chagua njia ya malipo kabla ya kuendelea',
+    },
+    'nwchk013': {
+      'en': 'Total:',
+      'fr': 'Total :',
+      'sw': 'Jumla:',
+    },
+    'nwmnu001': {
+      'en': 'Reminder',
+      'fr': 'Rappel',
+      'sw': 'Kikumbusho',
+    },
+    'nwmnu002': {
+      'en': 'Request a refund',
+      'fr': 'Demander un remboursement',
+      'sw': 'Omba kurejeshewa pesa',
+    },
+    'nwmnu003': {
+      'en': 'Delete course',
+      'fr': 'Supprimer le cours',
+      'sw': 'Futa kozi',
+    },
+    'nwmnu004': {
+      'en': 'Remove',
+      'fr': 'Retirer',
+      'sw': 'Ondoa',
+    },
+    'nwmnu005': {
+      'en': 'Save',
+      'fr': 'Enregistrer',
+      'sw': 'Hifadhi',
+    },
+    'nwmnu006': {
+      'en': 'Share',
+      'fr': 'Partager',
+      'sw': 'Shiriki',
+    },
+    'nwmnu007': {
+      'en': 'Report',
+      'fr': 'Signaler',
+      'sw': 'Ripoti',
+    },
+    'nwmnu008': {
+      'en': 'Delete',
+      'fr': 'Supprimer',
+      'sw': 'Futa',
+    },
+    'nwmnu009': {
+      'en': 'Like',
+      'fr': 'J\'aime',
+      'sw': 'Penda',
+    },
+    'nwcrs001': {
+      'en': 'Lesson',
+      'fr': 'Leçon',
+      'sw': 'Somo',
+    },
+    'nwcrs002': {
+      'en': 'Overall Progress',
+      'fr': 'Progression globale',
+      'sw': 'Maendeleo kwa Jumla',
+    },
+    'nwcrs003': {
+      'en': 'Buy For TZS',
+      'fr': 'Acheter pour TZS',
+      'sw': 'Nunua kwa TZS',
+    },
+    'nwcrs004': {
+      'en': 'Enroll Now',
+      'fr': 'S\'inscrire',
+      'sw': 'Jiunge Sasa',
+    },
+    'nwcrs005': {
+      'en': 'Free viewing',
+      'fr': 'Visionnage gratuit',
+      'sw': 'Kutazama bure',
+    },
+    'nwcrs006': {
+      'en': 'Enable this option if the video is available to watch for free.',
+      'fr': 'Activez cette option si la vidéo peut être regardée gratuitement.',
+      'sw': 'Washa chaguo hili ikiwa video inaweza kutazamwa bure.',
+    },
+    'nwcrs007': {
+      'en': 'reviews',
+      'fr': 'avis',
+      'sw': 'maoni',
+    },
+    'nwcrs008': {
+      'en': 'Teacher:',
+      'fr': 'Enseignant :',
+      'sw': 'Mwalimu:',
+    },
+    'nwreg001': {
+      'en': 'Passwords don\'t match!',
+      'fr': 'Les mots de passe ne correspondent pas !',
+      'sw': 'Manenosiri hayalingani!',
+    },
+    'nwaut001': {
+      'en':
+          'Too long since most recent sign in. Sign in again before deleting your account.',
+      'fr':
+          'Votre dernière connexion date d\'il y a trop longtemps. Reconnectez-vous avant de supprimer votre compte.',
+      'sw':
+          'Imepita muda mrefu tangu uingie. Tafadhali ingia tena kabla ya kufuta akaunti yako.',
+    },
+    'nwaut002': {
+      'en':
+          'Too long since most recent sign in. Sign in again before updating your email.',
+      'fr':
+          'Votre dernière connexion date d\'il y a trop longtemps. Reconnectez-vous avant de modifier votre e-mail.',
+      'sw':
+          'Imepita muda mrefu tangu uingie. Tafadhali ingia tena kabla ya kubadilisha barua pepe yako.',
+    },
+    'nwaut003': {
+      'en': 'Password reset email sent',
+      'fr': 'E-mail de réinitialisation envoyé',
+      'sw': 'Barua pepe ya kubadilisha nenosiri imetumwa',
+    },
+    'nwaut004': {
+      'en': 'Error',
+      'fr': 'Erreur',
+      'sw': 'Hitilafu',
+    },
+  },
   // HomePage
   {
     'johhxnfz': {
@@ -216,7 +414,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'ojcq7fi7': {
       'en': 'Engaging Lessons',
       'fr': 'Leçons captivantes',
-      'sw': 'Masomo Yanayovutia',
+      'sw': 'Masomo ya Kuvutia',
     },
     'y08a2r58': {
       'en':
@@ -229,7 +427,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'emdfp21y': {
       'en': 'Elevate Your Business',
       'fr': 'Faites progresser votre entreprise',
-      'sw': 'Kuinua Biashara Yako',
+      'sw': 'Inua Biashara Yako',
     },
     '4l53qh9g': {
       'en':
@@ -298,7 +496,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'p4m40xkq': {
       'en': 'Don\'t have an account& ',
       'fr': 'Vous n\'avez pas de compte ?',
-      'sw': 'Sina akaunti&',
+      'sw': 'Huna akaunti? ',
     },
     'l8uzpktd': {
       'en': 'Home',
@@ -351,12 +549,12 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     't3j4ob52': {
       'en': 'I agree to In Focus ',
       'fr': 'J\'accepte In Focus',
-      'sw': 'Nakubali In Focus',
+      'sw': 'Nakubali ',
     },
     'on91u3qb': {
       'en': 'Term & Policy',
       'fr': 'Conditions générales',
-      'sw': 'Sheria na Sera',
+      'sw': 'Masharti na Sera',
     },
     'yu7654d8': {
       'en': '.',
@@ -366,7 +564,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'd0m9rdxm': {
       'en': 'Don\'t have an account& ',
       'fr': 'Vous n\'avez pas de compte ?',
-      'sw': 'Sina akaunti&',
+      'sw': 'Huna akaunti? ',
     },
     'muaah2bm': {
       'en': 'Sign Up',
@@ -391,7 +589,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'ehtfweab': {
       'en': 'Don\'t have an account& ',
       'fr': 'Vous n\'avez pas de compte ?',
-      'sw': 'Sina akaunti&',
+      'sw': 'Huna akaunti? ',
     },
     'l0gx4owb': {
       'en': 'Please enter a valid email address.',
@@ -401,7 +599,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '2i39go1k': {
       'en': 'Please choose an option from the dropdown',
       'fr': 'Veuillez choisir une option dans le menu déroulant.',
-      'sw': 'Tafadhali chagua chaguo kutoka kwenye menyu kunjuzi',
+      'sw': 'Tafadhali chagua kutoka kwenye orodha',
     },
     'cxvv7w1h': {
       'en': 'Please enter your password',
@@ -416,7 +614,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'ocpk92av': {
       'en': 'Please choose an option from the dropdown',
       'fr': 'Veuillez choisir une option dans le menu déroulant.',
-      'sw': 'Tafadhali chagua chaguo kutoka kwenye menyu kunjuzi',
+      'sw': 'Tafadhali chagua kutoka kwenye orodha',
     },
     '59x8moiv': {
       'en': 'Please enter your password',
@@ -431,7 +629,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '14hu9ofb': {
       'en': 'Please choose an option from the dropdown',
       'fr': 'Veuillez choisir une option dans le menu déroulant.',
-      'sw': 'Tafadhali chagua chaguo kutoka kwenye menyu kunjuzi',
+      'sw': 'Tafadhali chagua kutoka kwenye orodha',
     },
     '1jefr9i5': {
       'en': 'Home',
@@ -504,7 +702,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'sqr5ymmi': {
       'en': 'Don\'t have an account& ',
       'fr': 'Vous n\'avez pas de compte ?',
-      'sw': 'Sina akaunti&',
+      'sw': 'Huna akaunti? ',
     },
     '35xqalsd': {
       'en': 'Please enter a valid email address.',
@@ -514,7 +712,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'pxwecwt6': {
       'en': 'Please choose an option from the dropdown',
       'fr': 'Veuillez choisir une option dans le menu déroulant.',
-      'sw': 'Tafadhali chagua chaguo kutoka kwenye menyu kunjuzi',
+      'sw': 'Tafadhali chagua kutoka kwenye orodha',
     },
     'q4w4macp': {
       'en': 'Please enter your password',
@@ -529,7 +727,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'xxyq3z99': {
       'en': 'Please choose an option from the dropdown',
       'fr': 'Veuillez choisir une option dans le menu déroulant.',
-      'sw': 'Tafadhali chagua chaguo kutoka kwenye menyu kunjuzi',
+      'sw': 'Tafadhali chagua kutoka kwenye orodha',
     },
     '7bfqo7bk': {
       'en': 'Home',
@@ -575,7 +773,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '4zjsleoz': {
       'en': 'Please choose an option from the dropdown',
       'fr': 'Veuillez choisir une option dans le menu déroulant.',
-      'sw': 'Tafadhali chagua chaguo kutoka kwenye menyu kunjuzi',
+      'sw': 'Tafadhali chagua kutoka kwenye orodha',
     },
     'w015ph88': {
       'en': 'Continue',
@@ -593,20 +791,20 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'mjjdd40m': {
       'en': 'Verify Code',
       'fr': 'Vérifier le code',
-      'sw': 'Thibitisha Nambari',
+      'sw': 'Thibitisha Msimbo',
     },
     'fmcikzo4': {
       'en': 'Please enter the code we just sent to email ',
       'fr':
           'Veuillez saisir le code que nous venons de vous envoyer par courriel.',
-      'sw': 'Tafadhali ingiza msimbo ambao tumetuma kwa barua pepe',
+      'sw': 'Tafadhali weka msimbo tuliokutumia kwa barua pepe ',
     },
     'u80mlcw6': {
       'en': 'Please enter the code we just sent to email example@email.com',
       'fr':
           'Veuillez saisir le code que nous venons d\'envoyer à l\'adresse e-mail example@email.com',
       'sw':
-          'Tafadhali ingiza msimbo ambao tumetuma kwa barua pepe example@email.com',
+          'Tafadhali weka msimbo tuliokutumia kwa barua pepe example@email.com',
     },
     'rhpzjspu': {
       'en': 'Resend code',
@@ -682,7 +880,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'iguxlikv': {
       'en': 'Please choose an option from the dropdown',
       'fr': 'Veuillez choisir une option dans le menu déroulant.',
-      'sw': 'Tafadhali chagua chaguo kutoka kwenye menyu kunjuzi',
+      'sw': 'Tafadhali chagua kutoka kwenye orodha',
     },
     'tggqymyc': {
       'en': 'Please enter your password',
@@ -697,7 +895,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '10ofgnso': {
       'en': 'Please choose an option from the dropdown',
       'fr': 'Veuillez choisir une option dans le menu déroulant.',
-      'sw': 'Tafadhali chagua chaguo kutoka kwenye menyu kunjuzi',
+      'sw': 'Tafadhali chagua kutoka kwenye orodha',
     },
     'odllnnsl': {
       'en': 'Continue',
@@ -740,7 +938,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'iroxc2sk': {
       'en': 'Please choose an option from the dropdown',
       'fr': 'Veuillez choisir une option dans le menu déroulant.',
-      'sw': 'Tafadhali chagua chaguo kutoka kwenye menyu kunjuzi',
+      'sw': 'Tafadhali chagua kutoka kwenye orodha',
     },
     'npl22n3w': {
       'en': 'Date of Birth ',
@@ -798,7 +996,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '00kffinb': {
       'en': 'What will you use ___ for?',
       'fr': 'À quoi vas-tu utiliser ___ ?',
-      'sw': 'Utatumia ___ kwa ajili ya nini?',
+      'sw': 'Utaitumia ___ kwa ajili gani?',
     },
     'e13beu5g': {
       'en': 'This helps us create a better experience for you.',
@@ -846,17 +1044,17 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '4eiq3wnh': {
       'en': 'Analytics',
       'fr': 'Analytique',
-      'sw': 'Uchanganuzi',
+      'sw': 'Takwimu',
     },
     'rly9o702': {
       'en': 'Wish List',
       'fr': 'Liste de souhaits',
-      'sw': 'Orodha ya Matamanio',
+      'sw': 'Orodha ya Vipendwa',
     },
     'fdbetejg': {
       'en': 'Subscriptions',
       'fr': 'Abonnements',
-      'sw': 'Usajili',
+      'sw': 'Usajili Wangu',
     },
     '5ntverai': {
       'en': 'Activity Statistics',
@@ -871,7 +1069,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '8wjs06xv': {
       'en': 'Notifications',
       'fr': 'Notifications',
-      'sw': 'Tarifa',
+      'sw': 'Arifa',
     },
     'efv1yewh': {
       'en': 'Language',
@@ -881,22 +1079,22 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '0l6j4g8y': {
       'en': 'Dark Mode',
       'fr': 'Mode sombre',
-      'sw': 'Hali Nyeusi',
+      'sw': 'Mandhari Meusi',
     },
     'itgmtteg': {
       'en': 'Support',
       'fr': 'Soutien',
-      'sw': 'Usaidizi',
+      'sw': 'Msaada',
     },
     '4dbmn8i1': {
       'en': 'Help Center',
       'fr': 'Centre d\'aide',
-      'sw': 'Kituo cha Usaidizi',
+      'sw': 'Kituo cha Msaada',
     },
     'afiejruc': {
       'en': 'About Nelwa\'s Academy',
       'fr': 'Académie About Nelwa',
-      'sw': 'Chuo cha Nelwa',
+      'sw': 'Kuhusu Nelwa Academy',
     },
     '1hx86a4t': {
       'en': 'Sign Out',
@@ -959,17 +1157,17 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'ojbrkfrq': {
       'en': 'Please choose an option from the dropdown',
       'fr': 'Veuillez choisir une option dans le menu déroulant.',
-      'sw': 'Tafadhali chagua chaguo kutoka kwenye menyu kunjuzi',
+      'sw': 'Tafadhali chagua kutoka kwenye orodha',
     },
     'knd3touy': {
       'en': 'about_user is required',
       'fr': 'Le champ about_user est requis.',
-      'sw': 'kuhusu_mtumiaji inahitajika',
+      'sw': 'Tafadhali andika kidogo kukuhusu',
     },
     'r6f2euin': {
       'en': 'Please choose an option from the dropdown',
       'fr': 'Veuillez choisir une option dans le menu déroulant.',
-      'sw': 'Tafadhali chagua chaguo kutoka kwenye menyu kunjuzi',
+      'sw': 'Tafadhali chagua kutoka kwenye orodha',
     },
     '4krsxir5': {
       'en': 'Email Address is required',
@@ -979,17 +1177,17 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'puh20f83': {
       'en': 'Please choose an option from the dropdown',
       'fr': 'Veuillez choisir une option dans le menu déroulant.',
-      'sw': 'Tafadhali chagua chaguo kutoka kwenye menyu kunjuzi',
+      'sw': 'Tafadhali chagua kutoka kwenye orodha',
     },
     'cedekflr': {
       'en': 'Phone Number',
       'fr': 'Numéro de téléphone',
-      'sw': 'Nambari ya Simu',
+      'sw': 'Namba ya Simu',
     },
     'oi3mh16d': {
       'en': 'Phone Number',
       'fr': 'Numéro de téléphone',
-      'sw': 'Nambari ya Simu',
+      'sw': 'Namba ya Simu',
     },
     'akf9epsn': {
       'en': 'Email Address is required',
@@ -999,7 +1197,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'd081r7ur': {
       'en': 'Please choose an option from the dropdown',
       'fr': 'Veuillez choisir une option dans le menu déroulant.',
-      'sw': 'Tafadhali chagua chaguo kutoka kwenye menyu kunjuzi',
+      'sw': 'Tafadhali chagua kutoka kwenye orodha',
     },
     '5xraeogg': {
       'en': 'Date of Birth ',
@@ -1057,12 +1255,12 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '0htpr3si': {
       'en': 'Stay signed in on this device.',
       'fr': 'Restez connecté sur cet appareil.',
-      'sw': 'Endelea kuingia kwenye kifaa hiki.',
+      'sw': 'Usitoke kwenye kifaa hiki.',
     },
     '1yq8glsm': {
       'en': 'Biometric ID',
       'fr': 'Identification biométrique',
-      'sw': 'Kitambulisho cha biometriki',
+      'sw': 'Alama ya Kidole',
     },
     'l9f5qpk8': {
       'en': 'Use fingerprint to sign in securely.',
@@ -1259,12 +1457,12 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'cel1wphn': {
       'en': 'Type a message..',
       'fr': 'Saisissez un message...',
-      'sw': 'Andika ujumbe..',
+      'sw': 'Andika ujumbe...',
     },
     'bu64xzji': {
       'en': 'Support',
       'fr': 'Soutien',
-      'sw': 'Usaidizi',
+      'sw': 'Msaada',
     },
     'iqdhzg8t': {
       'en': 'Home',
@@ -1277,7 +1475,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'fy70vwlg': {
       'en': 'What is Nelway\'s Academy?',
       'fr': 'Qu\'est-ce que l\'Académie Nelway ?',
-      'sw': 'Chuo cha Nelway ni nini?',
+      'sw': 'Nelwa Academy ni nini?',
     },
     'ugu570dm': {
       'en':
@@ -1285,23 +1483,24 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'fr':
           'L\'académie Nelways est une plateforme d\'apprentissage en ligne où vous trouverez des cours sur la fabrication de crèmes glacées, les infrastructures pour les créer chez soi et bien plus encore.',
       'sw':
-          'Chuo cha Nelways ni jukwaa la kujifunza mtandaoni ambapo unaweza kupata kozi kuhusu utengenezaji wa aiskrimu, miundombinu ya kutengeneza nyumbani na zaidi.',
+          'Nelwa Academy ni jukwaa la kujifunza mtandaoni lenye kozi za kutengeneza aiskrimu, vifaa vya kutengenezea nyumbani na mengineyo.',
     },
     '49uhacnr': {
       'en': 'How do I create an account?',
       'fr': 'Comment créer un compte ?',
-      'sw': 'Ninawezaje kuunda akaunti?',
+      'sw': 'Nitafunguaje akaunti?',
     },
     'tbqakmhs': {
       'en':
           'You can sign up using your email or social media accounts like Google or Facebook.',
       'fr': '',
-      'sw': '',
+      'sw':
+          'Unaweza kujisajili kwa barua pepe yako au akaunti za mitandao ya kijamii kama Google au Facebook.',
     },
     'nl62lcfo': {
       'en': 'Is Nelway\'s Academy free to use?',
       'fr': 'L\'utilisation de Nelway\'s Academy est-elle gratuite ?',
-      'sw': 'Je, Nelway\'s Academy ni bure kutumia?',
+      'sw': 'Je, Nelwa Academy ni bure?',
     },
     'it39nxva': {
       'en':
@@ -1309,12 +1508,12 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'fr':
           'Nelway\'s Academy propose des cours gratuits et payants. Certains cours nécessitent un paiement unique ou un abonnement.',
       'sw':
-          'Acedmy ya Nelway inatoa kozi za bure na za kulipia. Baadhi ya kozi zinahitaji malipo ya mara moja au usajili.',
+          'Nelwa Academy ina kozi za bure na za kulipia. Baadhi ya kozi zinahitaji malipo ya mara moja au usajili.',
     },
     '4mfwx7vm': {
       'en': 'How do I enroll in a course?',
       'fr': 'Comment puis-je m\'inscrire à un cours ?',
-      'sw': 'Ninawezaje kujiandikisha katika kozi?',
+      'sw': 'Nitajiungaje na kozi?',
     },
     'eflfo6zq': {
       'en':
@@ -1322,12 +1521,12 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'fr':
           'Parcourez les cours dans l\'application, sélectionnez-en un et appuyez sur « S\'inscrire » pour commencer à apprendre.',
       'sw':
-          'Vinjari kozi katika programu, chagua moja, na ubofye \"Jiandikishe\" ili kuanza kujifunza.',
+          'Tafuta kozi kwenye programu, ichague, kisha bonyeza "Jiunge" ili uanze kujifunza.',
     },
     'r94xfd4p': {
       'en': 'Can I download courses for offline viewing?',
       'fr': 'Puis-je télécharger des cours pour les consulter hors ligne ?',
-      'sw': 'Je, ninaweza kupakua kozi kwa ajili ya kutazama nje ya mtandao?',
+      'sw': 'Je, ninaweza kupakua kozi na kuzitazama bila intaneti?',
     },
     'ygyr9qo6': {
       'en':
@@ -1335,12 +1534,12 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'fr':
           'Oui, certains cours permettent un accès hors ligne. Consultez les détails du cours pour connaître les disponibilités.',
       'sw':
-          'Ndiyo, baadhi ya kozi huruhusu ufikiaji nje ya mtandao. Angalia maelezo ya kozi kwa upatikanaji.',
+          'Ndiyo, baadhi ya kozi zinaweza kutazamwa bila intaneti. Angalia maelezo ya kozi husika.',
     },
     'xdn4i8be': {
       'en': 'Help Center',
       'fr': 'Centre d\'aide',
-      'sw': 'Kituo cha Usaidizi',
+      'sw': 'Kituo cha Msaada',
     },
     'i9zymog2': {
       'en': 'Home',
@@ -1359,7 +1558,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Read the rules and terms for using SkillBase.',
       'fr':
           'Veuillez lire les règles et conditions d\'utilisation de SkillBase.',
-      'sw': 'Soma sheria na masharti ya kutumia SkillBase.',
+      'sw': 'Soma masharti ya kutumia Nelwa Academy.',
     },
     'bbey4ypf': {
       'en': 'Privacy Policy',
@@ -1382,7 +1581,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Want to join the Cookio team? See open positions.',
       'fr':
           'Vous souhaitez rejoindre l\'équipe Cookio ? Consultez les postes à pourvoir.',
-      'sw': 'Unataka kujiunga na timu ya Cookio? Tazama nafasi zilizo wazi.',
+      'sw': 'Ungependa kujiunga na timu yetu? Angalia nafasi zilizo wazi.',
     },
     'atse1r4x': {
       'en': 'Contact Us',
@@ -1406,12 +1605,12 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'fr':
           'Nous nous efforçons de rendre SkillBase accessible à tous. En savoir plus.',
       'sw':
-          'Tunajitahidi kufanya SkillBase ipatikane kwa kila mtu. Pata maelezo zaidi.',
+          'Tunajitahidi Nelwa Academy itumike kwa urahisi na kila mtu. Soma zaidi.',
     },
     '256dxpjt': {
       'en': 'About Nelway\'s Academy',
       'fr': 'À propos de SkillBase',
-      'sw': 'Kuhusu SkillBase',
+      'sw': 'Kuhusu Nelwa Academy',
     },
     'wulyao7z': {
       'en': 'Home',
@@ -1458,7 +1657,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'vti4w31c': {
       'en': 'View Mode',
       'fr': 'Mode d\'affichage',
-      'sw': 'Hali ya Kutazama',
+      'sw': 'Mwonekano',
     },
     '1pbz1iss': {
       'en': 'Home',
@@ -1512,12 +1711,12 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'kaf4vgfr': {
       'en': 'Share your thoughts on “',
       'fr': 'Partagez vos réflexions sur «',
-      'sw': 'Shiriki mawazo yako kuhusu “',
+      'sw': 'Tueleze maoni yako kuhusu “',
     },
     '49begkgd': {
       'en': '”.',
       'fr': '».',
-      'sw': '\".',
+      'sw': '”.',
     },
     '39ndnjbx': {
       'en':
@@ -1545,7 +1744,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'r7h4ghb1': {
       'en': 'Please choose an option from the dropdown',
       'fr': 'Veuillez choisir une option dans le menu déroulant.',
-      'sw': 'Tafadhali chagua chaguo kutoka kwenye menyu kunjuzi',
+      'sw': 'Tafadhali chagua kutoka kwenye orodha',
     },
     'ptqxd4em': {
       'en': 'Submit',
@@ -1555,7 +1754,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'houeoad7': {
       'en': 'Leave a review',
       'fr': 'Laissez un avis',
-      'sw': 'Acha maoni',
+      'sw': 'Andika maoni',
     },
     'a9lyrv21': {
       'en': 'Home',
@@ -1591,12 +1790,12 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'xb4bjx59': {
       'en': 'Order details',
       'fr': 'Détails de la commande',
-      'sw': 'Maelezo ya agizo',
+      'sw': 'Maelezo ya Oda',
     },
     '6dpmpue2': {
       'en': 'Order Summary',
       'fr': 'Résumé de la commande',
-      'sw': 'Muhtasari wa Agizo',
+      'sw': 'Muhtasari wa Oda',
     },
     'z0s2vbg6': {
       'en': 'Price:',
@@ -1612,12 +1811,12 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'By completing your purchase, you agree to our ',
       'fr':
           'En finalisant votre achat, vous acceptez nos conditions générales.',
-      'sw': 'Kwa kukamilisha ununuzi wako, unakubali',
+      'sw': 'Kwa kukamilisha ununuzi wako, unakubali ',
     },
     '6y8qk7ym': {
       'en': 'Terms of Use.',
       'fr': 'Conditions d\'utilisation.',
-      'sw': 'Masharti ya Matumizi.',
+      'sw': 'Masharti yetu ya Matumizi.',
     },
     'vkngd5cu': {
       'en': 'Hello World',
@@ -1640,7 +1839,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'z4zmg3m6': {
       'en': 'Checkout',
       'fr': 'Vérifier',
-      'sw': 'Malipo',
+      'sw': 'Kamilisha Malipo',
     },
     '4sdf2ujd': {
       'en': 'Home',
@@ -1658,7 +1857,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'sw6qi9le': {
       'en': 'Done',
       'fr': 'Fait',
-      'sw': 'Imekamilika',
+      'sw': 'Tayari',
     },
     'iw9mkyb2': {
       'en': 'Payment Method',
@@ -1717,7 +1916,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'eqbdae8j': {
       'en': 'Expire date',
       'fr': 'Date d\'expiration',
-      'sw': 'Tarehe ya mwisho wa matumizi',
+      'sw': 'Tarehe ya kuisha',
     },
     'om13g6nw': {
       'en': 'MM/YY',
@@ -1752,7 +1951,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '3pcxf380': {
       'en': 'Holder name',
       'fr': 'Nom du titulaire',
-      'sw': 'Jina la mmiliki',
+      'sw': 'Jina la mwenye kadi',
     },
     '6jv2z4wl': {
       'en': 'Alex Johnson',
@@ -1762,22 +1961,22 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'rret0bz4': {
       'en': 'Please choose an option from the dropdown',
       'fr': 'Veuillez choisir une option dans le menu déroulant.',
-      'sw': 'Tafadhali chagua chaguo kutoka kwenye menyu kunjuzi',
+      'sw': 'Tafadhali chagua kutoka kwenye orodha',
     },
     'r5a1wvad': {
       'en': 'Please choose an option from the dropdown',
       'fr': 'Veuillez choisir une option dans le menu déroulant.',
-      'sw': 'Tafadhali chagua chaguo kutoka kwenye menyu kunjuzi',
+      'sw': 'Tafadhali chagua kutoka kwenye orodha',
     },
     'qd6z7onu': {
       'en': 'Please choose an option from the dropdown',
       'fr': 'Veuillez choisir une option dans le menu déroulant.',
-      'sw': 'Tafadhali chagua chaguo kutoka kwenye menyu kunjuzi',
+      'sw': 'Tafadhali chagua kutoka kwenye orodha',
     },
     'l6dcl2ls': {
       'en': 'Please choose an option from the dropdown',
       'fr': 'Veuillez choisir une option dans le menu déroulant.',
-      'sw': 'Tafadhali chagua chaguo kutoka kwenye menyu kunjuzi',
+      'sw': 'Tafadhali chagua kutoka kwenye orodha',
     },
     '7439lt0z': {
       'en': 'Invalid Card Number',
@@ -1800,7 +1999,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'my4fah0u': {
       'en': 'Add New Credit Card',
       'fr': 'Ajouter une nouvelle carte de crédit',
-      'sw': 'Ongeza Kadi Mpya ya Mkopo',
+      'sw': 'Ongeza Kadi Mpya',
     },
     '58v9yqby': {
       'en': 'Home',
@@ -1813,7 +2012,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'qsllbniw': {
       'en': 'Expire date',
       'fr': 'Date d\'expiration',
-      'sw': 'Tarehe ya mwisho wa matumizi',
+      'sw': 'Tarehe ya kuisha',
     },
     '6x7ocd70': {
       'en': 'CVC',
@@ -1828,12 +2027,12 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '1cksd3x1': {
       'en': 'Card nickname (Optional)',
       'fr': 'Surnom de la carte (facultatif)',
-      'sw': 'Jina la utani la kadi (Si lazima)',
+      'sw': 'Jina la kadi (si lazima)',
     },
     'aywl39io': {
       'en': 'Card nickname',
       'fr': 'Surnom de la carte',
-      'sw': 'Jina la utani la kadi',
+      'sw': 'Jina la kadi',
     },
     'xsiss8s5': {
       'en': 'Default payment method',
@@ -1869,7 +2068,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     's95n07ai': {
       'en': 'Wish List',
       'fr': 'Liste de souhaits',
-      'sw': 'Orodha ya Matamanio',
+      'sw': 'Orodha ya Vipendwa',
     },
     '35r1cjmk': {
       'en': 'Home',
@@ -1882,7 +2081,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'p9bpaq4o': {
       'en': 'Subscriptions',
       'fr': 'Abonnements',
-      'sw': 'Usajili',
+      'sw': 'Usajili Wangu',
     },
     'sge1mns9': {
       'en': 'Home',
@@ -1935,7 +2134,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '8ibw8b6n': {
       'en': 'Sun',
       'fr': 'Soleil',
-      'sw': 'Jua',
+      'sw': 'Jumapili',
     },
     '0uzjavtp': {
       'en':
@@ -1966,7 +2165,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '1q7t3gd6': {
       'en': 'Reviewed',
       'fr': 'Examiné',
-      'sw': 'Imepitiwa',
+      'sw': 'Imekaguliwa',
     },
     '9mt5k8jx': {
       'en': 'My Reviews',
@@ -1984,7 +2183,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'e5m3pp73': {
       'en': 'Welcome to Our Instructor Program!',
       'fr': 'Bienvenue dans notre programme de formation d\'instructeurs !',
-      'sw': 'Karibu kwenye Programu Yetu ya Mwalimu!',
+      'sw': 'Karibu kwenye Mpango wa Walimu!',
     },
     'pj6nxh8x': {
       'en':
@@ -2140,7 +2339,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '3y5mk2nl': {
       'en': 'Preview',
       'fr': 'Aperçu',
-      'sw': 'Hakikisho',
+      'sw': 'Onyesho la Awali',
     },
     'bbe2zrqy': {
       'en': 'Change Video',
@@ -2170,12 +2369,12 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     't380k73e': {
       'en': 'Course Audience',
       'fr': 'Public cible du cours',
-      'sw': 'Hadhira ya Kozi',
+      'sw': 'Walengwa wa Kozi',
     },
     'c3fa8wit': {
       'en': 'Course Audience',
       'fr': 'Public cible du cours',
-      'sw': 'Hadhira ya Kozi',
+      'sw': 'Walengwa wa Kozi',
     },
     '9dz2gqmv': {
       'en': 'Language',
@@ -2195,7 +2394,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'dnykcefd': {
       'en': 'Total Lessons',
       'fr': 'Description',
-      'sw': 'Maelezo',
+      'sw': 'Jumla ya Masomo',
     },
     'luh4t121': {
       'en': 'Total duration',
@@ -2205,7 +2404,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'xhb7y55e': {
       'en': 'Total  duration',
       'fr': 'Description',
-      'sw': 'Maelezo',
+      'sw': 'Jumla ya muda',
     },
     'hroimsws': {
       'en': 'Group',
@@ -2215,27 +2414,27 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '0fa4uqct': {
       'en': 'Select group',
       'fr': '',
-      'sw': '',
+      'sw': 'Chagua kundi',
     },
     'dxk37njq': {
       'en': 'Search...',
       'fr': '',
-      'sw': '',
+      'sw': 'Tafuta...',
     },
     'savri3pr': {
       'en': 'New Courses',
       'fr': '',
-      'sw': '',
+      'sw': 'Kozi Mpya',
     },
     'ttlydk1n': {
       'en': 'We Recommend',
       'fr': '',
-      'sw': '',
+      'sw': 'Tunapendekeza',
     },
     '5ltb87bw': {
       'en': 'MontPrice',
       'fr': 'Prix',
-      'sw': 'Bei',
+      'sw': 'Bei ya Mwezi',
     },
     'jd0jukpu': {
       'en': '0',
@@ -2270,7 +2469,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '8uvhxgoh': {
       'en': 'Please choose an option from the dropdown',
       'fr': 'Veuillez choisir une option dans le menu déroulant.',
-      'sw': 'Tafadhali chagua chaguo kutoka kwenye menyu kunjuzi',
+      'sw': 'Tafadhali chagua kutoka kwenye orodha',
     },
     'kossc090': {
       'en': 'Course description is required.',
@@ -2280,7 +2479,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'dbpeu803': {
       'en': 'Please choose an option from the dropdown',
       'fr': 'Veuillez choisir une option dans le menu déroulant.',
-      'sw': 'Tafadhali chagua chaguo kutoka kwenye menyu kunjuzi',
+      'sw': 'Tafadhali chagua kutoka kwenye orodha',
     },
     '6kah78lf': {
       'en': 'Price is required.',
@@ -2290,7 +2489,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'd5jqekyg': {
       'en': 'Please choose an option from the dropdown',
       'fr': 'Veuillez choisir une option dans le menu déroulant.',
-      'sw': 'Tafadhali chagua chaguo kutoka kwenye menyu kunjuzi',
+      'sw': 'Tafadhali chagua kutoka kwenye orodha',
     },
     'dkt5ks5s': {
       'en': 'Create Course',
@@ -2323,7 +2522,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'o4jnpr47': {
       'en': 'Categories',
       'fr': 'Catégories',
-      'sw': 'Aina',
+      'sw': 'Kategoria',
     },
     '9xdsvfr6': {
       'en': 'More',
@@ -2356,7 +2555,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'q6adx29c': {
       'en': 'Categories',
       'fr': 'Catégories',
-      'sw': 'Aina',
+      'sw': 'Kategoria',
     },
     'w0e0s6gh': {
       'en': 'Home',
@@ -2369,7 +2568,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '9btmnc75': {
       'en': 'View Mode',
       'fr': 'Mode d\'affichage',
-      'sw': 'Hali ya Kutazama',
+      'sw': 'Mwonekano',
     },
     '5545xevu': {
       'en': 'Home',
@@ -2382,7 +2581,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'n8eae5vd': {
       'en': 'View Mode',
       'fr': 'Mode d\'affichage',
-      'sw': 'Hali ya Kutazama',
+      'sw': 'Mwonekano',
     },
     '7zakay7i': {
       'en': 'Home',
@@ -2405,7 +2604,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '0hvtru6j': {
       'en': 'Categories',
       'fr': 'Catégories',
-      'sw': 'Aina',
+      'sw': 'Kategoria',
     },
     'rfrgt6g6': {
       'en': 'More',
@@ -2521,7 +2720,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '5bv6cmlq': {
       'en': 'Please choose an option from the dropdown',
       'fr': 'Veuillez choisir une option dans le menu déroulant.',
-      'sw': 'Tafadhali chagua chaguo kutoka kwenye menyu kunjuzi',
+      'sw': 'Tafadhali chagua kutoka kwenye orodha',
     },
     'd2afv4km': {
       'en': 'Course description is required.',
@@ -2531,7 +2730,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '30zyuo2b': {
       'en': 'Please choose an option from the dropdown',
       'fr': 'Veuillez choisir une option dans le menu déroulant.',
-      'sw': 'Tafadhali chagua chaguo kutoka kwenye menyu kunjuzi',
+      'sw': 'Tafadhali chagua kutoka kwenye orodha',
     },
     '7kxjjsv0': {
       'en': 'Durartion  is required',
@@ -2541,7 +2740,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'dyugfrut': {
       'en': 'Please choose an option from the dropdown',
       'fr': 'Veuillez choisir une option dans le menu déroulant.',
-      'sw': 'Tafadhali chagua chaguo kutoka kwenye menyu kunjuzi',
+      'sw': 'Tafadhali chagua kutoka kwenye orodha',
     },
     'whyp0b77': {
       'en': 'Description is required',
@@ -2551,7 +2750,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'qzc49q1x': {
       'en': 'Please choose an option from the dropdown',
       'fr': 'Veuillez choisir une option dans le menu déroulant.',
-      'sw': 'Tafadhali chagua chaguo kutoka kwenye menyu kunjuzi',
+      'sw': 'Tafadhali chagua kutoka kwenye orodha',
     },
     'ma2q10fd': {
       'en': 'Create Lesson',
@@ -2612,7 +2811,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'laen0qqa': {
       'en': 'Course Downloaders: ',
       'fr': 'Téléchargeurs de cours :',
-      'sw': 'Wapakuaji wa Kozi:',
+      'sw': 'Waliopakua Kozi: ',
     },
     'i0877i3h': {
       'en': 'Lessons: ',
@@ -2683,7 +2882,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'fzhqt098': {
       'en': 'Reason for Refund',
       'fr': 'Motif du remboursement',
-      'sw': 'Sababu ya Kurejeshewa Pesa',
+      'sw': 'Sababu ya Kuomba Kurejeshewa Pesa',
     },
     'umdtpr6s': {
       'en':
@@ -2748,7 +2947,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '14fivaev': {
       'en': 'Payment Setup ',
       'fr': 'Configuration du paiement',
-      'sw': 'Usanidi wa Malipo',
+      'sw': 'Mipangilio ya Malipo',
     },
     'ttt86wte': {
       'en':
@@ -2776,7 +2975,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'i3ahqryq': {
       'en': 'Bank code',
       'fr': 'Code bancaire',
-      'sw': 'Nambari ya benki',
+      'sw': 'Msimbo wa benki',
     },
     'kxs99nix': {
       'en': 'AAAABBBBCCC',
@@ -2791,7 +2990,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'vdthgk17': {
       'en': 'Branch code',
       'fr': 'Code de succursale',
-      'sw': 'Nambari ya tawi',
+      'sw': 'Msimbo wa tawi',
     },
     'ua5x04d5': {
       'en': '00000',
@@ -2841,7 +3040,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'm5axw1s9': {
       'en': 'Please choose an option from the dropdown',
       'fr': 'Veuillez choisir une option dans le menu déroulant.',
-      'sw': 'Tafadhali chagua chaguo kutoka kwenye menyu kunjuzi',
+      'sw': 'Tafadhali chagua kutoka kwenye orodha',
     },
     'gxpm7lvr': {
       'en': 'AAAABBBBCCC is required',
@@ -2851,7 +3050,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '03q9s77u': {
       'en': 'Please choose an option from the dropdown',
       'fr': 'Veuillez choisir une option dans le menu déroulant.',
-      'sw': 'Tafadhali chagua chaguo kutoka kwenye menyu kunjuzi',
+      'sw': 'Tafadhali chagua kutoka kwenye orodha',
     },
     'cpkc5ngp': {
       'en': '00000 is required',
@@ -2861,7 +3060,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '9g1y9g4m': {
       'en': 'Please choose an option from the dropdown',
       'fr': 'Veuillez choisir une option dans le menu déroulant.',
-      'sw': 'Tafadhali chagua chaguo kutoka kwenye menyu kunjuzi',
+      'sw': 'Tafadhali chagua kutoka kwenye orodha',
     },
     'cyk8w7lo': {
       'en': '1234567890 is required',
@@ -2871,7 +3070,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'wsk0c3bh': {
       'en': 'Please choose an option from the dropdown',
       'fr': 'Veuillez choisir une option dans le menu déroulant.',
-      'sw': 'Tafadhali chagua chaguo kutoka kwenye menyu kunjuzi',
+      'sw': 'Tafadhali chagua kutoka kwenye orodha',
     },
     '8lelxe36': {
       'en': '1234567890 is required',
@@ -2881,7 +3080,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'sj71w3nu': {
       'en': 'Please choose an option from the dropdown',
       'fr': 'Veuillez choisir une option dans le menu déroulant.',
-      'sw': 'Tafadhali chagua chaguo kutoka kwenye menyu kunjuzi',
+      'sw': 'Tafadhali chagua kutoka kwenye orodha',
     },
     '6qed0j0o': {
       'en': 'PayPal email',
@@ -2901,7 +3100,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '3sig1lhh': {
       'en': 'Please choose an option from the dropdown',
       'fr': 'Veuillez choisir une option dans le menu déroulant.',
-      'sw': 'Tafadhali chagua chaguo kutoka kwenye menyu kunjuzi',
+      'sw': 'Tafadhali chagua kutoka kwenye orodha',
     },
     '3jxkua10': {
       'en': 'Submit',
@@ -2984,7 +3183,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '9vo9adjr': {
       'en': 'Weekly Course Visits',
       'fr': 'Visites hebdomadaires du cours',
-      'sw': 'Ziara za Kozi za Kila Wiki',
+      'sw': 'Watembeleaji wa Kozi kwa Wiki',
     },
     'p7vef3h8': {
       'en': 'Shows how many users accessed this course over the past week.',
@@ -3026,12 +3225,12 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'mocf317x': {
       'en': 'Sun',
       'fr': 'Soleil',
-      'sw': 'Jua',
+      'sw': 'Jumapili',
     },
     'eto9vtib': {
       'en': 'Top Downloading Countries',
       'fr': 'Principaux pays de téléchargement',
-      'sw': 'Nchi Zinazopakuliwa Zaidi',
+      'sw': 'Nchi Zinazopakua Zaidi',
     },
     'yx5t76wm': {
       'en':
@@ -3058,7 +3257,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'z03gq3ko': {
       'en': 'Analytics',
       'fr': 'Analytique',
-      'sw': 'Uchanganuzi',
+      'sw': 'Takwimu',
     },
     '6637bamn': {
       'en': 'Home',
@@ -3071,7 +3270,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'mtb3chfn': {
       'en': 'View Mode',
       'fr': 'Mode d\'affichage',
-      'sw': 'Hali ya Kutazama',
+      'sw': 'Mwonekano',
     },
     'x9qh5zri': {
       'en': 'Courses',
@@ -3089,7 +3288,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'fiorg8gw': {
       'en': 'View Mode',
       'fr': 'Mode d\'affichage',
-      'sw': 'Hali ya Kutazama',
+      'sw': 'Mwonekano',
     },
     'b6ya7lxu': {
       'en': 'Home',
@@ -3107,7 +3306,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'ikgxyyr3': {
       'en': 'Course Downloaders: ',
       'fr': 'Téléchargeurs de cours :',
-      'sw': 'Wapakuaji wa Kozi:',
+      'sw': 'Waliopakua Kozi: ',
     },
     '1xq12bks': {
       'en': 'Lessons: ',
@@ -3175,7 +3374,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'sr08swrp': {
       'en': 'Course Downloaders: ',
       'fr': 'Téléchargeurs de cours :',
-      'sw': 'Wapakuaji wa Kozi:',
+      'sw': 'Waliopakua Kozi: ',
     },
     'whxvmgs5': {
       'en': 'Lessons: ',
@@ -3210,12 +3409,12 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'ixc784n6': {
       'en': 'Monthly',
       'fr': 'Mensuel',
-      'sw': 'Kila mwezi',
+      'sw': 'Kila Mwezi',
     },
     'q1l82ofd': {
       'en': 'Yearly',
       'fr': 'Annuel',
-      'sw': 'Kila mwaka',
+      'sw': 'Kila Mwaka',
     },
     'en5egsg2': {
       'en': 'Home',
@@ -3249,7 +3448,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'fr':
           'Veuillez remplir les informations ci-dessous pour programmer votre rendez-vous avec notre professionnel de santé.',
       'sw':
-          'Tafadhali jaza maelezo yaliyo hapa chini ili kupanga miadi yako na mtaalamu wetu wa afya.',
+          'Tafadhali jaza taarifa zilizo hapa chini ili kupanga miadi yako na mtaalamu wetu.',
     },
     'if5dkkur': {
       'en': 'Personal Information',
@@ -3259,17 +3458,17 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '5t4o2tds': {
       'en': 'Full Name',
       'fr': '',
-      'sw': '',
+      'sw': 'Jina Kamili',
     },
     '8yz3789n': {
       'en': 'Phone Number',
       'fr': '',
-      'sw': '',
+      'sw': 'Namba ya Simu',
     },
     'u7ntalud': {
       'en': 'Email Address',
       'fr': '',
-      'sw': '',
+      'sw': 'Anwani ya Barua Pepe',
     },
     'o96pp4yb': {
       'en': 'Appointment Details',
@@ -3279,32 +3478,32 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '91zwvx4p': {
       'en': 'Select Date',
       'fr': '',
-      'sw': '',
+      'sw': 'Chagua Tarehe',
     },
     '0urmkzx8': {
       'en': 'Select Department',
       'fr': '',
-      'sw': '',
+      'sw': 'Chagua Idara',
     },
     'r85bvox2': {
       'en': 'Nelway\'s Academy',
       'fr': '',
-      'sw': '',
+      'sw': 'Nelwa Academy',
     },
     'vc9e5srm': {
       'en': 'Nelway\'s Ice cream',
       'fr': '',
-      'sw': '',
+      'sw': 'Nelwa Ice Cream',
     },
     '7luzw72i': {
       'en': 'Nelway\'s Gelato',
       'fr': '',
-      'sw': '',
+      'sw': 'Nelwa Gelato',
     },
     '8ridehqi': {
       'en': 'Nelway\'s Consultaion',
       'fr': '',
-      'sw': '',
+      'sw': 'Ushauri wa Nelwa',
     },
     'h4kjt1q2': {
       'en': 'Reason for Visit',
@@ -3314,7 +3513,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'yy45y5hc': {
       'en': 'Please describe your symptoms or reason for the appointment...',
       'fr': '',
-      'sw': '',
+      'sw': 'Tafadhali eleza sababu ya miadi yako...',
     },
     'a0kv2p98': {
       'en': 'Important Note',
@@ -3327,12 +3526,12 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'fr':
           'Veuillez arriver 15 minutes avant l\'heure prévue de votre rendez-vous. Munissez-vous d\'une pièce d\'identité valide et de tout document médical pertinent.',
       'sw':
-          'Tafadhali fika dakika 15 kabla ya muda uliopangwa wa miadi. Lete kitambulisho halali na hati zozote za matibabu zinazofaa.',
+          'Tafadhali fika dakika 15 kabla ya muda wa miadi yako. Beba kitambulisho halali.',
     },
     'ss38ptl7': {
       'en': 'Request Appointment',
       'fr': '',
-      'sw': '',
+      'sw': 'Omba Miadi',
     },
   },
   // consultationpage
@@ -3345,12 +3544,12 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '1zl626e7': {
       'en': 'Confirmed',
       'fr': '',
-      'sw': '',
+      'sw': 'Imethibitishwa',
     },
     '5sl1drjq': {
       'en': 'View Details',
       'fr': '',
-      'sw': '',
+      'sw': 'Angalia Maelezo',
     },
     'r1yhudzr': {
       'en': 'Dr. Robert Chen',
@@ -3360,7 +3559,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '3eoyis09': {
       'en': 'Pending',
       'fr': '',
-      'sw': '',
+      'sw': 'Inasubiri',
     },
     '7octx9up': {
       'en': 'Patient: Emma Davis',
@@ -3380,12 +3579,12 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'lzdfywb2': {
       'en': 'Today',
       'fr': '',
-      'sw': '',
+      'sw': 'Leo',
     },
     'a9vjv9b7': {
       'en': 'View Details',
       'fr': '',
-      'sw': '',
+      'sw': 'Angalia Maelezo',
     },
     '526wwy7g': {
       'en': 'Dr. Lisa Martinez',
@@ -3395,7 +3594,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'veqhqcla': {
       'en': 'In Progress',
       'fr': '',
-      'sw': '',
+      'sw': 'Inaendelea',
     },
     'eesitks9': {
       'en': 'Patient: James Wilson',
@@ -3415,12 +3614,12 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '1iz4fmbo': {
       'en': 'Today',
       'fr': '',
-      'sw': '',
+      'sw': 'Leo',
     },
     '4xjio5l2': {
       'en': 'View Details',
       'fr': '',
-      'sw': '',
+      'sw': 'Angalia Maelezo',
     },
     'svm8j90o': {
       'en': 'Dr. Kevin Park',
@@ -3430,7 +3629,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '39rvzpmk': {
       'en': 'Cancelled',
       'fr': '',
-      'sw': '',
+      'sw': 'Imeghairiwa',
     },
     'cm0ny9z9': {
       'en': 'Patient: Anna Rodriguez',
@@ -3450,17 +3649,17 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'rp9w5qch': {
       'en': 'Tomorrow',
       'fr': '',
-      'sw': '',
+      'sw': 'Kesho',
     },
     '8utxoj8r': {
       'en': 'Reschedule',
       'fr': '',
-      'sw': '',
+      'sw': 'Badilisha Muda',
     },
     'fli4qecp': {
       'en': 'Appointment \'s',
       'fr': 'Rendez-vous',
-      'sw': 'Miadi ya',
+      'sw': 'Miadi',
     },
   },
   // TermsandConditionsCopy
@@ -3489,7 +3688,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'vfv84ppm': {
       'en': 'Phone number',
       'fr': 'Numéro de téléphone',
-      'sw': 'Nambari ya simu',
+      'sw': 'Namba ya simu',
     },
     'k1cw0ra0': {
       'en': '0774222013',
@@ -3504,7 +3703,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'wutgiw3b': {
       'en': 'Mobile Money',
       'fr': 'Argent mobile',
-      'sw': 'Pesa za Simu',
+      'sw': 'Pesa kwa Simu',
     },
     'm16epiuu': {
       'en': 'M-PESA',
@@ -3514,17 +3713,17 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'fclgcx03': {
       'en': 'MIXX BY YASS ',
       'fr': '',
-      'sw': '',
+      'sw': 'MIXX BY YAS ',
     },
     'dh3sulte': {
       'en': 'HALOPESA',
       'fr': '',
-      'sw': '',
+      'sw': 'HALOPESA',
     },
     'hro3y31t': {
       'en': 'AIRTEL MONEY',
       'fr': '',
-      'sw': '',
+      'sw': 'AIRTEL MONEY',
     },
     'imw5wmsv': {
       'en': 'M-PESA',
@@ -3539,22 +3738,22 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'iazjsvi8': {
       'en': 'Holder name',
       'fr': 'Nom du titulaire',
-      'sw': 'Jina la mmiliki',
+      'sw': 'Jina la mwenye kadi',
     },
     '4wa9xh8f': {
       'en': 'Please choose an option from the dropdown',
       'fr': 'Veuillez choisir une option dans le menu déroulant.',
-      'sw': 'Tafadhali chagua chaguo kutoka kwenye menyu kunjuzi',
+      'sw': 'Tafadhali chagua kutoka kwenye orodha',
     },
     'w2nvkdkw': {
       'en': 'Please choose an option from the dropdown',
       'fr': 'Veuillez choisir une option dans le menu déroulant.',
-      'sw': 'Tafadhali chagua chaguo kutoka kwenye menyu kunjuzi',
+      'sw': 'Tafadhali chagua kutoka kwenye orodha',
     },
     'v1bp4hlp': {
       'en': 'Invalid Phone Number',
       'fr': 'Numéro de téléphone invalide',
-      'sw': 'Nambari ya Simu Si Sahihi',
+      'sw': 'Namba ya Simu Si Sahihi',
     },
     'hlj0gde0': {
       'en':
@@ -3562,7 +3761,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'fr':
           'Le numéro de téléphone saisi semble incorrect. Veuillez vérifier et réessayer.',
       'sw':
-          'Nambari ya simu iliyoingizwa inaonekana si sahihi. Tafadhali thibitisha na ujaribu tena.',
+          'Namba ya simu uliyoweka si sahihi. Tafadhali hakiki na ujaribu tena.',
     },
     '0mzz9fi8': {
       'en': 'Add card',
@@ -3572,7 +3771,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '41n7wcoi': {
       'en': 'Add  Mobile wallet',
       'fr': 'Ajouter un portefeuille mobile',
-      'sw': 'Ongeza pochi ya simu',
+      'sw': 'Ongeza Namba ya Pesa kwa Simu',
     },
     '3agr1zii': {
       'en': 'Home',
@@ -3585,12 +3784,12 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'i2av7knl': {
       'en': 'Order details',
       'fr': 'Détails de la commande',
-      'sw': 'Maelezo ya agizo',
+      'sw': 'Maelezo ya Oda',
     },
     'kdoxxygl': {
       'en': 'Order Summary',
       'fr': 'Résumé de la commande',
-      'sw': 'Muhtasari wa Agizo',
+      'sw': 'Muhtasari wa Oda',
     },
     'it27b9t5': {
       'en': 'Price:',
@@ -3606,12 +3805,12 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'By completing your purchase, you agree to our ',
       'fr':
           'En finalisant votre achat, vous acceptez nos conditions générales.',
-      'sw': 'Kwa kukamilisha ununuzi wako, unakubali',
+      'sw': 'Kwa kukamilisha ununuzi wako, unakubali ',
     },
     'tsggf4o8': {
       'en': 'Terms of Use.',
       'fr': 'Conditions d\'utilisation.',
-      'sw': 'Masharti ya Matumizi.',
+      'sw': 'Masharti yetu ya Matumizi.',
     },
     '7q2m698t': {
       'en': 'Hello World',
@@ -3634,7 +3833,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '4nb1kiu7': {
       'en': 'Checkout',
       'fr': 'Vérifier',
-      'sw': 'Malipo',
+      'sw': 'Kamilisha Malipo',
     },
     'iztj8vp5': {
       'en': 'Home',
@@ -3647,7 +3846,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '5xc1gl2m': {
       'en': 'Home',
       'fr': '',
-      'sw': '',
+      'sw': 'Nyumbani',
     },
   },
   // consultationss
@@ -3655,22 +3854,23 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'f2jka884': {
       'en': 'Business Intensive',
       'fr': '',
-      'sw': '',
+      'sw': 'Mafunzo Maalum ya Biashara',
     },
     '79jmlton': {
       'en': 'The Profitable Kitchen',
       'fr': '',
-      'sw': '',
+      'sw': 'Jiko Lenye Faida',
     },
     'thxks919': {
       'en': 'A Business Intensive with Madam Mercy Kitomari',
       'fr': '',
-      'sw': '',
+      'sw': 'Mafunzo Maalum ya Biashara na Madam Mercy Kitomari',
     },
     'nrxzvc9d': {
       'en': '3 sessions. Custom workbook. Pricing formula you keep forever.',
       'fr': '',
-      'sw': '',
+      'sw':
+          'Vipindi 3. Kitabu cha kazi maalum. Fomula ya bei utakayoitumia milele.',
     },
     '88eh2is4': {
       'en': '3',
@@ -3680,7 +3880,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'ad4lm8au': {
       'en': 'Sessions',
       'fr': '',
-      'sw': '',
+      'sw': 'Vipindi',
     },
     '51aodrrd': {
       'en': '1:1',
@@ -3690,7 +3890,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'uguh33oc': {
       'en': 'Coaching',
       'fr': '',
-      'sw': '',
+      'sw': 'Ushauri',
     },
     'uks4nwyw': {
       'en': '∞',
@@ -3700,17 +3900,17 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     't7gfi7gk': {
       'en': 'Formula Yours',
       'fr': '',
-      'sw': '',
+      'sw': 'Fomula Yako',
     },
     'km1vynv9': {
       'en': 'How It Works',
       'fr': '',
-      'sw': '',
+      'sw': 'Jinsi Inavyofanya Kazi',
     },
     'ijc2xxbp': {
       'en': 'Three Sessions. One Transformation',
       'fr': '',
-      'sw': '',
+      'sw': 'Vipindi Vitatu. Mabadiliko Makubwa',
     },
     'l1a36l7i': {
       'en': '01',
@@ -3720,18 +3920,19 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'mybj7kw0': {
       'en': 'Discovery Session',
       'fr': '',
-      'sw': '',
+      'sw': 'Kipindi cha Utambuzi',
     },
     'wdnhj8ro': {
       'en':
           'We map your current pricing, costs, and business goals. Identify gaps and opportunities unique to your kitchen.',
       'fr': '',
-      'sw': '',
+      'sw':
+          'Tunachambua bei zako, gharama na malengo ya biashara yako, na kubaini mapungufu na fursa za jiko lako.',
     },
     'i8gkb8us': {
       'en': 'Session 1',
       'fr': '',
-      'sw': '',
+      'sw': 'Kipindi 1',
     },
     'd8x0u8pi': {
       'en': '02',
@@ -3741,18 +3942,19 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'wdm6hfpr': {
       'en': 'Working Through',
       'fr': '',
-      'sw': '',
+      'sw': 'Kufanyia Kazi',
     },
     '1yskb1o4': {
       'en':
           'Build your custom workbook together. Craft your signature pricing formula tailored to your menu and market.',
       'fr': '',
-      'sw': '',
+      'sw':
+          'Tunaandaa pamoja kitabu chako cha kazi na fomula ya bei inayoendana na bidhaa na soko lako.',
     },
     'pljexw16': {
       'en': 'Session 2',
       'fr': '',
-      'sw': '',
+      'sw': 'Kipindi 2',
     },
     '9sn9geng': {
       'en': '03',
@@ -3762,33 +3964,34 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'yno3cqud': {
       'en': 'Assignment & Closing',
       'fr': '',
-      'sw': '',
+      'sw': 'Kazi na Hitimisho',
     },
     'wv1sw8ih': {
       'en':
           'Review your completed formula, finalize your workbook, and leave with a clear action plan to implement immediately.',
       'fr': '',
-      'sw': '',
+      'sw':
+          'Tunapitia fomula yako, tunakamilisha kitabu cha kazi, na unaondoka na mpango wa utekelezaji wa haraka.',
     },
     '6sz1fnp1': {
       'en': 'Session 3',
       'fr': '',
-      'sw': '',
+      'sw': 'Kipindi 3',
     },
     'v63hj92e': {
       'en': 'Choose Your Plan',
       'fr': '',
-      'sw': '',
+      'sw': 'Chagua Mpango Wako',
     },
     '4e2gi33w': {
       'en': 'Select what works for you',
       'fr': '',
-      'sw': '',
+      'sw': 'Chagua kinachokufaa',
     },
     '8mv5mhve': {
       'en': 'Virtual Plan',
       'fr': '',
-      'sw': '',
+      'sw': 'Mpango wa Mtandaoni',
     },
     'y02s66ht': {
       'en': '\$250',
@@ -3798,32 +4001,32 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '6mkn9qoa': {
       'en': 'per intensive',
       'fr': '',
-      'sw': '',
+      'sw': 'kwa mafunzo yote',
     },
     'kspgvrm6': {
       'en': '3 virtual coaching sessions',
       'fr': '',
-      'sw': '',
+      'sw': 'Vipindi 3 vya ushauri mtandaoni',
     },
     'n2e0rimd': {
       'en': 'Custom business workbook',
       'fr': '',
-      'sw': '',
+      'sw': 'Kitabu cha kazi cha biashara yako',
     },
     'ny4mvhp0': {
       'en': 'Signature pricing formula (yours forever)',
       'fr': '',
-      'sw': '',
+      'sw': 'Fomula yako ya kupanga bei (ni yako milele)',
     },
     '4qe360vq': {
       'en': 'Video call via Zoom or Google Meet',
       'fr': '',
-      'sw': '',
+      'sw': 'Simu ya video kupitia Zoom au Google Meet',
     },
     'xrjbgs4d': {
       'en': 'In-Person Plan',
       'fr': '',
-      'sw': '',
+      'sw': 'Mpango wa Ana kwa Ana',
     },
     'a8d9idsg': {
       'en': '\$750',
@@ -3833,37 +4036,37 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'thq53147': {
       'en': 'per intensive',
       'fr': '',
-      'sw': '',
+      'sw': 'kwa mafunzo yote',
     },
     'pnawclb9': {
       'en': '3 in-person coaching sessions',
       'fr': '',
-      'sw': '',
+      'sw': 'Vipindi 3 vya ushauri ana kwa ana',
     },
     'uinxznp5': {
       'en': 'Hands-on kitchen & business walkthrough',
       'fr': '',
-      'sw': '',
+      'sw': 'Mafunzo ya vitendo jikoni na kwenye biashara',
     },
     'kpossvaq': {
       'en': 'Custom workbook & pricing formula',
       'fr': '',
-      'sw': '',
+      'sw': 'Kitabu cha kazi na fomula ya bei',
     },
     'a5hsserp': {
       'en': 'Location: Nairobi & surrounding areas',
       'fr': '',
-      'sw': '',
+      'sw': 'Mahali: Nairobi na maeneo ya jirani',
     },
     'cq46z495': {
       'en': 'Proceed to Consultation',
       'fr': '',
-      'sw': '',
+      'sw': 'Endelea na Ushauri',
     },
     'r8cnfe01': {
       'en': 'Secure booking · No hidden fees',
       'fr': '',
-      'sw': '',
+      'sw': 'Uhifadhi salama · Hakuna gharama zilizofichwa',
     },
     '93mc423x': {
       'en': 'Madam Mercy Kitomari',
@@ -3873,17 +4076,17 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '5p0agob1': {
       'en': 'Food Business Strategist & Pricing Expert',
       'fr': '',
-      'sw': '',
+      'sw': 'Mtaalamu wa Mikakati ya Biashara ya Chakula na Upangaji Bei',
     },
     'wigt7nbs': {
       'en': '50+ kitchens transformed',
       'fr': '',
-      'sw': '',
+      'sw': 'Majiko 50+ yamebadilishwa',
     },
     'n336cqon': {
       'en': 'The Profitable Kitchen',
       'fr': '',
-      'sw': '',
+      'sw': 'Jiko Lenye Faida',
     },
     '3p1xx5hp': {
       'en': 'Home',
@@ -3896,7 +4099,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'jfz4tpoh': {
       'en': 'Reset Password Successful',
       'fr': 'Réinitialisation du mot de passe réussie',
-      'sw': 'Urekebishaji wa Nenosiri Umefanikiwa',
+      'sw': 'Nenosiri Limebadilishwa',
     },
     'nxz3c85x': {
       'en': 'Please wait...\nRedirecting you to the homepage.',
@@ -3909,7 +4112,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'woyia5be': {
       'en': 'Sign in Successful!',
       'fr': 'Connexion réussie !',
-      'sw': 'Ingia Umefanikiwa!',
+      'sw': 'Umeingia Kikamilifu!',
     },
     'ndbykalb': {
       'en': 'Please wait...\nRedirecting you to the homepage.',
@@ -3942,7 +4145,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'fg1hsdh4': {
       'en': 'We are personalizing your experience!',
       'fr': 'Nous personnalisons votre expérience !',
-      'sw': 'Tunabinafsisha uzoefu wako!',
+      'sw': 'Tunaandaa programu kulingana na mapendeleo yako!',
     },
   },
   // FAQ
@@ -4092,7 +4295,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '1n4oozr1': {
       'en': 'Beginner',
       'fr': 'Débutant',
-      'sw': 'Mwanzilishi',
+      'sw': 'Mwanzo',
     },
     'ho135q50': {
       'en': 'Intermediate',
@@ -4102,7 +4305,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     's7n7rf6q': {
       'en': 'Advanced',
       'fr': 'Avancé',
-      'sw': 'Kina',
+      'sw': 'Juu',
     },
     'qewntrqw': {
       'en': 'Date Added',
@@ -4132,7 +4335,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'zxkffj13': {
       'en': 'Apply',
       'fr': 'Appliquer',
-      'sw': 'Tuma maombi',
+      'sw': 'Tumia',
     },
   },
   // LessonsCard
@@ -4200,7 +4403,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '6pfl9ly7': {
       'en': 'Active',
       'fr': 'Actif',
-      'sw': 'Inayotumika',
+      'sw': 'Inatumika',
     },
     'a2c4qksu': {
       'en': 'Title',
@@ -4275,12 +4478,12 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     't1w7mc78': {
       'en': 'Add Credit Card',
       'fr': 'Ajouter une carte de crédit',
-      'sw': 'Ongeza Kadi ya Mkopo',
+      'sw': 'Ongeza Kadi',
     },
     '6w3p10d9': {
       'en': 'Mobile Money',
       'fr': 'Argent mobile',
-      'sw': 'Pesa za Simu',
+      'sw': 'Pesa kwa Simu',
     },
     'h1u44m5g': {
       'en': 'PayPal',
@@ -4311,7 +4514,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'y3tteohn': {
       'en': 'Write review',
       'fr': 'Rédiger un avis',
-      'sw': 'Andika ukaguzi',
+      'sw': 'Andika maoni',
     },
   },
   // ApplicationSubmitted
@@ -4319,7 +4522,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'seufvsny': {
       'en': 'Application Submitted!',
       'fr': 'Demande soumise !',
-      'sw': 'Maombi Yamewasilishwa!',
+      'sw': 'Ombi Limetumwa!',
     },
     'ivyl5nbh': {
       'en':
@@ -4340,7 +4543,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'pe676xeq': {
       'en': 'Switch Account Role',
       'fr': 'Changer de rôle de compte',
-      'sw': 'Badilisha Jukumu la Akaunti',
+      'sw': 'Badilisha Aina ya Akaunti',
     },
     'aeijf5jd': {
       'en':
@@ -4348,7 +4551,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'fr':
           'Passez facilement du mode enseignant au mode étudiant pour gérer vos cours ou poursuivre votre apprentissage sans vous déconnecter.',
       'sw':
-          'Badili kwa urahisi kati ya mitazamo ya Mwalimu wako na Mwanafunzi ili kudhibiti kozi au kuendelea kujifunza bila kuingia.',
+          'Badilisha kwa urahisi kati ya mwonekano wa Mwalimu na Mwanafunzi ili kusimamia kozi au kuendelea kujifunza bila kutoka.',
     },
     'fd5plwjt': {
       'en': 'Learner',
@@ -4376,17 +4579,17 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '35uxv7qw': {
       'en': 'Custom Categories',
       'fr': 'Catégories personnalisées',
-      'sw': 'Aina Maalum',
+      'sw': 'Kategoria Maalum',
     },
     'ne1lrmwr': {
       'en': 'Main Categories',
       'fr': 'Catégories principales',
-      'sw': 'Aina Kuu',
+      'sw': 'Kategoria Kuu',
     },
     '00y3b8of': {
       'en': 'Done',
       'fr': 'Fait',
-      'sw': 'Imekamilika',
+      'sw': 'Tayari',
     },
   },
   // AddNewCategory
@@ -4414,7 +4617,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '3f83x3i0': {
       'en': 'Done',
       'fr': 'Fait',
-      'sw': 'Imekamilika',
+      'sw': 'Tayari',
     },
   },
   // Tags
@@ -4442,7 +4645,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'z094gi1n': {
       'en': 'Done',
       'fr': 'Fait',
-      'sw': 'Imekamilika',
+      'sw': 'Tayari',
     },
   },
   // AddNewTag
@@ -4465,7 +4668,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '6xqco549': {
       'en': 'Done',
       'fr': 'Fait',
-      'sw': 'Imekamilika',
+      'sw': 'Tayari',
     },
   },
   // Audience
@@ -4473,7 +4676,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'lz8wunrj': {
       'en': 'Audience',
       'fr': 'Public',
-      'sw': 'Hadhira',
+      'sw': 'Walengwa',
     },
     'fdrei1lk': {
       'en': 'Search',
@@ -4483,12 +4686,12 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '3au86uoz': {
       'en': 'Course Audience',
       'fr': 'Public cible du cours',
-      'sw': 'Hadhira ya Kozi',
+      'sw': 'Walengwa wa Kozi',
     },
     '9jzo7a6u': {
       'en': 'Done',
       'fr': 'Fait',
-      'sw': 'Imekamilika',
+      'sw': 'Tayari',
     },
   },
   // Language1
@@ -4506,7 +4709,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '7zbfoyxy': {
       'en': 'Done',
       'fr': 'Fait',
-      'sw': 'Imekamilika',
+      'sw': 'Tayari',
     },
   },
   // InstructorSpecialty
@@ -4524,7 +4727,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '2we9k1l2': {
       'en': 'Done',
       'fr': 'Fait',
-      'sw': 'Imekamilika',
+      'sw': 'Tayari',
     },
   },
   // Specialty
@@ -4542,7 +4745,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '79nu86n7': {
       'en': 'Done',
       'fr': 'Fait',
-      'sw': 'Imekamilika',
+      'sw': 'Tayari',
     },
   },
   // EmptyCourses
@@ -4679,7 +4882,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'pk7x6kpj': {
       'en': 'Delete This Course?',
       'fr': 'Supprimer ce cours ?',
-      'sw': 'Ungependa kufuta Kozi Hii?',
+      'sw': 'Futa Kozi Hii?',
     },
     '5pwpv7dr': {
       'en':
@@ -4705,7 +4908,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '6e3psnmw': {
       'en': 'Course Created Successfully',
       'fr': 'Cours créé avec succès',
-      'sw': 'Kozi Imeundwa kwa Mafanikio',
+      'sw': 'Kozi Imeundwa',
     },
     '1xws0jai': {
       'en':
@@ -4726,7 +4929,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'uv5fwexp': {
       'en': 'Purchase Successful!',
       'fr': 'Achat réussi !',
-      'sw': 'Ununuzi Umefanikiwa!',
+      'sw': 'Ununuzi Umekamilika!',
     },
     'gyybi4z4': {
       'en':
@@ -4755,7 +4958,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'fr':
           'Vous êtes à jour ! Restez à l\'écoute pour les mises à jour, les offres et les alertes importantes.',
       'sw':
-          'Nyote mmefahamu! Endelea kufuatilia masasisho, ofa, na arifa muhimu.',
+          'Hakuna arifa mpya! Endelea kufuatilia taarifa, ofa na arifa muhimu.',
     },
   },
   // EmptyLearn
@@ -4826,7 +5029,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'yw8dgo5u': {
       'en': 'Your Wish List is Empty',
       'fr': 'Votre liste de souhaits est vide.',
-      'sw': 'Orodha Yako ya Matamanio Haina Kitu',
+      'sw': 'Orodha Yako ya Vipendwa Iko Tupu',
     },
     '1233oxy3': {
       'en':
@@ -4839,7 +5042,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'mp49bom2': {
       'en': 'Discover Courses',
       'fr': 'Découvrez les cours',
-      'sw': 'Kozi za Gundua',
+      'sw': 'Gundua Kozi',
     },
   },
   // EmptySubscriptions
@@ -4873,7 +5076,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '3h6zrdg0': {
       'en': 'Done',
       'fr': 'Fait',
-      'sw': 'Imekamilika',
+      'sw': 'Tayari',
     },
   },
   // Topics
@@ -4881,12 +5084,12 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'eqt7g346': {
       'en': 'Nelway\'s Academy',
       'fr': 'Académie Nelway',
-      'sw': 'Chuo cha Nelway',
+      'sw': 'Nelwa Academy',
     },
     'mn3uab7w': {
       'en': 'Nelway\'s Academy',
       'fr': 'Académie Nelway',
-      'sw': 'Chuo cha Nelway',
+      'sw': 'Nelwa Academy',
     },
   },
   // EmptyPurchaseHistory
@@ -4952,17 +5155,17 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'zj5nrvz8': {
       'en': 'Custom Categories',
       'fr': 'Catégories personnalisées',
-      'sw': 'Aina Maalum',
+      'sw': 'Kategoria Maalum',
     },
     '5ea1e4pm': {
       'en': 'Main Categories',
       'fr': 'Catégories principales',
-      'sw': 'Aina Kuu',
+      'sw': 'Kategoria Kuu',
     },
     'xm0hc0xt': {
       'en': 'Done',
       'fr': 'Fait',
-      'sw': 'Imekamilika',
+      'sw': 'Tayari',
     },
   },
   // Appointment
@@ -4970,12 +5173,12 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'rdm1h4r1': {
       'en': 'Appointment  Created Successfully',
       'fr': 'Rendez-vous créé avec succès',
-      'sw': 'Miadi Imeundwa kwa Ufanisi',
+      'sw': 'Miadi Imewekwa',
     },
     'vuop1o5l': {
       'en': 'Your appointment  has been created.  Please be on time',
       'fr': 'Votre rendez-vous a été créé. Veuillez être à l\'heure.',
-      'sw': 'Miadi yako imeandaliwa. Tafadhali fika kwa wakati',
+      'sw': 'Miadi yako imewekwa. Tafadhali fika kwa wakati',
     },
     '7gbi2gdp': {
       'en': 'OK',
@@ -4993,7 +5196,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'ra5ffno7': {
       'en': 'Select below the payment method Prefered',
       'fr': 'Veuillez sélectionner ci-dessous votre mode de paiement préféré.',
-      'sw': 'Chagua hapa chini njia ya malipo Inayopendelewa',
+      'sw': 'Chagua njia ya malipo unayopendelea hapa chini',
     },
     'x3wyeo2f': {
       'en': 'OK',
@@ -5006,27 +5209,27 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'mfh4vkem': {
       'en': 'Build Your Ice Cream Business with Clarity',
       'fr': '',
-      'sw': '',
+      'sw': 'Jenga Biashara Yako ya Aiskrimu kwa Uhakika',
     },
     '4uqiyqia': {
       'en': 'Learn the process, understand your margins, start making money.',
       'fr': '',
-      'sw': '',
+      'sw': 'Jifunze mchakato, elewa faida yako, anza kupata pesa.',
     },
     'aiqfher9': {
       'en': 'Start Learning',
       'fr': '',
-      'sw': '',
+      'sw': 'Anza Kujifunza',
     },
     'j1g9mzg7': {
       'en': 'Get Equipment',
       'fr': '',
-      'sw': '',
+      'sw': 'Pata Vifaa',
     },
     'lps5c4zj': {
       'en': 'Work With Nelwa',
       'fr': '',
-      'sw': '',
+      'sw': 'Fanya Kazi na Nelwa',
     },
   },
   // selection
@@ -5034,22 +5237,23 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '3whii6li': {
       'en': 'Business Intensive',
       'fr': '',
-      'sw': '',
+      'sw': 'Mafunzo Maalum ya Biashara',
     },
     'u2tjzndu': {
       'en': 'The Profitable Kitchen',
       'fr': '',
-      'sw': '',
+      'sw': 'Jiko Lenye Faida',
     },
     '42uzt2hr': {
       'en': 'A Business Intensive with Madam Mercy Kitomari',
       'fr': '',
-      'sw': '',
+      'sw': 'Mafunzo Maalum ya Biashara na Madam Mercy Kitomari',
     },
     'b4581j3m': {
       'en': '3 sessions. Custom workbook. Pricing formula you keep forever.',
       'fr': '',
-      'sw': '',
+      'sw':
+          'Vipindi 3. Kitabu cha kazi maalum. Fomula ya bei utakayoitumia milele.',
     },
     'ooc7wui3': {
       'en': '3',
@@ -5059,7 +5263,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'nehqtsya': {
       'en': 'Sessions',
       'fr': '',
-      'sw': '',
+      'sw': 'Vipindi',
     },
     'hzig0cft': {
       'en': '1:1',
@@ -5069,7 +5273,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'eeq2ln2d': {
       'en': 'Coaching',
       'fr': '',
-      'sw': '',
+      'sw': 'Ushauri',
     },
     '588ikrg9': {
       'en': '∞',
@@ -5079,17 +5283,17 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '8olhlwqd': {
       'en': 'Formula Yours',
       'fr': '',
-      'sw': '',
+      'sw': 'Fomula Yako',
     },
     'wngsfe9j': {
       'en': 'How It Works',
       'fr': '',
-      'sw': '',
+      'sw': 'Jinsi Inavyofanya Kazi',
     },
     '6lm3nkd3': {
       'en': 'Three Sessions. One Transformation',
       'fr': '',
-      'sw': '',
+      'sw': 'Vipindi Vitatu. Mabadiliko Makubwa',
     },
     'wlijytas': {
       'en': '01',
@@ -5099,18 +5303,19 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '595zluvt': {
       'en': 'Discovery Session',
       'fr': '',
-      'sw': '',
+      'sw': 'Kipindi cha Utambuzi',
     },
     '063whw2r': {
       'en':
           'We map your current pricing, costs, and business goals. Identify gaps and opportunities unique to your kitchen.',
       'fr': '',
-      'sw': '',
+      'sw':
+          'Tunachambua bei zako, gharama na malengo ya biashara yako, na kubaini mapungufu na fursa za jiko lako.',
     },
     '95iinkvc': {
       'en': 'Session 1',
       'fr': '',
-      'sw': '',
+      'sw': 'Kipindi 1',
     },
     'occsft1h': {
       'en': '02',
@@ -5120,18 +5325,19 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'icn4q9af': {
       'en': 'Working Through',
       'fr': '',
-      'sw': '',
+      'sw': 'Kufanyia Kazi',
     },
     '3z84qma1': {
       'en':
           'Build your custom workbook together. Craft your signature pricing formula tailored to your menu and market.',
       'fr': '',
-      'sw': '',
+      'sw':
+          'Tunaandaa pamoja kitabu chako cha kazi na fomula ya bei inayoendana na bidhaa na soko lako.',
     },
     'qjhej1x7': {
       'en': 'Session 2',
       'fr': '',
-      'sw': '',
+      'sw': 'Kipindi 2',
     },
     't2sfwgvq': {
       'en': '03',
@@ -5141,33 +5347,34 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'rxkq4edy': {
       'en': 'Assignment & Closing',
       'fr': '',
-      'sw': '',
+      'sw': 'Kazi na Hitimisho',
     },
     '6tam8tit': {
       'en':
           'Review your completed formula, finalize your workbook, and leave with a clear action plan to implement immediately.',
       'fr': '',
-      'sw': '',
+      'sw':
+          'Tunapitia fomula yako, tunakamilisha kitabu cha kazi, na unaondoka na mpango wa utekelezaji wa haraka.',
     },
     'v1xg6qs9': {
       'en': 'Session 3',
       'fr': '',
-      'sw': '',
+      'sw': 'Kipindi 3',
     },
     'uduynok3': {
       'en': 'Choose Your Plan',
       'fr': '',
-      'sw': '',
+      'sw': 'Chagua Mpango Wako',
     },
     'bxbsxuyz': {
       'en': 'Select what works for you',
       'fr': '',
-      'sw': '',
+      'sw': 'Chagua kinachokufaa',
     },
     'cjcuuyca': {
       'en': 'Virtual Plan',
       'fr': '',
-      'sw': '',
+      'sw': 'Mpango wa Mtandaoni',
     },
     'do7ayw7n': {
       'en': '\$250',
@@ -5177,32 +5384,32 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'vqc8ukm0': {
       'en': 'per intensive',
       'fr': '',
-      'sw': '',
+      'sw': 'kwa mafunzo yote',
     },
     'mocsjawg': {
       'en': '3 virtual coaching sessions',
       'fr': '',
-      'sw': '',
+      'sw': 'Vipindi 3 vya ushauri mtandaoni',
     },
     'vu0cr069': {
       'en': 'Custom business workbook',
       'fr': '',
-      'sw': '',
+      'sw': 'Kitabu cha kazi cha biashara yako',
     },
     'brje4ns9': {
       'en': 'Signature pricing formula (yours forever)',
       'fr': '',
-      'sw': '',
+      'sw': 'Fomula yako ya kupanga bei (ni yako milele)',
     },
     '5992g3ua': {
       'en': 'Video call via Zoom or Google Meet',
       'fr': '',
-      'sw': '',
+      'sw': 'Simu ya video kupitia Zoom au Google Meet',
     },
     'ictimk6e': {
       'en': 'In-Person Plan',
       'fr': '',
-      'sw': '',
+      'sw': 'Mpango wa Ana kwa Ana',
     },
     'dzlwc6vh': {
       'en': '\$750',
@@ -5212,37 +5419,37 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'sgm4j6z2': {
       'en': 'per intensive',
       'fr': '',
-      'sw': '',
+      'sw': 'kwa mafunzo yote',
     },
     'g4gydg8j': {
       'en': '3 in-person coaching sessions',
       'fr': '',
-      'sw': '',
+      'sw': 'Vipindi 3 vya ushauri ana kwa ana',
     },
     'lwnlh8sx': {
       'en': 'Hands-on kitchen & business walkthrough',
       'fr': '',
-      'sw': '',
+      'sw': 'Mafunzo ya vitendo jikoni na kwenye biashara',
     },
     '4bsift5p': {
       'en': 'Custom workbook & pricing formula',
       'fr': '',
-      'sw': '',
+      'sw': 'Kitabu cha kazi na fomula ya bei',
     },
     'hov35sth': {
       'en': 'Location: Nairobi & surrounding areas',
       'fr': '',
-      'sw': '',
+      'sw': 'Mahali: Nairobi na maeneo ya jirani',
     },
     'xjpe3nr0': {
       'en': 'Proceed to Consultation',
       'fr': '',
-      'sw': '',
+      'sw': 'Endelea na Ushauri',
     },
     'l3n22hp8': {
       'en': 'Secure booking · No hidden fees',
       'fr': '',
-      'sw': '',
+      'sw': 'Uhifadhi salama · Hakuna gharama zilizofichwa',
     },
     'dlimw9y7': {
       'en': 'Madam Mercy Kitomari',
@@ -5252,12 +5459,12 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'iqmwebai': {
       'en': 'Food Business Strategist & Pricing Expert',
       'fr': '',
-      'sw': '',
+      'sw': 'Mtaalamu wa Mikakati ya Biashara ya Chakula na Upangaji Bei',
     },
     'krtl5h2o': {
       'en': '50+ kitchens transformed',
       'fr': '',
-      'sw': '',
+      'sw': 'Majiko 50+ yamebadilishwa',
     },
   },
   // Miscellaneous
@@ -5270,12 +5477,12 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'qmyb0nqt': {
       'en': 'TextField',
       'fr': 'Champ de texte',
-      'sw': 'Sehemu ya Maandishi',
+      'sw': '',
     },
     'euwhih59': {
       'en': 'In order to take Image or Video, This App Require Your Permission',
       'fr': '',
-      'sw': '',
+      'sw': 'Ili kupiga picha au video, programu inahitaji ruhusa yako',
     },
     'frzsyvtt': {
       'en': '',

@@ -79,7 +79,7 @@ class _RequestaRefundWidgetState extends State<RequestaRefundWidget> {
                 size: 24.0,
               ),
               onPressed: () async {
-                context.pop();
+                context.safePop();
               },
             ),
           ),
@@ -190,7 +190,7 @@ class _RequestaRefundWidgetState extends State<RequestaRefundWidget> {
                                       children: [
                                         Text(
                                           valueOrDefault<String>(
-                                            columnCoursesRecord.title,
+                                            columnCoursesRecord.localizedTitle(context),
                                             'null',
                                           ).maybeHandleOverflow(
                                             maxChars: 30,
@@ -529,7 +529,7 @@ class _RequestaRefundWidgetState extends State<RequestaRefundWidget> {
                                             fit: BoxFit.cover,
                                             image: Image.network(
                                               _model.uploadedFileUrl_uploadDataX5w !=
-                                                          ''
+                                                      ''
                                                   ? _model
                                                       .uploadedFileUrl_uploadDataX5w
                                                   : _model
@@ -993,9 +993,10 @@ class _RequestaRefundWidgetState extends State<RequestaRefundWidget> {
                               couresesRef: columnCoursesRecord.reference,
                               userRef: currentUserReference,
                               reason: _model.selectedReason,
-                              screenshotUrl: _model.uploadedFileUrl_uploadDataX5w != ''
-                                  ? _model.uploadedFileUrl_uploadDataX5w
-                                  : _model.uploadedFileUrl_uploadDataD1d,
+                              screenshotUrl:
+                                  _model.uploadedFileUrl_uploadDataX5w != ''
+                                      ? _model.uploadedFileUrl_uploadDataX5w
+                                      : _model.uploadedFileUrl_uploadDataD1d,
                               status: 'pending',
                               createdAt: getCurrentTimestamp,
                             ));

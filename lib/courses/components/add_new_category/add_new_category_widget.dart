@@ -316,7 +316,7 @@ class _AddNewCategoryWidgetState extends State<AddNewCategoryWidget> {
                                         Duration(milliseconds: 500),
                                     imageUrl:
                                         _model.uploadedFileUrl_categoryImage22 !=
-                                                    ''
+                                                ''
                                             ? _model
                                                 .uploadedFileUrl_categoryImage22
                                             : _model

@@ -100,7 +100,7 @@ class _SignInWidgetState extends State<SignInWidget>
                 size: 24.0,
               ),
               onPressed: () async {
-                context.pop();
+                context.safePop();
               },
             ),
           ),

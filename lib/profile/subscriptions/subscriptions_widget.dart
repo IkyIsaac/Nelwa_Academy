@@ -66,7 +66,7 @@ class _SubscriptionsWidgetState extends State<SubscriptionsWidget> {
                 size: 24.0,
               ),
               onPressed: () async {
-                context.pop();
+                context.safePop();
               },
             ),
           ),

@@ -73,7 +73,7 @@ class _ResetPasswordWidgetState extends State<ResetPasswordWidget> {
                 size: 24.0,
               ),
               onPressed: () async {
-                context.pop();
+                context.safePop();
               },
             ),
           ),

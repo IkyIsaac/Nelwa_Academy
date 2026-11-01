@@ -135,7 +135,7 @@ class _ContinueWatchingWidgetState extends State<ContinueWatchingWidget> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          containerCoursesRecord.title.maybeHandleOverflow(
+                          containerCoursesRecord.localizedTitle(context).maybeHandleOverflow(
                             maxChars: 30,
                             replacement: '…',
                           ),

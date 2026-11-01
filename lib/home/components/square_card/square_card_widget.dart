@@ -105,7 +105,7 @@ class _SquareCardWidgetState extends State<SquareCardWidget> {
               padding: EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
               child: Text(
                 valueOrDefault<String>(
-                  widget.coursesDoc?.title,
+                  widget.coursesDoc?.localizedTitle(context),
                   'null',
                 ).maybeHandleOverflow(
                   maxChars: 28,

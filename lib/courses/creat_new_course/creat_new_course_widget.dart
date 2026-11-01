@@ -146,7 +146,7 @@ class _CreatNewCourseWidgetState extends State<CreatNewCourseWidget> {
                     size: 24.0,
                   ),
                   onPressed: () async {
-                    context.pop();
+                    context.safePop();
                   },
                 ),
               ),
@@ -247,7 +247,7 @@ class _CreatNewCourseWidgetState extends State<CreatNewCourseWidget> {
                                                 Duration(milliseconds: 500),
                                             imageUrl:
                                                 _model.uploadedFileUrl_image22 !=
-                                                            ''
+                                                        ''
                                                     ? _model
                                                         .uploadedFileUrl_image22
                                                     : _model
@@ -867,7 +867,7 @@ class _CreatNewCourseWidgetState extends State<CreatNewCourseWidget> {
                                         ),
                                         child: FlutterFlowVideoPlayer(
                                           path: _model.uploadedFileUrl_uploadDataXku !=
-                                                      ''
+                                                  ''
                                               ? _model
                                                   .uploadedFileUrl_uploadDataXku
                                               : _model
@@ -1272,7 +1272,7 @@ class _CreatNewCourseWidgetState extends State<CreatNewCourseWidget> {
                                       ),
                                     ),
                                     if (FFAppState().addNewCourse.category !=
-                                            '')
+                                        '')
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             12.0, 0.0, 0.0, 0.0),
@@ -1805,10 +1805,10 @@ class _CreatNewCourseWidgetState extends State<CreatNewCourseWidget> {
                                       ),
                                     ),
                                     if (FFAppState()
-                                                .addNewCourse
-                                                .language
-                                                .language !=
-                                            '')
+                                            .addNewCourse
+                                            .language
+                                            .language !=
+                                        '')
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             12.0, 0.0, 0.0, 0.0),
@@ -2616,26 +2616,25 @@ class _CreatNewCourseWidgetState extends State<CreatNewCourseWidget> {
                                               .addNewCourse
                                               .category,
                                           language: updateLanguageStruct(
-                                            FFAppState()
-                                                .addNewCourse
-                                                .language,
+                                            FFAppState().addNewCourse.language,
                                             clearUnsetFields: false,
                                             create: true,
                                           ),
-                                          price: double.tryParse(_model
-                                              .priceTextController1.text),
+                                          price: double.tryParse(
+                                              _model.priceTextController1.text),
                                           instructorRef: currentUserReference,
                                           instructorName:
                                               currentUserDisplayName,
                                           isPublished: true,
                                           publishedDate: getCurrentTimestamp,
-                                          image: _model.uploadedFileUrl_image22 !=
-                                                      ''
+                                          image: _model
+                                                      .uploadedFileUrl_image22 !=
+                                                  ''
                                               ? _model.uploadedFileUrl_image22
-                                              : _model
-                                                  .uploadedFileUrl_image11,
-                                          videoPreview: _model.uploadedFileUrl_uploadDataXku !=
-                                                      ''
+                                              : _model.uploadedFileUrl_image11,
+                                          videoPreview: _model
+                                                      .uploadedFileUrl_uploadDataXku !=
+                                                  ''
                                               ? _model
                                                   .uploadedFileUrl_uploadDataXku
                                               : _model
@@ -2643,8 +2642,7 @@ class _CreatNewCourseWidgetState extends State<CreatNewCourseWidget> {
                                           level: '',
                                           discount: 0.0,
                                           totalLessons: int.tryParse(_model
-                                              .totalLessonsTextController
-                                              .text),
+                                              .totalLessonsTextController.text),
                                           totalDuration: int.tryParse(_model
                                               .totalDurationTextController
                                               .text),
@@ -2652,9 +2650,8 @@ class _CreatNewCourseWidgetState extends State<CreatNewCourseWidget> {
                                         ),
                                         ...mapToFirestore(
                                           {
-                                            'tags': FFAppState()
-                                                .addNewCourse
-                                                .tags,
+                                            'tags':
+                                                FFAppState().addNewCourse.tags,
                                             'audience': FFAppState()
                                                 .addNewCourse
                                                 .courseAudience,
@@ -2672,26 +2669,25 @@ class _CreatNewCourseWidgetState extends State<CreatNewCourseWidget> {
                                               .addNewCourse
                                               .category,
                                           language: updateLanguageStruct(
-                                            FFAppState()
-                                                .addNewCourse
-                                                .language,
+                                            FFAppState().addNewCourse.language,
                                             clearUnsetFields: false,
                                             create: true,
                                           ),
-                                          price: double.tryParse(_model
-                                              .priceTextController1.text),
+                                          price: double.tryParse(
+                                              _model.priceTextController1.text),
                                           instructorRef: currentUserReference,
                                           instructorName:
                                               currentUserDisplayName,
                                           isPublished: true,
                                           publishedDate: getCurrentTimestamp,
-                                          image: _model.uploadedFileUrl_image22 !=
-                                                      ''
+                                          image: _model
+                                                      .uploadedFileUrl_image22 !=
+                                                  ''
                                               ? _model.uploadedFileUrl_image22
-                                              : _model
-                                                  .uploadedFileUrl_image11,
-                                          videoPreview: _model.uploadedFileUrl_uploadDataXku !=
-                                                      ''
+                                              : _model.uploadedFileUrl_image11,
+                                          videoPreview: _model
+                                                      .uploadedFileUrl_uploadDataXku !=
+                                                  ''
                                               ? _model
                                                   .uploadedFileUrl_uploadDataXku
                                               : _model
@@ -2699,8 +2695,7 @@ class _CreatNewCourseWidgetState extends State<CreatNewCourseWidget> {
                                           level: '',
                                           discount: 0.0,
                                           totalLessons: int.tryParse(_model
-                                              .totalLessonsTextController
-                                              .text),
+                                              .totalLessonsTextController.text),
                                           totalDuration: int.tryParse(_model
                                               .totalDurationTextController
                                               .text),
@@ -2708,9 +2703,8 @@ class _CreatNewCourseWidgetState extends State<CreatNewCourseWidget> {
                                         ),
                                         ...mapToFirestore(
                                           {
-                                            'tags': FFAppState()
-                                                .addNewCourse
-                                                .tags,
+                                            'tags':
+                                                FFAppState().addNewCourse.tags,
                                             'audience': FFAppState()
                                                 .addNewCourse
                                                 .courseAudience,
@@ -2723,9 +2717,8 @@ class _CreatNewCourseWidgetState extends State<CreatNewCourseWidget> {
                                           .update({
                                         ...mapToFirestore(
                                           {
-                                            'courses': FieldValue.arrayUnion([
-                                              _model.newCourse?.reference
-                                            ]),
+                                            'courses': FieldValue.arrayUnion(
+                                                [_model.newCourse?.reference]),
                                             'categories':
                                                 FieldValue.arrayUnion([
                                               getCategoriesFirestoreData(
@@ -2744,8 +2737,7 @@ class _CreatNewCourseWidgetState extends State<CreatNewCourseWidget> {
 
                                       await _model.newCourse!.reference
                                           .update(createCoursesRecordData(
-                                        coursesId:
-                                            _model.newCourse?.reference,
+                                        coursesId: _model.newCourse?.reference,
                                       ));
                                       await showDialog(
                                         barrierColor:
@@ -2756,13 +2748,11 @@ class _CreatNewCourseWidgetState extends State<CreatNewCourseWidget> {
                                           return Dialog(
                                             elevation: 0,
                                             insetPadding: EdgeInsets.zero,
-                                            backgroundColor:
-                                                Colors.transparent,
-                                            alignment:
-                                                AlignmentDirectional(0.0, 0.0)
-                                                    .resolve(
-                                                        Directionality.of(
-                                                            context)),
+                                            backgroundColor: Colors.transparent,
+                                            alignment: AlignmentDirectional(
+                                                    0.0, 0.0)
+                                                .resolve(
+                                                    Directionality.of(context)),
                                             child: GestureDetector(
                                               onTap: () {
                                                 FocusScope.of(dialogContext)
@@ -2776,7 +2766,7 @@ class _CreatNewCourseWidgetState extends State<CreatNewCourseWidget> {
                                           );
                                         },
                                       );
-                                                                        } else {
+                                    } else {
                                       await showModalBottomSheet(
                                         isScrollControlled: true,
                                         backgroundColor: Colors.transparent,

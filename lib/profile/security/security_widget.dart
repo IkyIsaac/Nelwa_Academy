@@ -66,7 +66,7 @@ class _SecurityWidgetState extends State<SecurityWidget> {
                 size: 24.0,
               ),
               onPressed: () async {
-                context.pop();
+                context.safePop();
               },
             ),
           ),

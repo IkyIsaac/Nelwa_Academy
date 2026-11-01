@@ -279,9 +279,7 @@ class _ReportCommentWidgetState extends State<ReportCommentWidget> {
               ),
               Opacity(
                 opacity: widget.reportType == 'Other'
-                    ? (_model.textController.text != ''
-                        ? 1.0
-                        : 0.3)
+                    ? (_model.textController.text != '' ? 1.0 : 0.3)
                     : 1.0,
                 child: Padding(
                   padding: EdgeInsets.all(16.0),
@@ -325,8 +323,7 @@ class _ReportCommentWidgetState extends State<ReportCommentWidget> {
                       } else {
                         if ((widget.lessonRef != null) &&
                             (widget.coursesRef != null)) {
-                          await LessonReportRecord.createDoc(
-                                  widget.coursesRef!)
+                          await LessonReportRecord.createDoc(widget.coursesRef!)
                               .set(createLessonReportRecordData(
                             message: _model.textController.text,
                             reportType: widget.reportType,
@@ -335,8 +332,7 @@ class _ReportCommentWidgetState extends State<ReportCommentWidget> {
                           ));
                         } else if ((widget.reviewRef != null) &&
                             (widget.coursesRef != null)) {
-                          await ReviewReportRecord.createDoc(
-                                  widget.coursesRef!)
+                          await ReviewReportRecord.createDoc(widget.coursesRef!)
                               .set(createReviewReportRecordData(
                             message: _model.textController.text,
                             reportType: widget.reportType,

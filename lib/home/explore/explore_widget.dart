@@ -183,7 +183,9 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                       TextSearchItem.fromTerms(
                                                           record, [
                                                     record.title,
-                                                    record.description
+                                                    record.description,
+                                                    record.titleSw,
+                                                    record.descriptionSw
                                                   ]),
                                                 )
                                                 .toList(),

@@ -4,6 +4,7 @@ import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '../design/admin_tokens.dart';
 import '../widgets/admin_image_field.dart';
+import '../widgets/admin_swahili_fields.dart';
 import '../widgets/admin_video_field.dart';
 import 'lessons_section.dart';
 
@@ -21,6 +22,8 @@ class _CourseDetailPageState extends State<CourseDetailPage> {
 
   final _titleController = TextEditingController();
   final _descriptionController = TextEditingController();
+  final _titleSwController = TextEditingController();
+  final _descriptionSwController = TextEditingController();
   final _categoryController = TextEditingController();
   final _levelController = TextEditingController();
   final _priceController = TextEditingController();
@@ -48,6 +51,8 @@ class _CourseDetailPageState extends State<CourseDetailPage> {
     _courseRef = course.reference;
     _titleController.text = course.title;
     _descriptionController.text = course.description;
+    _titleSwController.text = course.titleSw;
+    _descriptionSwController.text = course.descriptionSw;
     _categoryController.text = course.category;
     _levelController.text = course.level;
     _priceController.text = course.price.toString();
@@ -65,6 +70,8 @@ class _CourseDetailPageState extends State<CourseDetailPage> {
   void dispose() {
     _titleController.dispose();
     _descriptionController.dispose();
+    _titleSwController.dispose();
+    _descriptionSwController.dispose();
     _categoryController.dispose();
     _levelController.dispose();
     _priceController.dispose();
@@ -87,6 +94,8 @@ class _CourseDetailPageState extends State<CourseDetailPage> {
     await _courseRef!.update({
       'title': _titleController.text.trim(),
       'description': _descriptionController.text.trim(),
+      'title_sw': _titleSwController.text.trim(),
+      'description_sw': _descriptionSwController.text.trim(),
       'category': _categoryController.text.trim(),
       'level': _levelController.text.trim(),
       'price': double.tryParse(_priceController.text.trim()) ?? 0.0,
@@ -165,6 +174,8 @@ class _CourseDetailPageState extends State<CourseDetailPage> {
                 final fieldsCol = _FieldsColumn(
                   titleController: _titleController,
                   descriptionController: _descriptionController,
+                  titleSwController: _titleSwController,
+                  descriptionSwController: _descriptionSwController,
                   categoryController: _categoryController,
                   levelController: _levelController,
                   priceController: _priceController,
@@ -239,6 +250,8 @@ class _FieldsColumn extends StatelessWidget {
   const _FieldsColumn({
     required this.titleController,
     required this.descriptionController,
+    required this.titleSwController,
+    required this.descriptionSwController,
     required this.categoryController,
     required this.levelController,
     required this.priceController,
@@ -251,6 +264,8 @@ class _FieldsColumn extends StatelessWidget {
 
   final TextEditingController titleController;
   final TextEditingController descriptionController;
+  final TextEditingController titleSwController;
+  final TextEditingController descriptionSwController;
   final TextEditingController categoryController;
   final TextEditingController levelController;
   final TextEditingController priceController;
@@ -274,6 +289,13 @@ class _FieldsColumn extends StatelessWidget {
         children: [
           _field('Title', titleController, onChanged: onChanged),
           _field('Description', descriptionController, maxLines: 4),
+          AdminSwahiliFields(
+            titleController: titleController,
+            descriptionController: descriptionController,
+            titleSwController: titleSwController,
+            descriptionSwController: descriptionSwController,
+          ),
+          const SizedBox(height: AdminSpace.xl),
           Row(
             children: [
               Expanded(child: _field('Category', categoryController)),

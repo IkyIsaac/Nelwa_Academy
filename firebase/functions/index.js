@@ -14,3 +14,6 @@ exports.snippeWebhook = payments.snippeWebhook;
 
 const payouts = require("./payouts");
 exports.createPayout = payouts.createPayout;
+
+const translations = require("./translations");
+exports.translateText = translations.translateText;

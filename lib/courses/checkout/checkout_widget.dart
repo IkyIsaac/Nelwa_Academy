@@ -74,7 +74,7 @@ class _CheckoutWidgetState extends State<CheckoutWidget> {
                 size: 24.0,
               ),
               onPressed: () async {
-                context.pop();
+                context.safePop();
                 FFAppState().order = OrderStruct();
                 safeSetState(() {});
               },
@@ -254,7 +254,7 @@ class _CheckoutWidgetState extends State<CheckoutWidget> {
                               padding: EdgeInsetsDirectional.fromSTEB(
                                   8.0, 0.0, 0.0, 0.0),
                               child: Text(
-                                'Tzs ${FFAppState().order.price.toString()}',
+                                'Tsh ${FFAppState().order.price.toString()}',
                                 style: FlutterFlowTheme.of(context)
                                     .titleSmall
                                     .override(
@@ -283,7 +283,7 @@ class _CheckoutWidgetState extends State<CheckoutWidget> {
                             children: [
                               Expanded(
                                 child: Text(
-                                  'Discount (${FFAppState().order.discount.toString()}%):',
+                                  '${FFLocalizations.of(context).getText('nwchk010' /* Discount */)} (${FFAppState().order.discount.toString()}%):',
                                   style: FlutterFlowTheme.of(context)
                                       .bodyLarge
                                       .override(
@@ -312,7 +312,7 @@ class _CheckoutWidgetState extends State<CheckoutWidget> {
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     8.0, 0.0, 0.0, 0.0),
                                 child: Text(
-                                  '-Tzs ${formatNumber(
+                                  '-Tsh ${formatNumber(
                                     FFAppState().order.discount /
                                         100 *
                                         FFAppState().order.discount.toDouble(),
@@ -380,7 +380,7 @@ class _CheckoutWidgetState extends State<CheckoutWidget> {
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     8.0, 0.0, 0.0, 0.0),
                                 child: Text(
-                                  'Tzs ${formatNumber(
+                                  'Tsh ${formatNumber(
                                     (100 - FFAppState().order.discount) /
                                         100 *
                                         FFAppState().order.price,
@@ -530,21 +530,25 @@ class _CheckoutWidgetState extends State<CheckoutWidget> {
                                     orderResult = Map<String, dynamic>.from(
                                         result.data as Map);
                                   } on FirebaseFunctionsException catch (e) {
-                                    safeSetState(() =>
-                                        _model.isCheckingOut = false);
+                                    safeSetState(
+                                        () => _model.isCheckingOut = false);
                                     if (!context.mounted) return;
                                     await showDialog(
                                       context: context,
                                       builder: (dialogContext) => AlertDialog(
-                                        title:
-                                            Text('Could not start checkout'),
+                                        title: Text(FFLocalizations.of(context)
+                                            .getText(
+                                                'nwchk001' /* Could not start checkout */)),
                                         content: Text(e.message ??
-                                            'Please try again shortly.'),
+                                            FFLocalizations.of(context).getText(
+                                                'nwchk002' /* Please try again shortly. */)),
                                         actions: [
                                           TextButton(
-                                            onPressed: () => Navigator.pop(
-                                                dialogContext),
-                                            child: Text('OK'),
+                                            onPressed: () =>
+                                                Navigator.pop(dialogContext),
+                                            child: Text(FFLocalizations.of(
+                                                    context)
+                                                .getText('nwchk003' /* OK */)),
                                           ),
                                         ],
                                       ),
@@ -564,8 +568,7 @@ class _CheckoutWidgetState extends State<CheckoutWidget> {
 
                                   if (!context.mounted) return;
 
-                                  final finalStatus =
-                                      await showDialog<String>(
+                                  final finalStatus = await showDialog<String>(
                                     barrierDismissible: false,
                                     context: context,
                                     builder: (dialogContext) {
@@ -593,20 +596,21 @@ class _CheckoutWidgetState extends State<CheckoutWidget> {
                                               });
                                             }
                                             return AlertDialog(
-                                              title:
-                                                  Text('Waiting for payment'),
+                                              title: Text(FFLocalizations.of(
+                                                      context)
+                                                  .getText(
+                                                      'nwchk004' /* Waiting for payment */)),
                                               content: Row(
-                                                mainAxisSize:
-                                                    MainAxisSize.min,
+                                                mainAxisSize: MainAxisSize.min,
                                                 children: [
                                                   CircularProgressIndicator(),
                                                   SizedBox(width: 16.0),
                                                   Expanded(
                                                     child: Text(
-                                                      'Complete the mobile '
-                                                      'money prompt you were '
-                                                      'sent. This will update '
-                                                      'automatically.',
+                                                      FFLocalizations.of(
+                                                              context)
+                                                          .getText(
+                                                              'nwchk005' /* Complete the mobile money prompt you were sent. This will update automatically. */),
                                                     ),
                                                   ),
                                                 ],
@@ -617,7 +621,10 @@ class _CheckoutWidgetState extends State<CheckoutWidget> {
                                                       Navigator.pop(
                                                           dialogContext,
                                                           'cancelled'),
-                                                  child: Text('Cancel'),
+                                                  child: Text(FFLocalizations
+                                                          .of(context)
+                                                      .getText(
+                                                          'nwchk006' /* Cancel */)),
                                                 ),
                                               ],
                                             );
@@ -635,8 +642,7 @@ class _CheckoutWidgetState extends State<CheckoutWidget> {
                                     safeSetState(() {});
                                     if (!context.mounted) return;
                                     await showDialog(
-                                      barrierColor: FlutterFlowTheme.of(
-                                              context)
+                                      barrierColor: FlutterFlowTheme.of(context)
                                           .background,
                                       context: context,
                                       builder: (dialogContext) {
@@ -652,8 +658,7 @@ class _CheckoutWidgetState extends State<CheckoutWidget> {
                                             onTap: () {
                                               FocusScope.of(dialogContext)
                                                   .unfocus();
-                                              FocusManager
-                                                  .instance.primaryFocus
+                                              FocusManager.instance.primaryFocus
                                                   ?.unfocus();
                                             },
                                             child: OrderSuccessfullyWidget(),
@@ -668,16 +673,22 @@ class _CheckoutWidgetState extends State<CheckoutWidget> {
                                     await showDialog(
                                       context: context,
                                       builder: (dialogContext) => AlertDialog(
-                                        title: Text('Payment $finalStatus'),
+                                        title: Text(FFLocalizations.of(context)
+                                            .getVariableText(
+                                          enText: 'Payment $finalStatus',
+                                          swText: 'Malipo hayajakamilika',
+                                          frText: 'Paiement non abouti',
+                                        )),
                                         content: Text(
-                                            'Your payment was not completed. '
-                                            'You have not been charged for '
-                                            'this course.'),
+                                            FFLocalizations.of(context).getText(
+                                                'nwchk007' /* Your payment was not completed. You have not been charged for this course. */)),
                                         actions: [
                                           TextButton(
-                                            onPressed: () => Navigator.pop(
-                                                dialogContext),
-                                            child: Text('OK'),
+                                            onPressed: () =>
+                                                Navigator.pop(dialogContext),
+                                            child: Text(FFLocalizations.of(
+                                                    context)
+                                                .getText('nwchk003' /* OK */)),
                                           ),
                                         ],
                                       ),
@@ -685,7 +696,7 @@ class _CheckoutWidgetState extends State<CheckoutWidget> {
                                   }
                                 },
                           text:
-                              'Pay TZS  ${FFAppState().order.price.toString()}',
+                              '${FFLocalizations.of(context).getText('nwchk011' /* Pay */)} Tsh ${FFAppState().order.price.toString()}',
                           options: FFButtonOptions(
                             width: double.infinity,
                             height: 50.0,
@@ -716,69 +727,6 @@ class _CheckoutWidgetState extends State<CheckoutWidget> {
                                 ),
                             elevation: 0.0,
                             borderRadius: BorderRadius.circular(8.0),
-                          ),
-                        ),
-                        Opacity(
-                          opacity: 0.0,
-                          child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                0.0, 24.0, 0.0, 0.0),
-                            child: Text(
-                              FFLocalizations.of(context).getText(
-                                'mg8vnp4x' /* 14-Day Money-Back Guarantee */,
-                              ),
-                              style: FlutterFlowTheme.of(context)
-                                  .titleSmall
-                                  .override(
-                                    font: GoogleFonts.inter(
-                                      fontWeight: FlutterFlowTheme.of(context)
-                                          .titleSmall
-                                          .fontWeight,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .titleSmall
-                                          .fontStyle,
-                                    ),
-                                    color: FlutterFlowTheme.of(context).primary,
-                                    letterSpacing: 0.0,
-                                    fontWeight: FlutterFlowTheme.of(context)
-                                        .titleSmall
-                                        .fontWeight,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .titleSmall
-                                        .fontStyle,
-                                    lineHeight: 1.5,
-                                  ),
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 24.0, 0.0, 0.0),
-                          child: Text(
-                            FFLocalizations.of(context).getText(
-                              'sqf0qmwa' /* Not satisfied? Get a full refu... */,
-                            ),
-                            textAlign: TextAlign.center,
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  font: GoogleFonts.inter(
-                                    fontWeight: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .fontWeight,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .fontStyle,
-                                  ),
-                                  letterSpacing: 0.0,
-                                  fontWeight: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .fontWeight,
-                                  fontStyle: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .fontStyle,
-                                  lineHeight: 1.5,
-                                ),
                           ),
                         ),
                       ],
