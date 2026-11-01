@@ -42,7 +42,6 @@ const templates = {
       paragraphs: [
         greeting(d.name, lang),
         "Asante kwa kujiunga na Nelwa Academy. Sasa unaweza kuvinjari kozi, kujifunza kwa kasi yako mwenyewe, na kuendelea ulipoishia wakati wowote.",
-        "Unataka kufundisha? Unaweza kuomba kuwa mkufunzi kupitia wasifu wako ndani ya programu.",
       ],
       cta: { label: "Gundua kozi", url: APP_URL() },
     } : {
@@ -52,7 +51,6 @@ const templates = {
       paragraphs: [
         greeting(d.name, lang),
         "Thanks for joining Nelwa Academy. You can now browse courses, learn at your own pace, and pick up where you left off at any time.",
-        "Want to teach? You can apply to become an instructor from your profile in the app.",
       ],
       cta: { label: "Explore courses", url: APP_URL() },
     };

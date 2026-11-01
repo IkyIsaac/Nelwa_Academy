@@ -177,61 +177,64 @@ class _ProfileWidgetState extends State<ProfileWidget>
                             ),
                           );
                         } else {
-                          return InkWell(
-                            splashColor: Colors.transparent,
-                            focusColor: Colors.transparent,
-                            hoverColor: Colors.transparent,
-                            highlightColor: Colors.transparent,
-                            onTap: () async {
-                              if (valueOrDefault(
-                                      currentUserDocument?.instructorStatus,
-                                      '') ==
-                                  'pending') {
-                                return;
-                              }
-                              context.pushNamed(
-                                  BecomeAnInstructorWidget.routeName);
-                            },
-                            child: Text(
-                              valueOrDefault(
-                                          currentUserDocument?.instructorStatus,
-                                          '') ==
-                                      'pending'
-                                  ? FFLocalizations.of(context).getText(
-                                      'nlw0iapr' /* Instructor application under review */,
-                                    )
-                                  : FFLocalizations.of(context).getText(
-                                      'fd6q08z5' /* Want to become an instructor? */,
-                                    ),
-                              style: FlutterFlowTheme.of(context)
-                                  .titleSmall
-                                  .override(
-                                    font: GoogleFonts.inter(
-                                      fontWeight: FlutterFlowTheme.of(context)
-                                          .titleSmall
-                                          .fontWeight,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .titleSmall
-                                          .fontStyle,
-                                    ),
-                                    color: FlutterFlowTheme.of(context).info,
-                                    letterSpacing: 0.0,
-                                    fontWeight: FlutterFlowTheme.of(context)
-                                        .titleSmall
-                                        .fontWeight,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .titleSmall
-                                        .fontStyle,
-                                    decoration: valueOrDefault(
-                                                currentUserDocument
-                                                    ?.instructorStatus,
-                                                '') ==
-                                            'pending'
-                                        ? TextDecoration.none
-                                        : TextDecoration.underline,
-                                  ),
-                            ),
-                          );
+                          // Instructor applications are switched off for now (product owner
+                          // decision). Restore the commented-out link below to re-enable it.
+                          return const SizedBox.shrink();
+                          // return InkWell(
+                          //   splashColor: Colors.transparent,
+                          //   focusColor: Colors.transparent,
+                          //   hoverColor: Colors.transparent,
+                          //   highlightColor: Colors.transparent,
+                          //   onTap: () async {
+                          //     if (valueOrDefault(
+                          //             currentUserDocument?.instructorStatus,
+                          //             '') ==
+                          //         'pending') {
+                          //       return;
+                          //     }
+                          //     context.pushNamed(
+                          //         BecomeAnInstructorWidget.routeName);
+                          //   },
+                          //   child: Text(
+                          //     valueOrDefault(
+                          //                 currentUserDocument?.instructorStatus,
+                          //                 '') ==
+                          //             'pending'
+                          //         ? FFLocalizations.of(context).getText(
+                          //             'nlw0iapr' /* Instructor application under review */,
+                          //           )
+                          //         : FFLocalizations.of(context).getText(
+                          //             'fd6q08z5' /* Want to become an instructor? */,
+                          //           ),
+                          //     style: FlutterFlowTheme.of(context)
+                          //         .titleSmall
+                          //         .override(
+                          //           font: GoogleFonts.inter(
+                          //             fontWeight: FlutterFlowTheme.of(context)
+                          //                 .titleSmall
+                          //                 .fontWeight,
+                          //             fontStyle: FlutterFlowTheme.of(context)
+                          //                 .titleSmall
+                          //                 .fontStyle,
+                          //           ),
+                          //           color: FlutterFlowTheme.of(context).info,
+                          //           letterSpacing: 0.0,
+                          //           fontWeight: FlutterFlowTheme.of(context)
+                          //               .titleSmall
+                          //               .fontWeight,
+                          //           fontStyle: FlutterFlowTheme.of(context)
+                          //               .titleSmall
+                          //               .fontStyle,
+                          //           decoration: valueOrDefault(
+                          //                       currentUserDocument
+                          //                           ?.instructorStatus,
+                          //                       '') ==
+                          //                   'pending'
+                          //               ? TextDecoration.none
+                          //               : TextDecoration.underline,
+                          //         ),
+                          //   ),
+                          // );
                         }
                       },
                     ),
