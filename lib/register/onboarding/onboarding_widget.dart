@@ -34,7 +34,8 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       if (FFAppState().isCompleteOnboarding == true) {
-        context.pushNamed(SignInWidget.routeName);
+        // Replace rather than push, so Sign In has nothing to go back to.
+        context.goNamed(SignInWidget.routeName);
       }
     });
 

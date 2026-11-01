@@ -87,23 +87,27 @@ class _SignInWidgetState extends State<SignInWidget>
         appBar: AppBar(
           backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
           automaticallyImplyLeading: false,
-          leading: Align(
-            alignment: AlignmentDirectional(0.0, 0.0),
-            child: FlutterFlowIconButton(
-              borderColor: FlutterFlowTheme.of(context).transparent,
-              borderRadius: 22.0,
-              borderWidth: 1.0,
-              buttonSize: 44.0,
-              icon: Icon(
-                FFIcons.karrowLeft,
-                color: FlutterFlowTheme.of(context).primaryText,
-                size: 24.0,
-              ),
-              onPressed: () async {
-                context.safePop();
-              },
-            ),
-          ),
+          // No back button when Sign In is the first screen (e.g. reopening
+          // the app after logging out): there is nothing to go back to.
+          leading: !context.canPop()
+              ? null
+              : Align(
+                  alignment: AlignmentDirectional(0.0, 0.0),
+                  child: FlutterFlowIconButton(
+                    borderColor: FlutterFlowTheme.of(context).transparent,
+                    borderRadius: 22.0,
+                    borderWidth: 1.0,
+                    buttonSize: 44.0,
+                    icon: Icon(
+                      FFIcons.karrowLeft,
+                      color: FlutterFlowTheme.of(context).primaryText,
+                      size: 24.0,
+                    ),
+                    onPressed: () async {
+                      context.safePop();
+                    },
+                  ),
+                ),
           actions: [],
           centerTitle: true,
           elevation: 0.0,

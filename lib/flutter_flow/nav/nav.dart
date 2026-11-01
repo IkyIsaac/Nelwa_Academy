@@ -71,19 +71,29 @@ class AppStateNotifier extends ChangeNotifier {
   }
 }
 
+// The first screen on launch. Returning users who are logged out land on
+// Sign In directly (as the root, so it has no back button) rather than on
+// Onboarding pushing Sign In on top of itself.
+Widget _entryPage(AppStateNotifier appStateNotifier) {
+  if (appStateNotifier.loggedIn) {
+    return HomePageWidget();
+  }
+  return FFAppState().isCompleteOnboarding
+      ? SignInWidget()
+      : OnboardingWidget();
+}
+
 GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       initialLocation: '/',
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
       navigatorKey: appNavigatorKey,
-      errorBuilder: (context, state) =>
-          appStateNotifier.loggedIn ? HomePageWidget() : OnboardingWidget(),
+      errorBuilder: (context, state) => _entryPage(appStateNotifier),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
-          builder: (context, _) =>
-              appStateNotifier.loggedIn ? HomePageWidget() : OnboardingWidget(),
+          builder: (context, _) => _entryPage(appStateNotifier),
         ),
         FFRoute(
           name: HomePageWidget.routeName,

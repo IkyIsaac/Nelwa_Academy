@@ -2,7 +2,6 @@ import '/auth/firebase_auth/auth_util.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'sign_out_model.dart';
@@ -150,8 +149,9 @@ class _SignOutWidgetState extends State<SignOutWidget> {
                           await authManager.signOut();
                           GoRouter.of(context).clearRedirectLocation();
 
-                          context.goNamedAuth(
-                              OnboardingWidget.routeName, context.mounted);
+                          // '/' picks the right entry page (Sign In for
+                          // returning users) without a back button.
+                          context.goNamedAuth('_initialize', context.mounted);
                         },
                         text: FFLocalizations.of(context).getText(
                           'ypqvjq5g' /* Sign Out */,
