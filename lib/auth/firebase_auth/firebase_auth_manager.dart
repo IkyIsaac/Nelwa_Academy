@@ -325,8 +325,8 @@ class FirebaseAuthManager extends AuthManager
           : NelwasAppFirebaseUser.fromUserCredential(userCredential);
     } on FirebaseAuthException catch (e) {
       final errorMsg = switch (e.code) {
-        'email-already-in-use' =>
-          'Error: The email is already in use by a different account',
+        'email-already-in-use' => FFLocalizations.of(context).getText(
+            'nwaut005' /* An account with this email already exists. Please sign in instead. */),
         'INVALID_LOGIN_CREDENTIALS' =>
           'Error: The supplied auth credential is incorrect, malformed or has expired',
         _ => 'Error: ${e.message!}',
@@ -335,6 +335,21 @@ class FirebaseAuthManager extends AuthManager
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text(errorMsg)),
       );
+      return null;
+    } catch (e) {
+      // Anything else (e.g. the Firestore profile write failing on a bad
+      // connection) used to escape silently, leaving the user on the form
+      // with no feedback.
+      debugPrint('Sign in / sign up failed: $e');
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).hideCurrentSnackBar();
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(FFLocalizations.of(context).getText(
+                'nwaut006' /* Something went wrong. Please check your internet connection and try again. */)),
+          ),
+        );
+      }
       return null;
     }
   }

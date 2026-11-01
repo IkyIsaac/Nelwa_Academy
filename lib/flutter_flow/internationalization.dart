@@ -316,6 +316,27 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'fr': 'Les mots de passe ne correspondent pas !',
       'sw': 'Manenosiri hayalingani!',
     },
+    'nwreg002': {
+      'en': 'Please agree to the Terms & Conditions to create your account.',
+      'fr':
+          'Veuillez accepter les Conditions générales pour créer votre compte.',
+      'sw': 'Tafadhali kubali Vigezo na Masharti ili kufungua akaunti yako.',
+    },
+    'nwaut005': {
+      'en':
+          'An account with this email already exists. Please sign in instead.',
+      'fr':
+          'Un compte existe déjà avec cet e-mail. Veuillez vous connecter.',
+      'sw': 'Akaunti yenye barua pepe hii tayari ipo. Tafadhali ingia.',
+    },
+    'nwaut006': {
+      'en':
+          'Something went wrong. Please check your internet connection and try again.',
+      'fr':
+          'Une erreur s\'est produite. Vérifiez votre connexion Internet et réessayez.',
+      'sw':
+          'Hitilafu imetokea. Tafadhali angalia mtandao wako kisha ujaribu tena.',
+    },
     'nwaut001': {
       'en':
           'Too long since most recent sign in. Sign in again before deleting your account.',

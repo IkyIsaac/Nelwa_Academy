@@ -777,6 +777,23 @@ class _SignUpWidgetState extends State<SignUpWidget>
                             !_model.formKey.currentState!.validate()) {
                           return;
                         }
+                        // Check the terms box before creating anything:
+                        // previously the account was created first and the
+                        // user was left on this form, signed in, with no
+                        // message.
+                        if (!_model.termPolicy) {
+                          _model.checkBox = true;
+                          safeSetState(() {});
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text(
+                                FFLocalizations.of(context).getText(
+                                    'nwreg002' /* Please agree to the Terms & Conditions to create your account. */),
+                              ),
+                            ),
+                          );
+                          return;
+                        }
                         GoRouter.of(context).prepareAuthEvent();
                         if (_model.passwordTextController.text !=
                             _model.confirmPasswordTextController.text) {
@@ -800,13 +817,11 @@ class _SignUpWidgetState extends State<SignUpWidget>
                           return;
                         }
 
-                        if (_model.termPolicy) {
-                          context.goNamedAuth(
-                              CompeteProfileWidget.routeName, context.mounted);
-                        } else {
-                          _model.checkBox = true;
-                          safeSetState(() {});
-                        }
+                        _model.emailTextController?.clear();
+                        _model.passwordTextController?.clear();
+                        _model.confirmPasswordTextController?.clear();
+                        context.goNamedAuth(
+                            CompeteProfileWidget.routeName, context.mounted);
                       },
                       text: FFLocalizations.of(context).getText(
                         'muaah2bm' /* Sign Up */,
