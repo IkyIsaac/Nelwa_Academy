@@ -1,0 +1,37 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    // Same interim admin check as firestore.rules.
+    function isAdmin() {
+      return request.auth != null &&
+          request.auth.token.email == 'isaackitomari33@gmail.com';
+    }
+
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+
+    // Per-user uploads from the mobile app (FlutterFlow default).
+    match /users/{userId}/{allPaths=**} {
+      allow read: if true;
+      allow write: if request.auth.uid == userId;
+    }
+
+    // Course and lesson media uploaded from the admin portal. Public read so
+    // the app can show/play it; only the admin can write. Videos up to
+    // 1 GB, images up to 10 MB.
+    match /{folder}/{id}/{file} {
+      allow read: if folder in ['course_images', 'course_previews',
+                                'lesson_videos', 'lesson_images'];
+      allow write: if isAdmin() && (
+          (folder in ['course_previews', 'lesson_videos'] &&
+              (request.resource == null ||
+               (request.resource.size < 1024 * 1024 * 1024 &&
+                request.resource.contentType.matches('video/.*')))) ||
+          (folder in ['course_images', 'lesson_images'] &&
+              (request.resource == null ||
+               (request.resource.size < 10 * 1024 * 1024 &&
+                request.resource.contentType.matches('image/.*')))));
+    }
+  }
+}

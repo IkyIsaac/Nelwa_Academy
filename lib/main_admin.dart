@@ -1,3 +1,4 @@
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
 
@@ -16,6 +17,10 @@ void main() async {
   usePathUrlStrategy();
 
   await initFirebase();
+
+  // Firebase's default is to keep silently retrying a failing upload for
+  // 10 minutes. Give up sooner so the admin sees the error instead.
+  FirebaseStorage.instance.setMaxUploadRetryTime(const Duration(minutes: 2));
 
   runApp(const AdminApp());
 }

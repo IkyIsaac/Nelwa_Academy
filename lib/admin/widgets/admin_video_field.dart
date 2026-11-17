@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '/backend/firebase_storage/storage.dart';
 import '/flutter_flow/flutter_flow_video_player.dart';
 import '/flutter_flow/upload_data.dart';
 import '../design/admin_tokens.dart';
+import 'admin_upload.dart';
 
 /// A video field that actually plays the video it points to, instead of
 /// just holding a URL in a text box. Upload a file or paste a URL — either
@@ -30,9 +30,9 @@ class AdminVideoField extends StatefulWidget {
   State<AdminVideoField> createState() => _AdminVideoFieldState();
 }
 
-class _AdminVideoFieldState extends State<AdminVideoField> {
+class _AdminVideoFieldState extends State<AdminVideoField>
+    with AdminUploadMixin<AdminVideoField> {
   late String _currentUrl = widget.url;
-  bool _uploading = false;
 
   @override
   void didUpdateWidget(AdminVideoField oldWidget) {
@@ -57,12 +57,10 @@ class _AdminVideoFieldState extends State<AdminVideoField> {
     );
     if (file == null) return;
 
-    setState(() => _uploading = true);
     final path =
         '${widget.storageFolder}/${DateTime.now().millisecondsSinceEpoch}_${file.storagePath.split('/').last}';
-    final url = await uploadData(path, file.bytes);
+    final url = await runUpload(path, file.bytes);
     if (!mounted) return;
-    setState(() => _uploading = false);
     if (url != null) _setUrl(url);
   }
 
@@ -129,15 +127,15 @@ class _AdminVideoFieldState extends State<AdminVideoField> {
         Row(
           children: [
             OutlinedButton.icon(
-              onPressed: _uploading ? null : _upload,
-              icon: _uploading
+              onPressed: uploading ? null : _upload,
+              icon: uploading
                   ? const SizedBox(
                       width: 14,
                       height: 14,
                       child: CircularProgressIndicator(strokeWidth: 2),
                     )
                   : const Icon(Icons.upload_rounded, size: 16),
-              label: Text(_uploading ? 'Uploading…' : 'Upload'),
+              label: Text(uploading ? 'Uploading…' : 'Upload'),
               style: OutlinedButton.styleFrom(
                 foregroundColor: AdminColors.oxblood,
                 side: const BorderSide(color: AdminColors.oxblood),
@@ -164,6 +162,7 @@ class _AdminVideoFieldState extends State<AdminVideoField> {
             ],
           ],
         ),
+        buildUploadStatus(),
       ],
     );
   }

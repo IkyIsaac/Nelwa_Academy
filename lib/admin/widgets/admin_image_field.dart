@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '/backend/firebase_storage/storage.dart';
 import '/flutter_flow/upload_data.dart';
 import '../design/admin_tokens.dart';
+import 'admin_upload.dart';
 
 /// Same idea as AdminVideoField, for image URLs — shows the actual image
 /// instead of a bare link. Upload a file or paste a URL — either way the
@@ -28,9 +28,9 @@ class AdminImageField extends StatefulWidget {
   State<AdminImageField> createState() => _AdminImageFieldState();
 }
 
-class _AdminImageFieldState extends State<AdminImageField> {
+class _AdminImageFieldState extends State<AdminImageField>
+    with AdminUploadMixin<AdminImageField> {
   late String _currentUrl = widget.url;
-  bool _uploading = false;
 
   @override
   void didUpdateWidget(AdminImageField oldWidget) {
@@ -55,12 +55,10 @@ class _AdminImageFieldState extends State<AdminImageField> {
     );
     if (file == null) return;
 
-    setState(() => _uploading = true);
     final path =
         '${widget.storageFolder}/${DateTime.now().millisecondsSinceEpoch}_${file.storagePath.split('/').last}';
-    final url = await uploadData(path, file.bytes);
+    final url = await runUpload(path, file.bytes);
     if (!mounted) return;
-    setState(() => _uploading = false);
     if (url != null) _setUrl(url);
   }
 
@@ -125,15 +123,15 @@ class _AdminImageFieldState extends State<AdminImageField> {
         Row(
           children: [
             OutlinedButton.icon(
-              onPressed: _uploading ? null : _upload,
-              icon: _uploading
+              onPressed: uploading ? null : _upload,
+              icon: uploading
                   ? const SizedBox(
                       width: 14,
                       height: 14,
                       child: CircularProgressIndicator(strokeWidth: 2),
                     )
                   : const Icon(Icons.upload_rounded, size: 16),
-              label: Text(_uploading ? 'Uploading…' : 'Upload'),
+              label: Text(uploading ? 'Uploading…' : 'Upload'),
               style: OutlinedButton.styleFrom(
                 foregroundColor: AdminColors.oxblood,
                 side: const BorderSide(color: AdminColors.oxblood),
@@ -160,6 +158,7 @@ class _AdminImageFieldState extends State<AdminImageField> {
             ],
           ],
         ),
+        buildUploadStatus(),
       ],
     );
   }
