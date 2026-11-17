@@ -2418,14 +2418,14 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'sw': 'Jumla ya Masomo',
     },
     'luh4t121': {
-      'en': 'Total duration',
-      'fr': 'Durée totale',
-      'sw': 'Jumla ya muda',
+      'en': 'Total duration (seconds)',
+      'fr': 'Durée totale (secondes)',
+      'sw': 'Jumla ya muda (sekunde)',
     },
     'xhb7y55e': {
-      'en': 'Total  duration',
-      'fr': 'Description',
-      'sw': 'Jumla ya muda',
+      'en': 'Total duration in seconds',
+      'fr': 'Durée totale en secondes',
+      'sw': 'Jumla ya muda kwa sekunde',
     },
     'hroimsws': {
       'en': 'Group',

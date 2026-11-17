@@ -48,7 +48,7 @@ class _CoursesByGroupWidgetState extends State<CoursesByGroupWidget> {
           ..skillLevel = null
           ..dateAdded = null
           ..durationFrom = 0
-          ..durationTo = 6000,
+          ..durationTo = 360000,
       );
       safeSetState(() {});
     });

@@ -64,7 +64,10 @@ List<SupportMessageRecord> similarDates(
   return filteredMessages;
 }
 
-String totalDuration(int courseMinutes) {
+/// Course length. `total_duration` is stored in seconds (like lesson
+/// `duration`), e.g. 583 -> "9 minutes", 7260 -> "2 hours and 1 minute".
+String totalDuration(int courseSeconds) {
+  final courseMinutes = (courseSeconds / 60).round();
   if (courseMinutes <= 0) return "0 minutes";
 
   int hours = courseMinutes ~/ 60;
