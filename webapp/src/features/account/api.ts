@@ -103,7 +103,9 @@ export async function fetchPurchaseHistory(uid: string): Promise<PurchaseRecord[
 }
 
 export async function fetchMyReviews(uid: string): Promise<MyReview[]> {
-  const snap = await getDocs(query(collection(db, "users", uid, "user_reviews"), orderBy("created_at", "desc")))
+  const snap = await getDocs(
+    query(collection(db, "users", uid, "user_reviews"), orderBy("created_at", "desc")),
+  )
   return snap.docs.map((d) => toMyReview(d.id, d.data()))
 }
 
@@ -122,7 +124,11 @@ export async function fetchFollowedInstructors(ids: string[]): Promise<FollowedI
 
 // ---------------------------------------------------------------- notifications
 
-export function watchNotifications(uid: string, onChange: (list: AppNotification[]) => void, onError: () => void) {
+export function watchNotifications(
+  uid: string,
+  onChange: (list: AppNotification[]) => void,
+  onError: () => void,
+) {
   return onSnapshot(
     query(collection(db, "users", uid, "notification"), orderBy("time_stamp", "desc")),
     (snap) => onChange(snap.docs.map((d) => toNotification(d.id, d.data()))),
@@ -166,7 +172,10 @@ export async function uploadSupportImage(uid: string, file: File) {
 export async function sendSupportMessage(uid: string, supportId: string, text: string, image: string) {
   let threadId = supportId
   if (!threadId) {
-    const thread = await addDoc(collection(db, "support"), { user: userDoc(uid), start_date: serverTimestamp() })
+    const thread = await addDoc(collection(db, "support"), {
+      user: userDoc(uid),
+      start_date: serverTimestamp(),
+    })
     threadId = thread.id
     await updateDoc(userDoc(uid), { support: thread })
   }

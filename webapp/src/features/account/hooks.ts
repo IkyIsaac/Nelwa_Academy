@@ -58,7 +58,11 @@ export function useSupportMessages(supportId: string) {
 export function usePurchaseHistory() {
   const { user } = useAuth()
   const uid = user?.uid ?? ""
-  return useQuery({ queryKey: ["purchase-history", uid], queryFn: () => fetchPurchaseHistory(uid), enabled: !!uid })
+  return useQuery({
+    queryKey: ["purchase-history", uid],
+    queryFn: () => fetchPurchaseHistory(uid),
+    enabled: !!uid,
+  })
 }
 
 export function useMyReviews() {
