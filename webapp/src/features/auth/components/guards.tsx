@@ -26,7 +26,9 @@ export function RequireAuth({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     if (status === "signed-out") {
-      router.replace(`${routes.signIn}?next=${encodeURIComponent(pathname)}`)
+      // Keep the query too (e.g. ?lesson=) so they land on the same view.
+      const here = pathname + window.location.search
+      router.replace(`${routes.signIn}?next=${encodeURIComponent(here)}`)
     }
   }, [status, router, pathname])
 
