@@ -8,6 +8,7 @@ apps.
 |---|---|
 | [web-app.md](web-app.md) | The Next.js website in `webapp/`: decisions, code layout, phase status |
 | [checkout-web.md](checkout-web.md) | Buying a course on the website with Snippe (Phase 3) |
+| [learning-web.md](learning-web.md) | My courses, the player, progress, reviews and refund requests (Phase 4) |
 | [snippe-integration.md](snippe-integration.md) | Snippe mobile-money payments: Cloud Functions, webhook, mobile checkout |
 | [firestore-security-rules.md](firestore-security-rules.md) | Who can read and write each collection, why, and how to change the rules safely |
 | [duration-units.md](duration-units.md) | Course and lesson durations are stored in seconds |

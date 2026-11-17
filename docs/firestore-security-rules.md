@@ -150,15 +150,14 @@ today, traced through the code. Each was confirmed to still pass:
 
 ## Known trade-offs
 
-1. **The refund screen's extra bookkeeping now fails.** After saving the
-   refund request, `requesta_refund_widget.dart` also edits the
-   instructor's `payment_account.sales_reports` and writes a
-   `purchase_history` entry. Those writes are now blocked: the first
-   because `payment_account` holds bank details, the second because it
-   was self-declared money movement. The refund request itself still
-   saves, and the admin handles refunds from the portal. This was already
-   flagged as a trust problem in [snippe-integration.md](snippe-integration.md);
-   the right fix is a Cloud Function for refunds.
+1. **Refund bookkeeping moved off the phone.** After saving a refund
+   request, the old mobile screen also edited the instructor's
+   `payment_account` and wrote a `purchase_history` entry. The rules now
+   refuse both: the first because `payment_account` holds bank details,
+   the second because it was self-declared money movement. As a result,
+   older app builds keep the refund screen open after the request saves.
+   Fixed in the app (`0089563`): the screen now only saves the request.
+   Refund money movement belongs in an admin-triggered Cloud Function.
 2. **Purchase History in older app builds shows nothing.** The query fix
    (`7cd9fad`) only takes effect in a new release. Until then the old
    query asks for everyone's history, the rules refuse it, and the screen
@@ -175,7 +174,11 @@ today, traced through the code. Each was confirmed to still pass:
 5. **Approved instructors can read all consultation bookings**, because the
    app's Consultation page (shown to instructors) lists them all. Tighten
    this once bookings are assigned to a specific instructor.
-6. **The admin is a single hard-coded email.** Adding a second admin means
+6. **"Delete course" on mobile now fails.** The My Courses menu deletes
+   the learner's own `purchased_courses` entry, and clients may no longer
+   delete those. Either allow owner deletes (only the learner loses
+   access) or remove the button from the app.
+7. **The admin is a single hard-coded email.** Adding a second admin means
    editing `isAdmin()` and redeploying. Custom claims would be better
    long-term.
 
