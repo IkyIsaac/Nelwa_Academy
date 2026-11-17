@@ -3,16 +3,20 @@
 
 /*
  * Nelwa Academy design tokens.
- * Colours, type and radii come from the nelwasacademy.com landing template.
+ * Colours and type follow the Nelwa's brand guidelines (Deep Earth Red
+ * #5d0a0b, brand red #9d1c20, Montserrat throughout); layout, radii and
+ * section colours come from the nelwasacademy.com landing template.
  * Components use the shadcn names (primary, muted, border…) so they pick up
  * the brand automatically; brand-specific names (maroon, cream, gold) are for
  * marketing sections that need the exact template look.
  */
 :root {
   /* Brand */
-  --maroon: #5d080b;
-  --maroon-light: #7a0e12;
+  --maroon: #5d0a0b; /* "Deep Earth Red" */
+  --maroon-light: #9d1c20; /* brand red */
   --maroon-dark: #3d0507;
+  --brown: #5d170c; /* brand brown */
+  --ivory: #fafbe6; /* brand ivory */
   --maroon-tint: #fdf0f0;
   --cream: #fff8f0;
   --cream-deep: #fff3e3;
@@ -53,13 +57,15 @@
 }
 
 @theme inline {
-  --font-sans: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-montserrat), var(--font-poppins), sans-serif;
+  --font-sans: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-montserrat), ui-sans-serif, sans-serif;
 
   --color-maroon: var(--maroon);
   --color-maroon-light: var(--maroon-light);
   --color-maroon-dark: var(--maroon-dark);
   --color-maroon-tint: var(--maroon-tint);
+  --color-brown: var(--brown);
+  --color-ivory: var(--ivory);
   --color-cream: var(--cream);
   --color-cream-deep: var(--cream-deep);
   --color-gold: var(--gold);

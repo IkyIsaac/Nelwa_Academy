@@ -1,20 +1,15 @@
 import type { Metadata, Viewport } from "next"
 import { NextIntlClientProvider } from "next-intl"
 import { getLocale } from "next-intl/server"
-import { Montserrat, Poppins } from "next/font/google"
+import { Montserrat } from "next/font/google"
 import { Providers } from "./providers"
 import "./globals.css"
 
+// Montserrat for headlines, sub-headlines and body, per the brand guidelines.
 const montserrat = Montserrat({
   variable: "--font-montserrat",
   subsets: ["latin"],
-  weight: ["500", "600", "700", "800", "900"],
-})
-
-const poppins = Poppins({
-  variable: "--font-poppins",
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800"],
+  weight: ["300", "400", "500", "600", "700", "800", "900"],
 })
 
 export const metadata: Metadata = {
@@ -29,14 +24,14 @@ export const metadata: Metadata = {
 }
 
 export const viewport: Viewport = {
-  themeColor: "#5d080b",
+  themeColor: "#5d0a0b",
 }
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const locale = await getLocale()
 
   return (
-    <html lang={locale} className={`${montserrat.variable} ${poppins.variable}`}>
+    <html lang={locale} className={montserrat.variable}>
       <body className="grain min-h-dvh">
         <NextIntlClientProvider>
           <Providers>{children}</Providers>

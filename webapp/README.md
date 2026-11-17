@@ -53,11 +53,12 @@ scripts/               translation helpers
 
 ## Design
 
-Colours, fonts and shapes come from the original landing page template:
-maroon `#5D080B`, cream `#FFF8F0`, Montserrat headings, Poppins body text,
-pill buttons. They are defined once as tokens in `src/app/globals.css` and
-used through Tailwind classes such as `bg-maroon`, `text-cream`,
-`bg-primary`.
+Colours and type follow the Nelwa's brand guidelines: Deep Earth Red
+`#5d0a0b`, brand red `#9d1c20`, and Montserrat for all text. Layout, pill
+buttons and the cream section backgrounds (`#FFF8F0`) come from the original
+landing page template. Everything is defined once as tokens in
+`src/app/globals.css` and used through Tailwind classes such as `bg-maroon`,
+`text-cream`, `bg-primary`.
 
 ## Translations
 
