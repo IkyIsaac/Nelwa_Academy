@@ -70,7 +70,7 @@ Rules the code follows:
 | 2 | Catalog: explore, search, categories, tags, groups, course page, reviews, instructor, signed-in home | Done |
 | 3 | Checkout with Snippe ([checkout-web.md](checkout-web.md)) | Built and deployed; awaiting a live 500 TZS test |
 | 4 | Learning: My courses, player, progress, reviews, refund requests ([learning-web.md](learning-web.md)) | Built; awaiting a signed-in test |
-| 5 | Account: profile, notifications, purchases, wishlist, support chat, consultations, help/terms/privacy | Planned |
+| 5 | Account: profile, security, notifications, purchases, reviews, following, wishlist, support chat, consultation booking, help/terms/privacy ([account-web.md](account-web.md)) | Built; consultation email function not deployed; legal drafts need review |
 | 6 | Instructor studio | Later |
 | 7 | Polish, SEO, performance, launch | Planned |
 
