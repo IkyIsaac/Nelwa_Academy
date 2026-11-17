@@ -607,8 +607,11 @@ class _WriteReviewWidgetState extends State<WriteReviewWidget> {
 
                                     await columnCoursesRecord.reference.update({
                                       ...createCoursesRecordData(
-                                        rating: ((_model.ratingBarValue!) +
-                                                columnCoursesRecord.rating) /
+                                        // Running mean of all ratings.
+                                        rating: ((columnCoursesRecord.rating *
+                                                    columnCoursesRecord
+                                                        .reviewsCount) +
+                                                _model.ratingBarValue!) /
                                             (columnCoursesRecord.reviewsCount +
                                                 1),
                                       ),
