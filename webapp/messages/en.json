@@ -1,0 +1,52 @@
+{
+  "common": {
+    "continue": "Continue",
+    "cancel": "Cancel",
+    "save": "Save",
+    "seeAll": "See All",
+    "retry": "Try again",
+    "loading": "Loading…",
+    "somethingWrong": "Something went wrong",
+    "free": "Free"
+  },
+  "nav": {
+    "home": "Home",
+    "explore": "Explore",
+    "learn": "Learn",
+    "profile": "Profile",
+    "about": "About",
+    "courses": "Courses",
+    "ourStory": "Our Story",
+    "consult": "Consult",
+    "contact": "Contact",
+    "enrollNow": "Enroll Now",
+    "signIn": "Sign In",
+    "signUp": "Sign Up",
+    "logout": "Logout",
+    "notifications": "Notifications",
+    "search": "Search",
+    "myLearning": "My Learning",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "wishlist": "Wishlist",
+    "purchases": "Purchase History"
+  },
+  "footer": {
+    "tagline": "Africa's Ice Cream School. Built by Africans, for Africans. Empowering the next generation of food entrepreneurs across the continent.",
+    "learn": "Learn",
+    "company": "Company",
+    "legal": "Legal",
+    "allCourses": "All courses",
+    "consultation": "1:1 Consultation",
+    "ourValues": "Our Values",
+    "studentStories": "Student Stories",
+    "helpCenter": "Help Center",
+    "privacyPolicy": "Privacy Policy",
+    "terms": "Terms & Conditions",
+    "rights": "All rights reserved. Dar es Salaam, Tanzania.",
+    "getTheApp": "Get the app"
+  },
+  "language": {
+    "title": "Language"
+  }
+}

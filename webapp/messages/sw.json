@@ -1,0 +1,52 @@
+{
+  "common": {
+    "continue": "Endelea",
+    "cancel": "Ghairi",
+    "save": "Hifadhi",
+    "seeAll": "Tazama Zote",
+    "retry": "Jaribu tena",
+    "loading": "Inapakia…",
+    "somethingWrong": "Kuna hitilafu imetokea",
+    "free": "Bure"
+  },
+  "nav": {
+    "home": "Nyumbani",
+    "explore": "Gundua",
+    "learn": "Jifunze",
+    "profile": "Wasifu",
+    "about": "Kuhusu",
+    "courses": "Kozi",
+    "ourStory": "Hadithi Yetu",
+    "consult": "Ushauri",
+    "contact": "Wasiliana",
+    "enrollNow": "Jiunge Sasa",
+    "signIn": "Ingia",
+    "signUp": "Jisajili",
+    "logout": "Toka",
+    "notifications": "Arifa",
+    "search": "Tafuta",
+    "myLearning": "Masomo Yangu",
+    "openMenu": "Fungua menyu",
+    "closeMenu": "Funga menyu",
+    "wishlist": "Orodha ya Matamanio",
+    "purchases": "Historia ya Ununuzi"
+  },
+  "footer": {
+    "tagline": "Shule ya Aiskrimu ya Afrika. Imejengwa na Waafrika, kwa ajili ya Waafrika. Tunawawezesha wajasiriamali wa chakula wa kizazi kijacho kote barani.",
+    "learn": "Jifunze",
+    "company": "Kampuni",
+    "legal": "Kisheria",
+    "allCourses": "Kozi zote",
+    "consultation": "Ushauri wa 1:1",
+    "ourValues": "Maadili Yetu",
+    "studentStories": "Hadithi za Wanafunzi",
+    "helpCenter": "Kituo cha Msaada",
+    "privacyPolicy": "Sera ya Faragha",
+    "terms": "Vigezo na Masharti",
+    "rights": "Haki zote zimehifadhiwa. Dar es Salaam, Tanzania.",
+    "getTheApp": "Pakua programu"
+  },
+  "language": {
+    "title": "Lugha"
+  }
+}

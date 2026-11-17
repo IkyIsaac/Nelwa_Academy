@@ -1,0 +1,52 @@
+{
+  "common": {
+    "continue": "Continuer",
+    "cancel": "Annuler",
+    "save": "Enregistrer",
+    "seeAll": "Voir tout",
+    "retry": "Réessayer",
+    "loading": "Chargement…",
+    "somethingWrong": "Une erreur s'est produite",
+    "free": "Gratuit"
+  },
+  "nav": {
+    "home": "Maison",
+    "explore": "Explorer",
+    "learn": "Apprendre",
+    "profile": "Profil",
+    "about": "À propos",
+    "courses": "Cours",
+    "ourStory": "Notre histoire",
+    "consult": "Consultation",
+    "contact": "Contact",
+    "enrollNow": "S'inscrire",
+    "signIn": "Se connecter",
+    "signUp": "S'inscrire",
+    "logout": "Se déconnecter",
+    "notifications": "Notifications",
+    "search": "Recherche",
+    "myLearning": "Mon apprentissage",
+    "openMenu": "Ouvrir le menu",
+    "closeMenu": "Fermer le menu",
+    "wishlist": "Liste de souhaits",
+    "purchases": "Historique d'achats"
+  },
+  "footer": {
+    "tagline": "L'école de glace de l'Afrique. Construite par des Africains, pour des Africains. Nous accompagnons la prochaine génération d'entrepreneurs alimentaires du continent.",
+    "learn": "Apprendre",
+    "company": "Entreprise",
+    "legal": "Mentions légales",
+    "allCourses": "Tous les cours",
+    "consultation": "Consultation individuelle",
+    "ourValues": "Nos valeurs",
+    "studentStories": "Témoignages d'étudiants",
+    "helpCenter": "Centre d'aide",
+    "privacyPolicy": "Politique de confidentialité",
+    "terms": "Conditions générales",
+    "rights": "Tous droits réservés. Dar es Salaam, Tanzanie.",
+    "getTheApp": "Télécharger l'application"
+  },
+  "language": {
+    "title": "Langue"
+  }
+}

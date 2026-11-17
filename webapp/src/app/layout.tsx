@@ -1,0 +1,47 @@
+import type { Metadata, Viewport } from "next"
+import { NextIntlClientProvider } from "next-intl"
+import { getLocale } from "next-intl/server"
+import { Montserrat, Poppins } from "next/font/google"
+import { Providers } from "./providers"
+import "./globals.css"
+
+const montserrat = Montserrat({
+  variable: "--font-montserrat",
+  subsets: ["latin"],
+  weight: ["500", "600", "700", "800", "900"],
+})
+
+const poppins = Poppins({
+  variable: "--font-poppins",
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700", "800"],
+})
+
+export const metadata: Metadata = {
+  metadataBase: new URL("https://nelwasacademy.com"),
+  title: {
+    default: "Nelwa's Academy — Africa's Ice Cream School",
+    template: "%s · Nelwa's Academy",
+  },
+  description:
+    "Learn how to make soft serve and gelato, and turn your skills into real income. Taught by Tanzania's most celebrated ice cream entrepreneur.",
+  openGraph: { siteName: "Nelwa's Academy", type: "website" },
+}
+
+export const viewport: Viewport = {
+  themeColor: "#5d080b",
+}
+
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const locale = await getLocale()
+
+  return (
+    <html lang={locale} className={`${montserrat.variable} ${poppins.variable}`}>
+      <body className="grain min-h-dvh">
+        <NextIntlClientProvider>
+          <Providers>{children}</Providers>
+        </NextIntlClientProvider>
+      </body>
+    </html>
+  )
+}
