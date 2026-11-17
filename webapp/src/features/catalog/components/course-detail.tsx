@@ -11,7 +11,7 @@ import { Skeleton } from "@/components/ui/skeleton"
 import { routes } from "@/config/site"
 import { useAuth } from "@/features/auth/components/auth-provider"
 import { cn } from "@/lib/utils"
-import { formatMinutes, formatRating } from "../format"
+import { formatCourseLength, formatRating } from "../format"
 import { useCourse, useReviews } from "../hooks"
 import { type Course, courseDescription, courseTitle } from "../types"
 import { LoadError } from "./discover-views"
@@ -58,7 +58,7 @@ function CourseLayout({ course, owned }: { course: Course; owned: boolean }) {
 
   const facts = [
     course.totalLessons > 0 && { icon: BookOpen, label: t("lessonsCount", { count: course.totalLessons }) },
-    course.totalMinutes > 0 && { icon: Clock, label: formatMinutes(course.totalMinutes) },
+    course.totalSeconds > 0 && { icon: Clock, label: formatCourseLength(course.totalSeconds) },
     course.language.name && { icon: Globe, label: course.language.name },
     { icon: Users, label: t("students", { count: course.studentIds.length }) },
   ].filter(Boolean) as { icon: typeof Clock; label: string }[]

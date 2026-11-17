@@ -9,7 +9,7 @@ import { Skeleton } from "@/components/ui/skeleton"
 import { routes } from "@/config/site"
 import { useAuth } from "@/features/auth/components/auth-provider"
 import { cn } from "@/lib/utils"
-import { formatMinutes, formatPrice } from "../format"
+import { formatCourseLength, formatPrice } from "../format"
 import { type Course, courseTitle } from "../types"
 import { RatingBadge } from "./rating"
 import { WishlistButton } from "./wishlist-button"
@@ -109,10 +109,10 @@ export function CourseCard({ course, morph, className }: CardProps) {
               {t("lessonsCount", { count: course.totalLessons })}
             </span>
           )}
-          {course.totalMinutes > 0 && (
+          {course.totalSeconds > 0 && (
             <span className="inline-flex items-center gap-1">
               <Clock className="size-3.5" />
-              {formatMinutes(course.totalMinutes)}
+              {formatCourseLength(course.totalSeconds)}
             </span>
           )}
         </div>

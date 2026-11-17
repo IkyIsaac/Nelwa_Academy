@@ -5,8 +5,12 @@ export function formatPrice(amount: number) {
   return `TSh ${Math.round(amount).toLocaleString("en-US")}`
 }
 
-/** Course length from minutes: "45 min", "3 h", "3 h 20 min". */
-export function formatMinutes(minutes: number) {
+/**
+ * Course length from seconds (`total_duration`, like lesson `duration`, is
+ * stored in seconds): "45 min", "3 h", "3 h 20 min".
+ */
+export function formatCourseLength(seconds: number) {
+  const minutes = Math.round(seconds / 60)
   if (minutes <= 0) return ""
   const h = Math.floor(minutes / 60)
   const m = minutes % 60

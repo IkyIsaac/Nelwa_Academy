@@ -30,8 +30,8 @@ export type Course = {
   rating: number
   reviewsCount: number
   totalLessons: number
-  /** Total length in minutes. */
-  totalMinutes: number
+  /** Total length in seconds. */
+  totalSeconds: number
   instructorId: string
   instructorName: string
   publishedAt: Date | null
@@ -60,7 +60,7 @@ export function toCourse(id: string, d: DocumentData): Course {
     rating: num(d.rating),
     reviewsCount: num(d.reviews_count),
     totalLessons: num(d.total_lessons),
-    totalMinutes: num(d.total_duration),
+    totalSeconds: num(d.total_duration),
     instructorId: refId(d.instructor_ref),
     instructorName: str(d.instructor_name),
     publishedAt: date(d.published_date),

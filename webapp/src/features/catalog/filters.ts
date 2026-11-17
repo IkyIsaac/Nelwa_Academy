@@ -29,13 +29,13 @@ export const defaultFilters: CourseFilters = {
 export const countActiveFilters = (f: CourseFilters) =>
   [f.rating > 0, f.duration !== "any", f.price !== "any", f.language !== ""].filter(Boolean).length
 
-// Mobile filter buckets, in minutes.
+// Mobile filter buckets, in seconds (course length is stored in seconds).
 const DURATION: Record<DurationRange, [number, number]> = {
   any: [0, Infinity],
-  under1h: [0, 60],
-  "1to3h": [60, 180],
-  "3to10h": [180, 600],
-  over10h: [600, Infinity],
+  under1h: [0, 3600],
+  "1to3h": [3600, 10_800],
+  "3to10h": [10_800, 36_000],
+  over10h: [36_000, Infinity],
 }
 
 const PRICE: Record<PriceRange, [number, number]> = {
@@ -61,7 +61,7 @@ export function applyFilters(courses: Course[], f: CourseFilters) {
     .filter(
       (c) =>
         c.rating >= f.rating &&
-        (f.duration === "any" || inRange(c.totalMinutes, DURATION[f.duration])) &&
+        (f.duration === "any" || inRange(c.totalSeconds, DURATION[f.duration])) &&
         inRange(c.price, PRICE[f.price]) &&
         (!f.language || c.language.code === f.language),
     )
