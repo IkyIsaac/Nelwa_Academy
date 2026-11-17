@@ -105,8 +105,8 @@ Checked so far:
 
 Still to do (needs a signed-in account and a real 500 TZS payment):
 
-1. Deploy functions (for `redirect_url`). Until then checkout still works;
-   the Snippe tab just doesn't return by itself.
+1. ~~Deploy functions~~: `createOrder` with `redirect_url` was deployed
+   on 2026-11-17. An anonymous call is correctly refused.
 2. Sign in on the site, open the sample course, Pay.
 3. Approve on the phone. Confirm the order page flips to "Payment
    received", the receipt email arrives, and the course shows as owned on
