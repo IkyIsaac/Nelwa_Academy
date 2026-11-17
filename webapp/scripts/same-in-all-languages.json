@@ -4,5 +4,8 @@
   "landing.courses.softPrice",
   "landing.courses.softPriceNote",
   "landing.courses.gelatoPrice",
-  "landing.contact.whatsapp"
+  "landing.contact.whatsapp",
+  "catalog.filters.prices.50to150k",
+  "catalog.listing.group",
+  "catalog.instructor.expertise"
 ]

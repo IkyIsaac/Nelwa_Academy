@@ -10,7 +10,10 @@
     "free": "Bure",
     "chooseCountry": "Chagua nchi yako",
     "search": "Tafuta",
-    "noResults": "Hakuna matokeo"
+    "noResults": "Hakuna matokeo",
+    "loadFailed": "Hatukuweza kupakia hii kwa sasa. Angalia mtandao wako kisha ujaribu tena.",
+    "previous": "Iliyotangulia",
+    "next": "Inayofuata"
   },
   "nav": {
     "home": "Nyumbani",
@@ -307,6 +310,162 @@
       "sendFailed": "Hatukuweza kutuma ujumbe wako. Tafadhali tumia WhatsApp au barua pepe.",
       "nameRequired": "Tafadhali weka jina lako.",
       "messageRequired": "Tafadhali andika ujumbe."
+    }
+  },
+  "catalog": {
+    "free": "Bure",
+    "perMonth": " /mwezi",
+    "enrolled": "Umejiunga",
+    "lessonsCount": "{count, plural, one {Somo #} other {Masomo #}}",
+    "coursesCount": "{count, plural, =0 {Hakuna kozi bado} one {Kozi #} other {Kozi #}}",
+    "resultsCount": "{count, plural, =0 {Hakuna kozi} one {Kozi #} other {Kozi #}}",
+    "loadingCourses": "Inapakia kozi…",
+    "addToWishlist": "Hifadhi kwenye orodha ya matamanio",
+    "removeFromWishlist": "Ondoa kwenye orodha ya matamanio",
+    "sort": {
+      "label": "Panga kwa",
+      "popular": "Maarufu zaidi",
+      "newest": "Mpya zaidi",
+      "rating": "Zenye alama za juu",
+      "priceLow": "Bei: chini kwenda juu",
+      "priceHigh": "Bei: juu kwenda chini"
+    },
+    "viewMode": "Mtindo wa kuonyesha",
+    "gridView": "Gridi",
+    "listView": "Orodha",
+    "noCourses": "Hakuna kozi hapa bado",
+    "noCoursesFiltered": "Jaribu kuondoa baadhi ya vichujio uone kozi zaidi.",
+    "filters": {
+      "button": "Vichujio",
+      "title": "Chuja kozi",
+      "rating": "Alama",
+      "any": "Yoyote",
+      "duration": "Muda wa kozi",
+      "durations": {
+        "any": "Wowote",
+        "under1h": "Chini ya saa 1",
+        "1to3h": "Saa 1–3",
+        "3to10h": "Saa 3–10",
+        "over10h": "Zaidi ya saa 10"
+      },
+      "price": "Bei (kwa mwezi)",
+      "prices": {
+        "any": "Yoyote",
+        "free": "Bure",
+        "under50k": "Chini ya TSh 50,000",
+        "50to150k": "TSh 50,000–150,000",
+        "over150k": "Zaidi ya TSh 150,000"
+      },
+      "language": "Lugha ya kufundishia",
+      "clear": "Futa vyote",
+      "apply": "Onyesha matokeo"
+    },
+    "searchPlaceholder": "Unataka kujifunza nini?",
+    "clearSearch": "Futa utafutaji",
+    "explore": {
+      "eyebrow": "Orodha ya kozi",
+      "title": "Gundua",
+      "subtitle": "Kozi za vitendo za aiskrimu, gelato na biashara ya chakula, zilizoundwa kwa soko la Afrika."
+    },
+    "trending": "Zinazovuma sasa",
+    "categories": "Makundi",
+    "allCategories": "Makundi yote",
+    "categoriesSubtitle": "Chagua mada uone kozi zake zote.",
+    "shelves": {
+      "new": "Kozi Mpya",
+      "recommended": "Tunapendekeza",
+      "popular": "Kozi Maarufu"
+    },
+    "allCourses": "Kozi zote",
+    "search": {
+      "title": "Tafuta",
+      "noResults": "Hakuna kinacholingana na “{query}”"
+    },
+    "listing": {
+      "category": "Kundi",
+      "tag": "Lebo",
+      "group": "Mkusanyiko"
+    },
+    "course": {
+      "backToCourses": "Kozi zote",
+      "by": "Na",
+      "reviewsCount": "{count, plural, one {Maoni #} other {Maoni #}}",
+      "lessonsCount": "{count, plural, one {Somo #} other {Masomo #}}",
+      "students": "{count, plural, =0 {Kuwa mwanafunzi wa kwanza} one {Mwanafunzi #} other {Wanafunzi #}}",
+      "about": "Kuhusu kozi hii",
+      "noDescription": "Mkufunzi bado hajaongeza maelezo.",
+      "showMore": "Onyesha zaidi",
+      "showLess": "Onyesha kidogo",
+      "forWho": "Kozi hii ni ya nani",
+      "curriculum": "Masomo",
+      "instructor": "Mkufunzi wako",
+      "reviews": "Maoni",
+      "allReviews": "Ona yote {count}",
+      "tags": "Lebo",
+      "curriculumLocked": "{count, plural, =0 {Jisajili uone masomo} one {Jisajili uone somo} other {Jisajili uone masomo yote #}}",
+      "curriculumLockedBody": "Fungua akaunti bure uone kila somo linahusu nini na utazame masomo ya bure.",
+      "signUpFree": "Jisajili bure",
+      "noLessons": "Masomo yanakuja hivi karibuni.",
+      "freePreview": "Bure",
+      "locked": "Imefungwa",
+      "watchPreview": "Tazama utangulizi",
+      "selectPackage": "Chagua kifurushi",
+      "monthly": "Kila mwezi",
+      "yearly": "Kila mwaka",
+      "perMonth": " /mwezi",
+      "perYear": " /mwaka",
+      "save": "Okoa {percent}%",
+      "enrollNow": "Jiunge Sasa",
+      "enrollFree": "Anza kujifunza bure",
+      "youOwnThis": "Umejiunga na kozi hii",
+      "continueLearning": "Endelea kujifunza",
+      "share": "Shiriki",
+      "linkCopied": "Kiungo kimenakiliwa",
+      "from": "Kuanzia",
+      "free": "Bure",
+      "notFound": "Kozi haikupatikana",
+      "notFoundBody": "Huenda imeondolewa au bado haijachapishwa.",
+      "browseCourses": "Tazama kozi"
+    },
+    "reviews": {
+      "title": "Maoni",
+      "backToCourse": "Rudi kwenye kozi",
+      "count": "{count, plural, =0 {Hakuna maoni bado} one {Maoni #} other {Maoni #}}",
+      "filter": "Chuja kwa alama",
+      "all": "Yote",
+      "helpful": "Yanasaidia",
+      "notHelpful": "Hayasaidii",
+      "signInToReact": "Ingia ili kupima maoni",
+      "anonymous": "Mwanafunzi",
+      "empty": "Hakuna maoni bado",
+      "emptyBody": "Wanafunzi wanaomaliza kozi wanaweza kuacha maoni."
+    },
+    "instructor": {
+      "eyebrow": "Mkufunzi",
+      "follow": "Fuata",
+      "following": "Unafuata",
+      "viewProfile": "Tazama wasifu",
+      "courses": "Kozi",
+      "students": "Wanafunzi",
+      "followers": "Wafuasi",
+      "lessons": "Masomo",
+      "rating": "Alama {rating} za mkufunzi",
+      "about": "Kuhusu",
+      "education": "Elimu",
+      "expertise": "Utaalamu",
+      "coursesBy": "Kozi za {name}"
+    },
+    "home": {
+      "greeting": "Habari {name} 👋",
+      "greetingNoName": "Karibu tena 👋",
+      "title": "Unataka kujifunza nini leo?",
+      "popularTopics": "Mada maarufu",
+      "consultation": "Ushauri wa 1:1",
+      "continueWatching": "Endelea kutazama",
+      "lessonsDone": "Masomo {done} kati ya {total} yamekamilika",
+      "adCta": "Jifunze zaidi",
+      "adAlt": "Ofa ya Nelwa's",
+      "adMessage": "Habari, ninavutiwa na mashine ya kutengeneza aiskrimu nyumbani. Tafadhali nitumie maelezo."
     }
   }
 }

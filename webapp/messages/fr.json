@@ -10,7 +10,10 @@
     "free": "Gratuit",
     "chooseCountry": "Choisissez votre pays",
     "search": "Recherche",
-    "noResults": "Aucun résultat"
+    "noResults": "Aucun résultat",
+    "loadFailed": "Impossible de charger ceci pour le moment. Vérifiez votre connexion et réessayez.",
+    "previous": "Précédent",
+    "next": "Suivant"
   },
   "nav": {
     "home": "Maison",
@@ -307,6 +310,162 @@
       "sendFailed": "Impossible d'envoyer votre message. Essayez WhatsApp ou l'e-mail.",
       "nameRequired": "Veuillez saisir votre nom.",
       "messageRequired": "Veuillez écrire un message."
+    }
+  },
+  "catalog": {
+    "free": "Gratuit",
+    "perMonth": " /mois",
+    "enrolled": "Inscrit",
+    "lessonsCount": "{count, plural, one {# leçon} other {# leçons}}",
+    "coursesCount": "{count, plural, =0 {Aucun cours pour l'instant} one {# cours} other {# cours}}",
+    "resultsCount": "{count, plural, =0 {Aucun cours} one {# cours} other {# cours}}",
+    "loadingCourses": "Chargement des cours…",
+    "addToWishlist": "Ajouter à la liste de souhaits",
+    "removeFromWishlist": "Retirer de la liste de souhaits",
+    "sort": {
+      "label": "Trier par",
+      "popular": "Les plus populaires",
+      "newest": "Les plus récents",
+      "rating": "Les mieux notés",
+      "priceLow": "Prix : croissant",
+      "priceHigh": "Prix : décroissant"
+    },
+    "viewMode": "Mode d'affichage",
+    "gridView": "Grille",
+    "listView": "Liste",
+    "noCourses": "Pas encore de cours ici",
+    "noCoursesFiltered": "Essayez de retirer des filtres pour voir plus de cours.",
+    "filters": {
+      "button": "Filtres",
+      "title": "Filtrer les cours",
+      "rating": "Note",
+      "any": "Tous",
+      "duration": "Durée du cours",
+      "durations": {
+        "any": "Toutes",
+        "under1h": "Moins d'1 heure",
+        "1to3h": "1 à 3 heures",
+        "3to10h": "3 à 10 heures",
+        "over10h": "Plus de 10 heures"
+      },
+      "price": "Prix (par mois)",
+      "prices": {
+        "any": "Tous",
+        "free": "Gratuit",
+        "under50k": "Moins de 50 000 TSh",
+        "50to150k": "50 000 à 150 000 TSh",
+        "over150k": "Plus de 150 000 TSh"
+      },
+      "language": "Langue d'enseignement",
+      "clear": "Tout effacer",
+      "apply": "Voir les résultats"
+    },
+    "searchPlaceholder": "Que voulez-vous apprendre ?",
+    "clearSearch": "Effacer la recherche",
+    "explore": {
+      "eyebrow": "Catalogue des cours",
+      "title": "Explorer",
+      "subtitle": "Des cours pratiques de glace, de gelato et de commerce alimentaire, conçus pour le marché africain."
+    },
+    "trending": "Tendances",
+    "categories": "Catégories",
+    "allCategories": "Toutes les catégories",
+    "categoriesSubtitle": "Choisissez un thème pour voir tous ses cours.",
+    "shelves": {
+      "new": "Nouveaux cours",
+      "recommended": "Nos recommandations",
+      "popular": "Cours populaires"
+    },
+    "allCourses": "Tous les cours",
+    "search": {
+      "title": "Rechercher",
+      "noResults": "Aucun résultat pour « {query} »"
+    },
+    "listing": {
+      "category": "Catégorie",
+      "tag": "Étiquette",
+      "group": "Collection"
+    },
+    "course": {
+      "backToCourses": "Tous les cours",
+      "by": "Par",
+      "reviewsCount": "{count, plural, one {# avis} other {# avis}}",
+      "lessonsCount": "{count, plural, one {# leçon} other {# leçons}}",
+      "students": "{count, plural, =0 {Soyez le premier élève} one {# élève} other {# élèves}}",
+      "about": "À propos de ce cours",
+      "noDescription": "L'instructeur n'a pas encore ajouté de description.",
+      "showMore": "Voir plus",
+      "showLess": "Voir moins",
+      "forWho": "À qui s'adresse ce cours",
+      "curriculum": "Leçons",
+      "instructor": "Votre instructeur",
+      "reviews": "Avis",
+      "allReviews": "Voir les {count}",
+      "tags": "Étiquettes",
+      "curriculumLocked": "{count, plural, =0 {Inscrivez-vous pour voir les leçons} one {Inscrivez-vous pour voir la leçon} other {Inscrivez-vous pour voir les # leçons}}",
+      "curriculumLockedBody": "Créez un compte gratuit pour voir le contenu de chaque leçon et regarder les aperçus gratuits.",
+      "signUpFree": "Inscription gratuite",
+      "noLessons": "Les leçons arrivent bientôt.",
+      "freePreview": "Gratuit",
+      "locked": "Verrouillé",
+      "watchPreview": "Voir l'aperçu",
+      "selectPackage": "Choisissez votre formule",
+      "monthly": "Mensuel",
+      "yearly": "Annuel",
+      "perMonth": " /mois",
+      "perYear": " /an",
+      "save": "Économisez {percent} %",
+      "enrollNow": "S'inscrire",
+      "enrollFree": "Commencer gratuitement",
+      "youOwnThis": "Vous êtes inscrit à ce cours",
+      "continueLearning": "Continuer à apprendre",
+      "share": "Partager",
+      "linkCopied": "Lien copié",
+      "from": "À partir de",
+      "free": "Gratuit",
+      "notFound": "Cours introuvable",
+      "notFoundBody": "Il a peut-être été retiré ou n'est pas encore publié.",
+      "browseCourses": "Parcourir les cours"
+    },
+    "reviews": {
+      "title": "Avis",
+      "backToCourse": "Retour au cours",
+      "count": "{count, plural, =0 {Pas encore d'avis} one {# avis} other {# avis}}",
+      "filter": "Filtrer par note",
+      "all": "Tous",
+      "helpful": "Utile",
+      "notHelpful": "Pas utile",
+      "signInToReact": "Connectez-vous pour noter les avis",
+      "anonymous": "Apprenant",
+      "empty": "Pas encore d'avis",
+      "emptyBody": "Les apprenants qui terminent le cours peuvent laisser un avis."
+    },
+    "instructor": {
+      "eyebrow": "Instructeur",
+      "follow": "Suivre",
+      "following": "Abonné",
+      "viewProfile": "Voir le profil",
+      "courses": "Cours",
+      "students": "Élèves",
+      "followers": "Abonnés",
+      "lessons": "Leçons",
+      "rating": "Note de l'instructeur : {rating}",
+      "about": "À propos",
+      "education": "Formation",
+      "expertise": "Expertise",
+      "coursesBy": "Cours de {name}"
+    },
+    "home": {
+      "greeting": "Bonjour {name} 👋",
+      "greetingNoName": "Bon retour 👋",
+      "title": "Que voulez-vous apprendre aujourd'hui ?",
+      "popularTopics": "Thèmes populaires",
+      "consultation": "Consultation individuelle",
+      "continueWatching": "Reprendre",
+      "lessonsDone": "{done} leçons sur {total} terminées",
+      "adCta": "En savoir plus",
+      "adAlt": "Offre Nelwa's",
+      "adMessage": "Bonjour, la machine à glace pour la maison m'intéresse. Merci de m'envoyer les détails."
     }
   }
 }
