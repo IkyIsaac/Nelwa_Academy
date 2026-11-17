@@ -37,7 +37,7 @@ export async function ConsultCta() {
         </div>
 
         <div className="flex flex-wrap justify-center gap-4">
-          <Button size="lg" variant="cream" render={<Link href={routes.consult} />}>
+          <Button size="lg" variant="cream" render={<Link href={`${routes.consult}#book`} />}>
             {t("book")}
           </Button>
           <Button
