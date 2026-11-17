@@ -140,7 +140,7 @@ function Completed({ order }: { order: Order }) {
       </p>
       <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
         {first && (
-          <Button render={<Link href={routes.course(first.courseId)} />}>{t("startLearning")}</Button>
+          <Button render={<Link href={routes.learnCourse(first.courseId)} />}>{t("startLearning")}</Button>
         )}
         <Button variant="outline" render={<Link href={routes.explore} />}>
           {t("browse")}

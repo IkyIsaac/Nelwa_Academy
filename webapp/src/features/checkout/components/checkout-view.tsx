@@ -78,7 +78,7 @@ export function CheckoutView({ courseId }: { courseId: string }) {
               icon={BadgeCheck}
               title={t("alreadyOwned")}
               body={t("alreadyOwnedBody", { course: title })}
-              action={<Button render={<Link href={routes.course(c.id)} />}>{t("goToCourse")}</Button>}
+              action={<Button render={<Link href={routes.learnCourse(c.id)} />}>{t("goToCourse")}</Button>}
             />
           ) : (
             <EmptyState
