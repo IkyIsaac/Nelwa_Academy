@@ -30,6 +30,8 @@ export type UserProfile = {
   purchasedCourseIds: string[]
   subscriptionIds: string[]
   continueWatching: ContinueWatching[]
+  /** id of the learner's `support/{id}` chat thread, once they've written. */
+  supportId: string
 }
 
 export function toUserProfile(uid: string, d: DocumentData): UserProfile {
@@ -59,6 +61,7 @@ export function toUserProfile(uid: string, d: DocumentData): UserProfile {
           completedLessonIds: refList(item?.completed_lessons).map((r) => r.id),
         }))
       : [],
+    supportId: refId(d.support),
   }
 }
 

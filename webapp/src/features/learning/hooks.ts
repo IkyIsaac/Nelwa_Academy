@@ -78,6 +78,7 @@ export function useSubmitReview() {
     mutationFn: (input: ReviewInput) => submitReview(input),
     onSuccess: (_data, input) => {
       client.invalidateQueries({ queryKey: learningKeys.purchases(input.uid) })
+      client.invalidateQueries({ queryKey: ["my-reviews", input.uid] })
       client.invalidateQueries({ queryKey: catalogKeys.reviews(input.course.id) })
       client.invalidateQueries({ queryKey: catalogKeys.course(input.course.id) })
       client.invalidateQueries({ queryKey: catalogKeys.courses })
