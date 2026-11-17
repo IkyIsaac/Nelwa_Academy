@@ -57,18 +57,30 @@ async function notifyUser({ userRef, id, template, data = {} }) {
       return;
     }
 
-    await createOnce(db.collection(MAIL_COLLECTION).doc(id), {
-      template,
-      to,
-      language,
-      data: fullData,
-      userId: ref.id,
-      status: "queued",
-      createdAt: admin.firestore.FieldValue.serverTimestamp(),
-    });
+    await queueEmail({ id, to, template, language, data: fullData, userId: ref.id });
   } catch (err) {
     functions.logger.error("Failed to notify user", { id, template, error: err.message });
   }
+}
+
+/**
+ * Queues one email in `mail/{id}` for sendQueuedEmail, for recipients who
+ * aren't app users (e.g. the academy inbox). `replyTo` overrides the default
+ * reply address, so staff can answer a visitor straight from their inbox.
+ * Throws on failure; callers decide whether that matters.
+ */
+async function queueEmail({ id, to, template, language = "en", data = {}, userId = null, replyTo = null }) {
+  if (!templates[template]) throw new Error(`Unknown email template "${template}"`);
+  await createOnce(admin.firestore().collection(MAIL_COLLECTION).doc(id), {
+    template,
+    to,
+    language,
+    data,
+    userId,
+    ...(replyTo ? { replyTo } : {}),
+    status: "queued",
+    createdAt: admin.firestore.FieldValue.serverTimestamp(),
+  });
 }
 
 async function createOnce(docRef, data) {
@@ -106,6 +118,7 @@ async function deliver(ref, idempotencyKey) {
     const resendId = await resend.sendEmail({
       to: mail.to,
       ...rendered,
+      replyTo: mail.replyTo,
       idempotencyKey,
       tags: [{ name: "template", value: mail.template }],
     });
@@ -181,4 +194,4 @@ const resendEmail = functions.https.onCall(async (data, context) => {
   return { status: "sent" };
 });
 
-module.exports = { notifyUser, sendQueuedEmail, resendEmail };
+module.exports = { notifyUser, queueEmail, sendQueuedEmail, resendEmail };

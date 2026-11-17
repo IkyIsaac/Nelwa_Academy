@@ -56,6 +56,19 @@ const templates = {
     };
   },
 
+  // Sent to the academy inbox (staff read English), not to a learner.
+  contact_message: (d) => ({
+    subject: `Website message from ${d.name}${d.topic ? ` — ${d.topic}` : ""}`,
+    preheader: (d.message || "").slice(0, 90),
+    heading: "New message from the website",
+    paragraphs: [
+      `From: ${d.name} <${d.email}>`,
+      ...(d.topic ? [`Interested in: ${d.topic}`] : []),
+      d.message,
+      "Reply to this email to answer them directly.",
+    ],
+  }),
+
   purchase_receipt: (d, lang) => {
     const titles = d.courses.map((c) => c.title);
     const single = titles.length === 1;

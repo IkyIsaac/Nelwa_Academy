@@ -1,5 +1,8 @@
 const functions = require("firebase-functions");
-const { notifyUser } = require("./outbox");
+const { notifyUser, queueEmail } = require("./outbox");
+
+// Where website contact-form messages are delivered.
+const ACADEMY_INBOX = "nelwasacademy@nelwasgelato.com";
 
 /** Welcome email, once per account, when the app creates the users doc. */
 exports.emailOnUserCreated = functions.firestore
@@ -37,4 +40,22 @@ exports.emailOnInstructorStatusChanged = functions.firestore
       id: `instructor_${after}_${context.params.uid}_${context.eventId}`,
       template: STATUS_TEMPLATES[after],
     });
+  });
+
+/** Forwards a website contact-form message to the academy inbox. */
+exports.emailOnContactMessage = functions.firestore
+  .document("contact_messages/{id}")
+  .onCreate(async (snap, context) => {
+    const { name, email, topic, message } = snap.data();
+    try {
+      await queueEmail({
+        id: `contact_${context.params.id}`,
+        to: ACADEMY_INBOX,
+        template: "contact_message",
+        data: { name, email, topic: topic || "", message },
+        replyTo: email,
+      });
+    } catch (err) {
+      functions.logger.error("Failed to queue contact message email", { id: context.params.id, error: err.message });
+    }
   });
