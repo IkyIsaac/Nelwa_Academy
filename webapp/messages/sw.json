@@ -596,5 +596,244 @@
       "failed": "Hatukuweza kutuma ombi lako. Jaribu tena.",
       "note": "Akademi itawasiliana nawe kuhusu ombi lako."
     }
+  },
+  "account": {
+    "title": "Akaunti",
+    "noName": "Wasifu wako",
+    "instructor": "Mkufunzi aliyeidhinishwa",
+    "editProfile": "Hariri wasifu",
+    "signOut": "Toka",
+    "groups": {
+      "learning": "Masomo",
+      "account": "Akaunti",
+      "help": "Msaada na taarifa"
+    },
+    "menu": {
+      "myCourses": "Kozi zangu",
+      "wishlist": "Orodha ya matamanio",
+      "reviews": "Tathmini zangu",
+      "following": "Ninaowafuata",
+      "purchases": "Historia ya manunuzi",
+      "personalInfo": "Taarifa binafsi",
+      "security": "Usalama",
+      "notifications": "Arifa",
+      "language": "Lugha",
+      "support": "Ongea na huduma kwa wateja",
+      "consult": "Weka miadi ya ushauri",
+      "help": "Kituo cha msaada",
+      "terms": "Vigezo na Masharti",
+      "privacy": "Sera ya Faragha"
+    },
+    "personal": {
+      "title": "Taarifa binafsi",
+      "description": "Hivi ndivyo unavyoonekana kwenye tathmini na kwa wakufunzi unaowafuata.",
+      "name": "Jina kamili",
+      "email": "Barua pepe",
+      "emailHint": "Barua pepe ya kuingia haiwezi kubadilishwa hapa.",
+      "about": "Kuhusu wewe",
+      "aboutPlaceholder": "Tueleze kidogo kuhusu wewe…",
+      "specialty": "Utaalamu",
+      "specialtyPlaceholder": "mf. Gelato, biashara ya chakula",
+      "phone": "Namba ya simu",
+      "dateOfBirth": "Tarehe ya kuzaliwa",
+      "country": "Nchi",
+      "education": "Elimu (si lazima)",
+      "educationPlaceholder": "mf. Stashahada ya Sayansi ya Chakula",
+      "save": "Hifadhi mabadiliko",
+      "saved": "Wasifu wako umesasishwa.",
+      "saveFailed": "Hatukuweza kuhifadhi mabadiliko. Jaribu tena.",
+      "errors": {
+        "nameRequired": "Weka jina lako (angalau herufi 2).",
+        "tooLong": "Ni ndefu mno.",
+        "phone": "Weka namba sahihi ya simu.",
+        "dobInFuture": "Tarehe ya kuzaliwa haiwezi kuwa ya baadaye."
+      }
+    },
+    "security": {
+      "title": "Usalama",
+      "description": "Nenosiri lako na akaunti yako.",
+      "password": "Nenosiri",
+      "passwordBody": "Chagua nenosiri jipya lenye angalau herufi 6.",
+      "googleAccount": "Unaingia kwa Google, kwa hiyo hakuna nenosiri la Nelwa's Academy la kubadilisha. Lisimamie kwenye akaunti yako ya Google.",
+      "current": "Nenosiri la sasa",
+      "new": "Nenosiri jipya",
+      "confirm": "Thibitisha nenosiri jipya",
+      "changePassword": "Badilisha nenosiri",
+      "passwordChanged": "Nenosiri limebadilishwa.",
+      "validation": {
+        "currentRequired": "Weka nenosiri lako la sasa.",
+        "short": "Tumia angalau herufi 6.",
+        "mismatch": "Manenosiri hayalingani."
+      },
+      "errors": {
+        "wrongPassword": "Nenosiri hilo si sahihi.",
+        "tooMany": "Majaribio mengi mno. Subiri dakika chache kisha ujaribu tena.",
+        "popupClosed": "Dirisha la Google lilifungwa kabla ya kumaliza.",
+        "wrongAccount": "Hiyo ni akaunti nyingine ya Google.",
+        "generic": "Kuna hitilafu. Jaribu tena."
+      },
+      "deleteTitle": "Futa akaunti",
+      "deleteBody": "Ondoa akaunti na wasifu wako kabisa. Kozi ulizonunua hazitapatikana tena kwako kwenye tovuti wala programu.",
+      "deleteCta": "Futa akaunti yangu",
+      "deleteConfirmTitle": "Futa akaunti yako?",
+      "deleteConfirmBody": "Hatua hii haiwezi kurudishwa. Utapoteza kozi zote ulizonunua.",
+      "deleteGoogle": "Ili kuthibitisha, utaombwa kuingia tena kwa Google.",
+      "deleteForever": "Futa kabisa",
+      "deleted": "Akaunti yako imefutwa."
+    },
+    "language": {
+      "title": "Lugha",
+      "description": "Chagua lugha ya tovuti."
+    },
+    "wishlist": {
+      "title": "Orodha ya matamanio",
+      "description": "Kozi ulizohifadhi kwa baadaye.",
+      "emptyTitle": "Bado hujahifadhi chochote",
+      "emptyBody": "Bonyeza alama ya kuhifadhi kwenye kozi yoyote ili iwekwe hapa.",
+      "browse": "Tazama kozi",
+      "deviceNote": "Orodha yako ya matamanio imehifadhiwa kwenye kivinjari hiki."
+    },
+    "purchases": {
+      "title": "Historia ya manunuzi",
+      "description": "Kila kozi uliyolipia.",
+      "emptyTitle": "Bado hujanunua",
+      "emptyBody": "Kozi unazonunua zitaonekana hapa pamoja na risiti zake.",
+      "browse": "Tazama kozi",
+      "course": "Kozi",
+      "paid": "Imelipwa",
+      "refunded": "Imerejeshwa"
+    },
+    "reviews": {
+      "title": "Tathmini zangu",
+      "description": "Tathmini ulizochapisha na kozi zinazosubiri tathmini yako.",
+      "emptyTitle": "Bado hujaandika tathmini",
+      "emptyBody": "Ukishanunua kozi, unaweza kuitathmini hapa.",
+      "myCourses": "Kozi zangu",
+      "pending": "{count, plural, one {Kozi # ya kutathmini} other {Kozi # za kutathmini}}",
+      "posted": "Tathmini zako",
+      "stars": "Nyota {count} kati ya 5"
+    },
+    "following": {
+      "title": "Ninaowafuata",
+      "description": "Wakufunzi unaowafuata.",
+      "emptyTitle": "Hufuati mtu yeyote",
+      "emptyBody": "Fuata wakufunzi kutoka kwenye wasifu wao ili upate kozi zao mpya.",
+      "browse": "Tazama kozi"
+    },
+    "notifications": {
+      "title": "Arifa",
+      "description": "Wafuasi wapya, tathmini za kozi zako na taarifa nyingine.",
+      "emptyTitle": "Huna arifa mpya",
+      "emptyBody": "Arifa mpya zitaonekana hapa.",
+      "today": "Leo",
+      "earlier": "Awali",
+      "markAll": "Weka zote kuwa zimesomwa",
+      "unread": "Haijasomwa",
+      "followed": "{name} ameanza kukufuata",
+      "reviewed": "{name} ametathmini {course}"
+    },
+    "support": {
+      "title": "Msaada",
+      "description": "Tuma ujumbe kwa timu ya akademi. Majibu yataonekana hapa na kwenye programu.",
+      "emptyTitle": "Tukusaidie vipi?",
+      "emptyBody": "Tuma ujumbe kuhusu kozi, malipo au akaunti yako. Ongeza picha ya skrini ikisaidia.",
+      "academy": "Nelwa's Academy",
+      "placeholder": "Andika ujumbe…",
+      "send": "Tuma",
+      "addImage": "Ambatisha picha",
+      "removeImage": "Ondoa picha",
+      "imageInvalid": "Chagua picha isiyozidi MB 5.",
+      "sendFailed": "Ujumbe wako haukutumwa. Jaribu tena.",
+      "whatsapp": "Unahitaji jibu la haraka? Tutumie ujumbe kwa"
+    },
+    "consult": {
+      "title": "Weka miadi ya ushauri",
+      "subtitle": "Tueleze mipango yako na uchague siku. Akademi itawasiliana nawe kuthibitisha muda.",
+      "name": "Jina kamili",
+      "phone": "Namba ya simu",
+      "email": "Barua pepe (si lazima)",
+      "department": "Unahitaji msaada gani?",
+      "departments": {
+        "academy": "Kozi na masomo",
+        "iceCream": "Biashara ya aiskrimu",
+        "gelato": "Gelato",
+        "consulting": "Ushauri wa biashara"
+      },
+      "date": "Siku unayopendelea",
+      "dateHint": "Tutathibitisha muda kamili nawe.",
+      "reason": "Ungependa kuzungumzia nini?",
+      "reasonPlaceholder": "Wazo lako la biashara, ulipo sasa, na unachohitaji msaada…",
+      "submit": "Omba ushauri",
+      "note": "Hakuna malipo sasa. Ada na muda hukubaliwa tunapothibitisha.",
+      "failed": "Hatukuweza kutuma ombi lako. Jaribu tena.",
+      "doneTitle": "Ombi limetumwa!",
+      "doneBody": "Asante. Akademi itakupigia simu au kukutumia barua pepe hivi karibuni kuthibitisha ushauri wako.",
+      "another": "Weka miadi nyingine",
+      "errors": {
+        "name": "Weka jina lako.",
+        "phone": "Weka namba sahihi ya simu.",
+        "email": "Weka barua pepe sahihi au iache tupu.",
+        "date": "Chagua siku kuanzia kesho.",
+        "reason": "Tueleze zaidi kidogo (angalau herufi 10)."
+      }
+    }
+  },
+  "help": {
+    "eyebrow": "Kituo cha msaada",
+    "title": "Tukusaidie vipi?",
+    "description": "Majibu ya maswali ya kawaida, na njia zote za kuwasiliana na akademi.",
+    "faqTitle": "Maswali yanayoulizwa mara kwa mara",
+    "stillNeedHelp": "Bado unahitaji msaada?",
+    "channels": {
+      "chat": "Ongea na huduma kwa wateja",
+      "chatBody": "Tunajibu kwenye programu na tovuti",
+      "form": "Tutumie ujumbe",
+      "formBody": "Tumia fomu ya mawasiliano",
+      "email": "Barua pepe",
+      "consult": "Weka miadi ya ushauri",
+      "consultBody": "Ushauri wa biashara ana kwa ana"
+    },
+    "faq": {
+      "what": {
+        "q": "Nelwa's Academy ni nini?",
+        "a": "Shule ya aiskrimu ya Afrika: kozi za video za vitendo kuhusu aiskrimu, gelato na kuendesha biashara ya chakula, zinazofundishwa na Mercy Kitomari na wakufunzi wengine wenye uzoefu."
+      },
+      "account": {
+        "q": "Ninafunguaje akaunti?",
+        "a": "Bonyeza Jisajili na utumie barua pepe yako au akaunti yako ya Google. Akaunti hiyo hiyo inafanya kazi kwenye tovuti hii na kwenye programu ya simu."
+      },
+      "pay": {
+        "q": "Ninalipiaje kozi?",
+        "a": "Fungua kozi, bonyeza Jiandikishe na ulipe kwa pesa ya simu: M-Pesa, Airtel Money, Mixx by Yas au Halotel. Utathibitisha malipo kwenye simu yako kwa PIN yako."
+      },
+      "access": {
+        "q": "Naweza kuanza lini baada ya kulipa?",
+        "a": "Mara tu malipo yako yanapothibitishwa, kwa kawaida ndani ya dakika moja. Kozi itaonekana kwenye Kozi zangu kwenye tovuti na programu."
+      },
+      "devices": {
+        "q": "Naweza kujifunza kwenye simu na kompyuta?",
+        "a": "Ndiyo. Kozi zako, maendeleo na tathmini zinashirikiwa kati ya tovuti na programu ya simu."
+      },
+      "refund": {
+        "q": "Naweza kurejeshewa pesa?",
+        "a": "Kama kuna tatizo, fungua kozi kwenye Kozi zangu na uchague Omba kurejeshewa pesa. Akademi hukagua kila ombi na itawasiliana nawe."
+      },
+      "free": {
+        "q": "Kuna masomo ya bure?",
+        "a": "Ndiyo. Masomo yaliyoandikwa Bure yanaweza kutazamwa na yeyote mwenye akaunti, na baadhi ya kozi ni bure kabisa."
+      },
+      "offline": {
+        "q": "Naweza kutazama bila mtandao?",
+        "a": "Si kwenye tovuti, kwa kuwa inahitaji mtandao ili kucheza masomo."
+      },
+      "instructor": {
+        "q": "Naweza kufundisha kwenye Nelwa's Academy?",
+        "a": "Ndiyo. Omba kuwa mkufunzi kupitia programu ya simu. Akademi hukagua kila ombi."
+      }
+    },
+    "terms": "Vigezo na Masharti",
+    "privacy": "Sera ya Faragha",
+    "updated": "Ilisasishwa mwisho {date}",
+    "englishOnly": "Ukurasa huu kwa sasa unapatikana kwa Kiingereza pekee."
   }
 }

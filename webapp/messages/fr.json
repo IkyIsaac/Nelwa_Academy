@@ -596,5 +596,244 @@
       "failed": "Impossible d'envoyer votre demande. Réessayez.",
       "note": "L'académie reviendra vers vous au sujet de votre demande."
     }
+  },
+  "account": {
+    "title": "Compte",
+    "noName": "Votre profil",
+    "instructor": "Formateur approuvé",
+    "editProfile": "Modifier le profil",
+    "signOut": "Se déconnecter",
+    "groups": {
+      "learning": "Apprentissage",
+      "account": "Compte",
+      "help": "Aide et infos"
+    },
+    "menu": {
+      "myCourses": "Mes cours",
+      "wishlist": "Liste d'envies",
+      "reviews": "Mes avis",
+      "following": "Abonnements",
+      "purchases": "Historique d'achats",
+      "personalInfo": "Informations personnelles",
+      "security": "Sécurité",
+      "notifications": "Notifications",
+      "language": "Langue",
+      "support": "Discuter avec le support",
+      "consult": "Réserver une consultation",
+      "help": "Centre d'aide",
+      "terms": "Conditions générales",
+      "privacy": "Politique de confidentialité"
+    },
+    "personal": {
+      "title": "Informations personnelles",
+      "description": "C'est ainsi que vous apparaissez dans les avis et auprès des formateurs que vous suivez.",
+      "name": "Nom complet",
+      "email": "E-mail",
+      "emailHint": "Votre e-mail de connexion ne peut pas être modifié ici.",
+      "about": "À propos de vous",
+      "aboutPlaceholder": "Parlez-nous un peu de vous…",
+      "specialty": "Spécialité",
+      "specialtyPlaceholder": "ex. Gelato, entreprise alimentaire",
+      "phone": "Numéro de téléphone",
+      "dateOfBirth": "Date de naissance",
+      "country": "Pays",
+      "education": "Formation (facultatif)",
+      "educationPlaceholder": "ex. Diplôme en sciences alimentaires",
+      "save": "Enregistrer",
+      "saved": "Votre profil est à jour.",
+      "saveFailed": "Impossible d'enregistrer vos modifications. Réessayez.",
+      "errors": {
+        "nameRequired": "Saisissez votre nom (au moins 2 lettres).",
+        "tooLong": "C'est trop long.",
+        "phone": "Saisissez un numéro de téléphone valide.",
+        "dobInFuture": "La date de naissance ne peut pas être dans le futur."
+      }
+    },
+    "security": {
+      "title": "Sécurité",
+      "description": "Votre mot de passe et votre compte.",
+      "password": "Mot de passe",
+      "passwordBody": "Choisissez un nouveau mot de passe d'au moins 6 caractères.",
+      "googleAccount": "Vous vous connectez avec Google : il n'y a pas de mot de passe Nelwa's Academy à modifier. Gérez-le dans votre compte Google.",
+      "current": "Mot de passe actuel",
+      "new": "Nouveau mot de passe",
+      "confirm": "Confirmer le nouveau mot de passe",
+      "changePassword": "Changer le mot de passe",
+      "passwordChanged": "Mot de passe modifié.",
+      "validation": {
+        "currentRequired": "Saisissez votre mot de passe actuel.",
+        "short": "Utilisez au moins 6 caractères.",
+        "mismatch": "Les mots de passe ne correspondent pas."
+      },
+      "errors": {
+        "wrongPassword": "Ce mot de passe est incorrect.",
+        "tooMany": "Trop de tentatives. Patientez quelques minutes et réessayez.",
+        "popupClosed": "La fenêtre Google a été fermée avant la fin.",
+        "wrongAccount": "C'est un autre compte Google.",
+        "generic": "Une erreur s'est produite. Réessayez."
+      },
+      "deleteTitle": "Supprimer le compte",
+      "deleteBody": "Supprimez définitivement votre compte et votre profil. Les cours achetés ne seront plus disponibles sur le site ni dans l'application.",
+      "deleteCta": "Supprimer mon compte",
+      "deleteConfirmTitle": "Supprimer votre compte ?",
+      "deleteConfirmBody": "Cette action est irréversible. Vous perdrez l'accès à tous les cours achetés.",
+      "deleteGoogle": "Pour confirmer, vous devrez vous reconnecter avec Google.",
+      "deleteForever": "Supprimer définitivement",
+      "deleted": "Votre compte a été supprimé."
+    },
+    "language": {
+      "title": "Langue",
+      "description": "Choisissez la langue du site."
+    },
+    "wishlist": {
+      "title": "Liste d'envies",
+      "description": "Les cours enregistrés pour plus tard.",
+      "emptyTitle": "Rien d'enregistré pour l'instant",
+      "emptyBody": "Touchez le signet d'un cours pour le garder ici.",
+      "browse": "Parcourir les cours",
+      "deviceNote": "Votre liste d'envies est enregistrée dans ce navigateur."
+    },
+    "purchases": {
+      "title": "Historique d'achats",
+      "description": "Tous les cours que vous avez payés.",
+      "emptyTitle": "Aucun achat pour l'instant",
+      "emptyBody": "Les cours achetés apparaîtront ici avec leurs reçus.",
+      "browse": "Parcourir les cours",
+      "course": "Cours",
+      "paid": "Payé",
+      "refunded": "Remboursé"
+    },
+    "reviews": {
+      "title": "Mes avis",
+      "description": "Vos avis publiés et les cours qui attendent le vôtre.",
+      "emptyTitle": "Aucun avis pour l'instant",
+      "emptyBody": "Une fois un cours acheté, vous pourrez l'évaluer ici.",
+      "myCourses": "Mes cours",
+      "pending": "{count, plural, one {# cours à évaluer} other {# cours à évaluer}}",
+      "posted": "Vos avis",
+      "stars": "{count} étoiles sur 5"
+    },
+    "following": {
+      "title": "Abonnements",
+      "description": "Les formateurs que vous suivez.",
+      "emptyTitle": "Vous ne suivez personne",
+      "emptyBody": "Suivez des formateurs depuis leur profil pour ne rien manquer de leurs cours.",
+      "browse": "Parcourir les cours"
+    },
+    "notifications": {
+      "title": "Notifications",
+      "description": "Nouveaux abonnés, avis sur vos cours et autres nouvelles.",
+      "emptyTitle": "Vous êtes à jour",
+      "emptyBody": "Les nouvelles notifications apparaîtront ici.",
+      "today": "Aujourd'hui",
+      "earlier": "Plus tôt",
+      "markAll": "Tout marquer comme lu",
+      "unread": "Non lu",
+      "followed": "{name} vous suit désormais",
+      "reviewed": "{name} a évalué {course}"
+    },
+    "support": {
+      "title": "Soutien",
+      "description": "Écrivez à l'équipe de l'académie. Les réponses s'affichent ici et dans l'application.",
+      "emptyTitle": "Comment pouvons-nous vous aider ?",
+      "emptyBody": "Envoyez un message à propos d'un cours, d'un paiement ou de votre compte. Ajoutez une capture si utile.",
+      "academy": "Nelwa's Academy",
+      "placeholder": "Écrivez un message…",
+      "send": "Envoyer",
+      "addImage": "Joindre une image",
+      "removeImage": "Retirer l'image",
+      "imageInvalid": "Choisissez une image de moins de 5 Mo.",
+      "sendFailed": "Votre message n'a pas été envoyé. Réessayez.",
+      "whatsapp": "Besoin d'une réponse plus rapide ? Écrivez-nous sur"
+    },
+    "consult": {
+      "title": "Réservez votre consultation",
+      "subtitle": "Parlez-nous de vos projets et choisissez un jour. L'académie vous contactera pour confirmer l'heure.",
+      "name": "Nom complet",
+      "phone": "Numéro de téléphone",
+      "email": "E-mail (facultatif)",
+      "department": "De quoi avez-vous besoin ?",
+      "departments": {
+        "academy": "Cours et apprentissage",
+        "iceCream": "Entreprise de glaces",
+        "gelato": "Gelato",
+        "consulting": "Conseil en entreprise"
+      },
+      "date": "Jour souhaité",
+      "dateHint": "Nous confirmerons l'heure exacte avec vous.",
+      "reason": "De quoi souhaitez-vous parler ?",
+      "reasonPlaceholder": "Votre idée d'entreprise, où vous en êtes, et ce pour quoi vous voulez de l'aide…",
+      "submit": "Demander une consultation",
+      "note": "Aucun paiement maintenant. Le tarif et l'heure sont convenus lors de la confirmation.",
+      "failed": "Impossible d'envoyer votre demande. Réessayez.",
+      "doneTitle": "Demande envoyée !",
+      "doneBody": "Merci. L'académie vous appellera ou vous écrira bientôt pour confirmer votre consultation.",
+      "another": "Réserver à nouveau",
+      "errors": {
+        "name": "Saisissez votre nom.",
+        "phone": "Saisissez un numéro de téléphone valide.",
+        "email": "Saisissez un e-mail valide ou laissez vide.",
+        "date": "Choisissez un jour à partir de demain.",
+        "reason": "Dites-nous-en un peu plus (au moins 10 caractères)."
+      }
+    }
+  },
+  "help": {
+    "eyebrow": "Centre d'aide",
+    "title": "Comment pouvons-nous vous aider ?",
+    "description": "Réponses aux questions fréquentes et tous les moyens de joindre l'académie.",
+    "faqTitle": "Questions fréquentes",
+    "stillNeedHelp": "Besoin d'aide supplémentaire ?",
+    "channels": {
+      "chat": "Discuter avec le support",
+      "chatBody": "Nous répondons dans l'application et sur le site",
+      "form": "Envoyez-nous un message",
+      "formBody": "Utilisez le formulaire de contact",
+      "email": "E-mail",
+      "consult": "Réserver une consultation",
+      "consultBody": "Conseils d'affaires personnalisés"
+    },
+    "faq": {
+      "what": {
+        "q": "Qu'est-ce que Nelwa's Academy ?",
+        "a": "L'école de glace de l'Afrique : des cours vidéo pratiques sur la glace, le gelato et la gestion d'une entreprise alimentaire, animés par Mercy Kitomari et d'autres formateurs expérimentés."
+      },
+      "account": {
+        "q": "Comment créer un compte ?",
+        "a": "Touchez S'inscrire et utilisez votre e-mail ou votre compte Google. Le même compte fonctionne sur ce site et dans l'application mobile."
+      },
+      "pay": {
+        "q": "Comment payer un cours ?",
+        "a": "Ouvrez le cours, touchez S'inscrire et payez par mobile money : M-Pesa, Airtel Money, Mixx by Yas ou Halotel. Vous validerez le paiement sur votre téléphone avec votre code PIN."
+      },
+      "access": {
+        "q": "Quand puis-je commencer après avoir payé ?",
+        "a": "Dès que votre paiement est confirmé, généralement en moins d'une minute. Le cours apparaît alors dans Mes cours sur le site et dans l'application."
+      },
+      "devices": {
+        "q": "Puis-je apprendre sur mon téléphone et mon ordinateur ?",
+        "a": "Oui. Vos cours, votre progression et vos avis sont partagés entre le site et l'application mobile."
+      },
+      "refund": {
+        "q": "Puis-je être remboursé ?",
+        "a": "En cas de problème, ouvrez le cours dans Mes cours et choisissez Demander un remboursement. L'académie examine chaque demande et reviendra vers vous."
+      },
+      "free": {
+        "q": "Y a-t-il des leçons gratuites ?",
+        "a": "Oui. Les leçons marquées Gratuit sont accessibles à toute personne ayant un compte, et certains cours sont entièrement gratuits."
+      },
+      "offline": {
+        "q": "Puis-je regarder hors ligne ?",
+        "a": "Pas sur le site, qui a besoin d'une connexion Internet pour lire les leçons."
+      },
+      "instructor": {
+        "q": "Puis-je enseigner sur Nelwa's Academy ?",
+        "a": "Oui. Postulez pour devenir formateur depuis l'application mobile. L'académie examine chaque candidature."
+      }
+    },
+    "terms": "Conditions générales",
+    "privacy": "Politique de confidentialité",
+    "updated": "Dernière mise à jour : {date}",
+    "englishOnly": "Cette page est pour l'instant disponible en anglais uniquement."
   }
 }
