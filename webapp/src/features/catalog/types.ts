@@ -84,6 +84,7 @@ export type Lesson = {
   /** Length in seconds. */
   seconds: number
   isFree: boolean
+  videoUrl: string
 }
 
 export function toLesson(id: string, d: DocumentData): Lesson {
@@ -97,6 +98,7 @@ export function toLesson(id: string, d: DocumentData): Lesson {
     order: num(d.order),
     seconds: num(d.duration),
     isFree: bool(d.is_free),
+    videoUrl: str(d.video_url),
   }
 }
 
