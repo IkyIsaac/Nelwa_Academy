@@ -48,5 +48,79 @@
   },
   "language": {
     "title": "Language"
+  },
+  "auth": {
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "newPassword": "New Password",
+    "confirmNewPassword": "Confirm New Password",
+    "passwordHint": "At least 6 characters.",
+    "rememberMe": "Remember me",
+    "forgotPassword": "Forgot password?",
+    "orContinueWith": "Or continue with",
+    "orWithEmail": "or sign up with email",
+    "continueWithGoogle": "Continue with Google",
+    "showPassword": "Show password",
+    "hidePassword": "Hide password",
+    "backToSignIn": "Back to Sign In",
+    "panel": {
+      "years": "Years Expertise",
+      "production": "Monthly Production",
+      "quote": "To equip individuals with skills that generate income.",
+      "quoteAuthor": "Mercy Kitomari, Founder"
+    },
+    "signIn": {
+      "title": "Welcome back",
+      "subtitle": "Sign in to continue learning where you left off.",
+      "submit": "Sign In",
+      "noAccount": "Don’t have an account?",
+      "signUpLink": "Sign up"
+    },
+    "signUp": {
+      "title": "Create an Account",
+      "subtitle": "Create your account to get started.",
+      "submit": "Sign Up",
+      "haveAccount": "Already have an account?",
+      "signInLink": "Sign in",
+      "terms": "I agree to the <terms>Terms & Conditions</terms> and <privacy>Privacy Policy</privacy>."
+    },
+    "forgot": {
+      "title": "Reset your password",
+      "subtitle": "Enter the email you signed up with and we'll send you a link to choose a new password.",
+      "submit": "Send reset link",
+      "sentTitle": "Check your inbox",
+      "sentBody": "If an account exists for <email></email>, a reset link is on its way. It can take a minute — check your spam folder too.",
+      "resend": "Send it again"
+    },
+    "reset": {
+      "title": "Create new password",
+      "subtitle": "Choose a new password for <email></email>.",
+      "submit": "Save new password",
+      "doneTitle": "Password updated",
+      "doneBody": "You can now sign in with your new password.",
+      "expiredTitle": "This link has expired",
+      "expiredBody": "Reset links can only be used once and expire after a while. Request a new one to continue.",
+      "requestNew": "Request a new link"
+    },
+    "validation": {
+      "emailRequired": "Please enter your email.",
+      "emailInvalid": "Has to be a valid email address.",
+      "passwordRequired": "Please enter your password.",
+      "passwordShort": "Password must be at least 6 characters.",
+      "passwordsDontMatch": "Passwords don't match!",
+      "acceptTerms": "Please agree to the Terms & Conditions to create your account."
+    },
+    "errors": {
+      "invalidCredential": "Incorrect email or password.",
+      "emailInUse": "An account with this email already exists. Please sign in instead.",
+      "weakPassword": "Please choose a stronger password.",
+      "tooManyRequests": "Too many attempts. Please wait a moment and try again.",
+      "network": "No internet connection. Check your connection and try again.",
+      "popupClosed": "Sign-in was cancelled.",
+      "differentProvider": "This email is already linked to another sign-in method.",
+      "linkExpired": "This link has expired or was already used.",
+      "generic": "Something went wrong. Please try again."
+    }
   }
 }

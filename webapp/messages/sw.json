@@ -48,5 +48,79 @@
   },
   "language": {
     "title": "Lugha"
+  },
+  "auth": {
+    "email": "Barua pepe",
+    "password": "Nenosiri",
+    "confirmPassword": "Thibitisha Nenosiri",
+    "newPassword": "Nenosiri Jipya",
+    "confirmNewPassword": "Thibitisha Nenosiri Jipya",
+    "passwordHint": "Angalau herufi 6.",
+    "rememberMe": "Nikumbuke",
+    "forgotPassword": "Umesahau nenosiri?",
+    "orContinueWith": "Au endelea na",
+    "orWithEmail": "au jisajili kwa barua pepe",
+    "continueWithGoogle": "Endelea na Google",
+    "showPassword": "Onyesha nenosiri",
+    "hidePassword": "Ficha nenosiri",
+    "backToSignIn": "Rudi kwenye Kuingia",
+    "panel": {
+      "years": "Miaka ya Uzoefu",
+      "production": "Uzalishaji kwa Mwezi",
+      "quote": "Kuwawezesha watu kwa ujuzi unaoleta kipato.",
+      "quoteAuthor": "Mercy Kitomari, Mwanzilishi"
+    },
+    "signIn": {
+      "title": "Karibu tena",
+      "subtitle": "Ingia ili uendelee kujifunza ulipoishia.",
+      "submit": "Ingia",
+      "noAccount": "Huna akaunti?",
+      "signUpLink": "Jisajili"
+    },
+    "signUp": {
+      "title": "Fungua Akaunti",
+      "subtitle": "Fungua akaunti yako ili kuanza.",
+      "submit": "Jisajili",
+      "haveAccount": "Tayari una akaunti?",
+      "signInLink": "Ingia",
+      "terms": "Nakubali <terms>Vigezo na Masharti</terms> na <privacy>Sera ya Faragha</privacy>."
+    },
+    "forgot": {
+      "title": "Weka upya nenosiri lako",
+      "subtitle": "Weka barua pepe uliyojisajili nayo na tutakutumia kiungo cha kuchagua nenosiri jipya.",
+      "submit": "Tuma kiungo",
+      "sentTitle": "Angalia barua pepe yako",
+      "sentBody": "Ikiwa kuna akaunti ya <email></email>, kiungo cha kubadilisha nenosiri kinakuja. Huenda kikachukua dakika moja — angalia pia kwenye spam.",
+      "resend": "Tuma tena"
+    },
+    "reset": {
+      "title": "Unda nenosiri jipya",
+      "subtitle": "Chagua nenosiri jipya la <email></email>.",
+      "submit": "Hifadhi nenosiri jipya",
+      "doneTitle": "Nenosiri limebadilishwa",
+      "doneBody": "Sasa unaweza kuingia kwa nenosiri lako jipya.",
+      "expiredTitle": "Kiungo hiki kimeisha muda",
+      "expiredBody": "Viungo vya kubadilisha nenosiri hutumika mara moja tu na huisha muda. Omba kiungo kipya ili kuendelea.",
+      "requestNew": "Omba kiungo kipya"
+    },
+    "validation": {
+      "emailRequired": "Tafadhali weka barua pepe yako.",
+      "emailInvalid": "Lazima iwe barua pepe sahihi.",
+      "passwordRequired": "Tafadhali weka nenosiri lako.",
+      "passwordShort": "Nenosiri lazima liwe na angalau herufi 6.",
+      "passwordsDontMatch": "Manenosiri hayalingani!",
+      "acceptTerms": "Tafadhali kubali Vigezo na Masharti ili kufungua akaunti yako."
+    },
+    "errors": {
+      "invalidCredential": "Barua pepe au nenosiri si sahihi.",
+      "emailInUse": "Akaunti yenye barua pepe hii tayari ipo. Tafadhali ingia.",
+      "weakPassword": "Tafadhali chagua nenosiri imara zaidi.",
+      "tooManyRequests": "Majaribio mengi mno. Subiri kidogo kisha ujaribu tena.",
+      "network": "Hakuna mtandao. Angalia muunganisho wako kisha ujaribu tena.",
+      "popupClosed": "Kuingia kumesitishwa.",
+      "differentProvider": "Barua pepe hii tayari imeunganishwa na njia nyingine ya kuingia.",
+      "linkExpired": "Kiungo hiki kimeisha muda au tayari kimetumika.",
+      "generic": "Kuna hitilafu imetokea. Tafadhali jaribu tena."
+    }
   }
 }

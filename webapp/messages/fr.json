@@ -48,5 +48,79 @@
   },
   "language": {
     "title": "Langue"
+  },
+  "auth": {
+    "email": "E-mail",
+    "password": "Mot de passe",
+    "confirmPassword": "Confirmez le mot de passe",
+    "newPassword": "Nouveau mot de passe",
+    "confirmNewPassword": "Confirmer le nouveau mot de passe",
+    "passwordHint": "Au moins 6 caractères.",
+    "rememberMe": "Souviens-toi de moi",
+    "forgotPassword": "Mot de passe oublié ?",
+    "orContinueWith": "Ou continuez avec",
+    "orWithEmail": "ou inscrivez-vous par e-mail",
+    "continueWithGoogle": "Continuer avec Google",
+    "showPassword": "Afficher le mot de passe",
+    "hidePassword": "Masquer le mot de passe",
+    "backToSignIn": "Retour à la connexion",
+    "panel": {
+      "years": "Années d'expertise",
+      "production": "Production mensuelle",
+      "quote": "Donner à chacun des compétences qui génèrent des revenus.",
+      "quoteAuthor": "Mercy Kitomari, fondatrice"
+    },
+    "signIn": {
+      "title": "Bon retour",
+      "subtitle": "Connectez-vous pour reprendre là où vous vous êtes arrêté.",
+      "submit": "Se connecter",
+      "noAccount": "Vous n'avez pas de compte ?",
+      "signUpLink": "S'inscrire"
+    },
+    "signUp": {
+      "title": "Créer un compte",
+      "subtitle": "Créez votre compte pour commencer.",
+      "submit": "S'inscrire",
+      "haveAccount": "Vous avez déjà un compte ?",
+      "signInLink": "Se connecter",
+      "terms": "J'accepte les <terms>Conditions générales</terms> et la <privacy>Politique de confidentialité</privacy>."
+    },
+    "forgot": {
+      "title": "Réinitialisez votre mot de passe",
+      "subtitle": "Saisissez l'e-mail utilisé lors de l'inscription et nous vous enverrons un lien pour choisir un nouveau mot de passe.",
+      "submit": "Envoyer le lien",
+      "sentTitle": "Consultez votre boîte de réception",
+      "sentBody": "Si un compte existe pour <email></email>, un lien de réinitialisation est en route. Cela peut prendre une minute — vérifiez aussi vos spams.",
+      "resend": "Renvoyer"
+    },
+    "reset": {
+      "title": "Créer un nouveau mot de passe",
+      "subtitle": "Choisissez un nouveau mot de passe pour <email></email>.",
+      "submit": "Enregistrer le nouveau mot de passe",
+      "doneTitle": "Mot de passe mis à jour",
+      "doneBody": "Vous pouvez maintenant vous connecter avec votre nouveau mot de passe.",
+      "expiredTitle": "Ce lien a expiré",
+      "expiredBody": "Les liens de réinitialisation ne servent qu'une fois et expirent. Demandez-en un nouveau pour continuer.",
+      "requestNew": "Demander un nouveau lien"
+    },
+    "validation": {
+      "emailRequired": "Veuillez saisir votre e-mail.",
+      "emailInvalid": "Doit être une adresse e-mail valide.",
+      "passwordRequired": "Veuillez saisir votre mot de passe.",
+      "passwordShort": "Le mot de passe doit contenir au moins 6 caractères.",
+      "passwordsDontMatch": "Les mots de passe ne correspondent pas !",
+      "acceptTerms": "Veuillez accepter les Conditions générales pour créer votre compte."
+    },
+    "errors": {
+      "invalidCredential": "E-mail ou mot de passe incorrect.",
+      "emailInUse": "Un compte existe déjà avec cet e-mail. Veuillez vous connecter.",
+      "weakPassword": "Veuillez choisir un mot de passe plus robuste.",
+      "tooManyRequests": "Trop de tentatives. Patientez un instant puis réessayez.",
+      "network": "Pas de connexion Internet. Vérifiez votre connexion et réessayez.",
+      "popupClosed": "La connexion a été annulée.",
+      "differentProvider": "Cet e-mail est déjà associé à un autre mode de connexion.",
+      "linkExpired": "Ce lien a expiré ou a déjà été utilisé.",
+      "generic": "Une erreur s'est produite. Veuillez réessayer."
+    }
   }
 }
