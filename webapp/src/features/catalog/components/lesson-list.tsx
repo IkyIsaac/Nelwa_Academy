@@ -58,7 +58,12 @@ export function LessonList({ course, owned }: { course: Course; owned: boolean }
     <ol className="space-y-2.5">
       {lessons.data.map((lesson, index) => (
         <li key={lesson.id}>
-          <LessonRow lesson={lesson} index={index} course={course} open={owned || lesson.isFree} />
+          <LessonRow
+            lesson={lesson}
+            index={index}
+            course={course}
+            open={owned || lesson.isFree || course.price <= 0}
+          />
         </li>
       ))}
     </ol>

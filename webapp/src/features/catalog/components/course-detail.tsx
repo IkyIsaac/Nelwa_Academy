@@ -9,7 +9,7 @@ import { Reveal } from "@/components/motion/reveal"
 import { Button } from "@/components/ui/button"
 import { Skeleton } from "@/components/ui/skeleton"
 import { routes } from "@/config/site"
-import { useAuth } from "@/features/auth/components/auth-provider"
+import { useCourseAccess } from "@/features/learning/hooks"
 import { cn } from "@/lib/utils"
 import { formatCourseLength, formatRating } from "../format"
 import { useCourse, useReviews } from "../hooks"
@@ -25,7 +25,6 @@ import { RatingSummary, ReviewCard } from "./reviews"
 export function CourseDetail({ id }: { id: string }) {
   const t = useTranslations("catalog.course")
   const course = useCourse(id)
-  const { user } = useAuth()
 
   if (course.isError) {
     return (
@@ -48,12 +47,15 @@ export function CourseDetail({ id }: { id: string }) {
     )
   }
 
-  const owned = !!user && course.data.studentIds.includes(user.uid)
-  return <CourseLayout course={course.data} owned={owned} />
+  return <CourseLayout course={course.data} />
 }
 
-function CourseLayout({ course, owned }: { course: Course; owned: boolean }) {
+function CourseLayout({ course }: { course: Course }) {
   const t = useTranslations("catalog.course")
+  // A purchase (including pre-Snippe ones missing from `downloaders`) or
+  // being the course's instructor both count as owning it.
+  const access = useCourseAccess(course)
+  const owned = access.owned || access.teaches
   const locale = useLocale()
 
   const facts = [
