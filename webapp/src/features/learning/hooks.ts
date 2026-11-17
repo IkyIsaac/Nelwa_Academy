@@ -92,7 +92,7 @@ export function useRefundRequest(courseId: string) {
   return useQuery({
     queryKey: learningKeys.refund(uid, courseId),
     queryFn: () => fetchRefundRequest(uid, courseId),
-    enabled: !!uid,
+    enabled: !!uid && !!courseId,
   })
 }
 

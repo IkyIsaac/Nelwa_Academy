@@ -20,7 +20,7 @@ import { EmptyState } from "@/components/empty-state"
 import { Button } from "@/components/ui/button"
 import { Progress } from "@/components/ui/progress"
 import { Skeleton } from "@/components/ui/skeleton"
-import { routes } from "@/config/site"
+import { features, routes } from "@/config/site"
 import { useAuth } from "@/features/auth/components/auth-provider"
 import { LoadError } from "@/features/catalog/components/discover-views"
 import { formatSeconds } from "@/features/catalog/format"
@@ -285,7 +285,7 @@ function LockedPlayer({ course, unlocked }: { course: Course; unlocked: boolean 
 function CourseActions({ course }: { course: Course }) {
   const t = useTranslations("learning")
   const access = useCourseAccess(course)
-  const refund = useRefundRequest(course.id)
+  const refund = useRefundRequest(features.refunds ? course.id : "")
   const purchase = access.purchase
   if (!purchase) return null
 
@@ -299,7 +299,8 @@ function CourseActions({ course }: { course: Course }) {
       ) : (
         <ReviewDialog course={course} purchaseId={purchase.id} />
       )}
-      {course.price > 0 &&
+      {features.refunds &&
+        course.price > 0 &&
         (refund.data ? (
           <p className="flex items-center gap-2 pt-1 text-sm text-muted-foreground">
             <ReceiptText className="size-4" />

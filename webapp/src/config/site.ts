@@ -8,6 +8,14 @@ export const site = {
   playStoreUrl: "https://play.google.com/store/apps/details?id=com.mycompany.nelwas",
 } as const
 
+/**
+ * Feature switches. Refund requests are turned off by the academy
+ * (2026-11-17); flip `refunds` back to true to restore the button and page.
+ */
+export const features = {
+  refunds: false,
+} as const
+
 /** Routes in one place so links never drift out of sync. */
 export const routes = {
   landing: "/",
