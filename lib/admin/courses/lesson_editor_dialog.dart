@@ -189,7 +189,7 @@ class _LessonEditorDialogState extends State<LessonEditorDialog> {
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Expanded(child: _field('Duration (minutes)', _durationController)),
+                          Expanded(child: _field('Duration (seconds)', _durationController)),
                           const SizedBox(width: AdminSpace.lg),
                           Expanded(child: _field('Order', _orderController)),
                         ],
