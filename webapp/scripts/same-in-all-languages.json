@@ -1,3 +1,8 @@
 [
-  "nav.contact"
+  "nav.contact",
+  "landing.courses.softTitle",
+  "landing.courses.softPrice",
+  "landing.courses.softPriceNote",
+  "landing.courses.gelatoPrice",
+  "landing.contact.whatsapp"
 ]
