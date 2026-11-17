@@ -7,7 +7,10 @@
     "retry": "Try again",
     "loading": "Loading…",
     "somethingWrong": "Something went wrong",
-    "free": "Free"
+    "free": "Free",
+    "chooseCountry": "Choose your country",
+    "search": "Search",
+    "noResults": "No results"
   },
   "nav": {
     "home": "Home",
@@ -121,6 +124,59 @@
       "differentProvider": "This email is already linked to another sign-in method.",
       "linkExpired": "This link has expired or was already used.",
       "generic": "Something went wrong. Please try again."
+    }
+  },
+  "onboarding": {
+    "step": "Step {step} of {total}",
+    "profile": {
+      "title": "Complete Your Profile",
+      "subtitle": "Tell us a little about yourself so we can personalise your learning.",
+      "name": "Name",
+      "namePlaceholder": "Your full name",
+      "dateOfBirth": "Date of Birth",
+      "country": "Country",
+      "changePhoto": "Change profile photo",
+      "photoHint": "Add a photo (optional)",
+      "nameRequired": "Please enter your name.",
+      "dobInFuture": "Date of birth can't be in the future.",
+      "continue": "Continue",
+      "saveFailed": "We couldn't save your profile. Please try again."
+    },
+    "interests": {
+      "topicsTitle": "What interests you most?",
+      "topicsSubtitle": "Pick one or more topics.",
+      "experienceTitle": "What is your current experience level?",
+      "useForTitle": "What will you use Nelwa's Academy for?",
+      "helpsUs": "This helps us create a better experience for you.",
+      "back": "Back",
+      "skip": "Skip",
+      "continue": "Continue",
+      "finish": "Finish",
+      "saveFailed": "We couldn't save your answers. Please try again.",
+      "topics": {
+        "iceCream": "Ice Cream",
+        "bakery": "Bakery",
+        "catering": "Catering"
+      },
+      "experience": {
+        "newcomer": "Newcomer",
+        "beginner": "Beginner",
+        "student": "Student",
+        "enthusiast": "Enthusiast",
+        "intermediate": "Intermediate",
+        "professional": "Professional"
+      },
+      "useFor": {
+        "startBusiness": "I want to start my business",
+        "improveSkills": "I want to improve my skills",
+        "improveTeam": "I want to improve my team's skills",
+        "lookingAround": "I'm just looking around"
+      }
+    },
+    "done": {
+      "title": "You're All Set!",
+      "body": "Your profile is complete. Start learning, sharing, and growing today!",
+      "start": "Start learning"
     }
   }
 }

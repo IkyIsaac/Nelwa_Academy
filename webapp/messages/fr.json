@@ -7,7 +7,10 @@
     "retry": "Réessayer",
     "loading": "Chargement…",
     "somethingWrong": "Une erreur s'est produite",
-    "free": "Gratuit"
+    "free": "Gratuit",
+    "chooseCountry": "Choisissez votre pays",
+    "search": "Recherche",
+    "noResults": "Aucun résultat"
   },
   "nav": {
     "home": "Maison",
@@ -121,6 +124,59 @@
       "differentProvider": "Cet e-mail est déjà associé à un autre mode de connexion.",
       "linkExpired": "Ce lien a expiré ou a déjà été utilisé.",
       "generic": "Une erreur s'est produite. Veuillez réessayer."
+    }
+  },
+  "onboarding": {
+    "step": "Étape {step} sur {total}",
+    "profile": {
+      "title": "Complétez votre profil",
+      "subtitle": "Parlez-nous un peu de vous pour personnaliser votre apprentissage.",
+      "name": "Nom",
+      "namePlaceholder": "Votre nom complet",
+      "dateOfBirth": "Date de naissance",
+      "country": "Pays",
+      "changePhoto": "Changer la photo de profil",
+      "photoHint": "Ajouter une photo (facultatif)",
+      "nameRequired": "Veuillez saisir votre nom.",
+      "dobInFuture": "La date de naissance ne peut pas être dans le futur.",
+      "continue": "Continuer",
+      "saveFailed": "Impossible d'enregistrer votre profil. Veuillez réessayer."
+    },
+    "interests": {
+      "topicsTitle": "Qu'est-ce qui vous intéresse le plus ?",
+      "topicsSubtitle": "Choisissez un ou plusieurs sujets.",
+      "experienceTitle": "Quel est votre niveau d'expérience actuel ?",
+      "useForTitle": "Pourquoi utiliserez-vous Nelwa's Academy ?",
+      "helpsUs": "Cela nous permet de vous offrir une meilleure expérience.",
+      "back": "Retour",
+      "skip": "Sauter",
+      "continue": "Continuer",
+      "finish": "Terminer",
+      "saveFailed": "Impossible d'enregistrer vos réponses. Veuillez réessayer.",
+      "topics": {
+        "iceCream": "Glace",
+        "bakery": "Boulangerie",
+        "catering": "Traiteur"
+      },
+      "experience": {
+        "newcomer": "Nouveau venu",
+        "beginner": "Débutant",
+        "student": "Étudiant",
+        "enthusiast": "Passionné",
+        "intermediate": "Intermédiaire",
+        "professional": "Professionnel"
+      },
+      "useFor": {
+        "startBusiness": "Je veux lancer mon entreprise",
+        "improveSkills": "Je veux améliorer mes compétences",
+        "improveTeam": "Je veux améliorer les compétences de mon équipe",
+        "lookingAround": "Je regarde simplement"
+      }
+    },
+    "done": {
+      "title": "Tout est prêt !",
+      "body": "Votre profil est complet. Commencez dès aujourd'hui à apprendre, à partager et à progresser !",
+      "start": "Commencer à apprendre"
     }
   }
 }

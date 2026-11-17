@@ -7,7 +7,10 @@
     "retry": "Jaribu tena",
     "loading": "Inapakia…",
     "somethingWrong": "Kuna hitilafu imetokea",
-    "free": "Bure"
+    "free": "Bure",
+    "chooseCountry": "Chagua nchi yako",
+    "search": "Tafuta",
+    "noResults": "Hakuna matokeo"
   },
   "nav": {
     "home": "Nyumbani",
@@ -121,6 +124,59 @@
       "differentProvider": "Barua pepe hii tayari imeunganishwa na njia nyingine ya kuingia.",
       "linkExpired": "Kiungo hiki kimeisha muda au tayari kimetumika.",
       "generic": "Kuna hitilafu imetokea. Tafadhali jaribu tena."
+    }
+  },
+  "onboarding": {
+    "step": "Hatua {step} kati ya {total}",
+    "profile": {
+      "title": "Kamilisha Wasifu Wako",
+      "subtitle": "Tueleze kidogo kukuhusu ili tuweze kukuandalia masomo yanayokufaa.",
+      "name": "Jina",
+      "namePlaceholder": "Jina lako kamili",
+      "dateOfBirth": "Tarehe ya Kuzaliwa",
+      "country": "Nchi",
+      "changePhoto": "Badilisha picha ya wasifu",
+      "photoHint": "Weka picha (si lazima)",
+      "nameRequired": "Tafadhali weka jina lako.",
+      "dobInFuture": "Tarehe ya kuzaliwa haiwezi kuwa ya baadaye.",
+      "continue": "Endelea",
+      "saveFailed": "Hatukuweza kuhifadhi wasifu wako. Tafadhali jaribu tena."
+    },
+    "interests": {
+      "topicsTitle": "Ni nini kinachokuvutia zaidi?",
+      "topicsSubtitle": "Chagua mada moja au zaidi.",
+      "experienceTitle": "Kiwango chako cha uzoefu wa sasa ni kipi?",
+      "useForTitle": "Utatumia Nelwa's Academy kwa ajili ya nini?",
+      "helpsUs": "Hii inatusaidia kuunda uzoefu bora zaidi kwako.",
+      "back": "Rudi",
+      "skip": "Ruka",
+      "continue": "Endelea",
+      "finish": "Maliza",
+      "saveFailed": "Hatukuweza kuhifadhi majibu yako. Tafadhali jaribu tena.",
+      "topics": {
+        "iceCream": "Aiskrimu",
+        "bakery": "Uokaji",
+        "catering": "Upishi wa Shughuli"
+      },
+      "experience": {
+        "newcomer": "Mgeni kabisa",
+        "beginner": "Mwanzo",
+        "student": "Mwanafunzi",
+        "enthusiast": "Mpenzi wa fani",
+        "intermediate": "Kati",
+        "professional": "Mtaalamu"
+      },
+      "useFor": {
+        "startBusiness": "Nataka kuanzisha biashara yangu",
+        "improveSkills": "Nataka kuboresha ujuzi wangu",
+        "improveTeam": "Nataka kuboresha ujuzi wa timu yangu",
+        "lookingAround": "Ninaangalia tu kwa sasa"
+      }
+    },
+    "done": {
+      "title": "Uko Tayari!",
+      "body": "Wasifu wako umekamilika. Anza kujifunza, kushiriki, na kukua leo!",
+      "start": "Anza kujifunza"
     }
   }
 }
