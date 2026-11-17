@@ -8,6 +8,7 @@ import { usePathname } from "next/navigation"
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
+import { useUnreadCount } from "@/features/account/hooks"
 import { routes } from "@/config/site"
 import { useAuth } from "@/features/auth/components/auth-provider"
 import { cn } from "@/lib/utils"
@@ -107,15 +108,7 @@ export function SiteHeader() {
               >
                 <Search />
               </Button>
-              <Button
-                variant="ghost"
-                size="icon"
-                aria-label={t("notifications")}
-                render={<Link href={routes.notifications} />}
-                className={cn(onDark && "text-white hover:bg-white/10 hover:text-white")}
-              >
-                <Bell />
-              </Button>
+              <NotificationBell onDark={onDark} label={t("notifications")} />
               <div className="ml-1">
                 <UserMenu />
               </div>
@@ -194,5 +187,26 @@ function MobileMenu({ links, onDark }: { links: NavLink[]; onDark: boolean }) {
         </div>
       </SheetContent>
     </Sheet>
+  )
+}
+
+/** Bell with a live unread count (only rendered for signed-in learners). */
+function NotificationBell({ onDark, label }: { onDark: boolean; label: string }) {
+  const unread = useUnreadCount()
+  return (
+    <Button
+      variant="ghost"
+      size="icon"
+      aria-label={unread ? `${label} (${unread})` : label}
+      render={<Link href={routes.notifications} />}
+      className={cn("relative", onDark && "text-white hover:bg-white/10 hover:text-white")}
+    >
+      <Bell />
+      {unread > 0 && (
+        <span className="absolute top-1 right-1 grid min-w-4 place-items-center rounded-full bg-maroon-light px-1 text-[10px] leading-4 font-bold text-white ring-2 ring-white">
+          {unread > 9 ? "9+" : unread}
+        </span>
+      )}
+    </Button>
   )
 }
