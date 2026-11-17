@@ -59,3 +59,36 @@ exports.emailOnContactMessage = functions.firestore
       functions.logger.error("Failed to queue contact message email", { id: context.params.id, error: err.message });
     }
   });
+
+/**
+ * Tells the academy about a new consultation booking. Bookings come from
+ * the website and the app; neither had any alert before, so requests
+ * could sit unseen in Firestore.
+ */
+exports.emailOnConsultationBooked = functions.firestore
+  .document("consultation/{id}")
+  .onCreate(async (snap, context) => {
+    const d = snap.data();
+    const text = (v, max) => (typeof v === "string" ? v.trim().slice(0, max) : "");
+    const email = text(d.email, 200);
+    const when = d.appointment_time && d.appointment_time.toDate ? d.appointment_time.toDate().toISOString() : "";
+    try {
+      await queueEmail({
+        id: `consultation_${context.params.id}`,
+        to: ACADEMY_INBOX,
+        template: "consultation_request",
+        data: {
+          name: text(d.display_name || d.user_name, 100),
+          email,
+          phone: text(d.phone_number, 40),
+          department: text(d.selected_department, 80),
+          reason: text(d.reason_for_visit, 2000),
+          date: when,
+          uid: text(d.uid, 128),
+        },
+        ...(/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email) ? { replyTo: email } : {}),
+      });
+    } catch (err) {
+      functions.logger.error("Failed to queue consultation email", { id: context.params.id, error: err.message });
+    }
+  });
