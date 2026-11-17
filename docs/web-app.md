@@ -68,7 +68,7 @@ Rules the code follows:
 | 0 | Scaffold, design system, translations | Done |
 | 1 | Landing, about, contact, consult; auth; onboarding | Done |
 | 2 | Catalog: explore, search, categories, tags, groups, course page, reviews, instructor, signed-in home | Done |
-| 3 | Checkout with Snippe | In progress |
+| 3 | Checkout with Snippe ([checkout-web.md](checkout-web.md)) | Built; awaiting functions deploy and a live 500 TZS test |
 | 4 | Learning: course player, progress, write review, refund request | Planned |
 | 5 | Account: profile, notifications, purchases, wishlist, support chat, consultations, help/terms/privacy | Planned |
 | 6 | Instructor studio | Later |
