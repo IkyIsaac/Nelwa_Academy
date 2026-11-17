@@ -76,9 +76,11 @@ service cloud.firestore {
     }
 
 
+    // Published courses are public so the website can show the catalog to
+    // visitors; drafts stay visible to signed-in users only (as before).
     match /courses/{document} {
       allow create: if false;
-      allow read: if request.auth != null;
+      allow read: if request.auth != null || resource.data.get('is_published', false) == true;
       allow write: if request.auth != null;
       allow delete: if false;
     }
@@ -95,15 +97,16 @@ service cloud.firestore {
     }
 
 
+    // Instructor stats (no personal details) are public for the instructor page.
     match /users/{parent}/instructor_details/{document} {
       allow create: if false;
-      allow read: if request.auth != null;
+      allow read: if true;
       allow write: if request.auth != null;
       allow delete: if false;
     }
 
     match /{path=**}/instructor_details/{document} {
-      allow read: if request.auth != null;
+      allow read: if true;
     }
 
 
@@ -119,15 +122,16 @@ service cloud.firestore {
     }
 
 
+    // Course reviews are public, like on any course website.
     match /courses/{parent}/courses_review/{document} {
       allow create: if false;
-      allow read: if request.auth != null;
+      allow read: if true;
       allow write: if request.auth != null;
       allow delete: if false;
     }
 
     match /{path=**}/courses_review/{document} {
-      allow read: if request.auth != null;
+      allow read: if true;
     }
 
 
@@ -183,9 +187,10 @@ service cloud.firestore {
     }
 
 
+    // Categories, tags and trending searches for the public catalog.
     match /options/{document} {
       allow create: if false;
-      allow read: if request.auth != null;
+      allow read: if true;
       allow write: if request.auth != null;
       allow delete: if false;
     }
