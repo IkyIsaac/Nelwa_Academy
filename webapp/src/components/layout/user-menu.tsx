@@ -15,14 +15,7 @@ import {
 import { routes } from "@/config/site"
 import { signOut } from "@/features/auth/api"
 import { useAuth } from "@/features/auth/components/auth-provider"
-
-export const initials = (name: string) =>
-  name
-    .split(" ")
-    .filter(Boolean)
-    .slice(0, 2)
-    .map((part) => part[0]?.toUpperCase())
-    .join("") || "N"
+import { initials } from "@/lib/utils"
 
 /** Avatar button with shortcuts to the learner's account pages. */
 export function UserMenu() {

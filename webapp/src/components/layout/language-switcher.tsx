@@ -39,8 +39,10 @@ export function LanguageSwitcher({ onDark = false }: { onDark?: boolean }) {
             size="icon"
             aria-label={t("title")}
             disabled={pending}
-            className={cn(onDark &&
-                "text-white hover:bg-white/10 hover:text-white aria-expanded:bg-white/15 aria-expanded:text-white")}
+            className={cn(
+              onDark &&
+                "text-white hover:bg-white/10 hover:text-white aria-expanded:bg-white/15 aria-expanded:text-white",
+            )}
           />
         }
       >
