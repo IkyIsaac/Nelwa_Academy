@@ -18,11 +18,14 @@ import { WishlistButton } from "./wishlist-button"
 
 export type Plan = "monthly" | "yearly"
 
-/** Where "Enroll" goes: checkout, via sign-in for visitors. */
-export function useEnrollHref(course: Course, plan: Plan) {
+/**
+ * Where "Enroll" goes: checkout for paid courses, the free lessons for free
+ * ones (there's nothing to buy, as on mobile), via sign-in for visitors.
+ */
+export function useEnrollHref(course: Course) {
   const { status } = useAuth()
-  const checkout = `${routes.checkout(course.id)}?plan=${plan}`
-  return status === "signed-in" ? checkout : `${routes.signIn}?next=${encodeURIComponent(checkout)}`
+  const target = course.price > 0 ? routes.checkout(course.id) : `${routes.course(course.id)}#lessons`
+  return status === "signed-in" ? target : `${routes.signIn}?next=${encodeURIComponent(target)}`
 }
 
 /** Cover image that turns into the preview video when played. */
@@ -90,11 +93,13 @@ export function PurchasePanel({ course, owned }: { course: Course; owned: boolea
   const t = useTranslations("catalog.course")
   const locale = useLocale()
   const [plan, setPlan] = useState<Plan>("monthly")
-  const enrollHref = useEnrollHref(course, plan)
+  const enrollHref = useEnrollHref(course)
+  // Checkout charges the monthly price only (createOrder has no yearly
+  // pricing yet, same as the mobile app), so yearly is shown but disabled.
   const plans = (
     [
-      { id: "monthly", price: course.price, label: t("monthly"), suffix: t("perMonth") },
-      { id: "yearly", price: course.yearPrice, label: t("yearly"), suffix: t("perYear") },
+      { id: "monthly", price: course.price, label: t("monthly"), suffix: t("perMonth"), soon: false },
+      { id: "yearly", price: course.yearPrice, label: t("yearly"), suffix: t("perYear"), soon: true },
     ] as const
   ).filter((p) => p.price > 0)
 
@@ -133,10 +138,12 @@ export function PurchasePanel({ course, owned }: { course: Course; owned: boolea
                   type="button"
                   role="radio"
                   aria-checked={plan === p.id}
+                  disabled={p.soon}
                   onClick={() => setPlan(p.id)}
                   className={cn(
                     "relative flex w-full items-center gap-3 rounded-2xl border-[1.5px] px-4 py-3.5 text-left transition-all",
                     plan === p.id ? "border-primary bg-maroon-tint" : "border-border hover:border-primary/40",
+                    p.soon && "cursor-not-allowed opacity-60 hover:border-border",
                   )}
                 >
                   <span
@@ -157,7 +164,14 @@ export function PurchasePanel({ course, owned }: { course: Course; owned: boolea
                     </AnimatePresence>
                   </span>
                   <span className="flex-1">
-                    <span className="block text-sm font-semibold">{p.label}</span>
+                    <span className="block text-sm font-semibold">
+                      {p.label}
+                      {p.soon && (
+                        <span className="ml-1.5 text-xs font-medium text-muted-foreground">
+                          · {t("comingSoon")}
+                        </span>
+                      )}
+                    </span>
                     <span className="text-lg font-extrabold text-primary">
                       {formatPrice(p.price)}
                       <span className="text-xs font-medium text-muted-foreground">{p.suffix}</span>
@@ -199,7 +213,7 @@ export function PurchasePanel({ course, owned }: { course: Course; owned: boolea
 /** Phones: price and Enroll pinned to the bottom of the screen. */
 export function MobilePurchaseBar({ course, owned }: { course: Course; owned: boolean }) {
   const t = useTranslations("catalog.course")
-  const enrollHref = useEnrollHref(course, "monthly")
+  const enrollHref = useEnrollHref(course)
   const { status } = useAuth()
 
   return (
