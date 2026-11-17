@@ -8,6 +8,8 @@
 //      (scripts/flutter-glossary.json),
 //   3. otherwise fall back to English and list the key as "needs translation".
 // Keys removed from en.json are removed from the other files too.
+// Keys listed in scripts/same-in-all-languages.json (brand names, prices…)
+// are expected to match English and are not reported.
 
 import { existsSync, readFileSync, writeFileSync } from "node:fs"
 import { dirname, join } from "node:path"
@@ -19,6 +21,7 @@ const readJson = (path) => (existsSync(path) ? JSON.parse(readFileSync(path, "ut
 
 const english = readJson(join(messagesDir, "en.json"))
 const glossary = readJson(join(here, "flutter-glossary.json"))
+const sameEverywhere = new Set(readJson(join(here, "same-in-all-languages.json")))
 
 for (const lang of ["sw", "fr"]) {
   const file = join(messagesDir, `${lang}.json`)
@@ -30,7 +33,7 @@ for (const lang of ["sw", "fr"]) {
       if (typeof current === "string" && current !== en) return current
       const fromMobile = glossary[en.trim()]?.[lang]
       if (fromMobile) return fromMobile
-      missing.push(path)
+      if (!sameEverywhere.has(path)) missing.push(path)
       return en
     }
     const out = {}
