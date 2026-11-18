@@ -1544,38 +1544,31 @@ class _PaymentSetupWidgetState extends State<PaymentSetupWidget> {
                           return;
                         }
 
-                        await PaymentAccountRecord.createDoc(
-                                currentUserReference!)
-                            .set(createPaymentAccountRecordData(
-                          accountType: _model.selectedType,
-                          currency: 'USD',
-                          balance: 0.0,
-                          isDefault: true,
-                          createdAt: getCurrentTimestamp,
-                          account:
+                        await savePayoutDetails({
+                          'account_type': _model.selectedType,
+                          'account':
                               int.tryParse(_model.accountTextController.text),
-                          accountHolder:
+                          'account_holder':
                               _model.accountHolderTextController.text,
-                          bankCode: _model.bankCodeTextController.text,
-                          branchCode: int.tryParse(
+                          'bank_code': _model.bankCodeTextController.text,
+                          'branch_code': int.tryParse(
                               _model.branchCodeTextController.text),
-                        ));
+                          'paypal_email': FieldValue.delete(),
+                        });
                       } else {
                         if (_model.formKey2.currentState == null ||
                             !_model.formKey2.currentState!.validate()) {
                           return;
                         }
 
-                        await PaymentAccountRecord.createDoc(
-                                currentUserReference!)
-                            .set(createPaymentAccountRecordData(
-                          accountType: _model.selectedType,
-                          currency: 'USD',
-                          balance: 0.0,
-                          isDefault: true,
-                          createdAt: getCurrentTimestamp,
-                          paypalEmail: _model.payPalTextController.text,
-                        ));
+                        await savePayoutDetails({
+                          'account_type': _model.selectedType,
+                          'paypal_email': _model.payPalTextController.text,
+                          'account': FieldValue.delete(),
+                          'account_holder': FieldValue.delete(),
+                          'bank_code': FieldValue.delete(),
+                          'branch_code': FieldValue.delete(),
+                        });
                       }
 
                       await showDialog(
@@ -1641,4 +1634,36 @@ class _PaymentSetupWidgetState extends State<PaymentSetupWidget> {
       ),
     );
   }
+}
+
+/// Saves the instructor's payout details on their one payout account.
+///
+/// The payment webhook credits sales to the first `payment_account` doc it
+/// finds (`limit(1)`), so this updates that same doc instead of adding a new
+/// one each time the form is submitted (which used to split the balance
+/// across several docs). Only the payout details change here: `balance` and
+/// `sales_reports` belong to the server, and the rules refuse client changes
+/// to them. Every sale is in TZS, so a new account starts in TZS.
+Future savePayoutDetails(Map<String, dynamic> details) async {
+  final existing = await queryPaymentAccountRecordOnce(
+    parent: currentUserReference,
+    singleRecord: true,
+  );
+  if (existing.isNotEmpty) {
+    await existing.first.reference.update({
+      ...details,
+      'currency': 'TZS',
+      'is_default': true,
+    });
+    return;
+  }
+  final fresh = Map<String, dynamic>.of(details)
+    ..removeWhere((_, v) => v is FieldValue || v == null);
+  await PaymentAccountRecord.createDoc(currentUserReference!).set({
+    ...fresh,
+    'currency': 'TZS',
+    'balance': 0.0,
+    'is_default': true,
+    'created_at': getCurrentTimestamp,
+  });
 }
