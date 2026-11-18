@@ -1,6 +1,6 @@
 "use client"
 
-import { BookOpen, Heart, LogOut, Receipt, User } from "lucide-react"
+import { BookOpen, Heart, LogOut, Presentation, Receipt, User } from "lucide-react"
 import { useTranslations } from "next-intl"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
@@ -50,6 +50,11 @@ export function UserMenu() {
         <DropdownMenuItem render={<Link href={routes.account} />}>
           <User /> {t("profile")}
         </DropdownMenuItem>
+        {profile?.instructor && (
+          <DropdownMenuItem render={<Link href={routes.studio} />}>
+            <Presentation /> {t("studio")}
+          </DropdownMenuItem>
+        )}
         <DropdownMenuItem render={<Link href={routes.learn} />}>
           <BookOpen /> {t("myLearning")}
         </DropdownMenuItem>

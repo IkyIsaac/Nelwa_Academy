@@ -4,6 +4,7 @@ import {
   BadgeCheck,
   Bell,
   BookOpen,
+  CalendarClock,
   ChevronRight,
   CircleHelp,
   FileText,
@@ -11,13 +12,13 @@ import {
   Languages,
   LogOut,
   MessagesSquare,
+  Presentation,
   Receipt,
   Shield,
   ShieldCheck,
   Star,
   User,
   Users,
-  CalendarClock,
   type LucideIcon,
 } from "lucide-react"
 import { motion } from "motion/react"
@@ -44,6 +45,15 @@ export function AccountHub() {
   const photo = profile?.photoUrl || user?.photoURL || undefined
 
   const groups: { title: string; items: Item[] }[] = [
+    // Approved instructors (the same flag the mobile app's instructor mode uses).
+    ...(profile?.instructor
+      ? [
+          {
+            title: t("groups.teaching"),
+            items: [{ href: routes.studio, icon: Presentation, label: t("menu.studio") }],
+          },
+        ]
+      : []),
     {
       title: t("groups.learning"),
       items: [
