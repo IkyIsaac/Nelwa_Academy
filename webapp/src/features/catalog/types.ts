@@ -35,6 +35,8 @@ export type Course = {
   instructorId: string
   instructorName: string
   publishedAt: Date | null
+  /** Unpublished courses are visible only to signed-in users (and their instructor's studio). */
+  isPublished: boolean
   /** Users who bought the course. */
   studentIds: string[]
 }
@@ -64,6 +66,7 @@ export function toCourse(id: string, d: DocumentData): Course {
     instructorId: refId(d.instructor_ref),
     instructorName: str(d.instructor_name),
     publishedAt: date(d.published_date),
+    isPublished: bool(d.is_published),
     studentIds: refList(d.downloaders).map((r) => r.id),
   }
 }
