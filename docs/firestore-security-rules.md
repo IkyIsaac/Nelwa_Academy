@@ -186,7 +186,7 @@ today, traced through the code. Each was confirmed to still pass:
    2026-11-18). The owner-update rule on `payment_account` allowed every
    field, and `createPayout` trusts `balance` as the limit. Fixed in
    commit `46e0763` (the owner can't set or change `balance` or
-   `sales_reports`). **Not deployed yet.** See
+   `sales_reports`). **Deployed 2026-11-18.** See
    [studio-web.md](studio-web.md#security-fix-written-not-deployed).
 
 ## Testing

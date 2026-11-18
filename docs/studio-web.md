@@ -108,7 +108,7 @@ needed**.
 - The mobile **Payment Setup** screen (bank account / PayPal) wasn't
   ported: payouts don't use those details. See the fixed bugs below.
 
-### Security fix (written, not deployed)
+### Security fix (deployed 2026-11-18)
 
 The deployed rules let an instructor **edit their own `payment_account`,
 including `balance`**. `createPayout` only checks that the amount
@@ -122,11 +122,8 @@ Commit `46e0763` changes `firestore.rules` so the owner:
 
 The admin and the Cloud Functions still can. The mobile setup screen
 creates accounts with `balance: 0`, so it keeps working. A test was added
-to `rules-tests/`, and the rules compile (dry run). **Deploy with:**
-
-```
-cd firebase && firebase deploy --only firestore:rules
-```
+to `rules-tests/`, and the rules compile. **Deployed to production on
+2026-11-18** with `firebase deploy --only firestore:rules`.
 
 ### Mobile bugs found and fixed
 
