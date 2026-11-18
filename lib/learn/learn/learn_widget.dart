@@ -94,7 +94,9 @@ class _LearnWidgetState extends State<LearnWidget>
           automaticallyImplyLeading: false,
           title: Text(
             FFLocalizations.of(context).getText(
-              'yc9urnu1' /* Learn */,
+              _model.showArchived
+                  ? 'nwarc004' /* Archived */
+                  : 'yc9urnu1' /* Learn */,
             ),
             style: FlutterFlowTheme.of(context).headlineSmall.override(
                   font: GoogleFonts.inter(
@@ -111,6 +113,23 @@ class _LearnWidgetState extends State<LearnWidget>
                 ),
           ),
           actions: [
+            Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(0.0, 6.0, 0.0, 6.0),
+              child: FlutterFlowIconButton(
+                borderRadius: 22.0,
+                buttonSize: 44.0,
+                fillColor: _model.showArchived
+                    ? FlutterFlowTheme.of(context).secondaryBackground
+                    : FlutterFlowTheme.of(context).transparent,
+                icon: Icon(
+                  Icons.inventory_2_outlined,
+                  color: FlutterFlowTheme.of(context).primaryText,
+                  size: 24.0,
+                ),
+                onPressed: () => safeSetState(
+                    () => _model.showArchived = !_model.showArchived),
+              ),
+            ),
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0.0, 6.0, 6.0, 6.0),
               child: FlutterFlowIconButton(
@@ -165,8 +184,20 @@ class _LearnWidgetState extends State<LearnWidget>
                     );
                   }
                   List<PurchasedCoursesRecord>
-                      listViewPurchasedCoursesRecordList = snapshot.data!;
+                      listViewPurchasedCoursesRecordList = snapshot.data!
+                          .where((c) => c.archived == _model.showArchived)
+                          .toList();
                   if (listViewPurchasedCoursesRecordList.isEmpty) {
+                    if (_model.showArchived) {
+                      return Center(
+                        child: Text(
+                          FFLocalizations.of(context).getText(
+                            'nwarc005' /* No archived courses */,
+                          ),
+                          style: FlutterFlowTheme.of(context).bodyMedium,
+                        ),
+                      );
+                    }
                     return EmptyLearnWidget();
                   }
 
