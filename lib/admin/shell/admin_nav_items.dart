@@ -27,6 +27,7 @@ const List<AdminNavItem> kAdminNavItems = [
   ),
   AdminNavItem(label: 'Orders', icon: Icons.receipt_long_outlined, path: '/orders'),
   AdminNavItem(label: 'Refunds', icon: Icons.currency_exchange, path: '/refunds'),
+  AdminNavItem(label: 'Consultations', icon: Icons.event_note_outlined, path: '/consultations'),
   AdminNavItem(label: 'Payouts', icon: Icons.account_balance_wallet_outlined, path: '/payouts'),
   AdminNavItem(label: 'Emails', icon: Icons.mail_outline, path: '/emails'),
   AdminNavItem(
