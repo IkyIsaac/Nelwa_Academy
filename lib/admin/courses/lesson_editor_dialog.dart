@@ -23,6 +23,17 @@ Future<void> showLessonEditor(
   );
 }
 
+/// Keeps a course's `total_lessons` and `total_duration` (seconds) in step
+/// with its lessons, as the website's studio does. The catalog, course page
+/// and progress bars read these totals rather than counting lessons.
+Future<void> recountCourseTotals(DocumentReference courseRef) async {
+  final lessons = await queryLessonsRecordOnce(parent: courseRef);
+  await courseRef.update({
+    'total_lessons': lessons.length,
+    'total_duration': lessons.fold<int>(0, (sum, l) => sum + l.duration),
+  });
+}
+
 class LessonEditorDialog extends StatefulWidget {
   const LessonEditorDialog({
     super.key,
@@ -108,6 +119,7 @@ class _LessonEditorDialogState extends State<LessonEditorDialog> {
     } else {
       await _lessonRef.update(data);
     }
+    await recountCourseTotals(widget.courseRef);
 
     if (!mounted) return;
     Navigator.of(context).pop();
@@ -132,6 +144,7 @@ class _LessonEditorDialogState extends State<LessonEditorDialog> {
 
     setState(() => _deleting = true);
     await _lessonRef.delete();
+    await recountCourseTotals(widget.courseRef);
     if (!mounted) return;
     Navigator.of(context).pop();
   }
