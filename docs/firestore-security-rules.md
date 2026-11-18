@@ -182,6 +182,12 @@ today, traced through the code. Each was confirmed to still pass:
 7. **The admin is a single hard-coded email.** Adding a second admin means
    editing `isAdmin()` and redeploying. Custom claims would be better
    long-term.
+8. **Instructors could edit their own payout `balance`** (found
+   2026-11-18). The owner-update rule on `payment_account` allowed every
+   field, and `createPayout` trusts `balance` as the limit. Fixed in
+   commit `46e0763` (the owner can't set or change `balance` or
+   `sales_reports`). **Not deployed yet.** See
+   [studio-web.md](studio-web.md#security-fix-written-not-deployed).
 
 ## Testing
 

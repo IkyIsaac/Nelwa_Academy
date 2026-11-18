@@ -71,7 +71,7 @@ Rules the code follows:
 | 3 | Checkout with Snippe ([checkout-web.md](checkout-web.md)) | Built and deployed; awaiting a live 500 TZS test |
 | 4 | Learning: My courses, player, progress, reviews, refund requests ([learning-web.md](learning-web.md)) | Built; awaiting a signed-in test |
 | 5 | Account: profile, security, notifications, purchases, reviews, following, wishlist, support chat, consultation booking, help/terms/privacy ([account-web.md](account-web.md)) | Built; consultation email deployed; refunds switched off; archive replaces delete |
-| 6 | Instructor studio | Later |
+| 6 | Instructor studio: courses, lessons, sales, payouts, followers, consultations ([studio-web.md](studio-web.md)) | Built; untested with an instructor account; payout-balance rules fix awaiting deploy |
 | 7 | Polish, SEO, performance, launch | Planned |
 
 ### Phase 0: foundation
