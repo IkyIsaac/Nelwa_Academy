@@ -10,6 +10,7 @@ apps.
 | [checkout-web.md](checkout-web.md) | Buying a course on the website with Snippe (Phase 3) |
 | [learning-web.md](learning-web.md) | My courses, the player, progress, reviews and refund requests (Phase 4) |
 | [account-web.md](account-web.md) | Account pages, notifications, support chat, consultations, help and legal (Phase 5) |
+| [pipeline.md](pipeline.md) | Decided features still to build: admin support inbox, activity statistics |
 | [snippe-integration.md](snippe-integration.md) | Snippe mobile-money payments: Cloud Functions, webhook, mobile checkout |
 | [firestore-security-rules.md](firestore-security-rules.md) | Who can read and write each collection, why, and how to change the rules safely |
 | [duration-units.md](duration-units.md) | Course and lesson durations are stored in seconds |

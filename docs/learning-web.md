@@ -9,9 +9,9 @@ and web.
 
 | Route | What it does |
 |---|---|
-| `/learn` | **My courses**: everything bought, plus free courses the learner started. Filter by All / In progress / Completed; progress bar and "Continue" on each |
+| `/learn` | **My courses**: everything bought, plus free courses the learner started. Filter by All / In progress / Completed / Archived (shown once something is archived); progress bar and "Continue" on each, plus an archive button on bought courses |
 | `/learn/[id]?lesson=` | **Player**: video, lesson title, duration and description, previous/next, auto-advance at the end of a video. Sidebar with progress and every lesson (done ✓, locked 🔒, free badge). Review and refund actions for bought courses |
-| `/learn/[id]/refund` | **Refund request**: reason (same five as mobile), optional screenshot (≤ 5 MB, resized), optional comment. Shows the request's status if one already exists |
+| `/learn/[id]/refund` | **Refund request**: switched off (shows "not found"); see [Refund requests](#refund-requests) |
 
 All three need sign-in. If a visitor opens a lesson link, they're sent to
 sign-in and returned to the same lesson (`RequireAuth` now keeps the query
@@ -82,6 +82,19 @@ that recalculates from `courses_review`, would fix them.
 
 ## Refund requests
 
+> **Switched off (2026-11-17).** The academy doesn't offer refunds.
+> - **Web:** `features.refunds = false` in `webapp/src/config/site.ts`
+>   hides the player's "Request a refund" button and makes the refund
+>   page return 404. Set it to `true` to bring both back unchanged.
+> - **Mobile:** "Request a refund" was removed from the course options
+>   sheet. The screen still exists but nothing links to it.
+> - The help center and terms now say purchases are final, and point
+>   payment problems to support.
+> - Requests sent before the switch are still listed in the admin
+>   portal's Refunds page.
+>
+> The rest of this section describes the feature as it was built.
+
 The web saves one document and moves no money:
 
 ```
@@ -107,12 +120,32 @@ submit duplicates. Now it just saves the request and closes. Balances
 should change only when the admin approves a refund, ideally in a Cloud
 Function.
 
+## Archiving courses
+
+Learners can't delete a purchase: the rules block client deletes of
+`purchased_courses`, which would also remove their access and progress.
+Instead they **archive** it, which hides it, and can bring it back any
+time:
+
+- Field: `users/{uid}/purchased_courses/{id}.archived` (bool, missing =
+  not archived). The owner may already update every field except
+  `courses_ref`, so **no rules change was needed**.
+- **Web:** the archive button on a My courses card, and the **Archived**
+  filter to restore. The update shows immediately and rolls back if it
+  fails.
+- **Mobile:** in the course options sheet, "Delete course" became
+  **Archive course** / **Unarchive course**. The Learn screen hides
+  archived courses. A new app-bar button switches to the Archived list.
+  The old delete dialog (`learn/delete_learn_courses`) was removed.
+- An archived course is still owned: its lessons, reviews and checkout's
+  "already own this" all work as before. It's only hidden from the
+  Learn / My courses lists.
+
 ## Not ported
 
 | Mobile feature | Why |
 |---|---|
 | Lesson reminders (`learn/reminder`) | Uses phone notifications. A web version would need push or email reminders |
-| "Delete course" from My courses | Deletes the learner's own purchase. The new rules block client deletes of `purchased_courses`, so **this now fails on mobile too**. Decide whether to allow it (owner-only) or remove the button from the app |
 | Downloads / offline | Not possible for streamed video in a browser |
 
 ## Testing

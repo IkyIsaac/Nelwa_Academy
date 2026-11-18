@@ -55,8 +55,8 @@ from the academy.
 > ⚠️ **Nobody can currently reply from a proper tool.** The admin portal
 > has no Support page; replies can only be written by hand in the Firebase
 > console (`support/{id}/support_message`, `user_message: false`). This
-> was already true for the mobile app. An admin Support inbox is the
-> obvious next admin feature.
+> was already true for the mobile app. A full admin support inbox is in
+> the [pipeline](pipeline.md#1-admin-support-inbox).
 
 ### Notifications
 
@@ -87,8 +87,21 @@ nothing reads, so it wasn't ported.
 **New Cloud Function `emailOnConsultationBooked`** (commit `198d3c4`):
 on every new `consultation` doc, from web or app, it emails the academy
 inbox with the details, with reply-to set to the person's email when one
-is valid. Before this, bookings sat in Firestore with no alert. **Not
-deployed yet.**
+is valid. Before this, bookings sat in Firestore with no alert.
+**Deployed 2026-11-17.**
+
+**Admin Consultations page** (`lib/admin/consultations/`, nav item
+"Consultations"):
+
+- Lists every booking, newest first: name, phone, topic, preferred day,
+  Upcoming/Past, and booking date. Searchable.
+- Clicking a row shows the full request, with **Call**, **WhatsApp** and
+  **Email** buttons.
+- **Read-only:** the rules allow no edits to `consultation`, so there's
+  no status to set. Tracking (contacted / confirmed / done, and notes)
+  would need a rules change allowing the admin to update those fields.
+- Topics are shown with readable labels; the stored strings stay as the
+  app writes them.
 
 ### Help, Terms, Privacy
 
@@ -96,20 +109,19 @@ deployed yet.**
   via Snippe, web/app sync, refund requests, no offline on web) and are
   translated.
 - The mobile app's Terms page is empty, and its Privacy page is template
-  text for another product ("SkillBase"). The website has
-  **plain-language drafts** in `features/help/legal.ts`. They describe
-  the real data flows: Firebase, Snippe, Resend, the web host, the
-  language cookie, wishlist storage, public reviews, and deletion. They
-  are **English only**, with a note on other languages.
-- ⚠️ **The academy must review these before launch**, ideally with
-  legal advice, especially access duration, refunds, governing law and
-  the reference to Tanzania's Personal Data Protection Act.
+  text for another product ("SkillBase"). The website has **placeholder
+  Terms and Privacy** in `features/help/legal.ts`. They describe the real
+  data flows (Firebase, Snippe, Resend, the web host, the language
+  cookie, wishlist storage, public reviews, deletion) and say purchases
+  are final. They are **English only**, with a note on other languages.
+- The academy will supply its final legal documents. Replace the text
+  in `legal.ts` (and the "last updated" date) when they arrive.
 
 ## Not ported (and why)
 
 | Mobile screen | Reason |
 |---|---|
-| Activity Statistics | Shows hard-coded numbers ("10 hours"); nothing is tracked |
+| Activity Statistics | Shows hard-coded numbers ("10 hours"); nothing is tracked. A real version for both apps is in the [pipeline](pipeline.md#2-activity-statistics) |
 | Analytics, Sales reports | Instructor features, Phase 6 |
 | Dark Mode | The website follows the brand's light theme |
 | Notification Settings, Security toggles | Not connected to anything in the app |
@@ -131,6 +143,6 @@ Still to check with a signed-in account:
    and confirm it appears live.
 4. Follow an instructor from another account, and check the notification
    and unread badge.
-5. After deploying functions, book a consultation and confirm the email
-   arrives.
+5. Book a consultation and confirm the email arrives and the booking
+   shows in the admin Consultations page.
 6. Delete a test account and confirm `users/{uid}` is removed.

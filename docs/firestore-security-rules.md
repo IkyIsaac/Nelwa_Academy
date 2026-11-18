@@ -174,10 +174,11 @@ today, traced through the code. Each was confirmed to still pass:
 5. **Approved instructors can read all consultation bookings**, because the
    app's Consultation page (shown to instructors) lists them all. Tighten
    this once bookings are assigned to a specific instructor.
-6. **"Delete course" on mobile now fails.** The My Courses menu deletes
-   the learner's own `purchased_courses` entry, and clients may no longer
-   delete those. Either allow owner deletes (only the learner loses
-   access) or remove the button from the app.
+6. ~~**"Delete course" on mobile now fails.**~~ Resolved 2026-11-17: the
+   academy chose archiving over deleting. Learners set
+   `purchased_courses.archived`, which the existing owner-update rule
+   already allows. Deletes stay blocked. See
+   [learning-web.md](learning-web.md#archiving-courses).
 7. **The admin is a single hard-coded email.** Adding a second admin means
    editing `isAdmin()` and redeploying. Custom claims would be better
    long-term.
