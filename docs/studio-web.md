@@ -106,7 +106,7 @@ needed**.
   mobile money to the **phone number on the instructor's profile**. The
   Sales page shows that number and links to Personal info to change it.
 - The mobile **Payment Setup** screen (bank account / PayPal) wasn't
-  ported: payouts don't use those details. See the bugs below.
+  ported: payouts don't use those details. See the fixed bugs below.
 
 ### Security fix (written, not deployed)
 
@@ -128,20 +128,34 @@ to `rules-tests/`, and the rules compile (dry run). **Deploy with:**
 cd firebase && firebase deploy --only firestore:rules
 ```
 
-### Mobile bugs found (not fixed)
+### Mobile bugs found and fixed
 
-- **Payment Setup creates a new `payment_account` every time it's
-  submitted**, rather than updating the existing one. Sales are credited
-  to whichever account Firestore returns first, so the balance can end
-  up split across documents. It also stores `currency: "USD"` while
-  every sale is in TZS.
+- **Payment Setup created a new `payment_account` every time it was
+  submitted**, so sales could be credited to any one of several docs and
+  the balance could end up split. It also stored `currency: "USD"` while
+  every sale is in TZS. Now (`payment_setup_widget.dart`,
+  `savePayoutDetails`) it updates the first account, the same one the
+  payment webhook and `createPayout` use (`limit(1)`), and creates one only
+  if none exists. It changes only the payout details (switching between
+  bank and PayPal clears the other type's fields), never `balance` or
+  `sales_reports`, and sets the currency to TZS.
+  - **Existing data isn't fixed by this.** Instructors who submitted the
+    form more than once already have extra docs. These need a one-off
+    merge (sum the balances and sales into the first doc, delete the
+    rest), which hasn't been run.
+- **The admin portal's lesson editor didn't update the course totals.**
+  It now recalculates `total_lessons` and `total_duration` (seconds) from
+  the lessons after every save or delete (`recountCourseTotals` in
+  `lib/admin/courses/lesson_editor_dialog.dart`), as the studio does.
+  Courses edited before this keep their old totals until a lesson is next
+  saved.
+
+### Still open
+
 - **Analytics** is mostly a mock-up: "Top downloading countries" (Germany,
   Portugal, Russia), weekly visits and the sales chart are hard-coded.
   Only the balance is real. The web overview shows real figures instead.
   Real statistics are in the [pipeline](pipeline.md#2-activity-statistics).
-- The admin portal's lesson editor doesn't update a course's
-  `total_lessons` / `total_duration`. The studio recalculates them
-  whenever the instructor next changes a lesson.
 
 ## Testing
 
