@@ -32,6 +32,15 @@ export async function fetchPurchases(uid: string): Promise<Purchase[]> {
  * purchase (`watched_lessons`) and in the user's `continue_watching` list,
  * which feeds "Continue watching" on Home in both apps.
  */
+/**
+ * Hide or restore a bought course in My courses. Learners can't delete a
+ * purchase (security rules), so the course is archived instead and stays
+ * owned on web and mobile.
+ */
+export async function setPurchaseArchived(uid: string, purchaseId: string, archived: boolean) {
+  await updateDoc(doc(db, "users", uid, "purchased_courses", purchaseId), { archived })
+}
+
 export async function markLessonWatched(
   uid: string,
   courseId: string,

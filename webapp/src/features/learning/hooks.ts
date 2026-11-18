@@ -10,6 +10,7 @@ import {
   markLessonWatched,
   type RefundInput,
   requestRefund,
+  setPurchaseArchived,
   type ReviewInput,
   submitReview,
 } from "./api"
@@ -27,6 +28,27 @@ export function usePurchases() {
     queryKey: learningKeys.purchases(uid),
     queryFn: () => fetchPurchases(uid),
     enabled: !!uid,
+  })
+}
+
+/** Archive or unarchive a purchase, updating My courses straight away. */
+export function useArchivePurchase() {
+  const { user } = useAuth()
+  const uid = user?.uid ?? ""
+  const client = useQueryClient()
+  return useMutation({
+    mutationFn: ({ purchaseId, archived }: { purchaseId: string; archived: boolean }) =>
+      setPurchaseArchived(uid, purchaseId, archived),
+    onMutate: async ({ purchaseId, archived }) => {
+      await client.cancelQueries({ queryKey: learningKeys.purchases(uid) })
+      const previous = client.getQueryData<Purchase[]>(learningKeys.purchases(uid))
+      client.setQueryData<Purchase[]>(learningKeys.purchases(uid), (list) =>
+        list?.map((p) => (p.id === purchaseId ? { ...p, archived } : p)),
+      )
+      return { previous }
+    },
+    onError: (_e, _v, ctx) => client.setQueryData(learningKeys.purchases(uid), ctx?.previous),
+    onSettled: () => client.invalidateQueries({ queryKey: learningKeys.purchases(uid) }),
   })
 }
 

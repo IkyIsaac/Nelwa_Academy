@@ -526,7 +526,8 @@
     "filters": {
       "all": "Tous",
       "inProgress": "En cours",
-      "completed": "Terminés"
+      "completed": "Terminés",
+      "archived": "Archivés"
     },
     "emptyTitle": "Aucun cours pour l'instant",
     "emptyBody": "Les cours que vous achetez, et les cours gratuits que vous commencez, apparaîtront ici.",
@@ -595,7 +596,13 @@
       "sent": "Demande envoyée. L'académie va l'examiner.",
       "failed": "Impossible d'envoyer votre demande. Réessayez.",
       "note": "L'académie reviendra vers vous au sujet de votre demande."
-    }
+    },
+    "noneArchived": "Aucun cours archivé",
+    "archive": "Archiver le cours",
+    "unarchive": "Remettre dans Mes cours",
+    "archived": "Cours archivé. Retrouvez-le dans Archivés.",
+    "unarchived": "Le cours est de retour dans Mes cours.",
+    "archiveFailed": "Cela n'a pas fonctionné. Réessayez."
   },
   "account": {
     "title": "Compte",

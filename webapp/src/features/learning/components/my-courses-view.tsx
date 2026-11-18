@@ -1,11 +1,12 @@
 "use client"
 
 import { useQueries } from "@tanstack/react-query"
-import { BookOpen, CheckCircle2, PlayCircle } from "lucide-react"
+import { Archive, ArchiveRestore, BookOpen, CheckCircle2, PlayCircle } from "lucide-react"
 import { AnimatePresence, motion } from "motion/react"
 import { useLocale, useTranslations } from "next-intl"
 import Link from "next/link"
 import { useMemo, useState } from "react"
+import { toast } from "sonner"
 import { CoverImage } from "@/components/cover-image"
 import { EmptyState } from "@/components/empty-state"
 import { PageHeader } from "@/components/layout/page-header"
@@ -19,11 +20,18 @@ import { LoadError } from "@/features/catalog/components/discover-views"
 import { catalogKeys } from "@/features/catalog/hooks"
 import { type Course, courseTitle } from "@/features/catalog/types"
 import { cn } from "@/lib/utils"
-import { usePurchases } from "../hooks"
+import { useArchivePurchase, usePurchases } from "../hooks"
 
-type Filter = "all" | "inProgress" | "completed"
+type Filter = "all" | "inProgress" | "completed" | "archived"
 
-type Item = { course: Course; done: number; total: number; percent: number; owned: boolean }
+type Item = {
+  course: Course
+  done: number
+  total: number
+  percent: number
+  purchaseId: string | null
+  archived: boolean
+}
 
 /**
  * The learner's courses: everything they bought, plus free courses they've
@@ -64,14 +72,29 @@ export function MyCoursesView() {
         ])
         const total = Math.max(course.totalLessons, purchase?.lessons ?? 0, watched.size)
         const percent = total ? Math.round((watched.size / total) * 100) : 0
-        return { course, done: watched.size, total, percent, owned: !!purchase }
+        return {
+          course,
+          done: watched.size,
+          total,
+          percent,
+          purchaseId: purchase?.id ?? null,
+          archived: !!purchase?.archived,
+        }
       })
       .filter((x): x is Item => x !== null)
   }, [courseIds, courses, purchases.data, profile])
 
+  // Archived courses only appear under their own filter.
+  const hasArchived = items.some((i) => i.archived)
+  // Unarchiving the last course hides the tab; fall back to All.
+  const current: Filter = filter === "archived" && !hasArchived ? "all" : filter
   const shown = items.filter((i) =>
-    filter === "all" ? true : filter === "completed" ? i.percent >= 100 : i.percent < 100,
+    current === "archived"
+      ? i.archived
+      : !i.archived &&
+        (current === "all" ? true : current === "completed" ? i.percent >= 100 : i.percent < 100),
   )
+  const filters: Filter[] = ["all", "inProgress", "completed", ...(hasArchived ? ["archived" as const] : [])]
   const loading = purchases.isPending || courses.some((q) => q.isPending)
 
   return (
@@ -79,18 +102,18 @@ export function MyCoursesView() {
       <PageHeader eyebrow={t("eyebrow")} title={t("myCourses")} description={t("myCoursesBody")}>
         {items.length > 0 && (
           <div role="tablist" className="inline-flex rounded-full border border-border bg-white p-1">
-            {(["all", "inProgress", "completed"] as const).map((f) => (
+            {filters.map((f) => (
               <button
                 key={f}
                 role="tab"
-                aria-selected={filter === f}
+                aria-selected={current === f}
                 onClick={() => setFilter(f)}
                 className={cn(
                   "relative rounded-full px-4 py-1.5 text-sm font-semibold transition-colors",
-                  filter === f ? "text-white" : "text-muted-foreground hover:text-foreground",
+                  current === f ? "text-white" : "text-muted-foreground hover:text-foreground",
                 )}
               >
-                {filter === f && (
+                {current === f && (
                   <motion.span layoutId="learn-filter" className="absolute inset-0 rounded-full bg-primary" />
                 )}
                 <span className="relative">{t(`filters.${f}`)}</span>
@@ -119,7 +142,13 @@ export function MyCoursesView() {
         ) : shown.length === 0 ? (
           <EmptyState
             icon={BookOpen}
-            title={t(filter === "completed" ? "noneCompleted" : "noneInProgress")}
+            title={t(
+              current === "completed"
+                ? "noneCompleted"
+                : current === "archived"
+                  ? "noneArchived"
+                  : "noneInProgress",
+            )}
           />
         ) : (
           <motion.ul layout className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -132,7 +161,12 @@ export function MyCoursesView() {
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.96 }}
                 >
-                  <LearnCard item={item} />
+                  <div className="relative h-full">
+                    <LearnCard item={item} />
+                    {item.purchaseId && (
+                      <ArchiveButton purchaseId={item.purchaseId} archived={item.archived} />
+                    )}
+                  </div>
                 </motion.li>
               ))}
             </AnimatePresence>
@@ -140,6 +174,33 @@ export function MyCoursesView() {
         )}
       </div>
     </>
+  )
+}
+
+/** Hides a bought course from My courses, or brings it back. Never deletes it. */
+function ArchiveButton({ purchaseId, archived }: { purchaseId: string; archived: boolean }) {
+  const t = useTranslations("learning")
+  const archive = useArchivePurchase()
+  const label = archived ? t("unarchive") : t("archive")
+  return (
+    <button
+      type="button"
+      aria-label={label}
+      title={label}
+      disabled={archive.isPending}
+      onClick={() =>
+        archive.mutate(
+          { purchaseId, archived: !archived },
+          {
+            onSuccess: () => toast.success(archived ? t("unarchived") : t("archived")),
+            onError: () => toast.error(t("archiveFailed")),
+          },
+        )
+      }
+      className="absolute top-3 right-3 grid size-9 place-items-center rounded-full bg-white/90 text-foreground shadow-soft backdrop-blur transition-colors hover:bg-white hover:text-primary disabled:opacity-60"
+    >
+      {archived ? <ArchiveRestore className="size-4" /> : <Archive className="size-4" />}
+    </button>
   )
 }
 

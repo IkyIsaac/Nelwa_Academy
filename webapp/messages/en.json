@@ -526,7 +526,8 @@
     "filters": {
       "all": "All",
       "inProgress": "In progress",
-      "completed": "Completed"
+      "completed": "Completed",
+      "archived": "Archived"
     },
     "emptyTitle": "No courses yet",
     "emptyBody": "Courses you buy, and free courses you start, will show up here.",
@@ -595,7 +596,13 @@
       "sent": "Request sent. The academy will review it.",
       "failed": "We couldn't send your request. Try again.",
       "note": "The academy will get back to you about your request."
-    }
+    },
+    "noneArchived": "No archived courses",
+    "archive": "Archive course",
+    "unarchive": "Move back to My courses",
+    "archived": "Course archived. Find it under Archived.",
+    "unarchived": "Course moved back to My courses.",
+    "archiveFailed": "That didn't work. Try again."
   },
   "account": {
     "title": "Account",

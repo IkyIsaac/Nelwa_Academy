@@ -14,6 +14,8 @@ export type Purchase = {
   watchedLessonIds: string[]
   /** Lesson count when bought; the course may have more now. */
   lessons: number
+  /** Hidden from My courses by the learner (never deleted). */
+  archived: boolean
 }
 
 export function toPurchase(id: string, d: DocumentData): Purchase {
@@ -24,6 +26,7 @@ export function toPurchase(id: string, d: DocumentData): Purchase {
     reviewed: bool(d.reviwed),
     watchedLessonIds: refList(d.watched_lessons).map((r) => r.id),
     lessons: num(d.lessons),
+    archived: bool(d.archived),
   }
 }
 

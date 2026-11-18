@@ -526,7 +526,8 @@
     "filters": {
       "all": "Zote",
       "inProgress": "Zinaendelea",
-      "completed": "Zimekamilika"
+      "completed": "Zimekamilika",
+      "archived": "Zilizowekwa kando"
     },
     "emptyTitle": "Bado huna kozi",
     "emptyBody": "Kozi unazonunua, na kozi za bure unazoanza, zitaonekana hapa.",
@@ -595,7 +596,13 @@
       "sent": "Ombi limetumwa. Akademi italikagua.",
       "failed": "Hatukuweza kutuma ombi lako. Jaribu tena.",
       "note": "Akademi itawasiliana nawe kuhusu ombi lako."
-    }
+    },
+    "noneArchived": "Hakuna kozi zilizowekwa kando",
+    "archive": "Weka kozi kando",
+    "unarchive": "Rudisha kwenye Kozi zangu",
+    "archived": "Kozi imewekwa kando. Itafute kwenye Zilizowekwa kando.",
+    "unarchived": "Kozi imerudishwa kwenye Kozi zangu.",
+    "archiveFailed": "Imeshindikana. Jaribu tena."
   },
   "account": {
     "title": "Akaunti",
