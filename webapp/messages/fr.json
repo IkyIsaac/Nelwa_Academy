@@ -823,7 +823,7 @@
       },
       "refund": {
         "q": "Puis-je être remboursé ?",
-        "a": "En cas de problème, ouvrez le cours dans Mes cours et choisissez Demander un remboursement. L'académie examine chaque demande et reviendra vers vous."
+        "a": "Les achats de cours sont définitifs : aucun remboursement n'est proposé. En cas de problème de paiement, par exemple si vous avez été débité sans que le cours se débloque, contactez le support et nous corrigerons cela."
       },
       "free": {
         "q": "Y a-t-il des leçons gratuites ?",

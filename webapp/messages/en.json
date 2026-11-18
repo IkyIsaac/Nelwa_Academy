@@ -823,7 +823,7 @@
       },
       "refund": {
         "q": "Can I get a refund?",
-        "a": "If something went wrong, open the course in My courses and choose Request a refund. The academy reviews every request and will get back to you."
+        "a": "Course purchases are final, so refunds aren't offered. If a payment went wrong, for example you were charged but the course didn't unlock, contact support and we'll fix it."
       },
       "free": {
         "q": "Are some lessons free?",

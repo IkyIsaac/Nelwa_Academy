@@ -823,7 +823,7 @@
       },
       "refund": {
         "q": "Naweza kurejeshewa pesa?",
-        "a": "Kama kuna tatizo, fungua kozi kwenye Kozi zangu na uchague Omba kurejeshewa pesa. Akademi hukagua kila ombi na itawasiliana nawe."
+        "a": "Ununuzi wa kozi ni wa mwisho, kwa hiyo haturejeshi pesa. Kama kuna tatizo la malipo, kwa mfano umekatwa pesa lakini kozi haijafunguka, wasiliana na huduma kwa wateja nasi tutalitatua."
       },
       "free": {
         "q": "Kuna masomo ya bure?",

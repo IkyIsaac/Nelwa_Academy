@@ -1,9 +1,8 @@
 /**
- * Terms and Privacy text. English only for now: these are plain-language
- * drafts describing how the platform actually works, written for the
- * academy to review (and have checked legally) before launch. See
- * docs/account-web.md. Keep them in step with any change to what data is
- * collected or which services process it.
+ * Terms and Privacy text (English only). Placeholder wording that matches
+ * how the platform works today; the academy will supply its final legal
+ * documents to replace it. See docs/account-web.md. Keep it in step with
+ * any change to what data is collected or which services process it.
  */
 
 export type LegalSection = { heading: string; paragraphs: string[] }
@@ -38,9 +37,9 @@ export const terms: LegalDoc = {
       ],
     },
     {
-      heading: "4. Refunds",
+      heading: "4. No refunds",
       paragraphs: [
-        "If something went wrong with a purchase, request a refund from the course's page in My courses. The academy reviews each request and will contact you about the outcome.",
+        "Course purchases are final and are not refunded. If you were charged but the course didn't unlock, or you were charged twice, contact support with your order details and we'll put it right.",
       ],
     },
     {
@@ -86,7 +85,7 @@ export const privacy: LegalDoc = {
       heading: "1. What we collect",
       paragraphs: [
         "Account details: your email address, name, profile photo, phone number, date of birth, country, education, what you'd like to learn and anything you write about yourself.",
-        "Learning activity: courses you buy, lessons you open, reviews you post, instructors you follow, and refund requests.",
+        "Learning activity: courses you buy, lessons you open, reviews you post, and instructors you follow.",
         "Messages: support chats (including images you attach), contact-form messages and consultation bookings.",
         "Payments: the course, amount, date and status of each order. Your mobile-money number and PIN are handled by our payment provider; we don't store your PIN.",
       ],
@@ -94,7 +93,7 @@ export const privacy: LegalDoc = {
     {
       heading: "2. Why we use it",
       paragraphs: [
-        "To run your account, give you access to the courses you bought, keep your progress in sync between web and app, process payments and refunds, answer your messages and consultation requests, and send emails about your account and purchases (welcome, receipts, payment problems).",
+        "To run your account, give you access to the courses you bought, keep your progress in sync between web and app, process payments, answer your messages and consultation requests, and send emails about your account and purchases (welcome, receipts, payment problems).",
       ],
     },
     {
