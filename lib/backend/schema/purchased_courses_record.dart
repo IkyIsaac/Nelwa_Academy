@@ -45,6 +45,12 @@ class PurchasedCoursesRecord extends FirestoreRecord {
   int get lessons => _lessons ?? 0;
   bool hasLessons() => _lessons != null;
 
+  // "archived" field. Learners hide a course from Learn instead of deleting
+  // the purchase (which the security rules don't allow).
+  bool? _archived;
+  bool get archived => _archived ?? false;
+  bool hasArchived() => _archived != null;
+
   DocumentReference get parentReference => reference.parent.parent!;
 
   void _initializeFields() {
@@ -54,6 +60,7 @@ class PurchasedCoursesRecord extends FirestoreRecord {
     _reviwed = snapshotData['reviwed'] as bool?;
     _watchedLessons = getDataList(snapshotData['watched_lessons']);
     _lessons = castToType<int>(snapshotData['lessons']);
+    _archived = snapshotData['archived'] as bool?;
   }
 
   static Query<Map<String, dynamic>> collection([DocumentReference? parent]) =>
@@ -102,6 +109,7 @@ Map<String, dynamic> createPurchasedCoursesRecordData({
   DateTime? purchaseDate,
   bool? reviwed,
   int? lessons,
+  bool? archived,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -110,6 +118,7 @@ Map<String, dynamic> createPurchasedCoursesRecordData({
       'purchase_date': purchaseDate,
       'reviwed': reviwed,
       'lessons': lessons,
+      'archived': archived,
     }.withoutNulls,
   );
 
@@ -128,7 +137,8 @@ class PurchasedCoursesRecordDocumentEquality
         e1?.purchaseDate == e2?.purchaseDate &&
         e1?.reviwed == e2?.reviwed &&
         listEquality.equals(e1?.watchedLessons, e2?.watchedLessons) &&
-        e1?.lessons == e2?.lessons;
+        e1?.lessons == e2?.lessons &&
+        e1?.archived == e2?.archived;
   }
 
   @override
@@ -138,7 +148,8 @@ class PurchasedCoursesRecordDocumentEquality
         e?.purchaseDate,
         e?.reviwed,
         e?.watchedLessons,
-        e?.lessons
+        e?.lessons,
+        e?.archived
       ]);
 
   @override
