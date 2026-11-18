@@ -148,6 +148,15 @@ test("payment accounts and cards are private", async () => {
   await assertFails(getDocs(collectionGroup(as("bob"), "payment_account")))
   await assertSucceeds(getDocs(collectionGroup(as("admin", ADMIN_EMAIL), "payment_account")))
 })
+test("instructors can't credit their own payout balance", async () => {
+  const mine = doc(as("teacher"), "users", "teacher", "payment_account", "p1")
+  await assertSucceeds(updateDoc(mine, { account_holder: "Teacher" }))
+  await assertFails(updateDoc(mine, { balance: 1000000 }))
+  await assertFails(updateDoc(mine, { sales_reports: [{ amount: 1000000 }] }))
+  await assertSucceeds(setDoc(doc(as("teacher"), "users", "teacher", "payment_account", "p2"), { balance: 0, account_type: "Mobile money" }))
+  await assertFails(setDoc(doc(as("teacher"), "users", "teacher", "payment_account", "p3"), { balance: 500 }))
+  await assertSucceeds(updateDoc(doc(as("admin", ADMIN_EMAIL), "users", "teacher", "payment_account", "p1"), { balance: 10 }))
+})
 test("purchase history and purchases are private; group query is admin-only", async () => {
   await assertSucceeds(getDocs(collection(as("alice"), "users", "alice", "purchase_history")))
   await assertFails(getDocs(collection(as("bob"), "users", "alice", "purchase_history")))

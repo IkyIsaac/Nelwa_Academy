@@ -75,7 +75,15 @@ service cloud.firestore {
     // Instructor payout details (bank account numbers): owner and admin only.
     // Balances and sales are updated by Cloud Functions (Admin SDK).
     match /users/{uid}/payment_account/{document} {
-      allow read, create, update: if isOwner(uid) || isAdmin();
+      allow read: if isOwner(uid) || isAdmin();
+      // The owner sets their payout details; `balance` and `sales_reports`
+      // are money the payment webhook credits (Admin SDK) and createPayout
+      // checks against, so the owner may never set or change them.
+      allow create: if isAdmin() || (isOwner(uid)
+          && request.resource.data.get('balance', 0) == 0
+          && !('sales_reports' in request.resource.data));
+      allow update: if isAdmin() || (isOwner(uid)
+          && !fieldChanged('balance') && !fieldChanged('sales_reports'));
       allow delete: if isAdmin();
     }
 
