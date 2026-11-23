@@ -1,16 +1,22 @@
 import type { Metadata, Viewport } from "next"
 import { NextIntlClientProvider } from "next-intl"
 import { getLocale, getTranslations } from "next-intl/server"
-import { Montserrat } from "next/font/google"
+import localFont from "next/font/local"
 import { siteUrl } from "@/config/site"
 import { Providers } from "./providers"
 import "./globals.css"
 
 // Montserrat for headlines, sub-headlines and body, per the brand guidelines.
-const montserrat = Montserrat({
+// Self-hosted (variable font, Latin subset, from @fontsource-variable/montserrat
+// 5.3.0, OFL licence in ./fonts) rather than next/font/google: Turbopack's
+// Google-font loader fails on Netlify's build machines ("next/font/google
+// queries have exactly one entry"), and this also keeps builds offline-safe.
+const montserrat = localFont({
   variable: "--font-montserrat",
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800", "900"],
+  src: "./fonts/montserrat-latin-wght.woff2",
+  weight: "100 900",
+  style: "normal",
+  display: "swap",
 })
 
 export const metadata: Metadata = {
