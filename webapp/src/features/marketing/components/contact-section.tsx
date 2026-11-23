@@ -2,7 +2,7 @@ import { Globe, Mail, MessageCircle } from "lucide-react"
 import { getTranslations } from "next-intl/server"
 import { Reveal } from "@/components/motion/reveal"
 import { site } from "@/config/site"
-import { ContactForm } from "./contact-form"
+import { LazyContactForm } from "./contact-form-lazy"
 import { SectionLabel, SectionTitle } from "./section"
 
 export async function ContactSection() {
@@ -49,7 +49,7 @@ export async function ContactSection() {
           <div className="rounded-[1.75rem] border border-border bg-cream p-6 sm:p-10">
             <h3 className="text-2xl font-extrabold tracking-tight">{t("formTitle")}</h3>
             <p className="mt-1.5 mb-7 text-sm text-muted-foreground">{t("formSubtitle")}</p>
-            <ContactForm />
+            <LazyContactForm />
           </div>
         </Reveal>
       </div>
