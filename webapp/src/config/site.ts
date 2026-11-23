@@ -3,7 +3,8 @@
  * links. Set NEXT_PUBLIC_SITE_URL on a preview deploy so its links point at
  * itself rather than the live site.
  */
-export const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://nelwasacademy.com"
+export const productionUrl = "https://nelwasacademy.com"
+export const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || productionUrl
 
 /** Contact details and links shown across the site (from the landing template). */
 export const site = {

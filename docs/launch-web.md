@@ -57,8 +57,22 @@ On a production build (`pnpm build && pnpm start`):
 
 ### 1. Choose the host
 
-Both run Next.js 16 without any extra configuration in this repo. Set the
-project's base directory to `webapp`, the build command to `pnpm build`.
+Both run Next.js 16. Set the project's base directory to `webapp`.
+
+**Netlify** is configured in `webapp/netlify.toml`, so only the base
+directory needs setting when the site is created (Add new site → Import
+from GitHub → this repo, branch `flutterflow`, Base directory `webapp`).
+The file:
+
+- builds with `pnpm build` on Node 22 and pnpm 10.30;
+- skips a build when nothing in `webapp/` changed, so mobile-only pushes
+  don't use build minutes;
+- gives deploy previews and branch deploys their own address in the
+  sitemap and share links, and robots.txt closes them to search engines.
+
+The repo-root `netlify.toml` is the admin portal's and isn't affected:
+Netlify reads the config from each site's base directory. The admin site
+still rebuilds on every push, including website-only ones.
 
 | | Netlify | Vercel |
 |---|---|---|

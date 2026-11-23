@@ -1,0 +1,35 @@
+# Netlify build for the website (webapp/).
+#
+# Create the site with Base directory = "webapp". Netlify then reads this
+# file and ignores the repo-root netlify.toml, which builds the admin portal.
+#
+# Netlify detects Next.js and adds its Next.js runtime automatically: pages
+# rendered on the server, the sitemap, image resizing and the security
+# headers from next.config.ts all work without extra settings here.
+
+[build]
+  command = "pnpm build"
+  publish = ".next"
+  # Skip a build when nothing in webapp/ changed (e.g. a mobile-app-only push).
+  ignore = "git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF -- ."
+
+[build.environment]
+  # Next.js 16 needs Node 20.9 or newer.
+  NODE_VERSION = "22"
+  # Same pnpm major version as the lockfile was written with.
+  PNPM_VERSION = "10.30.0"
+  NEXT_TELEMETRY_DISABLED = "1"
+
+# Preview builds (pull requests, branch deploys) point their sitemap, robots
+# and share links at their own address instead of the live site. Their
+# address must also be added to Firebase Auth's authorized domains for
+# Google sign-in to work there. robots.txt blocks crawlers on any address
+# other than the live site, so previews aren't indexed.
+[context.deploy-preview]
+  command = "NEXT_PUBLIC_SITE_URL=$DEPLOY_PRIME_URL pnpm build"
+
+[context.branch-deploy]
+  command = "NEXT_PUBLIC_SITE_URL=$DEPLOY_PRIME_URL pnpm build"
+
+# www.nelwasacademy.com -> nelwasacademy.com is handled by Netlify once both
+# domains are added to the site (Domain management), so no rule is needed.
