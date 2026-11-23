@@ -1065,5 +1065,13 @@
     "crashTitle": "Something went wrong on this page",
     "crashBody": "It's not you, it's us. Try again, and if it keeps happening, let us know through Contact.",
     "retry": "Try again"
+  },
+  "install": {
+    "title": "Get the Nelwa's Academy app",
+    "body": "Add it to your home screen: it opens full screen, like an app, with no download from the store.",
+    "install": "Install",
+    "close": "Close",
+    "iosStep1": "Tap <icon></icon> Share in Safari's toolbar",
+    "iosStep2": "Choose <b>Add to Home Screen</b> <icon></icon>"
   }
 }

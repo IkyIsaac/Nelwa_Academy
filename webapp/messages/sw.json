@@ -1065,5 +1065,13 @@
     "crashTitle": "Hitilafu imetokea kwenye ukurasa huu",
     "crashBody": "Si wewe, ni sisi. Jaribu tena, na ikiendelea kutokea, tujulishe kupitia Mawasiliano.",
     "retry": "Jaribu tena"
+  },
+  "install": {
+    "title": "Pata programu ya Nelwa's Academy",
+    "body": "Iweke kwenye skrini yako ya mwanzo: itafunguka skrini nzima kama programu, bila kupakua kutoka dukani.",
+    "install": "Sakinisha",
+    "close": "Funga",
+    "iosStep1": "Gusa <icon></icon> Shiriki kwenye upau wa Safari",
+    "iosStep2": "Chagua <b>Ongeza kwenye Skrini ya Mwanzo</b> <icon></icon>"
   }
 }
