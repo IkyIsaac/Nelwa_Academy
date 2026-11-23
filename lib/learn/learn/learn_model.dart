@@ -8,6 +8,9 @@ import 'package:flutter/material.dart';
 class LearnModel extends FlutterFlowModel<LearnWidget> {
   ///  State fields for stateful widgets in this page.
 
+  /// Shows archived courses instead of the active ones.
+  bool showArchived = false;
+
   // Models for MyCourses dynamic component.
   late FlutterFlowDynamicModels<MyCoursesModel> myCoursesModels;
   // Model for NavBar component.

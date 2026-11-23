@@ -1,7 +1,6 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/backend/firebase_storage/storage.dart';
-import '/backend/schema/enums/enums.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -9,7 +8,6 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
 import 'dart:async';
 import '/custom_code/widgets/index.dart' as custom_widgets;
-import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'requesta_refund_model.dart';
@@ -1000,54 +998,10 @@ class _RequestaRefundWidgetState extends State<RequestaRefundWidget> {
                               status: 'pending',
                               createdAt: getCurrentTimestamp,
                             ));
-                        _model.paymentAccount =
-                            await queryPaymentAccountRecordOnce(
-                          parent: columnCoursesRecord.instructorRef,
-                          singleRecord: true,
-                        ).then((s) => s.firstOrNull);
-                        unawaited(
-                          () async {
-                            await PurchaseHistoryRecord.createDoc(
-                                    currentUserReference!)
-                                .set(createPurchaseHistoryRecordData(
-                              userRef: columnCoursesRecord.instructorRef,
-                              amount: columnCoursesRecord.price,
-                              currency: 'USD',
-                              status: Status.Refunded,
-                              transactionType:
-                                  _model.paymentAccount?.accountType,
-                              date: getCurrentTimestamp,
-                              coursesRef: columnCoursesRecord.reference,
-                              coursesName: columnCoursesRecord.title,
-                            ));
-                          }(),
-                        );
-
-                        await _model.paymentAccount!.reference.update({
-                          ...mapToFirestore(
-                            {
-                              'sales_reports': FieldValue.arrayUnion([
-                                getSalesReportsFirestoreData(
-                                  createSalesReportsStruct(
-                                    userRef: currentUserReference,
-                                    amount: columnCoursesRecord.price,
-                                    currency: 'USD',
-                                    status: Status.Refunded,
-                                    transactionType:
-                                        _model.paymentAccount?.accountType,
-                                    date: getCurrentTimestamp,
-                                    courseRef: columnCoursesRecord.reference,
-                                    courseName: columnCoursesRecord.title,
-                                    clearUnsetFields: false,
-                                  ),
-                                  true,
-                                )
-                              ]),
-                              'balance': FieldValue.increment(
-                                  -(columnCoursesRecord.price)),
-                            },
-                          ),
-                        });
+                        // Only the request is saved. Balances and refund
+                        // history are updated by the admin when the refund
+                        // is approved; the security rules refuse client
+                        // writes to an instructor's payout account.
                         context.safePop();
 
                         safeSetState(() {});

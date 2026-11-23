@@ -162,7 +162,7 @@ class _LessonRowState extends State<_LessonRow> {
               SizedBox(
                 width: 60,
                 child: Text(
-                  lesson.duration > 0 ? '${lesson.duration} min' : '—',
+                  lesson.duration > 0 ? _formatSeconds(lesson.duration) : '—',
                   textAlign: TextAlign.right,
                   style: AdminType.mono(12, color: AdminColors.inkFaint),
                 ),
@@ -175,4 +175,12 @@ class _LessonRowState extends State<_LessonRow> {
       ),
     );
   }
+}
+
+/// Lesson `duration` is stored in seconds: 245 -> "4:05", 3725 -> "1:02:05".
+String _formatSeconds(int seconds) {
+  final h = seconds ~/ 3600;
+  final m = (seconds % 3600) ~/ 60;
+  final s = (seconds % 60).toString().padLeft(2, '0');
+  return h > 0 ? '$h:${m.toString().padLeft(2, '0')}:$s' : '$m:$s';
 }

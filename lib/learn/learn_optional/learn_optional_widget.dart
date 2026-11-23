@@ -2,9 +2,7 @@ import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/home/components/optionals_buttons/optionals_buttons_widget.dart';
-import '/learn/delete_learn_courses/delete_learn_courses_widget.dart';
 import '/learn/reminder/reminder_widget.dart';
-import '/index.dart';
 import 'package:flutter/material.dart';
 import 'learn_optional_model.dart';
 export 'learn_optional_model.dart';
@@ -107,86 +105,41 @@ class _LearnOptionalWidgetState extends State<LearnOptionalWidget> {
             thickness: 1.0,
             color: FlutterFlowTheme.of(context).dividerColor,
           ),
+          // Refund requests are switched off by the academy (2026-11-17);
+          // the Request a refund item used to sit here.
           InkWell(
             splashColor: Colors.transparent,
             focusColor: Colors.transparent,
             hoverColor: Colors.transparent,
             highlightColor: Colors.transparent,
             onTap: () async {
+              // Learners can't delete a purchase (security rules); they hide
+              // it from Learn instead and can bring it back any time.
+              final archive = !widget.purchasedCoursesDoc!.archived;
+              final messenger = ScaffoldMessenger.of(context);
+              final message = FFLocalizations.of(context)
+                  .getText(archive ? 'nwarc002' : 'nwarc003');
               Navigator.pop(context);
-
-              context.pushNamed(
-                RequestaRefundWidget.routeName,
-                queryParameters: {
-                  'purchasedCoursesDoc': serializeParam(
-                    widget.purchasedCoursesDoc,
-                    ParamType.Document,
-                  ),
-                }.withoutNulls,
-                extra: <String, dynamic>{
-                  'purchasedCoursesDoc': widget.purchasedCoursesDoc,
-                },
-              );
+              await widget.purchasedCoursesDoc!.reference
+                  .update({'archived': archive});
+              messenger.showSnackBar(SnackBar(content: Text(message)));
             },
             child: wrapWithModel(
-              model: _model.optionalsButtonsModel2,
+              model: _model.optionalsButtonsModel3,
               updateCallback: () => safeSetState(() {}),
               child: OptionalsButtonsWidget(
                 icon: Icon(
-                  FFIcons.kreceiptRefund,
+                  widget.purchasedCoursesDoc!.archived
+                      ? Icons.unarchive_outlined
+                      : Icons.archive_outlined,
                   color: FlutterFlowTheme.of(context).primaryText,
                   size: 24.0,
                 ),
                 text: FFLocalizations.of(context)
-                    .getText('nwmnu002' /* Request a refund */),
+                    .getText(widget.purchasedCoursesDoc!.archived
+                        ? 'nwarc001' /* Unarchive course */
+                        : 'nwmnu003' /* Archive course */),
                 textColor: FlutterFlowTheme.of(context).primaryText,
-              ),
-            ),
-          ),
-          Divider(
-            height: 1.0,
-            thickness: 1.0,
-            color: FlutterFlowTheme.of(context).dividerColor,
-          ),
-          Builder(
-            builder: (context) => InkWell(
-              splashColor: Colors.transparent,
-              focusColor: Colors.transparent,
-              hoverColor: Colors.transparent,
-              highlightColor: Colors.transparent,
-              onTap: () async {
-                Navigator.pop(context);
-                await showDialog(
-                  barrierColor: FlutterFlowTheme.of(context).background,
-                  context: context,
-                  builder: (dialogContext) {
-                    return Dialog(
-                      elevation: 0,
-                      insetPadding: EdgeInsets.zero,
-                      backgroundColor: Colors.transparent,
-                      alignment: AlignmentDirectional(0.0, 0.0)
-                          .resolve(Directionality.of(context)),
-                      child: DeleteLearnCoursesWidget(
-                        purchasedCoursesRef:
-                            widget.purchasedCoursesDoc!.reference,
-                      ),
-                    );
-                  },
-                );
-              },
-              child: wrapWithModel(
-                model: _model.optionalsButtonsModel3,
-                updateCallback: () => safeSetState(() {}),
-                child: OptionalsButtonsWidget(
-                  icon: Icon(
-                    FFIcons.ktrash03,
-                    color: FlutterFlowTheme.of(context).error,
-                    size: 24.0,
-                  ),
-                  text: FFLocalizations.of(context)
-                      .getText('nwmnu003' /* Delete course */),
-                  textColor: FlutterFlowTheme.of(context).error,
-                ),
               ),
             ),
           ),

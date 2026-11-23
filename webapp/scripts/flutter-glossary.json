@@ -1,0 +1,2182 @@
+{
+  "0": {
+    "sw": "0",
+    "fr": "0"
+  },
+  "2": {
+    "sw": "2",
+    "fr": "2"
+  },
+  "3": {
+    "sw": "",
+    "fr": ""
+  },
+  "8": {
+    "sw": "8",
+    "fr": "8"
+  },
+  "21": {
+    "sw": "21",
+    "fr": "21"
+  },
+  "123": {
+    "sw": "123",
+    "fr": "123"
+  },
+  "12345": {
+    "sw": "12345",
+    "fr": "12345"
+  },
+  "11111111": {
+    "sw": "11111111",
+    "fr": "11111111"
+  },
+  "1234567890": {
+    "sw": "1234567890",
+    "fr": "1234567890"
+  },
+  "Could not start checkout": {
+    "sw": "Imeshindikana kuanza malipo",
+    "fr": "Impossible de lancer le paiement"
+  },
+  "Please try again shortly.": {
+    "sw": "Tafadhali jaribu tena baada ya muda mfupi.",
+    "fr": "Veuillez réessayer dans un instant."
+  },
+  "OK": {
+    "sw": "Sawa",
+    "fr": "OK"
+  },
+  "Waiting for payment": {
+    "sw": "Inasubiri malipo",
+    "fr": "En attente du paiement"
+  },
+  "Complete the mobile money prompt you were sent. This will update automatically.": {
+    "sw": "Kamilisha ombi la malipo lililotumwa kwenye simu yako. Ukurasa huu utajisasisha wenyewe.",
+    "fr": "Validez la demande de paiement mobile reçue. Cette page se mettra à jour automatiquement."
+  },
+  "Cancel": {
+    "sw": "Ghairi",
+    "fr": "Annuler"
+  },
+  "Your payment was not completed. You have not been charged for this course.": {
+    "sw": "Malipo yako hayajakamilika. Hujakatwa pesa yoyote kwa kozi hii.",
+    "fr": "Votre paiement n'a pas abouti. Aucun montant n'a été débité pour ce cours."
+  },
+  "Not available yet": {
+    "sw": "Bado haipatikani",
+    "fr": "Pas encore disponible"
+  },
+  "Yearly plans aren't supported by checkout yet. Please choose the one-time price instead.": {
+    "sw": "Malipo ya mwaka bado hayapatikani. Tafadhali chagua bei ya malipo ya mara moja.",
+    "fr": "Les abonnements annuels ne sont pas encore pris en charge. Veuillez choisir le prix unique."
+  },
+  "Discount": {
+    "sw": "Punguzo",
+    "fr": "Remise"
+  },
+  "Pay": {
+    "sw": "Lipa",
+    "fr": "Payer"
+  },
+  "Please select a payment method before proceeding": {
+    "sw": "Tafadhali chagua njia ya malipo kabla ya kuendelea",
+    "fr": "Veuillez choisir un moyen de paiement avant de continuer"
+  },
+  "Total:": {
+    "sw": "Jumla:",
+    "fr": "Total :"
+  },
+  "Reminder": {
+    "sw": "Kikumbusho",
+    "fr": "Rappel"
+  },
+  "Request a refund": {
+    "sw": "Omba kurejeshewa pesa",
+    "fr": "Demander un remboursement"
+  },
+  "Delete course": {
+    "sw": "Futa kozi",
+    "fr": "Supprimer le cours"
+  },
+  "Remove": {
+    "sw": "Ondoa",
+    "fr": "Retirer"
+  },
+  "Save": {
+    "sw": "Hifadhi",
+    "fr": "Enregistrer"
+  },
+  "Share": {
+    "sw": "Shiriki",
+    "fr": "Partager"
+  },
+  "Report": {
+    "sw": "Ripoti",
+    "fr": "Signaler"
+  },
+  "Delete": {
+    "sw": "Futa",
+    "fr": "Supprimer"
+  },
+  "Like": {
+    "sw": "Penda",
+    "fr": "J'aime"
+  },
+  "Lesson": {
+    "sw": "Somo",
+    "fr": "Leçon"
+  },
+  "Overall Progress": {
+    "sw": "Maendeleo kwa Jumla",
+    "fr": "Progression globale"
+  },
+  "Buy For TZS": {
+    "sw": "Nunua kwa TZS",
+    "fr": "Acheter pour TZS"
+  },
+  "Enroll Now": {
+    "sw": "Jiunge Sasa",
+    "fr": "S'inscrire"
+  },
+  "Free viewing": {
+    "sw": "Kutazama bure",
+    "fr": "Visionnage gratuit"
+  },
+  "Enable this option if the video is available to watch for free.": {
+    "sw": "Washa chaguo hili ikiwa video inaweza kutazamwa bure.",
+    "fr": "Activez cette option si la vidéo peut être regardée gratuitement."
+  },
+  "reviews": {
+    "sw": "maoni",
+    "fr": "avis"
+  },
+  "Teacher:": {
+    "sw": "Mwalimu:",
+    "fr": "Enseignant :"
+  },
+  "Passwords don't match!": {
+    "sw": "Manenosiri hayalingani!",
+    "fr": "Les mots de passe ne correspondent pas !"
+  },
+  "Please agree to the Terms & Conditions to create your account.": {
+    "sw": "Tafadhali kubali Vigezo na Masharti ili kufungua akaunti yako.",
+    "fr": "Veuillez accepter les Conditions générales pour créer votre compte."
+  },
+  "An account with this email already exists. Please sign in instead.": {
+    "sw": "Akaunti yenye barua pepe hii tayari ipo. Tafadhali ingia.",
+    "fr": "Un compte existe déjà avec cet e-mail. Veuillez vous connecter."
+  },
+  "Something went wrong. Please check your internet connection and try again.": {
+    "sw": "Hitilafu imetokea. Tafadhali angalia mtandao wako kisha ujaribu tena.",
+    "fr": "Une erreur s'est produite. Vérifiez votre connexion Internet et réessayez."
+  },
+  "Too long since most recent sign in. Sign in again before deleting your account.": {
+    "sw": "Imepita muda mrefu tangu uingie. Tafadhali ingia tena kabla ya kufuta akaunti yako.",
+    "fr": "Votre dernière connexion date d'il y a trop longtemps. Reconnectez-vous avant de supprimer votre compte."
+  },
+  "Too long since most recent sign in. Sign in again before updating your email.": {
+    "sw": "Imepita muda mrefu tangu uingie. Tafadhali ingia tena kabla ya kubadilisha barua pepe yako.",
+    "fr": "Votre dernière connexion date d'il y a trop longtemps. Reconnectez-vous avant de modifier votre e-mail."
+  },
+  "Password reset email sent": {
+    "sw": "Barua pepe ya kubadilisha nenosiri imetumwa",
+    "fr": "E-mail de réinitialisation envoyé"
+  },
+  "Error": {
+    "sw": "Hitilafu",
+    "fr": "Erreur"
+  },
+  "What do you want to learn?": {
+    "sw": "Unataka kujifunza nini?",
+    "fr": "Qu'est-ce que tu veux apprendre ?"
+  },
+  "Popular Topics": {
+    "sw": "Mada Maarufu",
+    "fr": "Sujets populaires"
+  },
+  "New Courses": {
+    "sw": "Kozi Mpya",
+    "fr": "Nouveaux cours"
+  },
+  "See All": {
+    "sw": "Tazama Zote",
+    "fr": "Voir tout"
+  },
+  "Continue Watching": {
+    "sw": "Endelea Kutazama",
+    "fr": "Continuer à regarder"
+  },
+  "We Recommend": {
+    "sw": "Tunapendekeza",
+    "fr": "Nous recommandons"
+  },
+  "Popular Courses": {
+    "sw": "Kozi Maarufu",
+    "fr": "Cours populaires"
+  },
+  "Home": {
+    "sw": "Nyumbani",
+    "fr": "Maison"
+  },
+  "Discover & Learn": {
+    "sw": "Gundua na Ujifunze",
+    "fr": "Découvrir et apprendre"
+  },
+  "Unlock your potential with top-tier courses from industry experts. Browse a wide range of topics and start learning today!": {
+    "sw": "Fungua uwezo wako kwa kozi za kiwango cha juu kutoka kwa wataalamu wa tasnia. Vinjari mada mbalimbali na uanze kujifunza leo!",
+    "fr": "Développez votre potentiel grâce à des formations de haut niveau dispensées par des experts du secteur. Explorez un large éventail de sujets et commencez à apprendre dès aujourd'hui !"
+  },
+  "Engaging Lessons": {
+    "sw": "Masomo ya Kuvutia",
+    "fr": "Leçons captivantes"
+  },
+  "Enjoy hands-on learning with interactive projects. Stay motivated and track your progress effortlessly.": {
+    "sw": "Furahia kujifunza kwa vitendo ukitumia miradi shirikishi. Endelea kuwa na motisha na ufuatilie maendeleo yako bila shida.",
+    "fr": "Profitez d'un apprentissage pratique grâce à des projets interactifs. Restez motivé et suivez vos progrès sans effort."
+  },
+  "Elevate Your Business": {
+    "sw": "Inua Biashara Yako",
+    "fr": "Faites progresser votre entreprise"
+  },
+  "Elevate Your Business\nUnlock proven strategies from industry experts and watch your profits grow.": {
+    "sw": "Inue Biashara Yako\nFungua mikakati iliyothibitishwa kutoka kwa wataalamu wa tasnia na uangalie faida yako ikikua.",
+    "fr": "Boostez votre entreprise\nDécouvrez des stratégies éprouvées d'experts du secteur et voyez vos profits augmenter."
+  },
+  "Skip": {
+    "sw": "Ruka",
+    "fr": "Sauter"
+  },
+  "Continue": {
+    "sw": "Endelea",
+    "fr": "Continuer"
+  },
+  "Continue with Google": {
+    "sw": "Endelea na Google",
+    "fr": "Continuer avec Google"
+  },
+  "Continue with Facebook": {
+    "sw": "Endelea na Facebook",
+    "fr": "Continuez avec Facebook"
+  },
+  "Sign in with password": {
+    "sw": "Ingia ukitumia nenosiri",
+    "fr": "Se connecter avec un mot de passe"
+  },
+  "Don't have an account?": {
+    "sw": "Huna akaunti?",
+    "fr": "Vous n'avez pas de compte ?"
+  },
+  "Sign up": {
+    "sw": "Jisajili",
+    "fr": "S'inscrire"
+  },
+  "Don't have an account&": {
+    "sw": "Huna akaunti?",
+    "fr": "Vous n'avez pas de compte ?"
+  },
+  "Create an Account": {
+    "sw": "Fungua Akaunti",
+    "fr": "Créer un compte"
+  },
+  "Create your account to get started.": {
+    "sw": "Fungua akaunti yako ili kuanza.",
+    "fr": "Créez votre compte pour commencer."
+  },
+  "Email": {
+    "sw": "Barua pepe",
+    "fr": "E-mail"
+  },
+  "Password": {
+    "sw": "Nenosiri",
+    "fr": "Mot de passe"
+  },
+  "Confirm Password": {
+    "sw": "Thibitisha Nenosiri",
+    "fr": "Confirmez le mot de passe"
+  },
+  "I agree to In Focus": {
+    "sw": "Nakubali",
+    "fr": "J'accepte In Focus"
+  },
+  "Term & Policy": {
+    "sw": "Masharti na Sera",
+    "fr": "Conditions générales"
+  },
+  ".": {
+    "sw": ".",
+    "fr": "."
+  },
+  "Sign Up": {
+    "sw": "Jisajili",
+    "fr": "S'inscrire"
+  },
+  "Or continue with": {
+    "sw": "Au endelea na",
+    "fr": "Ou continuez avec"
+  },
+  "Already have an account?": {
+    "sw": "Tayari una akaunti?",
+    "fr": "Vous avez déjà un compte ?"
+  },
+  "Sign in": {
+    "sw": "Ingia",
+    "fr": "Se connecter"
+  },
+  "Please enter a valid email address.": {
+    "sw": "Tafadhali weka anwani halali ya barua pepe.",
+    "fr": "S'il vous plaît, mettez une adresse email valide."
+  },
+  "Please choose an option from the dropdown": {
+    "sw": "Tafadhali chagua kutoka kwenye orodha",
+    "fr": "Veuillez choisir une option dans le menu déroulant."
+  },
+  "Please enter your password": {
+    "sw": "Tafadhali weka nenosiri lako",
+    "fr": "Veuillez saisir votre mot de passe"
+  },
+  "Password must be at least 6 characters long": {
+    "sw": "Nenosiri lazima liwe na urefu wa angalau herufi 6",
+    "fr": "Le mot de passe doit comporter au moins 6 caractères."
+  },
+  "Remember me": {
+    "sw": "Nikumbuke",
+    "fr": "Souviens-toi de moi"
+  },
+  "Forgot password?": {
+    "sw": "Umesahau nenosiri?",
+    "fr": "Mot de passe oublié ?"
+  },
+  "Sign In": {
+    "sw": "Ingia",
+    "fr": "Se connecter"
+  },
+  "Don’t have an account?": {
+    "sw": "Huna akaunti?",
+    "fr": "Vous n'avez pas de compte ?"
+  },
+  "Reset your password": {
+    "sw": "Weka upya nenosiri lako",
+    "fr": "Réinitialisez votre mot de passe"
+  },
+  "Enter your email, and we'll send you an OTP code in the next step to reset your password.": {
+    "sw": "Ingiza barua pepe yako, nasi tutakutumia msimbo wa OTP katika hatua inayofuata ili kuweka upya nenosiri lako.",
+    "fr": "Saisissez votre adresse e-mail, et nous vous enverrons un code OTP à l'étape suivante pour réinitialiser votre mot de passe."
+  },
+  "Email address": {
+    "sw": "Anwani ya barua pepe",
+    "fr": "Adresse email"
+  },
+  "test123@gmail.com": {
+    "sw": "test123@gmail.com",
+    "fr": "test123@gmail.com"
+  },
+  "Verify Code": {
+    "sw": "Thibitisha Msimbo",
+    "fr": "Vérifier le code"
+  },
+  "Please enter the code we just sent to email": {
+    "sw": "Tafadhali weka msimbo tuliokutumia kwa barua pepe",
+    "fr": "Veuillez saisir le code que nous venons de vous envoyer par courriel."
+  },
+  "Please enter the code we just sent to email example@email.com": {
+    "sw": "Tafadhali weka msimbo tuliokutumia kwa barua pepe example@email.com",
+    "fr": "Veuillez saisir le code que nous venons d'envoyer à l'adresse e-mail example@email.com"
+  },
+  "Resend code": {
+    "sw": "Tuma tena msimbo",
+    "fr": "Renvoyer le code"
+  },
+  "Create new password": {
+    "sw": "Unda nenosiri jipya",
+    "fr": "Créer un nouveau mot de passe"
+  },
+  "Set a new password. If you forget it, you can reset it using the 'Forgot Password' option.": {
+    "sw": "Weka nenosiri jipya. Ukilisahau, unaweza kuliweka upya kwa kutumia chaguo la 'Umesahau Nenosiri'.",
+    "fr": "Définissez un nouveau mot de passe. Si vous l'oubliez, vous pouvez le réinitialiser à l'aide de l'option « Mot de passe oublié »."
+  },
+  "New Password": {
+    "sw": "Nenosiri Jipya",
+    "fr": "Nouveau mot de passe"
+  },
+  "Confirm New Password": {
+    "sw": "Thibitisha Nenosiri Jipya",
+    "fr": "Confirmer le nouveau mot de passe"
+  },
+  "Complete Your Profile": {
+    "sw": "Kamilisha Wasifu Wako",
+    "fr": "Complétez votre profil"
+  },
+  "Name": {
+    "sw": "Jina",
+    "fr": "Nom"
+  },
+  "Please add  your name": {
+    "sw": "Tafadhali ongeza jina lako",
+    "fr": "Veuillez ajouter votre nom"
+  },
+  "Date of Birth": {
+    "sw": "Tarehe ya Kuzaliwa",
+    "fr": "Date de naissance"
+  },
+  "Country": {
+    "sw": "Nchi",
+    "fr": "Pays"
+  },
+  "What interests you most?": {
+    "sw": "Ni nini kinachokuvutia zaidi?",
+    "fr": "Qu'est-ce qui vous intéresse le plus ?"
+  },
+  "You must select at least 3 topics.": {
+    "sw": "Lazima uchague angalau mada 3.",
+    "fr": "Vous devez sélectionner au moins 3 sujets."
+  },
+  "What is your current experience level?": {
+    "sw": "Kiwango chako cha uzoefu wa sasa ni kipi?",
+    "fr": "Quel est votre niveau d'expérience actuel ?"
+  },
+  "This helps us create a better experience for you.": {
+    "sw": "Hii inatusaidia kuunda uzoefu bora zaidi kwako.",
+    "fr": "Cela nous permet de vous offrir une meilleure expérience."
+  },
+  "What will you use ___ for?": {
+    "sw": "Utaitumia ___ kwa ajili gani?",
+    "fr": "À quoi vas-tu utiliser ___ ?"
+  },
+  "Want to become an instructor?": {
+    "sw": "Unataka kuwa mwalimu?",
+    "fr": "Vous souhaitez devenir instructeur ?"
+  },
+  "Instructor application under review": {
+    "sw": "Ombi lako la kuwa mwalimu linakaguliwa",
+    "fr": "Candidature d'instructeur en cours d'examen"
+  },
+  "Personal Info": {
+    "sw": "Taarifa Binafsi",
+    "fr": "Informations personnelles"
+  },
+  "Security": {
+    "sw": "Usalama",
+    "fr": "Sécurité"
+  },
+  "Analytics": {
+    "sw": "Takwimu",
+    "fr": "Analytique"
+  },
+  "Wish List": {
+    "sw": "Orodha ya Vipendwa",
+    "fr": "Liste de souhaits"
+  },
+  "Subscriptions": {
+    "sw": "Usajili Wangu",
+    "fr": "Abonnements"
+  },
+  "Activity Statistics": {
+    "sw": "Takwimu za Shughuli",
+    "fr": "Statistiques d'activité"
+  },
+  "My Reviews": {
+    "sw": "Mapitio Yangu",
+    "fr": "Mes avis"
+  },
+  "Notifications": {
+    "sw": "Arifa",
+    "fr": "Notifications"
+  },
+  "Language": {
+    "sw": "Lugha",
+    "fr": "Langue"
+  },
+  "Dark Mode": {
+    "sw": "Mandhari Meusi",
+    "fr": "Mode sombre"
+  },
+  "Support": {
+    "sw": "Msaada",
+    "fr": "Soutien"
+  },
+  "Help Center": {
+    "sw": "Kituo cha Msaada",
+    "fr": "Centre d'aide"
+  },
+  "About Nelwa's Academy": {
+    "sw": "Kuhusu Nelwa Academy",
+    "fr": "Académie About Nelwa"
+  },
+  "Sign Out": {
+    "sw": "Toka",
+    "fr": "Se déconnecter"
+  },
+  "About You": {
+    "sw": "Kuhusu Wewe",
+    "fr": "Au propos de vous"
+  },
+  "Tell us a little about yourself…": {
+    "sw": "Tuambie kidogo kukuhusu...",
+    "fr": "Parlez-nous un peu de vous…"
+  },
+  "Your Specialty": {
+    "sw": "Utaalamu Wako",
+    "fr": "Votre spécialité"
+  },
+  "Email Address": {
+    "sw": "Anwani ya Barua Pepe",
+    "fr": "Adresse email"
+  },
+  "Name is required": {
+    "sw": "Jina linahitajika",
+    "fr": "Le nom est requis."
+  },
+  "about_user is required": {
+    "sw": "Tafadhali andika kidogo kukuhusu",
+    "fr": "Le champ about_user est requis."
+  },
+  "Email Address is required": {
+    "sw": "Anwani ya Barua Pepe inahitajika",
+    "fr": "Une adresse e-mail est requise."
+  },
+  "Phone Number": {
+    "sw": "Namba ya Simu",
+    "fr": "Numéro de téléphone"
+  },
+  "Education (Optional)": {
+    "sw": "Elimu (Si lazima)",
+    "fr": "Éducation (facultatif)"
+  },
+  "Education": {
+    "sw": "Elimu",
+    "fr": "Éducation"
+  },
+  "Delete Account": {
+    "sw": "Futa Akaunti",
+    "fr": "Supprimer le compte"
+  },
+  "Stay signed in on this device.": {
+    "sw": "Usitoke kwenye kifaa hiki.",
+    "fr": "Restez connecté sur cet appareil."
+  },
+  "Biometric ID": {
+    "sw": "Alama ya Kidole",
+    "fr": "Identification biométrique"
+  },
+  "Use fingerprint to sign in securely.": {
+    "sw": "Tumia alama za vidole kuingia kwa usalama.",
+    "fr": "Utilisez votre empreinte digitale pour vous connecter en toute sécurité."
+  },
+  "Face ID": {
+    "sw": "Kitambulisho cha Uso",
+    "fr": "Face ID"
+  },
+  "Use Face ID to sign in quickly and securely.": {
+    "sw": "Tumia Kitambulisho cha Uso ili kuingia haraka na kwa usalama.",
+    "fr": "Utilisez Face ID pour vous connecter rapidement et en toute sécurité."
+  },
+  "SMS Authenticator": {
+    "sw": "Kithibitishaji cha SMS",
+    "fr": "Authentificateur de SMS"
+  },
+  "Receive a verification code via SMS during login.": {
+    "sw": "Pokea nambari ya uthibitishaji kupitia SMS wakati wa kuingia.",
+    "fr": "Vous recevrez un code de vérification par SMS lors de la connexion."
+  },
+  "Google Authenticator": {
+    "sw": "Kithibitishaji cha Google",
+    "fr": "Authentificateur Google"
+  },
+  "Use Google Authenticator for two-step verification.": {
+    "sw": "Tumia Kithibitishaji cha Google kwa uthibitishaji wa hatua mbili.",
+    "fr": "Utilisez Google Authenticator pour la vérification en deux étapes."
+  },
+  "Device Management": {
+    "sw": "Usimamizi wa Kifaa",
+    "fr": "Gestion des périphériques"
+  },
+  "Manage and view all devices linked to your account.": {
+    "sw": "Dhibiti na uangalie vifaa vyote vilivyounganishwa na akaunti yako.",
+    "fr": "Gérez et visualisez tous les appareils liés à votre compte."
+  },
+  "Your balance": {
+    "sw": "Salio lako",
+    "fr": "Votre solde"
+  },
+  "Sales reports": {
+    "sw": "Ripoti za mauzo",
+    "fr": "Rapports de vente"
+  },
+  "Payment Account": {
+    "sw": "Akaunti ya Malipo",
+    "fr": "Compte de paiement"
+  },
+  "Sales Reports": {
+    "sw": "Ripoti za Mauzo",
+    "fr": "Rapports de vente"
+  },
+  "Course Activity Alerts": {
+    "sw": "Arifa za Shughuli za Kozi",
+    "fr": "Alertes d'activité du cours"
+  },
+  "Get notified about new enrollments, student questions, and course updates.": {
+    "sw": "Pata arifa kuhusu usajili mpya, maswali ya wanafunzi, na masasisho ya kozi.",
+    "fr": "Soyez informé(e) des nouvelles inscriptions, des questions des étudiants et des mises à jour des cours."
+  },
+  "Feedback & Reviews": {
+    "sw": "Maoni na Mapitio",
+    "fr": "Commentaires et avis"
+  },
+  "Stay informed about new student reviews and feedback on your courses.": {
+    "sw": "Endelea kupata taarifa kuhusu mapitio ya wanafunzi wapya na maoni kuhusu kozi zako.",
+    "fr": "Restez informé(e) des nouveaux avis et commentaires des étudiants sur vos cours."
+  },
+  "System Announcements": {
+    "sw": "Matangazo ya Mfumo",
+    "fr": "Annonces système"
+  },
+  "Be the first to know about platform updates and important instructor news.": {
+    "sw": "Kuwa wa kwanza kujua kuhusu masasisho ya jukwaa na habari muhimu za walimu.",
+    "fr": "Soyez le premier informé des mises à jour de la plateforme et des actualités importantes destinées aux formateurs."
+  },
+  "Payment & Earnings Updates": {
+    "sw": "Masasisho ya Malipo na Mapato",
+    "fr": "Mises à jour sur les paiements et les revenus"
+  },
+  "Get notifications about new payouts and revenue reports.": {
+    "sw": "Pata arifa kuhusu malipo mapya na ripoti za mapato.",
+    "fr": "Recevez des notifications concernant les nouveaux versements et les rapports de revenus."
+  },
+  "Certificate Requests": {
+    "sw": "Maombi ya Cheti",
+    "fr": "Demandes de certificats"
+  },
+  "Receive alerts when students request course completion certificates.": {
+    "sw": "Pokea arifa wanafunzi wanapoomba vyeti vya kukamilisha kozi.",
+    "fr": "Recevez des alertes lorsque les étudiants demandent des certificats de réussite de cours."
+  },
+  "Notifications Settings": {
+    "sw": "Mipangilio ya Arifa",
+    "fr": "Paramètres des notifications"
+  },
+  "Type a message..": {
+    "sw": "Andika ujumbe...",
+    "fr": "Saisissez un message..."
+  },
+  "What is Nelway's Academy?": {
+    "sw": "Nelwa Academy ni nini?",
+    "fr": "Qu'est-ce que l'Académie Nelway ?"
+  },
+  "Nelways's academy is an online learning platform where you can find courses on Ice cream making, infranstructure for creating at home and more.": {
+    "sw": "Nelwa Academy ni jukwaa la kujifunza mtandaoni lenye kozi za kutengeneza aiskrimu, vifaa vya kutengenezea nyumbani na mengineyo.",
+    "fr": "L'académie Nelways est une plateforme d'apprentissage en ligne où vous trouverez des cours sur la fabrication de crèmes glacées, les infrastructures pour les créer chez soi et bien plus encore."
+  },
+  "How do I create an account?": {
+    "sw": "Nitafunguaje akaunti?",
+    "fr": "Comment créer un compte ?"
+  },
+  "You can sign up using your email or social media accounts like Google or Facebook.": {
+    "sw": "Unaweza kujisajili kwa barua pepe yako au akaunti za mitandao ya kijamii kama Google au Facebook.",
+    "fr": ""
+  },
+  "Is Nelway's Academy free to use?": {
+    "sw": "Je, Nelwa Academy ni bure?",
+    "fr": "L'utilisation de Nelway's Academy est-elle gratuite ?"
+  },
+  "Nelway's Acedmy  offers both free and paid courses. Some courses require a one-time payment or a subscription.": {
+    "sw": "Nelwa Academy ina kozi za bure na za kulipia. Baadhi ya kozi zinahitaji malipo ya mara moja au usajili.",
+    "fr": "Nelway's Academy propose des cours gratuits et payants. Certains cours nécessitent un paiement unique ou un abonnement."
+  },
+  "How do I enroll in a course?": {
+    "sw": "Nitajiungaje na kozi?",
+    "fr": "Comment puis-je m'inscrire à un cours ?"
+  },
+  "Browse courses in the app, select one, and tap \\\"Enroll\\\" to start learning.": {
+    "sw": "Tafuta kozi kwenye programu, ichague, kisha bonyeza \"Jiunge\" ili uanze kujifunza.",
+    "fr": "Parcourez les cours dans l'application, sélectionnez-en un et appuyez sur « S'inscrire » pour commencer à apprendre."
+  },
+  "Can I download courses for offline viewing?": {
+    "sw": "Je, ninaweza kupakua kozi na kuzitazama bila intaneti?",
+    "fr": "Puis-je télécharger des cours pour les consulter hors ligne ?"
+  },
+  "Yes, some courses allow offline access. Check the course details for availability.": {
+    "sw": "Ndiyo, baadhi ya kozi zinaweza kutazamwa bila intaneti. Angalia maelezo ya kozi husika.",
+    "fr": "Oui, certains cours permettent un accès hors ligne. Consultez les détails du cours pour connaître les disponibilités."
+  },
+  "Terms and Conditions": {
+    "sw": "Sheria na Masharti",
+    "fr": "Termes et conditions"
+  },
+  "Read the rules and terms for using SkillBase.": {
+    "sw": "Soma masharti ya kutumia Nelwa Academy.",
+    "fr": "Veuillez lire les règles et conditions d'utilisation de SkillBase."
+  },
+  "Privacy Policy": {
+    "sw": "Sera ya Faragha",
+    "fr": "politique de confidentialité"
+  },
+  "Learn how we handle your data and protect your privacy.": {
+    "sw": "Jifunze jinsi tunavyoshughulikia data yako na kulinda faragha yako.",
+    "fr": "Découvrez comment nous traitons vos données et protégeons votre vie privée."
+  },
+  "Job Vacancy": {
+    "sw": "Nafasi ya Kazi",
+    "fr": "Offre d'emploi"
+  },
+  "Want to join the Cookio team? See open positions.": {
+    "sw": "Ungependa kujiunga na timu yetu? Angalia nafasi zilizo wazi.",
+    "fr": "Vous souhaitez rejoindre l'équipe Cookio ? Consultez les postes à pourvoir."
+  },
+  "Contact Us": {
+    "sw": "Wasiliana Nasi",
+    "fr": "Contactez-nous"
+  },
+  "Need help or have suggestions? Reach out anytime.": {
+    "sw": "Unahitaji msaada au una mapendekezo? Wasiliana nasi wakati wowote.",
+    "fr": "Besoin d'aide ou de suggestions ? N'hésitez pas à nous contacter."
+  },
+  "Accessibility": {
+    "sw": "Ufikivu",
+    "fr": "Accessibilité"
+  },
+  "We strive to make SkillBase accessible for everyone. Learn more.": {
+    "sw": "Tunajitahidi Nelwa Academy itumike kwa urahisi na kila mtu. Soma zaidi.",
+    "fr": "Nous nous efforçons de rendre SkillBase accessible à tous. En savoir plus."
+  },
+  "About Nelway's Academy": {
+    "sw": "Kuhusu Nelwa Academy",
+    "fr": "À propos de SkillBase"
+  },
+  "Welcome to SkillBase! Your privacy is important to us. This Privacy Policy explains how we collect, use, and protect your personal data when you use our platform.\n\n1. Information We Collect\nWe collect the following types of information:\n\n1.1. Personal Information\nName, email address, and phone number (when you register).\n\nPayment details (processed securely through third-party services).\n\nProfile information, including preferences and enrolled courses.\n\n1.2. Usage Data\nDevice information (model, operating system, browser type).\n\nIP address and location data (if permitted by your settings).\n\nCourse progress, interactions, and engagement.\n\n1.3. Cookies & Tracking Technologies\nWe use cookies to enhance your experience, track analytics, and improve our services.\n\nYou can manage cookie settings in your browser.\n\n2. How We Use Your Information\nWe use your data for the following purposes:\n\nTo create and manage your SkillBase account.\n\nTo process payments and subscriptions.\n\nTo recommend courses based on your interests.\n\nTo send notifications, updates, and promotional content (you can opt-out anytime).\n\nTo improve our platform, security, and user experience.\n\n3. How We Share Your Information\nWe do not sell your personal data. However, we may share it with:\n\nService providers (payment processors, analytics tools, and hosting services).\n\nLegal authorities, if required by law or to protect our rights.\n\n4. Data Security\nWe take security seriously and use encryption, firewalls, and other measures to protect your data. However, no system is 100% secure, so we cannot guarantee absolute security.\n\n5. Your Rights & Choices\nYou have the right to:\n\nAccess, update, or delete your personal data.\n\nOpt-out of marketing emails.\n\nDisable cookies in your browser settings.\n\n6. Third-Party Links\nSkillBase may contain links to third-party websites. We are not responsible for their privacy practices.\n\n7. Children's Privacy\nSkillBase is not intended for users under 13 years old. We do not knowingly collect data from children.\n\n8. Changes to This Policy\nWe may update this Privacy Policy from time to time. If we make significant changes, we will notify you via email or in-app notifications.\n\n9. Contact Us\nIf you have any questions or concerns, contact us at support@skillbase.com.": {
+    "sw": "Karibu SkillBase! Faragha yako ni muhimu kwetu. Sera hii ya Faragha inaelezea jinsi tunavyokusanya, kutumia, na kulinda data yako binafsi unapotumia mfumo wetu.\n\n1. Taarifa Tunazokusanya\nTunakusanya aina zifuatazo za taarifa:\n\n1.1. Taarifa Binafsi\nJina, anwani ya barua pepe, na nambari ya simu (unapojisajili).\n\nMaelezo ya malipo (yanashughulikiwa kwa usalama kupitia huduma za wahusika wengine).\n\nTaarifa za wasifu, ikiwa ni pamoja na mapendeleo na kozi zilizosajiliwa.\n\n1.2. Data ya Matumizi\nTaarifa ya kifaa (modeli, mfumo endeshi, aina ya kivinjari).\n\nAnwani ya IP na data ya eneo (ikiwa inaruhusiwa na mipangilio yako).\n\nMaendeleo ya kozi, mwingiliano, na ushiriki.\n\n1.3. Teknolojia za Vidakuzi na Ufuatiliaji\nTunatumia vidakuzi ili kuboresha uzoefu wako, kufuatilia uchanganuzi, na kuboresha huduma zetu.\n\nUnaweza kudhibiti mipangilio ya vidakuzi kwenye kivinjari chako.\n\n2. Jinsi Tunavyotumia Taarifa Yako\nTunatumia data yako kwa madhumuni yafuatayo:\n\nKuunda na kudhibiti akaunti yako ya SkillBase.\n\nKuchakata malipo na usajili.\n\nKupendekeza kozi kulingana na mambo yanayokuvutia.\n\nKutuma arifa, masasisho, na maudhui ya matangazo (unaweza kujiondoa wakati wowote).\n\nKuboresha mfumo wetu, usalama, na uzoefu wa mtumiaji.\n\n3. Jinsi Tunavyoshiriki Taarifa Zako\nHatuuzi data yako binafsi. Hata hivyo, tunaweza kuishiriki na:\n\nWatoa huduma (wachakataji wa malipo, zana za uchanganuzi, na huduma za upangishaji).\n\nMamlaka za kisheria, ikiwa inahitajika na sheria au kulinda haki zetu.\n\n4. Usalama wa Data\nTunachukua usalama kwa uzito na tunatumia usimbaji fiche, ngome, na hatua zingine kulinda data yako. Hata hivyo, hakuna mfumo ulio salama 100%, kwa hivyo hatuwezi kuhakikisha usalama kamili.\n\n5. Haki na Chaguo Zako\nUna haki ya:\n\nKufikia, kusasisha, au kufuta data yako binafsi.\n\nKujiondoa kwenye barua pepe za uuzaji.\n\nKuzima vidakuzi katika mipangilio ya kivinjari chako.\n\n6. Viungo vya Watu Wengine\nSkillBase inaweza kuwa na viungo vya tovuti za watu wengine. Hatuwajibiki kwa desturi zao za faragha.\n\n7. Faragha ya Watoto\nSkillBase haikusudiwi kwa watumiaji walio chini ya umri wa miaka 13. Hatukusanyi data kutoka kwa watoto kimakusudi.\n\n8. Mabadiliko ya Sera Hii\nTunaweza kusasisha Sera hii ya Faragha mara kwa mara. Tukifanya mabadiliko makubwa, tutakuarifu kupitia barua pepe au arifa za ndani ya programu.\n\n9. Wasiliana Nasi\nIkiwa una maswali au wasiwasi wowote, wasiliana nasi kwa support@skillbase.com.",
+    "fr": "Bienvenue sur SkillBase ! Le respect de votre vie privée est primordial pour nous. Cette Politique de confidentialité explique comment nous collectons, utilisons et protégeons vos données personnelles lorsque vous utilisez notre plateforme.\n\n1. Informations collectées\nNous collectons les types d'informations suivants :\n\n1.1. Informations personnelles\nNom, adresse e-mail et numéro de téléphone (lors de votre inscription).\n\nInformations de paiement (traitées de manière sécurisée par des services tiers).\n\nInformations de profil, notamment vos préférences et les cours auxquels vous êtes inscrit(e).\n\n1.2. Données d'utilisation\nInformations sur votre appareil (modèle, système d'exploitation, type de navigateur).\n\nAdresse IP et données de géolocalisation (si vos paramètres le permettent).\n\nProgression, interactions et engagement dans les cours.\n\n1.3. Cookies et technologies de suivi\nNous utilisons des cookies pour améliorer votre expérience, analyser les statistiques et optimiser nos services.\n\nVous pouvez gérer vos paramètres de cookies dans votre navigateur.\n\n2. Utilisation de vos informations\nNous utilisons vos données aux fins suivantes :\n\nCréer et gérer votre compte SkillBase.\n\nTraiter les paiements et les abonnements.\n\nPour vous recommander des cours en fonction de vos centres d'intérêt.\n\nPour vous envoyer des notifications, des mises à jour et des contenus promotionnels (vous pouvez vous désabonner à tout moment).\n\nPour améliorer notre plateforme, sa sécurité et votre expérience utilisateur.\n\n3. Comment nous partageons vos informations\nNous ne vendons pas vos données personnelles. Cependant, nous pouvons les partager avec :\n\nNos prestataires de services (processeurs de paiement, outils d'analyse et services d'hébergement).\n\nLes autorités légales, si la loi l'exige ou pour protéger nos droits.\n\n4. Sécurité des données\nNous prenons la sécurité très au sérieux et utilisons le chiffrement, des pare-feu et d'autres mesures pour protéger vos données. Cependant, aucun système n'est sûr à 100 %, nous ne pouvons donc pas garantir une sécurité absolue.\n\n5. Vos droits et vos choix\nVous avez le droit de :\n\nAccéder à vos données personnelles, les mettre à jour ou les supprimer.\n\nVous désabonner des e-mails marketing.\n\nDésactiver les cookies dans les paramètres de votre navigateur.\n\n6. Liens vers des sites tiers\nSkillBase peut contenir des liens vers des sites web tiers. Nous ne sommes pas responsables de leurs pratiques en matière de confidentialité.\n\n7. Protection de la vie privée des enfants\n\nSkillBase n'est pas destiné aux utilisateurs de moins de 13 ans. Nous ne collectons pas sciemment de données auprès d'enfants.\n\n8. Modifications de la présente politique\nNous pouvons être amenés à modifier la présente politique de confidentialité. En cas de modifications importantes, nous vous en informerons par e-mail ou via des notifications intégrées à l'application.\n\n9. Nous contacter\nPour toute question ou préoccupation, veuillez nous contacter à l'adresse support@skillbase.com."
+  },
+  "View Mode": {
+    "sw": "Mwonekano",
+    "fr": "Mode d'affichage"
+  },
+  "All": {
+    "sw": "Zote",
+    "fr": "Tous"
+  },
+  "Reviews": {
+    "sw": "Mapitio",
+    "fr": "Avis"
+  },
+  "How was your course experience?": {
+    "sw": "Uzoefu wako wa kozi ulikuwaje?",
+    "fr": "Comment s'est déroulée votre formation ?"
+  },
+  "Share your thoughts on “": {
+    "sw": "Tueleze maoni yako kuhusu “",
+    "fr": "Partagez vos réflexions sur «"
+  },
+  "”.": {
+    "sw": "”.",
+    "fr": "»."
+  },
+  "Share your thoughts on “Mastering Figma: UI/UX Design and Prototyping”.": {
+    "sw": "Shiriki mawazo yako kuhusu \\\"Kujua Figma: Ubunifu na Uundaji wa Mfano wa UI/UX\\\".",
+    "fr": "Partagez vos impressions sur « Maîtriser Figma : Conception et prototypage d'interfaces utilisateur/d'expérience utilisateur »."
+  },
+  "Comment": {
+    "sw": "Maoni",
+    "fr": "Commentaire"
+  },
+  "Let us know what you think.": {
+    "sw": "Tujulishe unachofikiria.",
+    "fr": "Dites-nous ce que vous en pensez."
+  },
+  "Please enter a comment before submitting": {
+    "sw": "Tafadhali weka maoni kabla ya kuwasilisha",
+    "fr": "Veuillez saisir un commentaire avant de soumettre."
+  },
+  "Submit": {
+    "sw": "Wasilisha",
+    "fr": "Soumettre"
+  },
+  "Leave a review": {
+    "sw": "Andika maoni",
+    "fr": "Laissez un avis"
+  },
+  "Video duration:": {
+    "sw": "Muda wa video:",
+    "fr": "Durée de la vidéo :"
+  },
+  "Video duration: 06:45": {
+    "sw": "Muda wa video: 06:45",
+    "fr": "Durée de la vidéo : 06:45"
+  },
+  "Order details": {
+    "sw": "Maelezo ya Oda",
+    "fr": "Détails de la commande"
+  },
+  "Order Summary": {
+    "sw": "Muhtasari wa Oda",
+    "fr": "Résumé de la commande"
+  },
+  "Price:": {
+    "sw": "Bei:",
+    "fr": "Prix:"
+  },
+  "By completing your purchase, you agree to our": {
+    "sw": "Kwa kukamilisha ununuzi wako, unakubali",
+    "fr": "En finalisant votre achat, vous acceptez nos conditions générales."
+  },
+  "Terms of Use.": {
+    "sw": "Masharti yetu ya Matumizi.",
+    "fr": "Conditions d'utilisation."
+  },
+  "Hello World": {
+    "sw": "Habari Dunia",
+    "fr": "Bonjour le monde"
+  },
+  "14-Day Money-Back Guarantee": {
+    "sw": "Dhamana ya Kurejeshewa Pesa ya Siku 14",
+    "fr": "Garantie de remboursement de 14 jours"
+  },
+  "Not satisfied? Get a full refund within 14 days. No hassle, no stress!": {
+    "sw": "Hujaridhika? Pata marejesho kamili ndani ya siku 14. Hakuna usumbufu, hakuna msongo wa mawazo!",
+    "fr": "Pas satisfait(e) ? Obtenez un remboursement intégral sous 14 jours. Sans tracas, sans stress !"
+  },
+  "Checkout": {
+    "sw": "Kamilisha Malipo",
+    "fr": "Vérifier"
+  },
+  "Confirm": {
+    "sw": "Thibitisha",
+    "fr": "Confirmer"
+  },
+  "Done": {
+    "sw": "Tayari",
+    "fr": "Fait"
+  },
+  "Payment Method": {
+    "sw": "Njia ya Malipo",
+    "fr": "Mode de paiement"
+  },
+  "Learn": {
+    "sw": "Jifunze",
+    "fr": "Apprendre"
+  },
+  "Card number": {
+    "sw": "Nambari ya kadi",
+    "fr": "Numéro de carte"
+  },
+  "0000 0000 0000 0000": {
+    "sw": "0000 0000 0000 0000",
+    "fr": "0000 0000 0000 0000"
+  },
+  "4293 1891 0000 0008": {
+    "sw": "4293 1891 0000 0008",
+    "fr": "4293 1891 0000 0008"
+  },
+  "Expire date": {
+    "sw": "Tarehe ya kuisha",
+    "fr": "Date d'expiration"
+  },
+  "MM/YY": {
+    "sw": "MM/YY",
+    "fr": "MM/AA"
+  },
+  "03/21": {
+    "sw": "03/21",
+    "fr": "21/03"
+  },
+  "CVC": {
+    "sw": "CVC",
+    "fr": "CVC"
+  },
+  "000": {
+    "sw": "000",
+    "fr": "000"
+  },
+  "Card holder": {
+    "sw": "Mwenye kadi",
+    "fr": "titulaire de carte"
+  },
+  "Holder name": {
+    "sw": "Jina la mwenye kadi",
+    "fr": "Nom du titulaire"
+  },
+  "Alex Johnson": {
+    "sw": "Alex Johnson",
+    "fr": "Alex Johnson"
+  },
+  "Invalid Card Number": {
+    "sw": "Nambari ya Kadi Si Sahihi",
+    "fr": "Numéro de carte invalide"
+  },
+  "The card number entered seems incorrect. Please verify and try again.": {
+    "sw": "Nambari ya kadi iliyoingizwa inaonekana si sahihi. Tafadhali thibitisha na ujaribu tena.",
+    "fr": "Le numéro de carte saisi semble incorrect. Veuillez vérifier et réessayer."
+  },
+  "Add card": {
+    "sw": "Ongeza kadi",
+    "fr": "Ajouter une carte"
+  },
+  "Add New Credit Card": {
+    "sw": "Ongeza Kadi Mpya",
+    "fr": "Ajouter une nouvelle carte de crédit"
+  },
+  "Card nickname (Optional)": {
+    "sw": "Jina la kadi (si lazima)",
+    "fr": "Surnom de la carte (facultatif)"
+  },
+  "Card nickname": {
+    "sw": "Jina la kadi",
+    "fr": "Surnom de la carte"
+  },
+  "Default payment method": {
+    "sw": "Njia chaguomsingi ya malipo",
+    "fr": "Mode de paiement par défaut"
+  },
+  "Purchase History": {
+    "sw": "Historia ya Ununuzi",
+    "fr": "Historique des achats"
+  },
+  "10 hours": {
+    "sw": "Saa 10",
+    "fr": "10 heures"
+  },
+  "Your activity this week": {
+    "sw": "Shughuli yako wiki hii",
+    "fr": "Votre activité cette semaine"
+  },
+  "Mon": {
+    "sw": "Jumatatu",
+    "fr": "Lun"
+  },
+  "Tue": {
+    "sw": "Jumanne",
+    "fr": "Mar"
+  },
+  "Wed": {
+    "sw": "Jumatano",
+    "fr": "Épouser"
+  },
+  "Thu": {
+    "sw": "Alhamisi",
+    "fr": "Jeu"
+  },
+  "Fri": {
+    "sw": "Ijumaa",
+    "fr": "Ven"
+  },
+  "Sat": {
+    "sw": "Jumamosi",
+    "fr": "Assis"
+  },
+  "Sun": {
+    "sw": "Jumapili",
+    "fr": "Soleil"
+  },
+  "Track your learning progress with weekly insights. See how much time you’ve spent on lessons each day and stay motivated to reach your goals!": {
+    "sw": "Fuatilia maendeleo yako ya kujifunza kwa kutumia maarifa ya kila wiki. Tazama ni muda gani umetumia kwenye masomo kila siku na uendelee kuwa na motisha ya kufikia malengo yako!",
+    "fr": "Suivez vos progrès d'apprentissage grâce à des analyses hebdomadaires. Visualisez le temps consacré à vos leçons chaque jour et restez motivé(e) pour atteindre vos objectifs !"
+  },
+  "Pending": {
+    "sw": "Inasubiri",
+    "fr": "En attente"
+  },
+  "Reviewed": {
+    "sw": "Imekaguliwa",
+    "fr": "Examiné"
+  },
+  "Welcome to Our Instructor Program!": {
+    "sw": "Karibu kwenye Mpango wa Walimu!",
+    "fr": "Bienvenue dans notre programme de formation d'instructeurs !"
+  },
+  "Unlock new opportunities by becoming an instructor and sharing your expertise with a global audience. Our platform allows you to:": {
+    "sw": "Fungua fursa mpya kwa kuwa mwalimu na kushiriki utaalamu wako na hadhira ya kimataifa. Jukwaa letu hukuruhusu:",
+    "fr": "Développez de nouvelles opportunités en devenant formateur et en partageant votre expertise avec un public international. Notre plateforme vous permet de :"
+  },
+  "Read More": {
+    "sw": "Soma Zaidi",
+    "fr": "En savoir plus"
+  },
+  "Apply to Become an Instructor": {
+    "sw": "Omba Kuwa Mwalimu",
+    "fr": "Postulez pour devenir instructeur"
+  },
+  "Share your knowledge and start selling your courses online. Fill out the form below to apply as an instructor.": {
+    "sw": "Shiriki maarifa yako na uanze kuuza kozi zako mtandaoni. Jaza fomu iliyo hapa chini ili kutuma maombi kama mwalimu.",
+    "fr": "Partagez votre savoir et commencez à vendre vos cours en ligne. Remplissez le formulaire ci-dessous pour devenir formateur."
+  },
+  "e.g., Designer, Programmer, Language Teacher": {
+    "sw": "k.m., Mbuni, Mpangaji Programu, Mwalimu wa Lugha",
+    "fr": "Par exemple : concepteur, programmeur, professeur de langues"
+  },
+  "Graphic designer with 5 years of experience in branding and UI/UX. Passionate about creating clean and user-friendly designs.": {
+    "sw": "Mbuni wa picha mwenye uzoefu wa miaka 5 katika chapa na UI/UX. Ana shauku ya kuunda miundo safi na rahisi kutumia.",
+    "fr": "Graphiste avec 5 ans d'expérience en branding et UI/UX. Passionnée par la création de designs épurés et intuitifs."
+  },
+  "Add any relevant degrees or certifications": {
+    "sw": "Ongeza shahada au vyeti vyovyote vinavyofaa",
+    "fr": "Ajoutez tous les diplômes ou certifications pertinents."
+  },
+  "Followers": {
+    "sw": "Wafuasi",
+    "fr": "Abonnés"
+  },
+  "Cover Photo": {
+    "sw": "Picha ya Jalada",
+    "fr": "Photo de couverture"
+  },
+  "Change Image": {
+    "sw": "Badilisha Picha",
+    "fr": "Changer l'image"
+  },
+  "Course Name": {
+    "sw": "Jina la Kozi",
+    "fr": "Nom du cours"
+  },
+  "Description": {
+    "sw": "Maelezo",
+    "fr": "Description"
+  },
+  "Preview": {
+    "sw": "Onyesho la Awali",
+    "fr": "Aperçu"
+  },
+  "Change Video": {
+    "sw": "Badilisha Video",
+    "fr": "Changer de vidéo"
+  },
+  "Category": {
+    "sw": "Kategoria",
+    "fr": "Catégorie"
+  },
+  "Tags": {
+    "sw": "Lebo",
+    "fr": "Étiquettes"
+  },
+  "Add Tag": {
+    "sw": "Ongeza Lebo",
+    "fr": "Ajouter une étiquette"
+  },
+  "Course Audience": {
+    "sw": "Walengwa wa Kozi",
+    "fr": "Public cible du cours"
+  },
+  "Total Lessons": {
+    "sw": "Jumla ya Masomo",
+    "fr": "Total des leçons"
+  },
+  "Total duration": {
+    "sw": "Jumla ya muda",
+    "fr": "Durée totale"
+  },
+  "Total  duration": {
+    "sw": "Jumla ya muda",
+    "fr": "Description"
+  },
+  "Group": {
+    "sw": "Kundi",
+    "fr": "Groupe"
+  },
+  "Select group": {
+    "sw": "Chagua kundi",
+    "fr": ""
+  },
+  "Search...": {
+    "sw": "Tafuta...",
+    "fr": ""
+  },
+  "MontPrice": {
+    "sw": "Bei ya Mwezi",
+    "fr": "Prix"
+  },
+  "Yearly Price": {
+    "sw": "Bei ya Mwaka",
+    "fr": "Prix ​​annuel"
+  },
+  "Course name is required.": {
+    "sw": "Jina la kozi linahitajika.",
+    "fr": "Le nom du cours est obligatoire."
+  },
+  "Course description is required.": {
+    "sw": "Maelezo ya kozi yanahitajika.",
+    "fr": "Une description du cours est requise."
+  },
+  "Price is required.": {
+    "sw": "Bei inahitajika.",
+    "fr": "Le prix est requis."
+  },
+  "Create Course": {
+    "sw": "Unda Kozi",
+    "fr": "Créer un cours"
+  },
+  "New Course": {
+    "sw": "Kozi Mpya",
+    "fr": "Nouveau cours"
+  },
+  "Search": {
+    "sw": "Tafuta",
+    "fr": "Recherche"
+  },
+  "Trending Now": {
+    "sw": "Inayovuma Sasa",
+    "fr": "Tendances actuelles"
+  },
+  "Categories": {
+    "sw": "Kategoria",
+    "fr": "Catégories"
+  },
+  "More": {
+    "sw": "Zaidi",
+    "fr": "Plus"
+  },
+  "Explore": {
+    "sw": "Gundua",
+    "fr": "Explorer"
+  },
+  "Courses": {
+    "sw": "Kozi",
+    "fr": "Cours"
+  },
+  "Video Lesson": {
+    "sw": "Somo la Video",
+    "fr": "Leçon vidéo"
+  },
+  "Lesson No": {
+    "sw": "Nambari ya Somo",
+    "fr": "Leçon n°"
+  },
+  "№": {
+    "sw": "Nambari",
+    "fr": "N°"
+  },
+  "Lesson Name": {
+    "sw": "Jina la Somo",
+    "fr": "Nom de la leçon"
+  },
+  "Duration": {
+    "sw": "Muda",
+    "fr": "Durée"
+  },
+  "Durartion": {
+    "sw": "Muda",
+    "fr": "Durée"
+  },
+  "Cover photo": {
+    "sw": "Picha ya jalada",
+    "fr": "Photo de couverture"
+  },
+  "Durartion  is required": {
+    "sw": "Muda unahitajika",
+    "fr": "La durée est requise"
+  },
+  "Description is required": {
+    "sw": "Maelezo yanahitajika",
+    "fr": "Une description est requise."
+  },
+  "Create Lesson": {
+    "sw": "Unda Somo",
+    "fr": "Créer une leçon"
+  },
+  "New Lesson": {
+    "sw": "Somo Jipya",
+    "fr": "Nouvelle leçon"
+  },
+  "Lessons": {
+    "sw": "Masomo",
+    "fr": "Leçons"
+  },
+  "Students": {
+    "sw": "Wanafunzi",
+    "fr": "Étudiants"
+  },
+  "Language:": {
+    "sw": "Lugha:",
+    "fr": "Langue:"
+  },
+  "Course Downloaders:": {
+    "sw": "Waliopakua Kozi:",
+    "fr": "Téléchargeurs de cours :"
+  },
+  "Lessons:": {
+    "sw": "Masomo:",
+    "fr": "Leçons :"
+  },
+  "For:": {
+    "sw": "Kwa:",
+    "fr": "Pour:"
+  },
+  "Reason for Refund": {
+    "sw": "Sababu ya Kuomba Kurejeshewa Pesa",
+    "fr": "Motif du remboursement"
+  },
+  "Provide a brief explanation for why you’re requesting a refund. Your feedback is valuable to us.": {
+    "sw": "Toa maelezo mafupi kwa nini unaomba kurejeshewa pesa. Maoni yako ni muhimu kwetu.",
+    "fr": "Veuillez expliquer brièvement les raisons de votre demande de remboursement. Votre avis nous est précieux."
+  },
+  "Upload screenshot (optional)": {
+    "sw": "Pakia picha ya skrini (si lazima)",
+    "fr": "Télécharger une capture d'écran (facultatif)"
+  },
+  "Provide a screenshot to help us better understand your issue. Visual proof can speed up the review process.": {
+    "sw": "Toa picha ya skrini ili kutusaidia kuelewa vyema tatizo lako. Uthibitisho unaoonekana unaweza kuharakisha mchakato wa ukaguzi.",
+    "fr": "Veuillez fournir une capture d'écran pour nous aider à mieux comprendre votre problème. Une preuve visuelle peut accélérer le processus d'examen."
+  },
+  "Additional Comments (optional)": {
+    "sw": "Maoni ya Ziada (si lazima)",
+    "fr": "Commentaires supplémentaires (facultatif)"
+  },
+  "Let us know more about your issue. This helps us improve.": {
+    "sw": "Tujulishe zaidi kuhusu tatizo lako. Hii inatusaidia kuboresha.",
+    "fr": "N'hésitez pas à nous en dire plus sur votre problème. Cela nous aidera à nous améliorer."
+  },
+  "Let us know what you think...": {
+    "sw": "Tujulishe unachofikiria...",
+    "fr": "Dites-nous ce que vous en pensez..."
+  },
+  "Submit Request": {
+    "sw": "Tuma Ombi",
+    "fr": "Soumettre une demande"
+  },
+  "Request a Refund": {
+    "sw": "Omba Kurejeshewa Pesa",
+    "fr": "Demander un remboursement"
+  },
+  "Payment Setup": {
+    "sw": "Mipangilio ya Malipo",
+    "fr": "Configuration du paiement"
+  },
+  "Choose how you’d like to receive payments. Secure and hassle-free transactions ensure you get paid on time, every time.": {
+    "sw": "Chagua jinsi ungependa kupokea malipo. Miamala salama na isiyo na usumbufu inahakikisha unalipwa kwa wakati, kila wakati.",
+    "fr": "Choisissez votre mode de paiement préféré. Des transactions sécurisées et sans tracas vous garantissent d'être payé à temps, à chaque fois."
+  },
+  "Account holder": {
+    "sw": "Mwenye akaunti",
+    "fr": "titulaire du compte"
+  },
+  "Bank code": {
+    "sw": "Msimbo wa benki",
+    "fr": "Code bancaire"
+  },
+  "AAAABBBBCCC": {
+    "sw": "AAAABBBBCCC",
+    "fr": "AAAABBBBCCC"
+  },
+  "Branch code": {
+    "sw": "Msimbo wa tawi",
+    "fr": "Code de succursale"
+  },
+  "00000": {
+    "sw": "00000",
+    "fr": "00000"
+  },
+  "Account #": {
+    "sw": "Nambari ya Akaunti",
+    "fr": "Compte #"
+  },
+  "Confirm account #": {
+    "sw": "Thibitisha nambari ya akaunti",
+    "fr": "Confirmer le numéro de compte"
+  },
+  "Account holder is required": {
+    "sw": "Mwenye akaunti anahitajika",
+    "fr": "Le titulaire du compte est requis"
+  },
+  "AAAABBBBCCC is required": {
+    "sw": "AAAABBBBCCC inahitajika",
+    "fr": "AAAABBBBCCC est requis"
+  },
+  "00000 is required": {
+    "sw": "00000 inahitajika",
+    "fr": "00000 est requis"
+  },
+  "1234567890 is required": {
+    "sw": "1234567890 inahitajika",
+    "fr": "1234567890 est requis"
+  },
+  "PayPal email": {
+    "sw": "Barua pepe ya PayPal",
+    "fr": "Courriel PayPal"
+  },
+  "PayPal email is required": {
+    "sw": "Barua pepe ya PayPal inahitajika",
+    "fr": "L'adresse e-mail PayPal est requise."
+  },
+  "Today": {
+    "sw": "Leo",
+    "fr": "Aujourd'hui"
+  },
+  "Week": {
+    "sw": "Wiki",
+    "fr": "Semaine"
+  },
+  "Total": {
+    "sw": "Jumla",
+    "fr": "Total"
+  },
+  "Total Sales Volume": {
+    "sw": "Jumla ya Kiasi cha Mauzo",
+    "fr": "Volume total des ventes"
+  },
+  "$": {
+    "sw": "$",
+    "fr": "$"
+  },
+  "629.79 $": {
+    "sw": "$629.79",
+    "fr": "629,79 $"
+  },
+  "Purchased": {
+    "sw": "Imenunuliwa",
+    "fr": "Acheté"
+  },
+  "Canceled": {
+    "sw": "Imeghairiwa",
+    "fr": "Annulé"
+  },
+  "Download Report": {
+    "sw": "Pakua Ripoti",
+    "fr": "Télécharger le rapport"
+  },
+  "Weekly Course Visits": {
+    "sw": "Watembeleaji wa Kozi kwa Wiki",
+    "fr": "Visites hebdomadaires du cours"
+  },
+  "Shows how many users accessed this course over the past week.": {
+    "sw": "Inaonyesha ni watumiaji wangapi waliopata kozi hii katika wiki iliyopita.",
+    "fr": "Indique le nombre d'utilisateurs ayant accédé à ce cours au cours de la semaine écoulée."
+  },
+  "Top Downloading Countries": {
+    "sw": "Nchi Zinazopakua Zaidi",
+    "fr": "Principaux pays de téléchargement"
+  },
+  "Shows the countries with the highest number of downloaded courses.": {
+    "sw": "Inaonyesha nchi zenye idadi kubwa zaidi ya kozi zilizopakuliwa.",
+    "fr": "Affiche les pays ayant enregistré le plus grand nombre de cours téléchargés."
+  },
+  "Portugal": {
+    "sw": "Ureno",
+    "fr": "Portugal"
+  },
+  "Germany": {
+    "sw": "Ujerumani",
+    "fr": "Allemagne"
+  },
+  "Russia": {
+    "sw": "Urusi",
+    "fr": "Russie"
+  },
+  "Free": {
+    "sw": "Bure",
+    "fr": "Gratuit"
+  },
+  "Select Package": {
+    "sw": "Chagua Kifurushi",
+    "fr": "Sélectionner le forfait"
+  },
+  "Monthly": {
+    "sw": "Kila Mwezi",
+    "fr": "Mensuel"
+  },
+  "Yearly": {
+    "sw": "Kila Mwaka",
+    "fr": "Annuel"
+  },
+  "Request Appointment": {
+    "sw": "Omba Miadi",
+    "fr": "Demander un rendez-vous"
+  },
+  "Please fill in the details below to schedule your appointment with our healthcare professional.": {
+    "sw": "Tafadhali jaza taarifa zilizo hapa chini ili kupanga miadi yako na mtaalamu wetu.",
+    "fr": "Veuillez remplir les informations ci-dessous pour programmer votre rendez-vous avec notre professionnel de santé."
+  },
+  "Personal Information": {
+    "sw": "Taarifa Binafsi",
+    "fr": "Informations personnelles"
+  },
+  "Full Name": {
+    "sw": "Jina Kamili",
+    "fr": ""
+  },
+  "Appointment Details": {
+    "sw": "Maelezo ya Miadi",
+    "fr": "Détails du rendez-vous"
+  },
+  "Select Date": {
+    "sw": "Chagua Tarehe",
+    "fr": ""
+  },
+  "Select Department": {
+    "sw": "Chagua Idara",
+    "fr": ""
+  },
+  "Nelway's Academy": {
+    "sw": "Nelwa Academy",
+    "fr": ""
+  },
+  "Nelway's Ice cream": {
+    "sw": "Nelwa Ice Cream",
+    "fr": ""
+  },
+  "Nelway's Gelato": {
+    "sw": "Nelwa Gelato",
+    "fr": ""
+  },
+  "Nelway's Consultaion": {
+    "sw": "Ushauri wa Nelwa",
+    "fr": ""
+  },
+  "Reason for Visit": {
+    "sw": "Sababu ya Kutembelea",
+    "fr": "Motif de la visite"
+  },
+  "Please describe your symptoms or reason for the appointment...": {
+    "sw": "Tafadhali eleza sababu ya miadi yako...",
+    "fr": ""
+  },
+  "Important Note": {
+    "sw": "Dokezo Muhimu",
+    "fr": "Note importante"
+  },
+  "Please arrive 15 minutes before your scheduled appointment time. Bring a valid ID and any relevant medical documents.": {
+    "sw": "Tafadhali fika dakika 15 kabla ya muda wa miadi yako. Beba kitambulisho halali.",
+    "fr": "Veuillez arriver 15 minutes avant l'heure prévue de votre rendez-vous. Munissez-vous d'une pièce d'identité valide et de tout document médical pertinent."
+  },
+  "Manage your consultations": {
+    "sw": "Dhibiti mashauriano yako",
+    "fr": "Gérez vos consultations"
+  },
+  "Confirmed": {
+    "sw": "Imethibitishwa",
+    "fr": ""
+  },
+  "View Details": {
+    "sw": "Angalia Maelezo",
+    "fr": ""
+  },
+  "Dr. Robert Chen": {
+    "sw": "",
+    "fr": ""
+  },
+  "Patient: Emma Davis": {
+    "sw": "",
+    "fr": ""
+  },
+  "Dermatology Check-up": {
+    "sw": "",
+    "fr": ""
+  },
+  "2:15 PM": {
+    "sw": "",
+    "fr": ""
+  },
+  "Dr. Lisa Martinez": {
+    "sw": "",
+    "fr": ""
+  },
+  "In Progress": {
+    "sw": "Inaendelea",
+    "fr": ""
+  },
+  "Patient: James Wilson": {
+    "sw": "",
+    "fr": ""
+  },
+  "Orthopedic Consultation": {
+    "sw": "",
+    "fr": ""
+  },
+  "4:45 PM": {
+    "sw": "",
+    "fr": ""
+  },
+  "Dr. Kevin Park": {
+    "sw": "",
+    "fr": ""
+  },
+  "Cancelled": {
+    "sw": "Imeghairiwa",
+    "fr": ""
+  },
+  "Patient: Anna Rodriguez": {
+    "sw": "",
+    "fr": ""
+  },
+  "Pediatric Check-up": {
+    "sw": "",
+    "fr": ""
+  },
+  "11:00 AM": {
+    "sw": "",
+    "fr": ""
+  },
+  "Tomorrow": {
+    "sw": "Kesho",
+    "fr": ""
+  },
+  "Reschedule": {
+    "sw": "Badilisha Muda",
+    "fr": ""
+  },
+  "Appointment 's": {
+    "sw": "Miadi",
+    "fr": "Rendez-vous"
+  },
+  "Welcome to SkillBase! By using our platform, you agree to the following terms and conditions. Please read them carefully.\n\n1. Introduction\nSkillBase (\\\"we,\\\" \\\"our,\\\" or \\\"us\\\") provides an online learning platform that offers courses in various educational fields. By accessing or using SkillBase, you agree to comply with these Terms and Conditions.\n\n2. User Accounts\nYou must be at least 13 years old to use SkillBase.\n\nYou are responsible for maintaining the confidentiality of your account credentials.\n\nYou agree not to share your account with others or allow unauthorized access.\n\n3. Course Enrollment & Access\nSome courses are free, while others require a one-time payment or subscription.\n\nCourse access is granted for personal use only; redistribution or reselling is prohibited.\n\nInstructors retain ownership of course content, and you receive a limited, non-transferable license to view it.\n\n4. Payments & Refunds\nPayments can be made via credit/debit cards, PayPal, or other accepted methods.\n\nRefunds are available within 7 days of purchase, provided you have not completed more than 20% of the course.\n\nSubscription fees are non-refundable once charged.\n\n5. User Conduct\nBy using SkillBase, you agree to:\n\nNot post or distribute any harmful, abusive, or illegal content.\n\nNot attempt to hack, disrupt, or reverse-engineer the platform.\n\nRespect copyright laws and intellectual property rights.\n\nViolation of these rules may result in account suspension or termination.\n\n6. Intellectual Property\nAll content, including courses, videos, and materials, is protected by copyright laws.\n\nYou may not copy, distribute, or modify any content without permission.\n\n7. Termination & Account Deactivation\nWe reserve the right to suspend or terminate accounts that violate these Terms or engage in suspicious activities.\n\n8. Disclaimer & Limitation of Liability\nWe do not guarantee job placement, success, or specific learning outcomes.\n\nSkillBase is provided \\\"as is\\\" without warranties of any kind.\n\nWe are not liable for any direct, indirect, or incidental damages arising from the use of our platform.\n\n9. Changes to Terms\nWe may update these Terms from time to time. Any changes will be notified via email or in-app notifications.\n\n10. Contact Us\nIf you have any questions about these Terms, please contact us at support@skillbase.com.": {
+    "sw": "Karibu SkillBase! Kwa kutumia jukwaa letu, unakubali sheria na masharti yafuatayo. Tafadhali yasome kwa makini.\n\n1. Utangulizi\nSkillBase (\\\"sisi,\\\" \\\"yetu,\\\" au \\\"sisi\\\") hutoa jukwaa la kujifunza mtandaoni linalotoa kozi katika nyanja mbalimbali za kielimu. Kwa kufikia au kutumia SkillBase, unakubali kufuata Sheria na Masharti haya.\n\n2. Akaunti za Mtumiaji\nLazima uwe na umri wa angalau miaka 13 ili kutumia SkillBase.\n\nUnawajibika kudumisha usiri wa sifa za akaunti yako.\n\nUnakubali kutoshiriki akaunti yako na wengine au kuruhusu ufikiaji usioidhinishwa.\n\n3. Uandikishaji na Ufikiaji wa Kozi\nBaadhi ya kozi ni bure, huku zingine zikihitaji malipo ya mara moja au usajili.\n\nUfikiaji wa kozi unatolewa kwa matumizi ya kibinafsi pekee; usambazaji upya au uuzaji upya ni marufuku.\n\nWakufunzi huhifadhi umiliki wa maudhui ya kozi, na unapokea leseni ndogo, isiyoweza kuhamishwa ili kuiona.\n\n4. Malipo na Marejesho\nMalipo yanaweza kufanywa kupitia kadi za mkopo/debiti, PayPal, au njia zingine zinazokubalika.\n\nMarejesho yanapatikana ndani ya siku 7 baada ya ununuzi, mradi tu hujakamilisha zaidi ya 20% ya kozi.\n\nAda za usajili hazirejeshwi mara tu zinapotozwa.\n\n5. Maadili ya Mtumiaji\nKwa kutumia SkillBase, unakubali:\n\nKutochapisha au kusambaza maudhui yoyote yenye madhara, matusi, au haramu.\n\nKutojaribu kudukua, kuvuruga, au kubadilisha mfumo.\n\nKuheshimu sheria za hakimiliki na haki miliki miliki.\n\nUkiukaji wa sheria hizi unaweza kusababisha kusimamishwa au kusitishwa kwa akaunti.\n\n6. Mali Miliki\nMaudhui yote, ikiwa ni pamoja na kozi, video, na nyenzo, yanalindwa na sheria za hakimiliki.\n\nHuruhusiwi kunakili, kusambaza, au kurekebisha maudhui yoyote bila ruhusa.\n\n7. Kusitishwa na Kuzimwa kwa Akaunti\nTunahifadhi haki ya kusimamisha au kusitisha akaunti zinazokiuka Masharti haya au kushiriki katika shughuli zinazotiliwa shaka.\n\n8. Kanusho na Upungufu wa Dhima\nHatuhakikishi nafasi ya kazi, mafanikio, au matokeo maalum ya kujifunza.\n\nSkillBase hutolewa \\\"kama ilivyo\\\" bila dhamana ya aina yoyote.\n\nHatuwajibiki kwa uharibifu wowote wa moja kwa moja, usio wa moja kwa moja, au wa bahati mbaya unaotokana na matumizi ya mfumo wetu.\n\n9. Mabadiliko ya Masharti\nTunaweza kusasisha Masharti haya mara kwa mara. Mabadiliko yoyote yataarifiwa kupitia barua pepe au arifa za ndani ya programu.\n\n10. Wasiliana Nasi\nIkiwa una maswali yoyote kuhusu Masharti haya, tafadhali wasiliana nasi kwa support@skillbase.com.",
+    "fr": "Bienvenue sur SkillBase ! En utilisant notre plateforme, vous acceptez les conditions générales suivantes. Veuillez les lire attentivement.\n\n1. Introduction\nSkillBase (« nous », « notre » ou « nos ») propose une plateforme d'apprentissage en ligne offrant des cours dans divers domaines. En accédant à SkillBase ou en l'utilisant, vous acceptez de respecter les présentes conditions générales.\n\n2. Comptes utilisateurs\nVous devez avoir au moins 13 ans pour utiliser SkillBase.\n\nVous êtes responsable de la confidentialité de vos identifiants de connexion.\n\nVous vous engagez à ne pas partager votre compte ni à autoriser un accès non autorisé.\n\n3. Inscription et accès aux cours\nCertains cours sont gratuits, tandis que d'autres nécessitent un paiement unique ou un abonnement.\n\nL'accès aux cours est réservé à un usage personnel ; toute redistribution ou revente est interdite.\n\nLes formateurs conservent la propriété du contenu des cours et vous bénéficiez d'une licence limitée et non transférable vous permettant de le consulter.\n\n4. Paiements et remboursements\n\nLes paiements peuvent être effectués par carte bancaire (crédit/débit), PayPal ou tout autre moyen accepté.\n\nLes remboursements sont possibles dans les 7 jours suivant l'achat, à condition de ne pas avoir suivi plus de 20 % du cours.\n\nLes frais d'abonnement ne sont pas remboursables une fois facturés.\n\n5. Comportement de l'utilisateur\n\nEn utilisant SkillBase, vous vous engagez à :\n\nNe pas publier ni diffuser de contenu nuisible, abusif ou illégal.\n\nNe pas tenter de pirater, perturber ou décompiler la plateforme.\n\nRespecter les lois sur le droit d'auteur et les droits de propriété intellectuelle.\n\nTout manquement à ces règles peut entraîner la suspension ou la résiliation de votre compte.\n\n6. Propriété intellectuelle\nL'ensemble du contenu, y compris les cours, les vidéos et les supports, est protégé par le droit d'auteur.\n\nIl est interdit de copier, diffuser ou modifier tout contenu sans autorisation.\n\n7. Résiliation et désactivation de compte\nNous nous réservons le droit de suspendre ou de résilier les comptes qui enfreignent les présentes conditions d'utilisation ou qui se livrent à des activités suspectes.\n\n8. Exclusion et limitation de responsabilité\n\nNous ne garantissons ni placement professionnel, ni réussite, ni résultats d'apprentissage spécifiques.\n\nSkillBase est fourni « en l'état », sans aucune garantie.\n\nNous déclinons toute responsabilité pour les dommages directs, indirects ou accessoires résultant de l'utilisation de notre plateforme.\n\n9. Modifications des conditions d'utilisation\nNous pouvons être amenés à modifier ces conditions d'utilisation. Toute modification sera notifiée par e-mail ou via des notifications intégrées à l'application.\n\n10. Nous contacter\nPour toute question concernant ces conditions d'utilisation, veuillez nous contacter à l'adresse support@skillbase.com."
+  },
+  "Phone number": {
+    "sw": "Namba ya simu",
+    "fr": "Numéro de téléphone"
+  },
+  "0774222013": {
+    "sw": "0774222013",
+    "fr": "0774222013"
+  },
+  "Mobile Money": {
+    "sw": "Pesa kwa Simu",
+    "fr": "Argent mobile"
+  },
+  "M-PESA": {
+    "sw": "M-PESA",
+    "fr": "M-PESA"
+  },
+  "MIXX BY YASS": {
+    "sw": "MIXX BY YAS",
+    "fr": ""
+  },
+  "HALOPESA": {
+    "sw": "HALOPESA",
+    "fr": ""
+  },
+  "AIRTEL MONEY": {
+    "sw": "AIRTEL MONEY",
+    "fr": ""
+  },
+  "Your Name": {
+    "sw": "Jina Lako",
+    "fr": "Votre nom"
+  },
+  "Invalid Phone Number": {
+    "sw": "Namba ya Simu Si Sahihi",
+    "fr": "Numéro de téléphone invalide"
+  },
+  "The phone number entered seems incorrect. Please verify and try again.": {
+    "sw": "Namba ya simu uliyoweka si sahihi. Tafadhali hakiki na ujaribu tena.",
+    "fr": "Le numéro de téléphone saisi semble incorrect. Veuillez vérifier et réessayer."
+  },
+  "Add  Mobile wallet": {
+    "sw": "Ongeza Namba ya Pesa kwa Simu",
+    "fr": "Ajouter un portefeuille mobile"
+  },
+  "Business Intensive": {
+    "sw": "Mafunzo Maalum ya Biashara",
+    "fr": ""
+  },
+  "The Profitable Kitchen": {
+    "sw": "Jiko Lenye Faida",
+    "fr": ""
+  },
+  "A Business Intensive with Madam Mercy Kitomari": {
+    "sw": "Mafunzo Maalum ya Biashara na Madam Mercy Kitomari",
+    "fr": ""
+  },
+  "3 sessions. Custom workbook. Pricing formula you keep forever.": {
+    "sw": "Vipindi 3. Kitabu cha kazi maalum. Fomula ya bei utakayoitumia milele.",
+    "fr": ""
+  },
+  "Sessions": {
+    "sw": "Vipindi",
+    "fr": ""
+  },
+  "1:1": {
+    "sw": "",
+    "fr": ""
+  },
+  "Coaching": {
+    "sw": "Ushauri",
+    "fr": ""
+  },
+  "∞": {
+    "sw": "",
+    "fr": ""
+  },
+  "Formula Yours": {
+    "sw": "Fomula Yako",
+    "fr": ""
+  },
+  "How It Works": {
+    "sw": "Jinsi Inavyofanya Kazi",
+    "fr": ""
+  },
+  "Three Sessions. One Transformation": {
+    "sw": "Vipindi Vitatu. Mabadiliko Makubwa",
+    "fr": ""
+  },
+  "01": {
+    "sw": "",
+    "fr": ""
+  },
+  "Discovery Session": {
+    "sw": "Kipindi cha Utambuzi",
+    "fr": ""
+  },
+  "We map your current pricing, costs, and business goals. Identify gaps and opportunities unique to your kitchen.": {
+    "sw": "Tunachambua bei zako, gharama na malengo ya biashara yako, na kubaini mapungufu na fursa za jiko lako.",
+    "fr": ""
+  },
+  "Session 1": {
+    "sw": "Kipindi 1",
+    "fr": ""
+  },
+  "02": {
+    "sw": "",
+    "fr": ""
+  },
+  "Working Through": {
+    "sw": "Kufanyia Kazi",
+    "fr": ""
+  },
+  "Build your custom workbook together. Craft your signature pricing formula tailored to your menu and market.": {
+    "sw": "Tunaandaa pamoja kitabu chako cha kazi na fomula ya bei inayoendana na bidhaa na soko lako.",
+    "fr": ""
+  },
+  "Session 2": {
+    "sw": "Kipindi 2",
+    "fr": ""
+  },
+  "03": {
+    "sw": "",
+    "fr": ""
+  },
+  "Assignment & Closing": {
+    "sw": "Kazi na Hitimisho",
+    "fr": ""
+  },
+  "Review your completed formula, finalize your workbook, and leave with a clear action plan to implement immediately.": {
+    "sw": "Tunapitia fomula yako, tunakamilisha kitabu cha kazi, na unaondoka na mpango wa utekelezaji wa haraka.",
+    "fr": ""
+  },
+  "Session 3": {
+    "sw": "Kipindi 3",
+    "fr": ""
+  },
+  "Choose Your Plan": {
+    "sw": "Chagua Mpango Wako",
+    "fr": ""
+  },
+  "Select what works for you": {
+    "sw": "Chagua kinachokufaa",
+    "fr": ""
+  },
+  "Virtual Plan": {
+    "sw": "Mpango wa Mtandaoni",
+    "fr": ""
+  },
+  "$250": {
+    "sw": "",
+    "fr": ""
+  },
+  "per intensive": {
+    "sw": "kwa mafunzo yote",
+    "fr": ""
+  },
+  "3 virtual coaching sessions": {
+    "sw": "Vipindi 3 vya ushauri mtandaoni",
+    "fr": ""
+  },
+  "Custom business workbook": {
+    "sw": "Kitabu cha kazi cha biashara yako",
+    "fr": ""
+  },
+  "Signature pricing formula (yours forever)": {
+    "sw": "Fomula yako ya kupanga bei (ni yako milele)",
+    "fr": ""
+  },
+  "Video call via Zoom or Google Meet": {
+    "sw": "Simu ya video kupitia Zoom au Google Meet",
+    "fr": ""
+  },
+  "In-Person Plan": {
+    "sw": "Mpango wa Ana kwa Ana",
+    "fr": ""
+  },
+  "$750": {
+    "sw": "",
+    "fr": ""
+  },
+  "3 in-person coaching sessions": {
+    "sw": "Vipindi 3 vya ushauri ana kwa ana",
+    "fr": ""
+  },
+  "Hands-on kitchen & business walkthrough": {
+    "sw": "Mafunzo ya vitendo jikoni na kwenye biashara",
+    "fr": ""
+  },
+  "Custom workbook & pricing formula": {
+    "sw": "Kitabu cha kazi na fomula ya bei",
+    "fr": ""
+  },
+  "Location: Nairobi & surrounding areas": {
+    "sw": "Mahali: Nairobi na maeneo ya jirani",
+    "fr": ""
+  },
+  "Proceed to Consultation": {
+    "sw": "Endelea na Ushauri",
+    "fr": ""
+  },
+  "Secure booking · No hidden fees": {
+    "sw": "Uhifadhi salama · Hakuna gharama zilizofichwa",
+    "fr": ""
+  },
+  "Madam Mercy Kitomari": {
+    "sw": "",
+    "fr": ""
+  },
+  "Food Business Strategist & Pricing Expert": {
+    "sw": "Mtaalamu wa Mikakati ya Biashara ya Chakula na Upangaji Bei",
+    "fr": ""
+  },
+  "50+ kitchens transformed": {
+    "sw": "Majiko 50+ yamebadilishwa",
+    "fr": ""
+  },
+  "Reset Password Successful": {
+    "sw": "Nenosiri Limebadilishwa",
+    "fr": "Réinitialisation du mot de passe réussie"
+  },
+  "Please wait...\nRedirecting you to the homepage.": {
+    "sw": "Tafadhali subiri...\nInakuelekeza kwenye ukurasa wa nyumbani.",
+    "fr": "Veuillez patienter... Redirection vers la page d'accueil."
+  },
+  "Sign in Successful!": {
+    "sw": "Umeingia Kikamilifu!",
+    "fr": "Connexion réussie !"
+  },
+  "You're All Set!": {
+    "sw": "Uko Tayari!",
+    "fr": "Tout est prêt !"
+  },
+  "Your profile is complete. Start learning, sharing, and growing today!": {
+    "sw": "Wasifu wako umekamilika. Anza kujifunza, kushiriki, na kukua leo!",
+    "fr": "Votre profil est complet. Commencez dès aujourd'hui à apprendre, à partager et à progresser !"
+  },
+  "Thanks for sharing": {
+    "sw": "Asante kwa kushiriki",
+    "fr": "Merci pour le partage"
+  },
+  "We are personalizing your experience!": {
+    "sw": "Tunaandaa programu kulingana na mapendeleo yako!",
+    "fr": "Nous personnalisons votre expérience !"
+  },
+  "Delete Your Account?": {
+    "sw": "Futa Akaunti Yako?",
+    "fr": "Supprimer votre compte ?"
+  },
+  "This action is permanent and will erase all your data. Are you sure you want to continue?": {
+    "sw": "Kitendo hiki ni cha kudumu na kitafuta data yako yote. Una uhakika unataka kuendelea?",
+    "fr": "Cette action est définitive et effacera toutes vos données. Êtes-vous sûr de vouloir continuer ?"
+  },
+  "Profile": {
+    "sw": "Wasifu",
+    "fr": "Profil"
+  },
+  "Sign Out?": {
+    "sw": "Toka?",
+    "fr": "Se déconnecter?"
+  },
+  "Are you sure you want to sign out? You can always log back in anytime.": {
+    "sw": "Una uhakika unataka kutoka? Unaweza kuingia tena wakati wowote.",
+    "fr": "Êtes-vous sûr de vouloir vous déconnecter ? Vous pouvez vous reconnecter à tout moment."
+  },
+  "Rating": {
+    "sw": "Ukadiriaji",
+    "fr": "Notation"
+  },
+  "4.5+": {
+    "sw": "4.5+",
+    "fr": "4,5+"
+  },
+  "4.0+": {
+    "sw": "4.0+",
+    "fr": "4.0+"
+  },
+  "3.5+": {
+    "sw": "3.5+",
+    "fr": "3,5+"
+  },
+  "Course Duration": {
+    "sw": "Muda wa Kozi",
+    "fr": "Durée du cours"
+  },
+  "Less than 1 hour": {
+    "sw": "Chini ya saa 1",
+    "fr": "Moins d'une heure"
+  },
+  "1–3 hours": {
+    "sw": "Saa 1–3",
+    "fr": "1 à 3 heures"
+  },
+  "3–10 hours": {
+    "sw": "Saa 3–10",
+    "fr": "3 à 10 heures"
+  },
+  "10+ hours": {
+    "sw": "Saa 10+",
+    "fr": "Plus de 10 heures"
+  },
+  "Price": {
+    "sw": "Bei",
+    "fr": "Prix"
+  },
+  "Skill Level": {
+    "sw": "Kiwango cha Ustadi",
+    "fr": "Niveau de compétence"
+  },
+  "Beginner": {
+    "sw": "Mwanzo",
+    "fr": "Débutant"
+  },
+  "Intermediate": {
+    "sw": "Kati",
+    "fr": "Intermédiaire"
+  },
+  "Advanced": {
+    "sw": "Juu",
+    "fr": "Avancé"
+  },
+  "Date Added": {
+    "sw": "Tarehe Iliyoongezwa",
+    "fr": "Date d'ajout"
+  },
+  "New (this week)": {
+    "sw": "Mpya (wiki hii)",
+    "fr": "Nouveautés (cette semaine)"
+  },
+  "This month": {
+    "sw": "Mwezi huu",
+    "fr": "Ce mois-ci"
+  },
+  "Last year": {
+    "sw": "Mwaka jana",
+    "fr": "L'année dernière"
+  },
+  "Apply": {
+    "sw": "Tumia",
+    "fr": "Appliquer"
+  },
+  "Report an Issue": {
+    "sw": "Ripoti Tatizo",
+    "fr": "Signaler un problème"
+  },
+  "Encountering a problem? Let us know, and we'll work to fix it as soon as possible.": {
+    "sw": "Una tatizo? Tujulishe, nasi tutajitahidi kulitatua haraka iwezekanavyo.",
+    "fr": "Vous rencontrez un problème ? Faites-le nous savoir et nous nous efforcerons de le résoudre au plus vite."
+  },
+  "Please describe the issue in detail": {
+    "sw": "Tafadhali eleza tatizo kwa undani",
+    "fr": "Veuillez décrire le problème en détail"
+  },
+  "Active": {
+    "sw": "Inatumika",
+    "fr": "Actif"
+  },
+  "Title": {
+    "sw": "Kichwa",
+    "fr": "Titre"
+  },
+  ":": {
+    "sw": ":",
+    "fr": ":"
+  },
+  "Connected": {
+    "sw": "Imeunganishwa",
+    "fr": "Connecté"
+  },
+  "Add new payment method": {
+    "sw": "Ongeza njia mpya ya malipo",
+    "fr": "Ajouter un nouveau mode de paiement"
+  },
+  "Securely add a new payment method to make purchases and receive payouts with ease.": {
+    "sw": "Ongeza njia mpya ya malipo kwa usalama ili kufanya manunuzi na kupokea malipo kwa urahisi.",
+    "fr": "Ajoutez en toute sécurité un nouveau mode de paiement pour effectuer des achats et recevoir des paiements en toute simplicité."
+  },
+  "Add Credit Card": {
+    "sw": "Ongeza Kadi",
+    "fr": "Ajouter une carte de crédit"
+  },
+  "PayPal": {
+    "sw": "PayPal",
+    "fr": "PayPal"
+  },
+  "Google Pay": {
+    "sw": "Google Pay",
+    "fr": "Google Pay"
+  },
+  "Apple Pay": {
+    "sw": "Apple Pay",
+    "fr": "Apple Pay"
+  },
+  "Visit": {
+    "sw": "Tembelea",
+    "fr": "Visite"
+  },
+  "Write review": {
+    "sw": "Andika maoni",
+    "fr": "Rédiger un avis"
+  },
+  "Application Submitted!": {
+    "sw": "Ombi Limetumwa!",
+    "fr": "Demande soumise !"
+  },
+  "Your application to become an instructor has been successfully submitted. Our team will review it and get back to you soon.": {
+    "sw": "Ombi lako la kuwa mwalimu limewasilishwa kwa mafanikio. Timu yetu italikagua na kukujibu hivi karibuni.",
+    "fr": "Votre candidature pour devenir instructeur a bien été soumise. Notre équipe l'examinera et vous recontactera prochainement."
+  },
+  "Switch Account Role": {
+    "sw": "Badilisha Aina ya Akaunti",
+    "fr": "Changer de rôle de compte"
+  },
+  "Easily switch between your Instructor and Student views to manage courses or continue learning without logging out.": {
+    "sw": "Badilisha kwa urahisi kati ya mwonekano wa Mwalimu na Mwanafunzi ili kusimamia kozi au kuendelea kujifunza bila kutoka.",
+    "fr": "Passez facilement du mode enseignant au mode étudiant pour gérer vos cours ou poursuivre votre apprentissage sans vous déconnecter."
+  },
+  "Learner": {
+    "sw": "Mwanafunzi",
+    "fr": "Apprenant"
+  },
+  "Instructor": {
+    "sw": "Mwalimu",
+    "fr": "Instructeur"
+  },
+  "Custom Categories": {
+    "sw": "Kategoria Maalum",
+    "fr": "Catégories personnalisées"
+  },
+  "Main Categories": {
+    "sw": "Kategoria Kuu",
+    "fr": "Catégories principales"
+  },
+  "Add New Category": {
+    "sw": "Ongeza Kategoria Mpya",
+    "fr": "Ajouter une nouvelle catégorie"
+  },
+  "Category Name": {
+    "sw": "Jina la Kategoria",
+    "fr": "Nom de la catégorie"
+  },
+  "Custom Tags": {
+    "sw": "Lebo Maalum",
+    "fr": "Étiquettes personnalisées"
+  },
+  "Main Tags": {
+    "sw": "Lebo Kuu",
+    "fr": "Mots-clés principaux"
+  },
+  "Add New Tag": {
+    "sw": "Ongeza Lebo Mpya",
+    "fr": "Ajouter une nouvelle balise"
+  },
+  "New Tag": {
+    "sw": "Lebo Mpya",
+    "fr": "Nouvelle étiquette"
+  },
+  "Audience": {
+    "sw": "Walengwa",
+    "fr": "Public"
+  },
+  "Specialty": {
+    "sw": "Utaalamu",
+    "fr": "Spécialité"
+  },
+  "You Haven’t Created Any Courses Yet": {
+    "sw": "Bado Hujaunda Kozi Zozote",
+    "fr": "Vous n'avez pas encore créé de cours"
+  },
+  "Share your knowledge with the world. Start by creating your first course and inspire learners everywhere.": {
+    "sw": "Shiriki maarifa yako na ulimwengu. Anza kwa kuunda kozi yako ya kwanza na uwape motisha wanafunzi kila mahali.",
+    "fr": "Partagez votre savoir avec le monde entier. Commencez par créer votre premier cours et inspirez les apprenants du monde entier."
+  },
+  "Add lessons from here": {
+    "sw": "Ongeza masomo kutoka hapa",
+    "fr": "Ajoutez des leçons à partir d'ici"
+  },
+  "Create and add new lessons to your course.": {
+    "sw": "Unda na ongeza masomo mapya kwenye kozi yako.",
+    "fr": "Créez et ajoutez de nouvelles leçons à votre cours."
+  },
+  "Delete course?": {
+    "sw": "Futa kozi?",
+    "fr": "Supprimer le cours ?"
+  },
+  "Once deleted, this course and its lessons will be permanently removed.": {
+    "sw": "Mara tu baada ya kufutwa, kozi hii na masomo yake yataondolewa kabisa.",
+    "fr": "Une fois supprimé, ce cours et ses leçons seront définitivement effacés."
+  },
+  "Add a New Course": {
+    "sw": "Ongeza Kozi Mpya",
+    "fr": "Ajouter un nouveau cours"
+  },
+  "Create a course to share your knowledge and engage with learners.": {
+    "sw": "Unda kozi ya kushiriki maarifa yako na kuwashirikisha wanafunzi.",
+    "fr": "Créez un cours pour partager vos connaissances et interagir avec les apprenants."
+  },
+  "No Sales Reports Yet": {
+    "sw": "Hakuna Ripoti za Mauzo Bado",
+    "fr": "Aucun rapport de vente pour le moment"
+  },
+  "Sales reports will appear here as you start generating them. Track performance, insights, and more — all in one place.": {
+    "sw": "Ripoti za mauzo zitaonekana hapa unapoanza kuzizalisha. Fuatilia utendaji, maarifa, na zaidi — yote katika sehemu moja.",
+    "fr": "Les rapports de vente s'afficheront ici au fur et à mesure de leur génération. Suivez les performances, les analyses et bien plus encore, le tout au même endroit."
+  },
+  "No Payment Methods": {
+    "sw": "Hakuna Njia za Malipo",
+    "fr": "Aucun mode de paiement"
+  },
+  "You haven’t added any payment methods yet. Add one to start purchasing courses easily and securely.": {
+    "sw": "Bado hujaongeza njia zozote za malipo. Ongeza moja ili kuanza kununua kozi kwa urahisi na kwa usalama.",
+    "fr": "Vous n'avez pas encore ajouté de mode de paiement. Ajoutez-en un pour commencer à acheter des cours facilement et en toute sécurité."
+  },
+  "Delete This Course?": {
+    "sw": "Futa Kozi Hii?",
+    "fr": "Supprimer ce cours ?"
+  },
+  "This action will remove your access to the course. Are you sure you want to continue?": {
+    "sw": "Kitendo hiki kitaondoa ufikiaji wako kwenye kozi. Una uhakika unataka kuendelea?",
+    "fr": "Cette action vous supprimera l'accès au cours. Êtes-vous sûr de vouloir continuer ?"
+  },
+  "Course Created Successfully": {
+    "sw": "Kozi Imeundwa",
+    "fr": "Cours créé avec succès"
+  },
+  "Your course has been published. Start adding lessons to bring your content to life and inspire learners.": {
+    "sw": "Kozi yako imechapishwa. Anza kuongeza masomo ili kuyafanya maudhui yako yawe hai na kuwatia moyo wanafunzi.",
+    "fr": "Votre cours a été publié. Commencez à ajouter des leçons pour donner vie à votre contenu et inspirer les apprenants."
+  },
+  "Purchase Successful!": {
+    "sw": "Ununuzi Umekamilika!",
+    "fr": "Achat réussi !"
+  },
+  "You've successfully enrolled in the course. Get ready to start learning and growing your skills!": {
+    "sw": "Umejiandikisha kwa mafanikio katika kozi hiyo. Jitayarishe kuanza kujifunza na kukuza ujuzi wako!",
+    "fr": "Vous êtes inscrit(e) avec succès à ce cours. Préparez-vous à apprendre et à développer vos compétences !"
+  },
+  "No Notifications Yet": {
+    "sw": "Hakuna Arifa Bado",
+    "fr": "Aucune notification pour le moment"
+  },
+  "You're all caught up! Stay tuned for updates, offers, and important alerts.": {
+    "sw": "Hakuna arifa mpya! Endelea kufuatilia taarifa, ofa na arifa muhimu.",
+    "fr": "Vous êtes à jour ! Restez à l'écoute pour les mises à jour, les offres et les alertes importantes."
+  },
+  "No Courses Yet": {
+    "sw": "Hakuna Kozi Bado",
+    "fr": "Aucun cours pour le moment"
+  },
+  "Start learning by enrolling in your first course. Your purchased courses will appear here.": {
+    "sw": "Anza kujifunza kwa kujiandikisha katika kozi yako ya kwanza. Kozi ulizonunua zitaonekana hapa.",
+    "fr": "Commencez votre apprentissage en vous inscrivant à votre premier cours. Vos cours achetés apparaîtront ici."
+  },
+  "Payment Method Added": {
+    "sw": "Njia ya Malipo Imeongezwa",
+    "fr": "Mode de paiement ajouté"
+  },
+  "Your payment method has been successfully set up. You're now ready to make purchases and access premium content with ease!": {
+    "sw": "Njia yako ya kulipa imewekwa kwa ufanisi. Sasa uko tayari kufanya manunuzi na kufikia maudhui ya malipo kwa urahisi!",
+    "fr": "Votre mode de paiement a été configuré avec succès. Vous pouvez désormais effectuer des achats et accéder au contenu premium en toute simplicité !"
+  },
+  "No Payment Account": {
+    "sw": "Hakuna Akaunti ya Malipo",
+    "fr": "Aucun compte de paiement"
+  },
+  "Set up your payment account to receive earnings.": {
+    "sw": "Sanidi akaunti yako ya malipo ili upokee mapato.",
+    "fr": "Configurez votre compte de paiement pour recevoir vos gains."
+  },
+  "Create Account": {
+    "sw": "Fungua Akaunti",
+    "fr": "Créer un compte"
+  },
+  "Add Your First Lesson": {
+    "sw": "Ongeza Somo Lako la Kwanza",
+    "fr": "Ajoutez votre première leçon"
+  },
+  "Your Wish List is Empty": {
+    "sw": "Orodha Yako ya Vipendwa Iko Tupu",
+    "fr": "Votre liste de souhaits est vide."
+  },
+  "Start exploring and add courses you love to keep them close for later.": {
+    "sw": "Anza kuchunguza na ongeza kozi unazopenda ili kuziweka karibu kwa ajili ya baadaye.",
+    "fr": "Commencez à explorer et ajoutez les cours que vous aimez pour les retrouver facilement plus tard."
+  },
+  "Discover Courses": {
+    "sw": "Gundua Kozi",
+    "fr": "Découvrez les cours"
+  },
+  "No Subscriptions Yet": {
+    "sw": "Hakuna Usajili Bado",
+    "fr": "Aucun abonnement pour le moment"
+  },
+  "You haven't subscribed to any courses yet. Browse our collection and start learning today!": {
+    "sw": "Bado hujajisajili kwa kozi zozote. Vinjari mkusanyiko wetu na uanze kujifunza leo!",
+    "fr": "Vous n'êtes inscrit à aucun cours. Parcourez notre catalogue et commencez à apprendre dès aujourd'hui !"
+  },
+  "No Purchases Yet": {
+    "sw": "Hakuna Ununuzi Bado",
+    "fr": "Aucun achat pour le moment"
+  },
+  "Your purchase history is currently empty. Once you buy a course, it will appear here for your reference.": {
+    "sw": "Historia yako ya ununuzi kwa sasa haina kitu. Ukishanunua kozi, itaonekana hapa kwa marejeleo yako.",
+    "fr": "Votre historique d'achats est actuellement vide. Une fois que vous aurez acheté un cours, il apparaîtra ici pour votre consultation."
+  },
+  "No Followers Yet": {
+    "sw": "Hakuna Wafuasi Bado",
+    "fr": "Aucun abonné pour le moment"
+  },
+  "Looks like no one is following this profile yet. Share valuable content to attract your first followers!": {
+    "sw": "Inaonekana hakuna mtu anayefuata wasifu huu bado. Shiriki maudhui muhimu ili kuvutia wafuasi wako wa kwanza!",
+    "fr": "Il semblerait que personne ne suive ce profil pour le moment. Partagez du contenu de qualité pour attirer vos premiers abonnés !"
+  },
+  "Follow": {
+    "sw": "Fuata",
+    "fr": "Suivre"
+  },
+  "Appointment  Created Successfully": {
+    "sw": "Miadi Imewekwa",
+    "fr": "Rendez-vous créé avec succès"
+  },
+  "Your appointment  has been created.  Please be on time": {
+    "sw": "Miadi yako imewekwa. Tafadhali fika kwa wakati",
+    "fr": "Votre rendez-vous a été créé. Veuillez être à l'heure."
+  },
+  "Add Payment Method": {
+    "sw": "Ongeza Njia ya Malipo",
+    "fr": "Ajouter un mode de paiement"
+  },
+  "Select below the payment method Prefered": {
+    "sw": "Chagua njia ya malipo unayopendelea hapa chini",
+    "fr": "Veuillez sélectionner ci-dessous votre mode de paiement préféré."
+  },
+  "Build Your Ice Cream Business with Clarity": {
+    "sw": "Jenga Biashara Yako ya Aiskrimu kwa Uhakika",
+    "fr": ""
+  },
+  "Learn the process, understand your margins, start making money.": {
+    "sw": "Jifunze mchakato, elewa faida yako, anza kupata pesa.",
+    "fr": ""
+  },
+  "Start Learning": {
+    "sw": "Anza Kujifunza",
+    "fr": ""
+  },
+  "Get Equipment": {
+    "sw": "Pata Vifaa",
+    "fr": ""
+  },
+  "Work With Nelwa": {
+    "sw": "Fanya Kazi na Nelwa",
+    "fr": ""
+  },
+  "TextField": {
+    "sw": "",
+    "fr": "Champ de texte"
+  },
+  "In order to take Image or Video, This App Require Your Permission": {
+    "sw": "Ili kupiga picha au video, programu inahitaji ruhusa yako",
+    "fr": ""
+  }
+}

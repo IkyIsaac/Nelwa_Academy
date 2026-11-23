@@ -237,9 +237,34 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'sw': 'Omba kurejeshewa pesa',
     },
     'nwmnu003': {
-      'en': 'Delete course',
-      'fr': 'Supprimer le cours',
-      'sw': 'Futa kozi',
+      'en': 'Archive course',
+      'fr': 'Archiver le cours',
+      'sw': 'Weka kozi kando',
+    },
+    'nwarc001': {
+      'en': 'Unarchive course',
+      'fr': 'Désarchiver le cours',
+      'sw': 'Rudisha kozi',
+    },
+    'nwarc002': {
+      'en': 'Course archived. Find it under Archived in Learn.',
+      'fr': 'Cours archivé. Retrouvez-le dans Archivés, sous Apprendre.',
+      'sw': 'Kozi imewekwa kando. Itafute kwenye Zilizowekwa kando, ndani ya Jifunze.',
+    },
+    'nwarc003': {
+      'en': 'Course moved back to Learn.',
+      'fr': 'Le cours est de retour dans Apprendre.',
+      'sw': 'Kozi imerudishwa kwenye Jifunze.',
+    },
+    'nwarc004': {
+      'en': 'Archived',
+      'fr': 'Archivés',
+      'sw': 'Zilizowekwa kando',
+    },
+    'nwarc005': {
+      'en': 'No archived courses',
+      'fr': 'Aucun cours archivé',
+      'sw': 'Hakuna kozi zilizowekwa kando',
     },
     'nwmnu004': {
       'en': 'Remove',
@@ -2418,14 +2443,14 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'sw': 'Jumla ya Masomo',
     },
     'luh4t121': {
-      'en': 'Total duration',
-      'fr': 'Durée totale',
-      'sw': 'Jumla ya muda',
+      'en': 'Total duration (seconds)',
+      'fr': 'Durée totale (secondes)',
+      'sw': 'Jumla ya muda (sekunde)',
     },
     'xhb7y55e': {
-      'en': 'Total  duration',
-      'fr': 'Description',
-      'sw': 'Jumla ya muda',
+      'en': 'Total duration in seconds',
+      'fr': 'Durée totale en secondes',
+      'sw': 'Jumla ya muda kwa sekunde',
     },
     'hroimsws': {
       'en': 'Group',

@@ -436,20 +436,20 @@ class _FilterWidgetState extends State<FilterWidget> {
                               highlightColor: Colors.transparent,
                               onTap: () async {
                                 if ((_model.durationFrom == 0) &&
-                                    (_model.durationTo == 60)) {
+                                    (_model.durationTo == 3600)) {
                                   _model.durationFrom = 0;
-                                  _model.durationTo = 6000;
+                                  _model.durationTo = 360000;
                                   safeSetState(() {});
                                 } else {
                                   _model.durationFrom = 0;
-                                  _model.durationTo = 60;
+                                  _model.durationTo = 3600;
                                   safeSetState(() {});
                                 }
                               },
                               child: Container(
                                 height: 44.0,
                                 decoration: BoxDecoration(
-                                  color: _model.durationTo == 60
+                                  color: _model.durationTo == 3600
                                       ? FlutterFlowTheme.of(context).accent1
                                       : FlutterFlowTheme.of(context).secondary,
                                   borderRadius: BorderRadius.circular(12.0),
@@ -478,7 +478,7 @@ class _FilterWidgetState extends State<FilterWidget> {
                                                         .bodyLarge
                                                         .fontStyle,
                                               ),
-                                              color: _model.durationTo == 60
+                                              color: _model.durationTo == 3600
                                                   ? FlutterFlowTheme.of(context)
                                                       .primary
                                                   : FlutterFlowTheme.of(context)
@@ -495,7 +495,7 @@ class _FilterWidgetState extends State<FilterWidget> {
                                               lineHeight: 1.0,
                                             ),
                                       ),
-                                      if (_model.durationTo == 60)
+                                      if (_model.durationTo == 3600)
                                         InkWell(
                                           splashColor: Colors.transparent,
                                           focusColor: Colors.transparent,
@@ -503,7 +503,7 @@ class _FilterWidgetState extends State<FilterWidget> {
                                           highlightColor: Colors.transparent,
                                           onTap: () async {
                                             _model.durationFrom = 0;
-                                            _model.durationTo = 6000;
+                                            _model.durationTo = 360000;
                                             safeSetState(() {});
                                           },
                                           child: Icon(
@@ -524,21 +524,21 @@ class _FilterWidgetState extends State<FilterWidget> {
                               hoverColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               onTap: () async {
-                                if ((_model.durationFrom == 60) &&
-                                    (_model.durationTo == 180)) {
+                                if ((_model.durationFrom == 3600) &&
+                                    (_model.durationTo == 10800)) {
                                   _model.durationFrom = 0;
-                                  _model.durationTo = 6000;
+                                  _model.durationTo = 360000;
                                   safeSetState(() {});
                                 } else {
-                                  _model.durationFrom = 60;
-                                  _model.durationTo = 180;
+                                  _model.durationFrom = 3600;
+                                  _model.durationTo = 10800;
                                   safeSetState(() {});
                                 }
                               },
                               child: Container(
                                 height: 44.0,
                                 decoration: BoxDecoration(
-                                  color: _model.durationFrom == 60
+                                  color: _model.durationFrom == 3600
                                       ? FlutterFlowTheme.of(context).accent1
                                       : FlutterFlowTheme.of(context).secondary,
                                   borderRadius: BorderRadius.circular(12.0),
@@ -567,7 +567,7 @@ class _FilterWidgetState extends State<FilterWidget> {
                                                         .bodyLarge
                                                         .fontStyle,
                                               ),
-                                              color: _model.durationFrom == 60
+                                              color: _model.durationFrom == 3600
                                                   ? FlutterFlowTheme.of(context)
                                                       .primary
                                                   : FlutterFlowTheme.of(context)
@@ -584,7 +584,7 @@ class _FilterWidgetState extends State<FilterWidget> {
                                               lineHeight: 1.0,
                                             ),
                                       ),
-                                      if (_model.durationFrom == 60)
+                                      if (_model.durationFrom == 3600)
                                         InkWell(
                                           splashColor: Colors.transparent,
                                           focusColor: Colors.transparent,
@@ -592,7 +592,7 @@ class _FilterWidgetState extends State<FilterWidget> {
                                           highlightColor: Colors.transparent,
                                           onTap: () async {
                                             _model.durationFrom = 0;
-                                            _model.durationTo = 6000;
+                                            _model.durationTo = 360000;
                                             safeSetState(() {});
                                           },
                                           child: Icon(
@@ -613,21 +613,21 @@ class _FilterWidgetState extends State<FilterWidget> {
                               hoverColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               onTap: () async {
-                                if ((_model.durationFrom == 180) &&
-                                    (_model.durationTo == 600)) {
+                                if ((_model.durationFrom == 10800) &&
+                                    (_model.durationTo == 36000)) {
                                   _model.durationFrom = 0;
-                                  _model.durationTo = 6000;
+                                  _model.durationTo = 360000;
                                   safeSetState(() {});
                                 } else {
-                                  _model.durationFrom = 180;
-                                  _model.durationTo = 600;
+                                  _model.durationFrom = 10800;
+                                  _model.durationTo = 36000;
                                   safeSetState(() {});
                                 }
                               },
                               child: Container(
                                 height: 44.0,
                                 decoration: BoxDecoration(
-                                  color: _model.durationFrom == 180
+                                  color: _model.durationFrom == 10800
                                       ? FlutterFlowTheme.of(context).accent1
                                       : FlutterFlowTheme.of(context).secondary,
                                   borderRadius: BorderRadius.circular(12.0),
@@ -656,7 +656,7 @@ class _FilterWidgetState extends State<FilterWidget> {
                                                         .bodyLarge
                                                         .fontStyle,
                                               ),
-                                              color: _model.durationFrom == 180
+                                              color: _model.durationFrom == 10800
                                                   ? FlutterFlowTheme.of(context)
                                                       .primary
                                                   : FlutterFlowTheme.of(context)
@@ -673,7 +673,7 @@ class _FilterWidgetState extends State<FilterWidget> {
                                               lineHeight: 1.0,
                                             ),
                                       ),
-                                      if (_model.durationFrom == 180)
+                                      if (_model.durationFrom == 10800)
                                         InkWell(
                                           splashColor: Colors.transparent,
                                           focusColor: Colors.transparent,
@@ -681,7 +681,7 @@ class _FilterWidgetState extends State<FilterWidget> {
                                           highlightColor: Colors.transparent,
                                           onTap: () async {
                                             _model.durationFrom = 0;
-                                            _model.durationTo = 6000;
+                                            _model.durationTo = 360000;
                                             safeSetState(() {});
                                           },
                                           child: Icon(
@@ -702,21 +702,21 @@ class _FilterWidgetState extends State<FilterWidget> {
                               hoverColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               onTap: () async {
-                                if ((_model.durationFrom == 600) &&
-                                    (_model.durationTo == 6000)) {
+                                if ((_model.durationFrom == 36000) &&
+                                    (_model.durationTo == 360000)) {
                                   _model.durationFrom = 0;
-                                  _model.durationTo = 6000;
+                                  _model.durationTo = 360000;
                                   safeSetState(() {});
                                 } else {
-                                  _model.durationFrom = 600;
-                                  _model.durationTo = 6000;
+                                  _model.durationFrom = 36000;
+                                  _model.durationTo = 360000;
                                   safeSetState(() {});
                                 }
                               },
                               child: Container(
                                 height: 44.0,
                                 decoration: BoxDecoration(
-                                  color: _model.durationFrom == 600
+                                  color: _model.durationFrom == 36000
                                       ? FlutterFlowTheme.of(context).accent1
                                       : FlutterFlowTheme.of(context).secondary,
                                   borderRadius: BorderRadius.circular(12.0),
@@ -745,7 +745,7 @@ class _FilterWidgetState extends State<FilterWidget> {
                                                         .bodyLarge
                                                         .fontStyle,
                                               ),
-                                              color: _model.durationFrom == 600
+                                              color: _model.durationFrom == 36000
                                                   ? FlutterFlowTheme.of(context)
                                                       .primary
                                                   : FlutterFlowTheme.of(context)
@@ -762,7 +762,7 @@ class _FilterWidgetState extends State<FilterWidget> {
                                               lineHeight: 1.0,
                                             ),
                                       ),
-                                      if (_model.durationFrom == 600)
+                                      if (_model.durationFrom == 36000)
                                         InkWell(
                                           splashColor: Colors.transparent,
                                           focusColor: Colors.transparent,
@@ -770,7 +770,7 @@ class _FilterWidgetState extends State<FilterWidget> {
                                           highlightColor: Colors.transparent,
                                           onTap: () async {
                                             _model.durationFrom = 0;
-                                            _model.durationTo = 6000;
+                                            _model.durationTo = 360000;
                                             safeSetState(() {});
                                           },
                                           child: Icon(
@@ -1537,10 +1537,10 @@ class _FilterWidgetState extends State<FilterWidget> {
                         (_model.dateAdded != null && _model.dateAdded != '') ||
                         (_model.start != 0.0) ||
                         (_model.end != 500.0) ||
-                        (_model.durationTo == 60) ||
-                        (_model.durationTo == 180) ||
-                        (_model.durationTo == 600) ||
-                        (_model.durationFrom == 600))
+                        (_model.durationTo == 3600) ||
+                        (_model.durationTo == 10800) ||
+                        (_model.durationTo == 36000) ||
+                        (_model.durationFrom == 36000))
                       Expanded(
                         child: FFButtonWidget(
                           onPressed: () async {
@@ -1548,7 +1548,7 @@ class _FilterWidgetState extends State<FilterWidget> {
                             _model.skillLevel = null;
                             _model.dateAdded = null;
                             _model.durationFrom = 0;
-                            _model.durationTo = 6000;
+                            _model.durationTo = 360000;
                             _model.start = 0.0;
                             _model.end = 500.0;
                             safeSetState(() {});
@@ -1646,10 +1646,10 @@ class _FilterWidgetState extends State<FilterWidget> {
                                   _model.dateAdded != '') ||
                               (_model.start != 0.0) ||
                               (_model.end != 500.0) ||
-                              (_model.durationTo == 60) ||
-                              (_model.durationTo == 180) ||
-                              (_model.durationTo == 600) ||
-                              (_model.durationFrom == 600)
+                              (_model.durationTo == 3600) ||
+                              (_model.durationTo == 10800) ||
+                              (_model.durationTo == 36000) ||
+                              (_model.durationFrom == 36000)
                           ? 12.0
                           : 0.0)),
                 ),

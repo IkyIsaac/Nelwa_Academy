@@ -48,7 +48,7 @@ class _InstructorCoursesWidgetState extends State<InstructorCoursesWidget> {
           ..skillLevel = null
           ..dateAdded = null
           ..durationFrom = 0
-          ..durationTo = 6000,
+          ..durationTo = 360000,
       );
       safeSetState(() {});
     });

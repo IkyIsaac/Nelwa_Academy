@@ -90,13 +90,13 @@ course entitlement.
   only `snippeWebhook`'s Admin SDK access can grant a course. `update` is
   still allowed, since students legitimately update `watched_lessons` and
   `reviwed` on their own existing purchases from elsewhere in the app.
-- **Deliberately not touched**: `purchase_history` and `payment_account`
-  still allow broad client writes, because the refund flow
-  (`lib/learn/requesta_refund/requesta_refund_widget.dart`) and instructor
-  payout setup (`lib/payment_method/payment_setup/payment_setup_widget.dart`)
-  depend on writing there client-side. The refund flow has the *same* kind
-  of trust problem the old purchase flow had (self-declared refund,
-  self-adjusted balance) — that's a known follow-up, not yet fixed.
+- **Update (2026-11-17):** the rules were later locked down as a whole;
+  see [firestore-security-rules.md](firestore-security-rules.md).
+  `payment_account` is now owner/admin only and `purchase_history` can't
+  be edited by clients. As a result, the refund flow's extra writes
+  (instructor `sales_reports`, the refund `purchase_history` entry) are
+  now refused, while the refund request itself still saves. Refunds still
+  need a proper Cloud Function (see "Known follow-ups").
 
 ### Flutter client
 
@@ -204,9 +204,11 @@ trustworthy option when debugging live.
   (e.g. opening a placeholder tab synchronously on tap and navigating it
   once the URL is known, or an in-page redirect) before this works
   end-to-end for a real user on web.
-- **Refund flow has the old trust problem.** `requesta_refund_widget.dart`
-  still self-declares refunds and adjusts instructor balances client-side,
-  same as the pre-Snippe purchase flow did. Not addressed here.
+- **Refund flow needs a Cloud Function.** `requesta_refund_widget.dart`
+  used to self-declare refunds and adjust instructor balances client-side.
+  The rules now block those balance and history writes (only the request
+  is saved), so refunds have to be handled by the admin until a function
+  does the bookkeeping.
 - **No confirmed Snippe refund API.** The public docs cover Payments,
   Sessions, Disbursements, and Webhooks — no refund/void endpoint. Would
   need checking the dashboard/Postman collection, or falling back to a

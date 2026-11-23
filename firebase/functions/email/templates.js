@@ -56,6 +56,38 @@ const templates = {
     };
   },
 
+  // Sent to the academy inbox (staff read English), not to a learner.
+  contact_message: (d) => ({
+    subject: `Website message from ${d.name}${d.topic ? ` — ${d.topic}` : ""}`,
+    preheader: (d.message || "").slice(0, 90),
+    heading: "New message from the website",
+    paragraphs: [
+      `From: ${d.name} <${d.email}>`,
+      ...(d.topic ? [`Interested in: ${d.topic}`] : []),
+      d.message,
+      "Reply to this email to answer them directly.",
+    ],
+  }),
+
+  // Sent to the academy inbox when someone books a consultation (web or app).
+  consultation_request: (d) => ({
+    subject: `Consultation request from ${d.name || "a visitor"}`,
+    preheader: `${d.department || "Consultation"}${d.date ? ` on ${date(d.date, "en")}` : ""}`,
+    heading: "New consultation request",
+    rows: [
+      ["Name", d.name || "—"],
+      ["Phone", d.phone || "—"],
+      ["Email", d.email || "—"],
+      ["Department", d.department || "—"],
+      ["Preferred date", d.date ? date(d.date, "en") : "—"],
+      ["Account", d.uid ? "Signed-in learner" : "Visitor"],
+    ],
+    paragraphs: [
+      ...(d.reason ? [`Reason: ${d.reason}`] : []),
+      d.email ? "Reply to this email to answer them directly." : "Call or WhatsApp them to confirm.",
+    ],
+  }),
+
   purchase_receipt: (d, lang) => {
     const titles = d.courses.map((c) => c.title);
     const single = titles.length === 1;

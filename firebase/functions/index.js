@@ -25,3 +25,5 @@ exports.resendEmail = emailOutbox.resendEmail;
 const emailTriggers = require("./email/triggers");
 exports.emailOnUserCreated = emailTriggers.emailOnUserCreated;
 exports.emailOnInstructorStatusChanged = emailTriggers.emailOnInstructorStatusChanged;
+exports.emailOnContactMessage = emailTriggers.emailOnContactMessage;
+exports.emailOnConsultationBooked = emailTriggers.emailOnConsultationBooked;

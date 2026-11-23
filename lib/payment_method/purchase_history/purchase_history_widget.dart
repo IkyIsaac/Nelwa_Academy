@@ -1,3 +1,4 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/empty_state/empty_purchase_history/empty_purchase_history_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
@@ -102,6 +103,7 @@ class _PurchaseHistoryWidgetState extends State<PurchaseHistoryWidget> {
         ),
         body: StreamBuilder<List<PurchaseHistoryRecord>>(
           stream: queryPurchaseHistoryRecord(
+            parent: currentUserReference,
             queryBuilder: (purchaseHistoryRecord) =>
                 purchaseHistoryRecord.orderBy('date', descending: true),
           ),

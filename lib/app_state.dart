@@ -618,7 +618,7 @@ class FFAppState extends ChangeNotifier {
   }
 
   FilterStruct _filter = FilterStruct.fromSerializableMap(jsonDecode(
-      '{\"rating\":\"0.0\",\"start\":\"0.0\",\"end\":\"500.0\",\"durationFrom\":\"0\",\"durationTo\":\"6000\"}'));
+      '{\"rating\":\"0.0\",\"start\":\"0.0\",\"end\":\"500.0\",\"durationFrom\":\"0\",\"durationTo\":\"360000\"}'));
   FilterStruct get filter => _filter;
   set filter(FilterStruct value) {
     _filter = value;

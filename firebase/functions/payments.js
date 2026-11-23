@@ -11,6 +11,35 @@ const SNIPPE_WEBHOOK_SECRET = process.env.SNIPPE_WEBHOOK_SECRET;
 const SNIPPE_WEBHOOK_URL = process.env.SNIPPE_WEBHOOK_URL;
 
 const MIN_AMOUNT_TZS = 500;
+
+// Websites allowed to receive buyers back from Snippe's checkout page.
+// WEB_APP_ORIGINS is a comma-separated list, e.g.
+// "https://nelwasacademy.com,https://www.nelwasacademy.com".
+const RETURN_ORIGINS = new Set(
+  (process.env.WEB_APP_ORIGINS || "")
+    .split(",")
+    .map((o) => o.trim().replace(/\/+$/, ""))
+    .filter(Boolean)
+);
+
+/**
+ * The page Snippe sends the buyer back to after paying, on the website they
+ * came from. Only allowlisted origins (and localhost, for development) are
+ * accepted, so the checkout can't be used to redirect people elsewhere.
+ * The mobile app sends no origin and gets no redirect, as before.
+ */
+function returnUrlFor(origin, orderId) {
+  if (typeof origin !== "string") return undefined;
+  let url;
+  try {
+    url = new URL(origin);
+  } catch (_) {
+    return undefined;
+  }
+  const isLocal = url.protocol === "http:" && ["localhost", "127.0.0.1"].includes(url.hostname);
+  if (!isLocal && !RETURN_ORIGINS.has(url.origin)) return undefined;
+  return `${url.origin}/checkout/status/${orderId}`;
+}
 const WEBHOOK_MAX_AGE_SECONDS = 300;
 
 function snippeClient() {
@@ -123,8 +152,10 @@ exports.createOrder = functions.https.onCall(async (data, context) => {
   }
 
   const orderRef = db.collection("orders").doc();
+  const redirectUrl = returnUrlFor(data && data.returnOrigin, orderRef.id);
   await orderRef.set({
     userId,
+    source: redirectUrl ? "web" : "app",
     userRef,
     amount,
     currency: "TZS",
@@ -152,6 +183,8 @@ exports.createOrder = functions.https.onCall(async (data, context) => {
           phone: user.phone_number || undefined,
         },
         webhook_url: SNIPPE_WEBHOOK_URL,
+        redirect_url: redirectUrl,
+        description: lineItems.map((i) => i.title).join(", ").slice(0, 500) || undefined,
         metadata: { orderId: orderRef.id, userId },
       },
       { headers: { "Idempotency-Key": orderRef.id } }

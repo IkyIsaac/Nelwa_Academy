@@ -17,8 +17,9 @@ function config() {
  * Throws an error with `retryable: true` for rate limits, 5xx responses and
  * network failures; any other error is permanent (bad address, bad payload).
  */
-async function sendEmail({ to, subject, html, text, idempotencyKey, tags }) {
-  const { apiKey, from, replyTo } = config();
+async function sendEmail({ to, subject, html, text, idempotencyKey, tags, replyTo: replyToOverride }) {
+  const { apiKey, from, replyTo: defaultReplyTo } = config();
+  const replyTo = replyToOverride || defaultReplyTo;
   try {
     const response = await axios.post(
       RESEND_URL,

@@ -1,21 +1,60 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
+    // ---------------------------------------------------------------------
+    // Helpers
+    // ---------------------------------------------------------------------
+    // Note: rules are OR-ed. A broad `allow write` also allows create and
+    // delete, so every block below lists create/update/delete separately.
+
+    function signedIn() {
+      return request.auth != null;
+    }
+
     function isAdmin() {
-      return request.auth != null &&
-          request.auth.token.email == 'isaackitomari33@gmail.com';
+      return signedIn() && request.auth.token.email == 'isaackitomari33@gmail.com';
     }
 
     function isOwner(uid) {
-      return request.auth != null && request.auth.uid == uid;
+      return signedIn() && request.auth.uid == uid;
+    }
+
+    // Reference to the signed-in user's document, for comparing with
+    // reference fields such as instructor_ref or user_ref.
+    function myRef() {
+      return /databases/$(database)/documents/users/$(request.auth.uid);
+    }
+
+    // Approved instructors (the admin sets `instructor`); older instructor
+    // accounts only have role == 'Instructor'.
+    function isInstructor() {
+      return signedIn() && hasInstructorFlags(get(myRef()).data);
+    }
+
+    function hasInstructorFlags(user) {
+      return user.get('instructor', false) == true || user.get('role', '') == 'Instructor';
     }
 
     function fieldChanged(field) {
       return request.resource.data.get(field, null) != resource.data.get(field, null);
     }
 
+    // True when an update touches only the given fields.
+    function onlyChanges(fields) {
+      return request.resource.data.diff(resource.data).affectedKeys().hasOnly(fields);
+    }
+
+    // ---------------------------------------------------------------------
+    // Users
+    // ---------------------------------------------------------------------
     match /users/{uid} {
-      allow read: if request.auth != null;
+      // Profiles hold email, phone and birthday, so they are private, except:
+      // - instructors' profiles (shown on course and instructor pages),
+      // - a learner's profile is visible to the instructors they follow
+      //   (the instructor's "Followers" list).
+      allow read: if isOwner(uid) || isAdmin()
+          || (signedIn() && (hasInstructorFlags(resource.data)
+              || myRef() in resource.data.get('subscriptions', [])));
       // Instructor status is granted only by the admin portal. An owner can
       // apply (instructor_status -> 'pending') and switch their role to
       // Instructor once approved, but never set the instructor flag itself.
@@ -33,213 +72,232 @@ service cloud.firestore {
       allow delete: if false;
     }
 
-    match /users/{parent}/payment_account/{document} {
-      allow create: if false;
-      allow read: if request.auth != null;
-      allow write: if request.auth != null;
-      allow delete: if false;
+    // Instructor payout details (bank account numbers): owner and admin only.
+    // Balances and sales are updated by Cloud Functions (Admin SDK).
+    match /users/{uid}/payment_account/{document} {
+      allow read: if isOwner(uid) || isAdmin();
+      // The owner sets their payout details; `balance` and `sales_reports`
+      // are money the payment webhook credits (Admin SDK) and createPayout
+      // checks against, so the owner may never set or change them.
+      allow create: if isAdmin() || (isOwner(uid)
+          && request.resource.data.get('balance', 0) == 0
+          && !('sales_reports' in request.resource.data));
+      allow update: if isAdmin() || (isOwner(uid)
+          && !fieldChanged('balance') && !fieldChanged('sales_reports'));
+      allow delete: if isAdmin();
     }
 
-    match /{path=**}/payment_account/{document} {
-      allow read: if request.auth != null;
+    // Saved payment methods: owner only.
+    match /users/{uid}/payment_method/{document} {
+      allow read, create, update, delete: if isOwner(uid);
+      allow read: if isAdmin();
     }
 
-
-    match /users/{parent}/payment_method/{document} {
-      allow create: if false;
-      allow read: if request.auth != null;
-      allow write: if request.auth != null;
-      allow delete: if false;
+    match /users/{uid}/purchase_history/{document} {
+      allow read, create: if isOwner(uid) || isAdmin();
+      allow update, delete: if isAdmin();
     }
 
-    match /{path=**}/payment_method/{document} {
-      allow read: if request.auth != null;
+    match /users/{uid}/purchased_courses/{document} {
+      // Entitlements are granted only by the snippeWebhook Cloud Function
+      // (Admin SDK, bypasses these rules) once a payment is confirmed.
+      // Learners may update their own progress fields (watched_lessons,
+      // reviwed) but never create or move an entitlement.
+      allow read: if isOwner(uid) || isAdmin();
+      allow update: if isOwner(uid) && !fieldChanged('courses_ref');
+      allow create, delete: if false;
     }
 
-
-    match /support/{document} {
-      allow create: if false;
-      allow read: if request.auth != null;
-      allow write: if request.auth != null;
-      allow delete: if false;
+    // Instructor stats (no personal details) are public for the instructor
+    // page. Anyone signed in may follow/unfollow (the `followers` list).
+    match /users/{uid}/instructor_details/{document} {
+      allow read: if true;
+      allow create: if isOwner(uid) || isAdmin();
+      allow update: if isOwner(uid) || isAdmin() || (signedIn() && onlyChanges(['followers']));
+      allow delete: if isAdmin();
     }
 
-    match /support/{parent}/support_message/{document} {
-      allow create: if false;
-      allow read: if request.auth != null;
-      allow write: if request.auth != null;
-      allow delete: if false;
+    // In-app notifications. Learners create them for instructors ("new
+    // follower", "new review"); only the owner can read or clear them.
+    match /users/{uid}/notification/{document} {
+      allow read, update, delete: if isOwner(uid) || isAdmin();
+      allow create: if signedIn();
     }
 
-    match /{path=**}/support_message/{document} {
-      allow read: if request.auth != null;
+    match /users/{uid}/user_reviews/{document} {
+      allow read, create, update: if isOwner(uid) || isAdmin();
+      allow delete: if isAdmin();
     }
 
-
-    match /courses/{document} {
-      allow create: if false;
-      allow read: if request.auth != null;
-      allow write: if request.auth != null;
-      allow delete: if false;
+    // ---------------------------------------------------------------------
+    // Courses
+    // ---------------------------------------------------------------------
+    // Published courses are public so the website can show the catalog to
+    // visitors; drafts stay visible to signed-in users only. Only the admin
+    // and the course's own instructor may edit a course; other learners may
+    // only record a preview view or add their review to the rating.
+    match /courses/{courseId} {
+      allow read: if signedIn() || resource.data.get('is_published', false) == true;
+      allow create: if isAdmin() || (isInstructor() && request.resource.data.get('instructor_ref', null) == myRef());
+      allow update: if isAdmin()
+          || (signedIn() && resource.data.get('instructor_ref', null) == myRef()
+              && request.resource.data.get('instructor_ref', null) == myRef())
+          || (signedIn() && onlyChanges(['preview_views']))
+          || (signedIn() && onlyChanges(['rating', 'reviews_count'])
+              && request.resource.data.reviews_count == resource.data.get('reviews_count', 0) + 1
+              && request.resource.data.rating >= 0 && request.resource.data.rating <= 5);
+      allow delete: if isAdmin() || (signedIn() && resource.data.get('instructor_ref', null) == myRef());
     }
 
-    match /courses/{parent}/lessons/{document} {
-      allow create: if false;
-      allow read: if request.auth != null;
-      allow write: if request.auth != null;
-      allow delete: if false;
+    function ownsCourse(courseId) {
+      return signedIn() && get(/databases/$(database)/documents/courses/$(courseId)).data.get('instructor_ref', null) == myRef();
     }
 
+    // Lessons hold the video links: signed-in users only.
+    match /courses/{courseId}/lessons/{document} {
+      allow read: if signedIn();
+      allow create, update, delete: if isAdmin() || ownsCourse(courseId);
+    }
+
+    // Reviews are public. Authors aren't stored on the review, so other
+    // users may only change the helpful/not helpful votes.
+    match /courses/{courseId}/courses_review/{document} {
+      allow read: if true;
+      allow create: if signedIn();
+      allow update: if isAdmin() || (signedIn() && onlyChanges(['liked', 'disliked']));
+      allow delete: if isAdmin();
+    }
+
+    // Reports from learners; only the admin reads them.
+    match /courses/{courseId}/review_report/{document} {
+      allow create: if signedIn();
+      allow read, update, delete: if isAdmin();
+    }
+
+    match /courses/{courseId}/lesson_report/{document} {
+      allow create: if signedIn();
+      allow read, update, delete: if isAdmin();
+    }
+
+    match /courses/{courseId}/courses_report/{document} {
+      allow create: if signedIn();
+      allow read, update, delete: if isAdmin();
+    }
+
+    // ---------------------------------------------------------------------
+    // Collection-group queries. A `{path=**}` rule also applies to normal
+    // reads of the same documents, so these must never be looser than the
+    // per-collection rules above.
+    // ---------------------------------------------------------------------
     match /{path=**}/lessons/{document} {
-      allow read: if request.auth != null;
-    }
-
-
-    match /users/{parent}/instructor_details/{document} {
-      allow create: if false;
-      allow read: if request.auth != null;
-      allow write: if request.auth != null;
-      allow delete: if false;
+      allow read: if signedIn();
     }
 
     match /{path=**}/instructor_details/{document} {
-      allow read: if request.auth != null;
-    }
-
-
-    match /users/{parent}/notification/{document} {
-      allow create: if false;
-      allow read: if request.auth != null;
-      allow write: if request.auth != null;
-      allow delete: if false;
-    }
-
-    match /{path=**}/notification/{document} {
-      allow read: if request.auth != null;
-    }
-
-
-    match /courses/{parent}/courses_review/{document} {
-      allow create: if false;
-      allow read: if request.auth != null;
-      allow write: if request.auth != null;
-      allow delete: if false;
+      allow read: if true;
     }
 
     match /{path=**}/courses_review/{document} {
-      allow read: if request.auth != null;
+      allow read: if true;
     }
 
-
-    match /courses/{parent}/review_report/{document} {
-      allow create: if false;
-      allow read: if request.auth != null;
-      allow write: if request.auth != null;
-      allow delete: if false;
+    match /{path=**}/payment_account/{document} {
+      allow read: if isAdmin();
     }
 
-    match /{path=**}/review_report/{document} {
-      allow read: if request.auth != null;
-    }
-
-
-    match /courses/{parent}/lesson_report/{document} {
-      allow create: if false;
-      allow read: if request.auth != null;
-      allow write: if request.auth != null;
-      allow delete: if false;
-    }
-
-    match /{path=**}/lesson_report/{document} {
-      allow read: if request.auth != null;
-    }
-
-
-    match /users/{parent}/purchase_history/{document} {
-      allow create: if false;
-      allow read: if request.auth != null;
-      allow write: if request.auth != null;
-      allow delete: if false;
+    match /{path=**}/payment_method/{document} {
+      allow read: if isAdmin();
     }
 
     match /{path=**}/purchase_history/{document} {
-      allow read: if request.auth != null;
-    }
-
-
-    match /users/{parent}/purchased_courses/{document} {
-      // Entitlements are granted only by the snippeWebhook Cloud Function
-      // (Admin SDK, bypasses these rules) once a payment is confirmed.
-      // Clients may still update their own progress fields
-      // (watched_lessons, reviwed) on an existing purchase.
-      allow create: if false;
-      allow read: if request.auth != null;
-      allow update: if request.auth != null;
-      allow delete: if false;
+      allow read: if isAdmin();
     }
 
     match /{path=**}/purchased_courses/{document} {
-      allow read: if request.auth != null;
+      allow read: if isAdmin();
     }
 
-
-    match /options/{document} {
-      allow create: if false;
-      allow read: if request.auth != null;
-      allow write: if request.auth != null;
-      allow delete: if false;
-    }
-
-    match /ads/{document} {
-      allow create: if true;
-      allow read: if request.auth != null;
-      allow write: if request.auth != null;
-      allow delete: if false;
-    }
-
-    match /requesta_refund/{document} {
-      allow create: if false;
-      allow read: if request.auth != null;
-      allow write: if request.auth != null;
-      allow delete: if false;
-    }
-
-    match /users/{parent}/user_reviews/{document} {
-      allow create: if false;
-      allow read: if request.auth != null;
-      allow write: if request.auth != null;
-      allow delete: if false;
+    match /{path=**}/notification/{document} {
+      allow read: if isAdmin();
     }
 
     match /{path=**}/user_reviews/{document} {
-      allow read: if request.auth != null;
+      allow read: if isAdmin();
     }
 
+    match /{path=**}/support_message/{document} {
+      allow read: if isAdmin();
+    }
 
-    match /courses/{parent}/courses_report/{document} {
-      allow create: if false;
-      allow read: if request.auth != null;
-      allow write: if request.auth != null;
-      allow delete: if false;
+    match /{path=**}/review_report/{document} {
+      allow read: if isAdmin();
+    }
+
+    match /{path=**}/lesson_report/{document} {
+      allow read: if isAdmin();
     }
 
     match /{path=**}/courses_report/{document} {
-      allow read: if request.auth != null;
+      allow read: if isAdmin();
     }
 
+    // ---------------------------------------------------------------------
+    // App-wide content
+    // ---------------------------------------------------------------------
+    // Categories, tags and trending searches for the public catalog.
+    // Instructors may add tags and categories when creating a course.
+    match /options/{document} {
+      allow read: if true;
+      allow update: if isAdmin() || (isInstructor() && onlyChanges(['tags', 'categories']));
+      allow create, delete: if isAdmin();
+    }
 
+    // Home-screen banners, managed by the admin.
+    match /ads/{document} {
+      allow read: if signedIn();
+      allow create, update, delete: if isAdmin();
+    }
+
+    // ---------------------------------------------------------------------
+    // Support, refunds, consultations
+    // ---------------------------------------------------------------------
+    // One support thread per learner (`user` points at them).
+    match /support/{supportId} {
+      allow read, update: if isAdmin() || (signedIn() && resource.data.get('user', null) == myRef());
+      allow create: if signedIn() && request.resource.data.get('user', null) == myRef();
+      allow delete: if isAdmin();
+    }
+
+    match /support/{supportId}/support_message/{document} {
+      allow read, create, update: if isAdmin()
+          || (signedIn() && get(/databases/$(database)/documents/support/$(supportId)).data.get('user', null) == myRef());
+      allow delete: if isAdmin();
+    }
+
+    match /requesta_refund/{document} {
+      allow read: if isAdmin() || (signedIn() && resource.data.get('user_ref', null) == myRef());
+      allow create: if signedIn() && request.resource.data.get('user_ref', null) == myRef();
+      allow update, delete: if isAdmin();
+    }
+
+    // Consultation bookings contain names, emails and phone numbers. Anyone
+    // may book; only the person who booked, approved instructors (the app's
+    // consultation list) and the admin may read them.
     match /consultation/{document} {
       allow create: if true;
-      allow read: if true;
-      allow write: if false;
-      allow delete: if false;
+      allow read: if isAdmin() || isInstructor()
+          || (signedIn() && resource.data.get('uid', '') == request.auth.uid);
+      allow update, delete: if false;
     }
 
+    // ---------------------------------------------------------------------
+    // Server-managed collections
+    // ---------------------------------------------------------------------
     // Orders are created and fulfilled only by Cloud Functions (Admin SDK,
     // bypasses these rules). Clients may only read their own order, to watch
     // its status while a Snippe checkout is in progress.
     match /orders/{document} {
-      allow read: if (request.auth != null && request.auth.uid == resource.data.userId) || isAdmin();
+      allow read: if (signedIn() && request.auth.uid == resource.data.userId) || isAdmin();
       allow write: if false;
     }
 
@@ -247,8 +305,21 @@ service cloud.firestore {
     // bypasses these rules). The instructor can read their own, the admin
     // can read all; no client ever writes one.
     match /payouts/{document} {
-      allow read: if (request.auth != null && request.auth.uid == resource.data.instructorUserId) || isAdmin();
+      allow read: if (signedIn() && request.auth.uid == resource.data.instructorUserId) || isAdmin();
       allow write: if false;
+    }
+
+    // Website contact form. Anyone may send one message (signed in or not);
+    // only the admin can read them. emailOnContactMessage forwards each one
+    // to the academy inbox.
+    match /contact_messages/{document} {
+      allow create: if request.resource.data.keys().hasOnly(['name', 'email', 'topic', 'message', 'createdAt', 'uid'])
+        && request.resource.data.name is string && request.resource.data.name.size() > 0 && request.resource.data.name.size() <= 100
+        && request.resource.data.email is string && request.resource.data.email.matches('^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$')
+        && request.resource.data.message is string && request.resource.data.message.size() > 0 && request.resource.data.message.size() <= 3000
+        && request.resource.data.createdAt == request.time;
+      allow read: if isAdmin();
+      allow update, delete: if false;
     }
 
     // Email outbox, written and sent only by Cloud Functions. Admin can
