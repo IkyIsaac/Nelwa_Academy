@@ -71,8 +71,9 @@ The file:
   sitemap and share links, and robots.txt closes them to search engines.
 
 The repo-root `netlify.toml` is the admin portal's and isn't affected:
-Netlify reads the config from each site's base directory. The admin site
-still rebuilds on every push, including website-only ones.
+Netlify reads the config from each site's base directory. The admin
+site's config likewise skips builds when a push only changes `webapp/` or
+`docs/`.
 
 | | Netlify | Vercel |
 |---|---|---|

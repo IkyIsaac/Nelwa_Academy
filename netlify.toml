@@ -3,6 +3,9 @@
   # git clone fails on an existing directory — reuse it unless it's broken.
   command = "export CI=true && (test -x flutter_sdk/bin/flutter || (rm -rf flutter_sdk && git clone --depth 1 --branch 3.35.7 https://github.com/flutter/flutter.git flutter_sdk)) && export PATH=\"$PATH:$(pwd)/flutter_sdk/bin\" && flutter config --enable-web --no-analytics && flutter pub get && flutter build web --release -t lib/main_admin.dart"
   publish = "build/web"
+  # Skip the admin build when a push only changes the website (webapp/, a
+  # separate Netlify site) or the docs. Exit 0 = nothing else changed = skip.
+  ignore = "git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF -- . ':(exclude)webapp' ':(exclude)docs'"
 
 # Flutter's GoRouter uses real paths (no #), so every route (e.g. /users,
 # /courses/:id) needs to fall back to index.html and let the app's own
