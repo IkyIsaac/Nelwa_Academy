@@ -14,6 +14,11 @@ pnpm dev            # http://localhost:3000
 
 Other scripts: `pnpm build`, `pnpm lint`, `pnpm typecheck`, `pnpm format`.
 
+The only setting is optional: `NEXT_PUBLIC_SITE_URL`, the site's public
+address for the sitemap, robots.txt and share links (default
+`https://nelwasacademy.com`; set it on preview deploys). Going live is
+described in `docs/launch-web.md`.
+
 ## Stack
 
 | Concern            | Tool                                                   |
