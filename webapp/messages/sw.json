@@ -1055,5 +1055,14 @@
       "past": "Imepita",
       "preferredDay": "Siku iliyopendekezwa"
     }
+  },
+  "errors": {
+    "notFoundTitle": "Hatukuweza kupata ukurasa huo",
+    "notFoundBody": "Huenda kiungo kimeharibika au ukurasa umehamishwa. Jaribu kuangalia kozi zetu badala yake.",
+    "browseCourses": "Angalia kozi",
+    "goHome": "Nenda ukurasa wa mwanzo",
+    "crashTitle": "Hitilafu imetokea kwenye ukurasa huu",
+    "crashBody": "Si wewe, ni sisi. Jaribu tena, na ikiendelea kutokea, tujulishe kupitia Mawasiliano.",
+    "retry": "Jaribu tena"
   }
 }

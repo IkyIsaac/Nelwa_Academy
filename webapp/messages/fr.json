@@ -1055,5 +1055,14 @@
       "past": "Passée",
       "preferredDay": "Jour souhaité"
     }
+  },
+  "errors": {
+    "notFoundTitle": "Page introuvable",
+    "notFoundBody": "Le lien est peut-être cassé ou la page a été déplacée. Découvrez plutôt nos cours.",
+    "browseCourses": "Voir les cours",
+    "goHome": "Aller à l'accueil",
+    "crashTitle": "Un problème est survenu sur cette page",
+    "crashBody": "Ce n'est pas vous, c'est nous. Réessayez et, si le problème persiste, prévenez-nous via Contact.",
+    "retry": "Réessayer"
   }
 }
