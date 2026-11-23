@@ -34,7 +34,7 @@ export function OnboardingFrame({ children }: { children: React.ReactNode }) {
         </div>
       </header>
 
-      <main className="container-page relative flex justify-center pt-4 pb-16">
+      <main id="main" className="container-page relative flex justify-center pt-4 pb-16">
         <RequireAuth>
           <ProfileReady>
             <PageEnter className="w-full max-w-xl rounded-[2rem] border border-border bg-white p-6 shadow-[0_24px_80px_rgb(93_8_11/0.08)] sm:p-10">

@@ -63,7 +63,7 @@ export async function AuthShell({ children }: { children: React.ReactNode }) {
             </div>
           </div>
         </div>
-        <main className="flex flex-1 items-start justify-center px-5 py-10 sm:items-center lg:px-10">
+        <main id="main" className="flex flex-1 items-start justify-center px-5 py-10 sm:items-center lg:px-10">
           <div className="w-full max-w-[420px]">{children}</div>
         </main>
       </div>

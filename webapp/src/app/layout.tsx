@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next"
 import { NextIntlClientProvider } from "next-intl"
-import { getLocale } from "next-intl/server"
+import { getLocale, getTranslations } from "next-intl/server"
 import { Montserrat } from "next/font/google"
 import { siteUrl } from "@/config/site"
 import { Providers } from "./providers"
@@ -30,10 +30,18 @@ export const viewport: Viewport = {
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const locale = await getLocale()
+  const t = await getTranslations("nav")
 
   return (
     <html lang={locale} className={montserrat.variable}>
       <body className="grain min-h-dvh">
+        {/* First Tab stop: lets keyboard and screen-reader users jump past the header. */}
+        <a
+          href="#main"
+          className="sr-only z-100 rounded-full bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground focus:not-sr-only focus:fixed focus:top-3 focus:left-3"
+        >
+          {t("skipToContent")}
+        </a>
         <NextIntlClientProvider>
           <Providers>{children}</Providers>
         </NextIntlClientProvider>
