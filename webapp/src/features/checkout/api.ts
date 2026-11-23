@@ -1,6 +1,7 @@
 import { collection, doc, getDocs, limit, onSnapshot, query, where } from "firebase/firestore"
 import { httpsCallable } from "firebase/functions"
-import { db, functions } from "@/lib/firebase/client"
+import { db } from "@/lib/firebase/client"
+import { functions } from "@/lib/firebase/functions"
 import { type CheckoutError, type Order, toOrder } from "./types"
 
 type CreateOrderResult = { orderId: string; checkoutUrl: string }

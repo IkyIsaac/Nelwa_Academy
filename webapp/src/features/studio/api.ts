@@ -19,7 +19,8 @@ import {
 import { getDownloadURL, ref, uploadBytes, uploadBytesResumable } from "firebase/storage"
 import { fetchLessons } from "@/features/catalog/api"
 import { type Course, toCourse } from "@/features/catalog/types"
-import { db, storage } from "@/lib/firebase/client"
+import { db } from "@/lib/firebase/client"
+import { storage } from "@/lib/firebase/storage"
 import { str } from "@/lib/firebase/fields"
 import { resizeImage } from "@/lib/image"
 import {

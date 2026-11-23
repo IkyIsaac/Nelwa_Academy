@@ -1,8 +1,6 @@
 import { getApp, getApps, initializeApp } from "firebase/app"
 import { getAuth } from "firebase/auth"
 import { getFirestore } from "firebase/firestore"
-import { getFunctions } from "firebase/functions"
-import { getStorage } from "firebase/storage"
 
 /**
  * The same Firebase project the mobile app uses, so accounts, courses and
@@ -23,5 +21,5 @@ export const app = getApps().length ? getApp() : initializeApp(firebaseConfig)
 
 export const auth = getAuth(app)
 export const db = getFirestore(app)
-export const storage = getStorage(app)
-export const functions = getFunctions(app) // Cloud Functions live in us-central1
+// Storage and Cloud Functions are in ./storage and ./functions, so pages
+// that don't upload files or pay don't download those SDKs.

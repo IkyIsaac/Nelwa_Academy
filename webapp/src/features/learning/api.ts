@@ -10,10 +10,9 @@ import {
   updateDoc,
   where,
 } from "firebase/firestore"
-import { getDownloadURL, ref, uploadBytes } from "firebase/storage"
 import type { Course } from "@/features/catalog/types"
 import { refList } from "@/lib/firebase/fields"
-import { db, storage } from "@/lib/firebase/client"
+import { db } from "@/lib/firebase/client"
 import { resizeImage } from "@/lib/image"
 import { type Purchase, type RefundRequest, toPurchase, toRefundRequest } from "./types"
 
@@ -148,9 +147,8 @@ export async function fetchRefundRequest(uid: string, courseId: string): Promise
 
 export async function uploadRefundScreenshot(uid: string, file: File) {
   const blob = await resizeImage(file, 1600)
-  const fileRef = ref(storage, `users/${uid}/uploads/refund_${Date.now()}.jpg`)
-  await uploadBytes(fileRef, blob, { contentType: "image/jpeg" })
-  return getDownloadURL(fileRef)
+  const { uploadBlob } = await import("@/lib/firebase/storage")
+  return uploadBlob(`users/${uid}/uploads/refund_${Date.now()}.jpg`, blob, "image/jpeg")
 }
 
 export type RefundInput = {

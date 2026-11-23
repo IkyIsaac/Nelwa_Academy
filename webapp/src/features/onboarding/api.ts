@@ -1,7 +1,8 @@
 import { updateProfile } from "firebase/auth"
 import { doc, Timestamp, updateDoc } from "firebase/firestore"
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage"
-import { auth, db, storage } from "@/lib/firebase/client"
+import { auth, db } from "@/lib/firebase/client"
+import { storage } from "@/lib/firebase/storage"
 import { resizeImage } from "@/lib/image"
 
 /** Uploads a profile photo to users/{uid}/uploads/ (same place as mobile) and returns its URL. */
