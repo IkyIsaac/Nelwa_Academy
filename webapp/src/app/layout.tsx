@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next"
 import { NextIntlClientProvider } from "next-intl"
 import { getLocale } from "next-intl/server"
 import { Montserrat } from "next/font/google"
+import { siteUrl } from "@/config/site"
 import { Providers } from "./providers"
 import "./globals.css"
 
@@ -13,7 +14,7 @@ const montserrat = Montserrat({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://nelwasacademy.com"),
+  metadataBase: new URL(siteUrl),
   title: {
     default: "Nelwa's Academy — Africa's Ice Cream School",
     template: "%s · Nelwa's Academy",

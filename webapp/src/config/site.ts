@@ -1,3 +1,10 @@
+/**
+ * The site's public address, used for the sitemap, robots.txt and share
+ * links. Set NEXT_PUBLIC_SITE_URL on a preview deploy so its links point at
+ * itself rather than the live site.
+ */
+export const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://nelwasacademy.com"
+
 /** Contact details and links shown across the site (from the landing template). */
 export const site = {
   name: "Nelwa's Academy",
