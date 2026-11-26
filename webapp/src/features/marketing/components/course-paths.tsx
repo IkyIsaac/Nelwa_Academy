@@ -1,4 +1,4 @@
-import { ArrowRight, GraduationCap, House, IceCreamCone, Star } from "lucide-react"
+import { ArrowRight, GraduationCap, Handshake, House, IceCreamCone, Star } from "lucide-react"
 import { getTranslations } from "next-intl/server"
 import Link from "next/link"
 import { Reveal } from "@/components/motion/reveal"
@@ -8,8 +8,9 @@ import { cn } from "@/lib/utils"
 import { SectionLabel, SectionTitle } from "./section"
 
 /**
- * The three learning paths from the template. These are fixed marketing
- * cards; the live course catalogue is on /explore.
+ * The four offers on the landing page: the free class, Soft Serve Starter,
+ * the in-person Gelato Masterclass and 1:1 Business Mentorship. These are
+ * fixed marketing cards; the live course catalogue is on /explore.
  */
 export async function CoursePaths() {
   const t = await getTranslations("landing.courses")
@@ -48,7 +49,7 @@ export async function CoursePaths() {
       icon: GraduationCap,
       badges: [
         { text: t("advanced"), className: "bg-maroon-tint text-primary" },
-        { text: t("oneOnOne"), className: "border border-border bg-cream text-muted-foreground" },
+        { text: t("inPerson"), className: "border border-border bg-cream text-muted-foreground" },
       ],
       title: t("gelatoTitle"),
       price: t("gelatoPrice"),
@@ -56,6 +57,21 @@ export async function CoursePaths() {
       body: t("gelatoBody"),
       points: t("gelatoPoints").split("|"),
       cta: t("gelatoCta"),
+      href: routes.contact,
+      variant: "outline" as const,
+      featured: false,
+    },
+    {
+      icon: Handshake,
+      badges: [
+        { text: t("oneOnOne"), className: "border border-border bg-cream text-muted-foreground" },
+      ],
+      title: t("mentorTitle"),
+      price: t("mentorPrice"),
+      priceNote: t("mentorPriceNote"),
+      body: t("mentorBody"),
+      points: t("mentorPoints").split("|"),
+      cta: t("mentorCta"),
       href: routes.consult,
       variant: "outline" as const,
       featured: false,
@@ -82,7 +98,7 @@ export async function CoursePaths() {
           </Reveal>
         </div>
 
-        <div className="grid gap-6 md:grid-cols-3">
+        <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
           {paths.map((path, i) => (
             <Reveal key={path.title} delay={0.1 * i} className="h-full">
               <article
@@ -99,7 +115,7 @@ export async function CoursePaths() {
                     path.featured ? "bg-gold" : "bg-border group-hover:bg-primary",
                   )}
                 />
-                <div className="flex flex-1 flex-col p-7 sm:p-8">
+                <div className="flex flex-1 flex-col p-7 sm:p-8 xl:p-6">
                   <div className="mb-5 flex flex-wrap gap-2">
                     {path.badges.map((badge) => (
                       <span
@@ -121,9 +137,9 @@ export async function CoursePaths() {
                     )}
                   />
                   <h3 className="mb-2 text-[22px] font-extrabold tracking-tight">{path.title}</h3>
-                  <p className="mb-4 text-[26px] font-extrabold text-primary">
-                    {path.price}{" "}
-                    <span className="text-[13px] font-normal text-muted-foreground">{path.priceNote}</span>
+                  <p className="mb-4 text-2xl font-extrabold text-primary">
+                    {path.price}
+                    <span className="block text-[13px] font-normal text-muted-foreground">{path.priceNote}</span>
                   </p>
                   <p className="mb-6 text-sm leading-relaxed text-muted-foreground">{path.body}</p>
                   <ul className="mb-8 space-y-2.5">

@@ -28,6 +28,8 @@ export const metadata: Metadata = {
   description:
     "Learn how to make soft serve and gelato, and turn your skills into real income. Taught by Tanzania's most celebrated ice cream entrepreneur.",
   openGraph: { siteName: "Nelwa's Academy", type: "website" },
+  // Name and status bar when added to an iPhone's home screen.
+  appleWebApp: { capable: true, title: "Nelwa's", statusBarStyle: "default" },
 }
 
 export const viewport: Viewport = {

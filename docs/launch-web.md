@@ -13,6 +13,7 @@ academy can take (hosting, domain, Firebase console, real-account tests).
 | Site address | One setting, `NEXT_PUBLIC_SITE_URL` (default `https://nelwasacademy.com`), used by the sitemap, robots and share links | `src/config/site.ts` |
 | Icons | The academy mark replaces Next.js's default favicon; home-screen icons for iPhone and Android | `src/app/favicon.ico`, `icon.png`, `apple-icon.png`, `public/icons/` |
 | Install | Web manifest: name, colour and icons for "Add to home screen" | `src/app/manifest.ts` |
+| Install banner | Phones get an "add to home screen" banner after a few seconds. iPhone Safari can't show an install dialog, so the banner explains Share → Add to Home Screen; Android opens the browser's install dialog. Hidden once installed, on checkout, lesson player, studio and sign-in pages, and for 30 days after closing | `src/components/layout/install-prompt.tsx` |
 | Link previews | Default share image (logo beside the classroom photo) for pages without their own; course pages still use the course cover | `src/app/opengraph-image.jpg` |
 | Security headers | No framing by other sites, no MIME sniffing, shorter referrer, camera/microphone/location off, HTTPS remembered for two years, no `X-Powered-By` | `next.config.ts` |
 | Accessibility | "Skip to content" as the first Tab stop on every page; every page has a `main` landmark. A scan found no images without alt text and no unlabelled icon buttons | `src/app/layout.tsx` |

@@ -2,7 +2,6 @@ import type { Metadata } from "next"
 import { getTranslations } from "next-intl/server"
 import { ConsultCta } from "@/features/marketing/components/consult-cta"
 import { Story } from "@/features/marketing/components/story"
-import { Testimonials } from "@/features/marketing/components/testimonials"
 import { Values } from "@/features/marketing/components/values"
 import { WhatWeDo } from "@/features/marketing/components/what-we-do"
 
@@ -17,7 +16,6 @@ export default function AboutPage() {
       <Story />
       <Values />
       <WhatWeDo />
-      <Testimonials />
       <ConsultCta />
     </div>
   )

@@ -5,7 +5,7 @@ import { useEffect, useRef } from "react"
 
 /**
  * Counts from 0 to `to` the first time the number scrolls into view.
- * Pass `grouping={false}` for years, so 2012 isn't shown as "2,012".
+ * Pass `grouping={false}` for years, so 2013 isn't shown as "2,012".
  */
 export function CountUp({
   to,

@@ -1,3 +1,4 @@
+import { InstallPrompt } from "@/components/layout/install-prompt"
 import { MobileTabBar } from "@/components/layout/mobile-tab-bar"
 import { SiteFooter } from "@/components/layout/site-footer"
 import { SiteHeader } from "@/components/layout/site-header"
@@ -12,6 +13,7 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
       </main>
       <SiteFooter />
       <MobileTabBar />
+      <InstallPrompt />
     </>
   )
 }

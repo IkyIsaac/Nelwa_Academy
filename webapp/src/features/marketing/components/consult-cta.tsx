@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button"
 import { routes, site } from "@/config/site"
 import { SectionLabel, SectionTitle } from "./section"
 
-/** Maroon call-to-action for Mercy's 1:1 consultation. */
+/** Maroon call-to-action for Mercy's 1:1 Business Mentorship. */
 export async function ConsultCta() {
   const t = await getTranslations("landing.consult")
 
