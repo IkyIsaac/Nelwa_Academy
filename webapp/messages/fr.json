@@ -47,7 +47,6 @@
     "allCourses": "Tous les cours",
     "consultation": "Consultation individuelle",
     "ourValues": "Nos valeurs",
-    "studentStories": "Témoignages d'étudiants",
     "helpCenter": "Centre d'aide",
     "privacyPolicy": "Politique de confidentialité",
     "terms": "Conditions générales",
@@ -273,14 +272,6 @@
       "businessBody": "Vous n'apprenez pas seulement à faire de la glace. Vous apprenez à bâtir une entreprise, à fixer vos prix et à trouver de vrais clients.",
       "communityTitle": "Ancrés dans la communauté",
       "communityBody": "De Dar es Salaam au Cameroun — nous accompagnons les femmes et les jeunes entrepreneurs à travers l'Afrique, une boule à la fois."
-    },
-    "testimonials": {
-      "label": "Témoignages d'étudiants",
-      "title": "Ce que disent nos étudiants",
-      "subtitle": "De vrais résultats, de vrais entrepreneurs, en Tanzanie et au-delà.",
-      "amina": "Je n'aurais jamais cru pouvoir lancer une entreprise depuis ma cuisine. Nelwa's Academy m'a montré exactement comment — avec des produits que je trouvais au marché de Kariakoo.",
-      "grace": "Le cours de glace à l'italienne a été rentabilisé dès la première semaine de ventes. Mercy enseigne tout ce dont on a vraiment besoin — et rien de superflu.",
-      "fatuma": "Enfin un cours pensé pour notre marché africain — ingrédients locaux, vrais prix, vrais clients. J'approvisionne maintenant deux restaurants à Arusha."
     },
     "consult": {
       "label": "Consultation individuelle",

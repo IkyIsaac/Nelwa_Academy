@@ -22,7 +22,6 @@ export async function SiteFooter() {
       title: t("company"),
       links: [
         { href: routes.about, label: t("ourValues") },
-        { href: `${routes.landing}#testimonials`, label: t("studentStories") },
         { href: routes.contact, label: nav("contact") },
         { href: routes.help, label: t("helpCenter") },
       ],

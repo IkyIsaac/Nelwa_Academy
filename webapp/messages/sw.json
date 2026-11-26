@@ -47,7 +47,6 @@
     "allCourses": "Kozi zote",
     "consultation": "Ushauri wa 1:1",
     "ourValues": "Maadili Yetu",
-    "studentStories": "Hadithi za Wanafunzi",
     "helpCenter": "Kituo cha Msaada",
     "privacyPolicy": "Sera ya Faragha",
     "terms": "Vigezo na Masharti",
@@ -273,14 +272,6 @@
       "businessBody": "Hujifunzi tu kutengeneza aiskrimu. Unajifunza kujenga biashara, kupanga bei sahihi, na kupata wateja halisi.",
       "communityTitle": "Tumejikita Katika Jamii",
       "communityBody": "Kutoka Dar es Salaam hadi Kameruni — tunawawezesha wanawake na vijana wajasiriamali kote Afrika, kijiko kimoja kwa wakati."
-    },
-    "testimonials": {
-      "label": "Hadithi za Wanafunzi",
-      "title": "Wanafunzi Wetu Wanasema Nini",
-      "subtitle": "Matokeo halisi kutoka kwa wajasiriamali halisi kote Tanzania na kwingineko.",
-      "amina": "Sikuwahi kufikiri ningeweza kuanzisha biashara kutoka jikoni kwangu. Nelwa's Academy ilinionyesha jinsi hasa — kwa bidhaa ambazo ningeweza kuzipata soko la Kariakoo.",
-      "grace": "Kozi ya soft serve ilirudisha gharama yake katika wiki ya kwanza ya mauzo. Mercy anakufundisha kila unachohitaji kweli — na si kingine.",
-      "fatuma": "Hatimaye kozi iliyoundwa kwa soko letu la Kiafrika — viungo vya hapa, bei halisi, wateja halisi. Sasa ninasambaza kwa migahawa miwili Arusha."
     },
     "consult": {
       "label": "Ushauri wa 1:1",

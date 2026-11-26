@@ -47,7 +47,6 @@
     "allCourses": "All courses",
     "consultation": "1:1 Consultation",
     "ourValues": "Our Values",
-    "studentStories": "Student Stories",
     "helpCenter": "Help Center",
     "privacyPolicy": "Privacy Policy",
     "terms": "Terms & Conditions",
@@ -273,14 +272,6 @@
       "businessBody": "You're not just learning to make ice cream. You're learning to build a business, price products correctly, and find real customers.",
       "communityTitle": "Community-Rooted",
       "communityBody": "From Dar es Salaam to Cameroon — empowering women and youth entrepreneurs across Africa, one scoop at a time."
-    },
-    "testimonials": {
-      "label": "Student Stories",
-      "title": "What Our Students Say",
-      "subtitle": "Real results from real entrepreneurs across Tanzania and beyond.",
-      "amina": "I never thought I could start a business from my kitchen. Nelwa's Academy showed me exactly how — with products I could actually find in Kariakoo market.",
-      "grace": "The soft serve course paid for itself in the first week of selling. Mercy teaches you everything you actually need — and nothing you don't.",
-      "fatuma": "Finally a course designed for our African market — local ingredients, real pricing, real customers. I now supply two restaurants in Arusha."
     },
     "consult": {
       "label": "1:1 Consultation",
