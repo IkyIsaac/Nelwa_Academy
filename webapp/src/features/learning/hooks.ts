@@ -62,8 +62,10 @@ export function useCourseAccess(course: Course | undefined) {
   const purchases = usePurchases()
   const purchase = course ? purchases.data?.find((p) => p.courseId === course.id) : undefined
   const uid = user?.uid ?? ""
-  const owned = !!purchase || (!!course && course.studentIds.includes(uid))
-  const teaches = !!course && course.instructorId === uid
+  // Signed out, uid is "": without the !!uid guard a course with no
+  // instructor ("") would make every visitor its instructor.
+  const owned = !!purchase || (!!uid && !!course && course.studentIds.includes(uid))
+  const teaches = !!uid && !!course && course.instructorId === uid
   const free = !!course && course.price <= 0
   return {
     loading: purchases.isPending,
