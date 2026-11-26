@@ -16,7 +16,7 @@ export async function WhatWeDo() {
 
   const stats = [
     {
-      value: <CountUp to={2012} grouping={false} className="tabular-nums" />,
+      value: <CountUp to={2013} grouping={false} className="tabular-nums" />,
       label: t("founded"),
       gold: false,
     },
